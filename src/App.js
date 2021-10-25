@@ -6,7 +6,7 @@ function App() {
   const [location, setLocation] = useState(data['start-location'])
 
   return (
-    <div className="app svg-background">
+    <div className="svg-background min-h-screen">
       <main>
         <p>{ data.locations[location].story }</p>
 
