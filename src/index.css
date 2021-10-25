@@ -11,3 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+body {
+  color: #fff;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+}
+
+main {
+  padding: 12px;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.svg-background {
+  background-color: #0b7;
+  background-image:url("./endless-constellation.svg");
+  /* background by SVGBackgrounds.com */
+}

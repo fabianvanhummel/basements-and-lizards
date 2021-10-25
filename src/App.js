@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import data from './tutorial.json'
 
 function App() {
+
+  const [location, setLocation] = useState(data['start-location'])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app svg-background">
+      <main>
+        <p>{ data.locations[location].story }</p>
+
+        { data.locations[location].directions.map(direction => (
+          <div key={direction.to} style={{ marginTop: "8px" }}>
+            <p>{ direction.story }</p>
+            <button onClick={() => setLocation(direction.to)}>
+              { direction.to }
+            </button>
+          </div>
+        ))}
+      </main>
     </div>
   );
 }
