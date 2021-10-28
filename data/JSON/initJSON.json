@@ -17,7 +17,7 @@
 					]
 				},
 				{
-					"name": "forest-crossroads"
+					"name": "forest-crossroads",
 					"story": "You're now at a crossroads where the path goes either left to the North or right to the South.",
 					"directions": [
 						{
