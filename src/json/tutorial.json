@@ -66,22 +66,22 @@
       ]
     }
   },
-  "characters": [
-    {
+  "characters": {
+    "arnoud-krabbius": {
       "name": "Arnoud Krabbius",
       "race": "Half-Orc",
       "title": "The Barbarian",
       "description": "Arnoud is a big, muscular half-orc. He loves fighting, using his gigantic two handed broad axe. Although he is an impressive combatant, he is easily tricked when facing witty enemies.",
       "backstory": "Arnoud grew up in Arnhem, where 'Messentrekken' was a common move on the streets. This way he learned to always be ready for a fight."
     },
-    {
+    "joey-feed-r": {
       "name": "Joey Feed'r",
       "race": "Human",
       "title": "Longshot Lackey",
       "description": "He can throw a frikadel like no other.",
       "backstory": "Joey has always enjoyed food, and prefers to have breakfast that isn't particulary healthy. This passion for food gave him exceptional abilities when preparing future meals. He can throw any fast food with great power and accuracy."
     },
-    {
+    "spincent": {
       "name": "Spincent",
       "race": "Arachnid",
       "title": "The Scary Spider",
@@ -94,7 +94,7 @@
         }
       ]
     }
-  ],
+  },
   "items": {
     "forest-vault-key": {
       "name": "Forest Vault Key",
