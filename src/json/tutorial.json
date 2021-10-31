@@ -4,6 +4,8 @@
   "start-location": "forest-entrance",
   "locations": {
     "forest-entrance": {
+      "name": "Forest Entrance",
+      "reachable": true,
       "story": "You're standing at the forest entrance where you decided to meet up. Behind you is the village you're from, but your mind is set on the forest where your lost friend went.",
       "directions": [
         {
@@ -30,20 +32,36 @@
       ]
     },
     "forest-ruins": {
+      "name": "Forest Ruins",
+      "reachable": true,
       "story": "You're at the forest ruins",
       "directions": [
         {
           "to": "forest-crossroads",
           "story": "Go back"
         }
+      ],
+      "items": [
+        {
+          "id": 1,
+          "available": true
+        }
       ]
     },
     "forest-beach": {
+      "name": "Forest Beach",
+      "reachable": false,
       "story": "You're at the forest beach",
       "directions": [
         {
           "to": "forest-crossroads",
           "story": "Go back"
+        }
+      ],
+      "items": [
+        {
+          "id": 2,
+          "available": false
         }
       ]
     }
