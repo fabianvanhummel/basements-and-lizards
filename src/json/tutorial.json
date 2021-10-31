@@ -43,7 +43,7 @@
       ],
       "items": [
         {
-          "id": 1,
+          "id": "forest-vault-key",
           "available": true
         }
       ]
@@ -60,7 +60,7 @@
       ],
       "items": [
         {
-          "id": 2,
+          "id": "bundker-reinforced-door-key",
           "available": false
         }
       ]
@@ -89,31 +89,28 @@
       "backstory": "After an unfortunate event Spincent grew extra legs, at first this seemed like a disadvantage, but soon he evolved. This turned him into a spider who has the size and strength of a human.",
       "items": [
         {
-          "id": 3,
+          "id": "bunny-hop-carrot",
           "amount": 3
         }
       ]
     }
   ],
-  "items": [
-    {
-      "id": 1,
+  "items": {
+    "forest-vault-key": {
       "name": "Forest Vault Key",
       "description": "This key can be used to open the vault in the forest",
       "isUnique": true,
       "isStoryItem": true,
       "storyId": 1
     },
-    {
-      "id": 2,
+    "bundker-reinforced-door-key": {
       "name": "Bunker Reinforced Door Key",
       "description": "This key can be used to open the Reinforced Door of the Bunker",
       "isUnique": true,
       "isStoryItem": true,
       "storyId": 1
     },
-    {
-      "id": 3,
+    "bunny-hop-carrot": {
       "name": "Bunny Hop Carrot",
       "description": "After eating one of these carrots, you can jump up to 3 times higher than normal for 10 minutes.",
       "consumable":  true,
@@ -121,13 +118,12 @@
       "isStoryItem": false,
       "storyId": null
     },
-    {
-      "id": 4,
+    "gloves-of-crabby-power": {
       "name": "Gloves of Crabby Power",
       "description": "The wearer of these gloves has greatly increased strength, allowing him/her to lift very heavy objects.",
       "isUnique": true,
       "isStoryItem": false,
       "storyId": null
     }
-  ]
+  }
 }
