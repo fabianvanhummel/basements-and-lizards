@@ -47,6 +47,69 @@
         }
       ]
     }
-    
-  }
+  },
+  "characters": [
+    {
+      "name": "Arnoud Krabbius",
+      "race": "Half-Orc",
+      "title": "The Barbarian",
+      "description": "Arnoud is a big, muscular half-orc. He loves fighting, using his gigantic two handed broad axe. Although he is an impressive combatant, he is easily tricked when facing witty enemies.",
+      "backstory": "Arnoud grew up in Arnhem, where 'Messentrekken' was a common move on the streets. This way he learned to always be ready for a fight."
+    },
+    {
+      "name": "Joey Feed'r",
+      "race": "Human",
+      "title": "Longshot Lackey",
+      "description": "He can throw a frikadel like no other.",
+      "backstory": "Joey has always enjoyed food, and prefers to have breakfast that isn't particulary healthy. This passion for food gave him exceptional abilities when preparing future meals. He can throw any fast food with great power and accuracy."
+    },
+    {
+      "name": "Spincent",
+      "race": "Arachnid",
+      "title": "The Scary Spider",
+      "description": "Big, Hairy, nasty.",
+      "backstory": "After an unfortunate event Spincent grew extra legs, at first this seemed like a disadvantage, but soon he evolved. This turned him into a spider who has the size and strength of a human.",
+      "items": [
+        {
+          "id": 3,
+          "amount": 3
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": 1,
+      "name": "Forest Vault Key",
+      "description": "This key can be used to open the vault in the forest",
+      "isUnique": true,
+      "isStoryItem": true,
+      "storyId": 1
+    },
+    {
+      "id": 2,
+      "name": "Bunker Reinforced Door Key",
+      "description": "This key can be used to open the Reinforced Door of the Bunker",
+      "isUnique": true,
+      "isStoryItem": true,
+      "storyId": 1
+    },
+    {
+      "id": 3,
+      "name": "Bunny Hop Carrot",
+      "description": "After eating one of these carrots, you can jump up to 3 times higher than normal for 10 minutes.",
+      "consumable":  true,
+      "isUnique": false,
+      "isStoryItem": false,
+      "storyId": null
+    },
+    {
+      "id": 4,
+      "name": "Gloves of Crabby Power",
+      "description": "The wearer of these gloves has greatly increased strength, allowing him/her to lift very heavy objects.",
+      "isUnique": true,
+      "isStoryItem": false,
+      "storyId": null
+    }
+  ]
 }
