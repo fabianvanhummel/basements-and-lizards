@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import data from './tutorial.json'
+import data from './json/tutorial.json'
 
 function App() {
 
