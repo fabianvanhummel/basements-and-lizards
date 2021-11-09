@@ -1,0 +1,436 @@
+{
+	"title": "The Plane of Water",
+	"description": "A drought arises and the players must travel to the Plane of Water and battle sahuagin in order to direct a flow into the drying world.",
+	"start-location": "grimrane",
+	"locations": [
+		{
+			"name": "grimrane",
+			"switch": "chaos",
+			"story": "It takes another day of travel to get back to the village, but you're unharassed by harpies this time around. The river has overflown the original channel, and flooded that farm fields of the village. Fortunately, the high up homes are mostly unaffected by the flood. Looking back upon the mountain you can see that the water has taken a new route down it, forming a huge waterfall along its side. [The players will be rewarded for returning the water to the village, while the villagers will need to spend some time reworking their fields to account for the larger river now flowing by. It's seen as a great boon though, for the larger river will allow more boats to reach the village from other cities, and everyone enjoys the sight of the new waterfall.]",
+			"story-or": "Your travels find you at the hamlet of Grimrane, a cozy array of houses that have been built into the side of a mountain. A small path snakes along the cliffside, leading up and down to the different homes and shops that stick out of the mountain's face. It winds its way up to the top with stairways at the end of each level, and little more than a wooden railing for protection. At the base of the village are farm fields that sit uncultivated and dead, and next to them gives a good clue as to why. There's a completely dried out riverbed coming off the mountain and out into the valley below. Decayed fish skeletons line the bottom, along with some old and wilted seaweed.",
+			"directions": [			
+				{
+					"to": "the-witch's-stag"					
+				}
+			]
+		},
+		{
+			"name": "the-witch's-stag",
+			"description": "There is a tavern that stands out among the other buildings in the town. If someone knows anything about this drought, you expect them to be there.",
+			"story": "You come to The Witch's Stag, a small tavern (or wherever they went) sticking out of the mountain on large oak logs. It's one of the largest buildings in the hamlet and looks like a series of renovations have caused it to bloat out at the sides and tops from its more humble constructions. The new additions are supported by a series of joints and wooden pillars seated into the rock. The whole thing looks a bit haphazard, but is structurally sound. There's a set of chimes blowing softly by the door. Inside your noses are greeted by the smells of cured meats and cheeses that hang from the ceiling. A pair of halfling women are sat by the hearth and a large bookcase, flipping through a pile of books at their side while idly chatting. You see the owner of the establishment, a woman dwarf, bringing a platter of meat and cheese to the halflings. She notices you and gestures you inside, “Hello travelers! Please come in, there's plenty of room.”",
+			"directions": [
+				{
+					"to": "mountains-start"					
+				},
+				{
+					"to": "grimrane"
+				}
+			]
+		},
+		{
+			"name": "mountains-start",
+			"description": "With the information that has been obtained, the party decides to go climb the mountain.",
+			"story": "You set off into the mountains, following the dried riverbed as it snakes its way up the landscape. The temperature is chilly but not freezing, and up near the peak you can see a ruined stone wall around a decayed fort. About halfway through the day a heavy wind picks up and buffets at you as you climb, making the trek somewhat precarious as you struggle to keep your balance on narrow ridges and pull yourself over ledges. By night a light rain begins to fall and you feel the fatigue of hiking all day really start to set in.",
+			"directions": [
+				{
+					"to": "mountains-top"					
+				}
+			]
+		},
+		{
+			"name": "mountains-top",
+			"switch": "chaos",
+			"description": "You're thrown to the side as you find yourselves back on the mountain, a massive blast of water shooting several stories high into the sky like a hose.",
+			"story": "The great torrent crashes down onto the mountain, flooding vigorously down the cliffs and smashing through rock as it overflows the previously dry riverbed. [At this point the players can follow the river back to the village.]",
+			"description-or": "After keeping watch in turns, the party awakes refreshed and ready for the next part of the trip.",
+			"story-or": "After another couple hours of travel you find yourselves in the heavier rainfall that has continued at the mountain's peak overnight. Curiously, not much rain is falling on you despite the heavy volume. The rain seems to curve away from you, pulling towards a spot further up the mountain. As you continue the effect becomes more pronounced, with the rain curving in its trajectory more and more. As you follow the path of the rain, you eventually come upon its source. A large, flickering portal sits upon the ground, funneling water into it.",
+			"directions": [
+				{
+					"to": "portal"					
+				},
+				{
+					"to": "mountains-start"
+				}
+			]
+		},
+		{
+			"name": "portal",
+			"description": "The portal is about 60 ft around, and it is connected to the elemental plane of water. Looking inside the party sees flowing water in a great ocean, but will need to go through the portal to see anything else.",
+			"story": "On the other side of the portal you find yourselves standing upon a great ocean, spanning out infinitely in every direction. The water beneath you is as solid as ground, while gently rolling waves cause the floor to ripple and gently lift you up and down. Great pillars of swirling water dot the landscape like immense towers and mountains made of water. Beneath you is a myriad of sea life, tiny fish and huge whales. A blue whale bursts through the water of one of the watery pillars to take a breath before plunging back below. The water from the portal rushes past you into the sky as swirling tubes that lead east.",
+			"directions": [
+				{
+					"to": "plane-of-water-entrace"
+				},
+				{
+					"to": "mountains-top"
+				}
+			]
+		},
+		{
+			"name": "plane-of-water-entrance",
+			"description": "The flowing water is headed towards a clear direction. The party decides to follow the flow.",
+			"story": "Following the path of the water for about an hour brings you to the base of a great pyramid carved from coral. The colorful structure has bits of coral randomly growing off it in all directions, with seaweed growing between. A staircase leads up to the entrance, and great flows of water channel their way into it from all directions. Dotted around the temple are a few other portals, all with water flowing through them and into the temple. At the base of the steps is the corpse of a human and a half-orc.",
+			"directions": [
+				{
+					"to": "temple-entrance"
+				},
+				{
+					"to": "portal"
+				}
+			]
+		},
+		{
+			"name": "temple-entrance",
+			"switch": "chaos",
+			"description": "The water bursts out of the entrance of the temple right behind you, with a great roaring wave chasing you down the steps.",
+			"story": "As you run out across the vast ocean, the wave catches up to you and lifts you into the air as it crests over the surface, funneling you towards your home portal. You feel yourselves flung through it, sucked in like an ant in a storm drain.",
+			"__comment__": "Hier is het ok weer tricky, want afhankelijk van of je het einde van het scenario hebt getriggered gebeurt er wat anders. Je backtracked als het ware door de tempel heen.. even overleggen hierover?",
+			"description-or": "Where the water makes way for stone, the entrance connects the planes of endless waves with an ancient interior.",
+			"story-or": "Inside the first room of the temple are small booths with religious decoration, where the faithful can sit in quiet contemplation. In one of the booths are some fangs of unknown origin scattered around. The passage continues to the west.",
+			"directions": [
+				{
+					"to": "hallway"
+				},
+				{
+					"to": "plane-of-water-entrance"
+				},
+				{
+					"to": "mountains-top",
+					"requirement": "chaos"
+				}
+			]
+		},
+		{
+			"name": "hallway",
+			"description": "The passage leads on further into the temple. The passage is partially submerged in water. The water does not seems to inhibit your movements.",
+			"story": "At the end of the hallway, it opens up into a larger area - it is a kennel of some sort. Instead of cages, the kennel has aquariums full of quippers, tiny blue and red pirahna. The kennel is connected to a large open room with circular walls. It appears to be some sort of kitchen, or some other place where food is prepared. Two crabmen are sat at a table eating.",
+			"directions": [
+				{
+					"to": "main-hall"
+				},
+				{
+					"to": "temple-entrance"
+				}
+			]
+		},
+		{
+			"name": "main-hall",
+			"description": "The main hall has a higher ceiling than the rest of the temple and connects multiple passageways.",
+			"story": "There's 3 passageways leading to the north, east, and west from this central room. The north is an open passage while the west is behind a small wooden door, and the east is a great stone door covered in arcane symbols.",
+			"directions": [
+				{
+					"to": "north-hall"
+				},
+				{
+					"requirement": "east-hall-unlocked",
+					"to": "east-hall",
+					"or": "east-hall-door",					
+					"__comment__": "dit is wel tricky, want je wil wel dat de party naar de east hall kan proberen te komen. Die deur is op slot maar dat weten ze pas als ze gaan proberen om naar de east hall te gaan. Willen we dan de deur als location toevoegen? Heb voor nu de requirement even als een soort switch opgeschreven, dus als de requirement wel is voldaan dan telt 'to' maar als die niet voldaan is dan telt 'or', of hoe we die ook willen noemen."
+				},
+				{
+					"requirement": "west-hall-unlocked",
+					"to": "west-hall",
+					"or": "west-hall-door"
+				},
+				{
+					"to": "hallway"
+				}
+			]
+		},
+		{
+			"name": "north-hall",
+			"description": "This room has a number of cells and appears to be some sort of sacrifice chamber.",
+			"story": "The room is almost completely flooded, with water up to your neck. Within the cells are a number of Merfolk.",                    
+			"directions": [				
+				{
+					"to": "changing-room"
+				},
+				{
+					"to": "main-hall"
+				}
+			]
+		},
+		{
+			"name": "west-hall-door",
+			"story": "The wooden door is locked fast. The party can attempt to force the door open or pick the lock, it is up to you to decide what happens with it.",
+			"directions": [
+				{
+					"to": "main-hall"
+				},
+				{
+					"to": "west-hall",
+					"set-var": "west-hall-unlocked: true",
+					"__comment__": "Hier is de deur gelockpickt of kapot geslagen of wat dan ook, als voorbeeld. Dan moeten we de requirement (of state of whatever) updaten. Kunnen we dat ook hier doen? Of is het handiger dat ergens anders als actie door te voeren?"
+				}
+			]
+		},
+		{
+			"name": "west-hall",
+			"description": "A large room likely used for studying religion and other arts. There are multiple levers present in the room.",
+			"story": "In this room is a large dormitory for study. There are two doors, one to the east and one to the north. Along the north wall is a lectern with 6 levers all in a row, and a chalkboard with a riddle written upon it: /n Your dexterous and charismatic ways always have two in-between. /n While your raw strength comes first, it's not to be mean. /n If I were to rate your intellect, it's next to your fortitude. /n Which itself comes next to your nimbleness.Placing your charisma and brutish strength together would cause great impotence. /n To proceed, draw on your wisdom to enter this room. /n You'll find it next to your dexterity, pull it now or be doomed. /n As you finish reading the riddle, both the doors slam shut.",
+			"directions": [
+				{
+					"to": "main-hall",
+					"requirement": "west-hall-unlocked"
+				},
+				{
+					"to": "changing-room",
+					"requirement": "west-hall-unlocked"
+				}
+			]
+		},
+		{
+			"name": "changing-room",
+			"description": "A small room with a hallway to the east and south. There are a couple of religious looking robes hanging in the room.",
+			"story": "The room looks like a changing room for religious occultists. The robes look frugal and it looks like the religion that is practised in this temple has no love for excessive luxury.",
+			"__comment__": "Hier kan een item geloot worden uit een van de robes, of de spelers kunnen bijvoorbeeld een robe dragen. Kunnen even nadenken hoe we dit willen implementeren.",
+			"directions": [
+				{
+					"to": "north-hall"
+				},
+				{
+					"to": "west-hall"
+				}
+			]
+		},                
+		{
+			"name": "east-hall-door",
+			"description": "The door towards the east looks ancient and massive. It is closed.",
+			"story": "The door is about 10 meters high and stuck fast. The door doesn't bulge in the slightest by physical means.",
+			"directions": [
+				{
+					"to": "main-hall"
+				}
+			]
+		},
+		{
+			"name": "east-hall",
+			"description": "The door has been opened and the way forward shows a large hallway.",
+			"story": "A hallway flanked with great marble and coral pillars heads north down an intricately decorated and ceremonious run. A great silence hangs over the hallway, and you can smell incense burning in braziers hanging from the ceiling. On the ceiling is a phrase written in a bunch of different languages, it simply reads: 'quiet.'",
+			"directions": [
+				{
+					"to": "east-hall-start"
+				},
+				{
+					"to": "main-hall"
+				}
+			]
+		},
+		{
+			"name": "east-hall-start",
+			"description": "The hall continues onward end at the end of the hall a stairway leads upward to a central platform for ceremonies.",
+			"story": "A hallway flanked with great marble and coral pillars heads north down an intricately decorated and ceremonious run. A great silence hangs over the hallway, and you can smell incense burning in braziers hanging from the ceiling. On the ceiling is a phrase written in a bunch of different languages, it simply reads: 'quiet.' [If anyone reads it aloud or speaks, they'll trigger a Ballista Trap.]",
+			"directions": [
+				{
+					"to": "east-hall"
+				},
+				{
+					"to": "east-hall-end"
+				}
+			]
+		},
+		{
+			"name": "east-hall-end",
+			"description": "The hallway opens up into a great underwater church, with benches lining the sides and facing towards a central platform for ceremonies.",
+			"story": "Swirling vortexes of water enter the room from all directions, entering a great pearl that sits upon a pillar. Around the pillar are sahuagin Priestesses chanting a religious ceremony. As they chant, creatures seem to pop into existence around them and bow their heads in religious reverance.",
+			"directions": [
+				{
+					"to": "east-hall-chaos"
+				},
+				{
+					"to": "east-hall-start"
+				}
+			]
+		},
+		{
+			"name": "east-hall-chaos",
+			"description": "As the pearl cracks and begins to break, a loud “WHOOOSH” echoes throughout the temple. The water swirling into the pearl stops, and explodes outwards into a massive flood that smashes against the walls and throws everyone back. The rumbling builds as you see a great tidal wave of chaotic water falling towards you from the ceiling.",
+			"story": "[The water, released from its spell, will quickly and violently begin to gush out of the temple and back to its home planes. The players will need to escape from the temple, this time in reverse and with torrents of water chasing behind them. You should require a few checks on the way out, with failure causing the water to smash them up against the walls and deal damage.]",
+			"directions": [
+				{
+					"to": "temple-entrance",
+					"set-var": "chaos: true"
+				}
+			]
+		}
+	],
+	"states": [
+		{
+			"west-hall-unlock": "false",
+			"aqua-token": "false",
+			"chaos": "false"
+		}
+	],
+	"combat-list": [
+		{
+			"id": "C1",
+			"enemies": {
+				"1":"HARPY",
+				"2":"HARPY",
+				"3":"HARPY",
+				"4":"HARPY"
+			},
+			"loot": "placeholder",
+			"experience": 10
+		},
+		{
+			"id": "C2",
+			"enemies": {
+				"1":"GOBLIN-THIEF",
+				"2":"GOBLIN-THIEF",
+				"3":"GOBLIN-THIEF",
+				"4":"GOBLIN-CHIEF"
+			},
+			"loot": "placeholder",
+			"experience": 10
+		},
+		{
+			"id": "C3",
+			"enemies": {
+				"1":"CRABMAN",
+				"2":"CRABMAN",
+				"3":"GIANT-FROG",
+				"4":"QUIPPER-SCHOOL"
+			},
+			"loot": "placeholder",
+			"experience": 10
+		},
+		{
+			"id": "C4",
+			"story": "[2 Sahuagin Priestesses, a Killer Whale, and a Monstrous Crayfish will immediately attack. This should be a very challenging fight for the players, and if things start to go badly for the priestesses, they'll summon more water elementals to help. When things start going badly for the players and they start to consider fleeing or start dropping, a bunch of harpies will come to help.] Suddenly, a group of harpies burst into the church. One comes up to [hurt player] and casts a healing spell on [him/her]. The other harpies begin to attack the sahuagin and summoned creatures. [The players may have been attacking the pearl during this combat, or if they're not then after a couple more rounds of combat you can have a harpy attack it. Either way, have the pearl crack and break once combat starts to wind down or if it's dragging on for too long.]",
+			"enemies": {
+				"1":"SAHUAGIN-PRIESTESS",
+				"2":"SAHUAGIN-PRIESTESS",
+				"3":"KILLER-WHALE",
+				"4":"MONSTROUS-CRAYFISH"
+			},
+			"loot": "placeholder",
+			"experience": 10
+		}
+	],
+	"enemies": [
+		{
+			"name": "HARPY",
+			"stats": {
+				"health":20,
+				"damage":5,
+				"speed":10
+			}
+		},
+		{
+			"name": "GOBLIN-THIEF",
+			"stats": {
+				"health":20,
+				"damage":5,
+				"speed":10
+			}
+		},
+		{
+			"name": "GOBLIN-CHIEF",
+			"stats": {
+				"health":20,
+				"damage":5,
+				"speed":10
+			}
+		},
+		{
+			"name": "CRABMAN",
+			"stats": {
+				"health":20,
+				"damage":6,
+				"speed":8
+			},
+			"spells": {
+				"summon_frog": {
+					"mana_cost":0,
+					"damage":0,
+					"effect":"SPAWN-GIANT-FROG"
+				}
+			}
+		},
+		{
+			"name": "GIANT-FROG",
+			"stats": {
+				"health":75,
+				"damage":3,
+				"speed":6
+			}
+		},
+		{
+			"name": "QUIPPER-SCHOOL",
+			"stats": {
+				"health":10,
+				"damage":12,
+				"speed":10
+			}
+		},
+		{
+			"name": "SAHUAGIN-WARRIOR",
+			"stats": {
+				"health":30,
+				"damage":6,
+				"speed":8
+			}
+		},
+		{
+			"name": "SAHUAGIN-PRIESTESS",
+			"stats": {
+				"health":15,
+				"damage":2,
+				"spells": {
+					"frostbolt": {
+						"mana_cost":5,
+						"damage":10,
+						"effect":"slow"
+					},
+					"hold_person": {
+						"mana_cost":20,
+						"damage":0,
+						"effect":"paralysis"
+					}
+				},
+				"speed":10
+			}
+		},
+		{
+			"name": "KILLER-WHALE",
+			"stats": {
+				"health":60,
+				"damage":10,
+				"speed":12
+			}
+		},
+		{
+			"name": "MONSTROUS-CRAYFISH",
+			"stats": {
+				"health":50,
+				"damage":12,
+				"speed":10
+			}
+		}
+		
+	],
+	"characters": [
+		{
+			"name": "Arnoud Krabbius",
+			"race": "Half-Orc",
+			"title": "The Barbarian",
+			"description": "Arnoud is a big, muscular half-orc. He loves fighting, using his gigantic two handed broad axe. Although he is an impressive combatant, he is easily tricked when facing witty enemies.",
+			"backstory":  "Arnoud grew up in Arnhem, where 'Messentrekken' was a common move on the streets. This way he learned to always be ready for a fight."
+		},
+		{
+			"name": "Joey Feed'r",
+			"race": "Human",
+			"title": "Longshot Lackey",
+			"description": "He can throw a frikadel like no other.",
+			"backstory": "Joey has always enjoyed food, and prefers to have breakfast that isn't particulary healthy. This passion for food gave him exceptional abilities when preparing future meals. He can throw any fast food with great power and accuracy."
+		},
+		{
+			"name": "Spincent",
+			"race": "Arachnid",
+			"title": "The Scary Spider",
+			"description": "Big, Hairy, nasty.",
+			"backstory": "After an unfortunate event Spincent grew extra legs, at first this seemed like a disadvantage, but soon he evolved. This turned him into a spider who has the size and strength of a human."
+		}
+	]
+}
