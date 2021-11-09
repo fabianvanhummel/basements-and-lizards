@@ -20,7 +20,7 @@ Possible actions:
 
 ### Books
 
-The books contain all the information needed for the story and are much like traditional books, but the story is broken down in a more structered manner. For example, the locations are extracted and so are the characters and the items. The players themselves decide which character they play or interact with, which items they interact with or pick up, which direction they go. Besides that, the book explains the mean storyline while moving between places.
+The books contain all the information needed for the story and are much like traditional books, but the story is broken down in a more structered manner. For example, the locations are extracted and so are the characters and the items. The players themselves decide which character they play or interact with, which items they interact with or pick up, which direction they go. Besides that, the book explains the main storyline while moving between places.
 
 The idea is to make story writing available for everyone, which is why we use a standard `json` structure to do this. Basement Masters (BMs) can thus write their own books to be played with friends. This should also allow them to alter existing stories to their liking. The structure of the book is well defined and should be validated for completeness.
 
@@ -49,7 +49,7 @@ Book structure:
 
 ### State
 
-Whenever the players perform a certain action on a book component, this will be stored in the state. For example, if the party `move to [direction]`, the location state will change to the location the party moves towards. Or when a player picks up an item, this should be represented in his invertory state.
+Whenever the players perform a certain action on a book component, this will be stored in the state. For example, if the party `move to [direction]`, the location state will change to the location the party moves towards. Or when a player picks up an item, this should be represented in his inventory state.
 
 Playthrough state:
 - location (slug)
