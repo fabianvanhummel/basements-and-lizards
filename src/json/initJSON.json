@@ -1,0 +1,558 @@
+{
+	"stories": [
+		{
+			"title": "Tutorial",
+			"story": "It is the year 1535, you and your friend went out in the forest to collect some berries and hunt some deer. You split up to increase the chances of finding berries, and report back after two hours. You wait for your friend for a long time, but there’s no sign of him.",
+			"start-location": "forest-entrance",
+			"locations": [ 
+				{
+					"name": "forest-entrance",
+					"story": "You're standing at the forest entrance where you decided to meet up. Behind you is the village you're from, but your mind is set on the forest where your lost friend went.",
+					"reachable": true,
+					"directions": [
+						{
+							"to": "forest-crossroads",
+							"story": "There's a path going deeper into the forest, the path your friend went into initially."
+						}
+					]
+				},
+				{
+					"name": "forest-crossroads",
+					"story": "You're now at a crossroads where the path goes either left to the North or right to the South.",
+					"directions": [
+						{
+							"to": "forest-north",
+							"story": "When you look in the distance going North, you see an old ruin."
+						},
+						{
+							"to": "forest-south",
+							"story": "The path to the south is going out of the forest towards the beach."
+						}
+					]
+				},
+				{
+					"name": "forest-north",
+					"story": "You're in the North, gratz.",
+					"reachable": false,
+					"directions": [
+						{
+							"to": "forest-crossroads",
+							"story": "There's a path going back to the crossroads."
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "The Plane of Water",
+			"story": "A drought arises and the players must travel to the Plane of Water and battle sahuagin in order to direct a flow into the drying world.",
+			"start-location": "grimrane",
+			"locations": [
+				{
+					"name": "grimrane",
+					"story": "Your travels find you at the hamlet of Grimrane, a cozy array of houses that have been built into the side of a mountain. A small path snakes along the cliffside, leading up and down to the different homes and shops that stick out of the mountain's face. It winds its way up to the top with stairways at the end of each level, and little more than a wooden railing for protection. At the base of the village are farm fields that sit uncultivated and dead, and next to them gives a good clue as to why. There's a completely dried out riverbed coming off the mountain and out into the valley below. Decayed fish skeletons line the bottom, along with some old and wilted seaweed.",
+					"reachable": true,
+					"directions": [
+						{
+							"to": "town-exploration",
+							"story": "It might be worth it to look around town and get some supplies. The town is rather small and you don't expect to find much of value besides basic gear and food."
+						},
+						{
+							"to": "the-witch's-stag",
+							"story": "There is a tavern that stands out among the other buildings in the town. If someone knows anything about this drought, you expect them to be there."
+						}
+					]
+				},
+				{
+					"name": "town-exploration",
+					"story": "You take a look around the village. You find some townfolk willing to sell you basic supplies. If the party agrees, deduct 10GP per item and add the item to the inventory. Possible items are: - Basic weaponry - Basic armor (cloth, leather, metal) - 1 day worth of rations - Enough pelts to keep the party warm",
+					"directions": [
+						{
+							"to": "the-witch's-stag",
+							"story": "There is a tavern that stands out among the other buildings in the town. If someone knows anything about this drought, you expect them to be there."
+						}
+					]
+				},
+				{
+					"name": "the-witch's-stag",
+					"story": "You come to The Witch's Stag, a small tavern (or wherever they went) sticking out of the mountain on large oak logs. It's one of the largest buildings in the hamlet and looks like a series of renovations have caused it to bloat out at the sides and tops from its more humble constructions. The new additions are supported by a series of joints and wooden pillars seated into the rock. The whole thing looks a bit haphazard, but is structurally sound. There's a set of chimes blowing softly by the door. Inside your noses are greeted by the smells of cured meats and cheeses that hang from the ceiling. A pair of halfling women are sat by the hearth and a large bookcase, flipping through a pile of books at their side while idly chatting. You see the owner of the establishment, a woman dwarf, bringing a platter of meat and cheese to the halflings. She notices you and gestures you inside, “Hello travelers! Please come in, there's plenty of room.”",
+					"reachable": true,
+					"directions": [
+						{
+							"to": "mountains-start",
+							"story": "With the information that has been obtained, the party decided to go climb the mountain."
+						}
+					], 
+					"npcs": [
+						{
+							"name": "Valida Orcfoe",
+							"race": "Dwarf",
+							"description": "She wears a worn and beaten armor. She has a moderate pudge and is not very fit. Her white hair is messy but she has gleaming, smiling amber eyes."
+						},
+						{
+							"name": "Callie Goodbarrel",
+							"race": "Halfling",
+							"description": "Her right leg is replaced with a steel prosthetic and wears tight clothing. Her silver hair is in a pixie cut, and she wears crescent spectacles with a black brim. She's got a bit of an eccentric personality, and tends to be skeptical."
+						},
+						{
+							"name": "Paela Shadowquick",
+							"race": "Halfling",
+							"description": "Paela Shadowquick, wearing a clean blue cloak over studded leather and a large topaz ring on her right hand. Her hair is wavy and red, while her unseeing hazel eyes look right past you. She mostly flips through the books because she likes the sound and company."
+						}
+					]
+				},
+				{
+					"name": "mountains-start",
+					"reachable": true,
+					"story": "You set off into the mountains, following the dried riverbed as it snakes its way up the landscape. The temperature is chilly but not freezing, and up near the peak you can see a ruined stone wall around a decayed fort. About halfway through the day a heavy wind picks up and buffets at you as you climb, making the trek somewhat precarious as you struggle to keep your balance on narrow ridges and pull yourself over ledges. By night a light rain begins to fall and you feel the fatigue of hiking all day really start to set in.",
+					"directions": [
+						{
+							"to": "sleep-night-one",
+							"story": "The party decided to rest for the night."
+						},
+						{
+							"to": "keep-going-night-one",
+							"story": "The party decided the issue is too pressing to be sitting on their laurels, and they continue even though they are fatigued."
+						}
+					]
+				},
+				{
+					"name": "sleep-night-one",
+					"reachable": true,
+					"story": "The party takes turns keeping watch and the night passes quietly. The last person keeping watch notices some rather large birds flying in the distance. Upon closer examination the birds are coming closer incredibly fast and the party engages combat.",
+                    "combat": "#C1",
+					"directions": [
+						{
+							"to": "mountain-top",
+							"story": "The harpies have been dealt with. Time to keep going towards the top."
+						}
+					]
+				},
+				{
+					"name": "keep-going-night-one",
+					"reachable": true,
+					"story": "The party struggles to move further up the mountain, it's getting dark by now. The party gets ambushed by a pack of goblins looking for travellers to rob.",                    
+                    "combat": "#C2",
+					"directions": [
+						{
+							"to": "sleep-night-one-alt",
+							"story": "The party realises it is too dark and dangerous to keep going. They set up camp and stay the night. "
+						}
+					]
+				},
+				{
+					"name": "sleep-night-one-alt",
+					"reachable": true,
+					"story": "The party struggles to move further up the mountain, it's getting dark by now. The party gets ambushed by a pack of goblins looking for travellers to rob.",
+					"directions": [
+						{
+							"to": "mountain-top",
+							"story": "After keeping watch in turns, the party awakes refreshed and ready for the next part of the trip."
+						}
+					]
+				},
+				{
+					"name": "mountain-top",
+					"reachable": true,
+					"story": "After another couple hours of travel you find yourselves in the heavier rainfall that has continued at the mountain's peak overnight. Curiously, not much rain is falling on you despite the heavy volume. The rain seems to curve away from you, pulling towards a spot further up the mountain. As you continue the effect becomes more pronounced, with the rain curving in its trajectory more and more. As you follow the path of the rain, you eventually come upon its source. A large, flickering portal sits upon the ground, funneling water into it.",
+					"directions": [
+						{
+							"to": "portal",
+							"story": "The portal is about 60 ft around, and it is connected to the elemental plane of water. Looking inside the party sees flowing water in a great ocean, but will need to go through the portal to see anything else."
+						}
+					]
+				},
+				{
+					"name": "portal",
+					"reachable": true,
+					"story": "On the other side of the portal you find yourselves standing upon a great ocean, spanning out infinitely in every direction. The water beneath you is as solid as ground, while gently rolling waves cause the floor to ripple and gently lift you up and down. Great pillars of swirling water dot the landscape like immense towers and mountains made of water. Beneath you is a myriad of sea life, tiny fish and huge whales. A blue whale bursts through the water of one of the watery pillars to take a breath before plunging back below. The water from the portal rushes past you into the sky as swirling tubes that lead east.",
+					"directions": [
+						{
+							"to": "follow-water-streams",
+							"story": "The flowing water is headed towards a clear direction. The party decides to follow the flow."
+						}
+					]
+				},
+				{
+					"name": "follow-water-streams",
+					"reachable": true,
+					"story": "Following the path of the water for about an hour brings you to the base of a great pyramid carved from coral. The colorful structure has bits of coral randomly growing off it in all directions, with seaweed growing between. A staircase leads up to the entrance, and great flows of water channel their way into it from all directions. Dotted around the temple are a few other portals, all with water flowing through them and into the temple. At the base of the steps is the corpse of a human and a half-orc.",
+					"directions": [
+						{
+							"to": "enter-temple",
+							"story": "The stairs leading into the temple are right in front of the party. They decide to to in."
+						}
+					]
+				},
+				{
+					"name": "enter-temple",
+					"dm-objects": {
+						"map": "<g xmlns=&quot;http://www.w3.org/2000/svg&quot; transform=&quot;translate(0.000000,445.000000) scale(0.100000,-0.100000)&quot; fill=&quot;#000000&quot; stroke=&quot;none&quot;><path d=&quot;M3105 4314 c-126 -53 -235 -101 -242 -107 -14 -15 -203 -467 -203 -488 0 -8 44 -120 98 -249 96 -231 98 -235 137 -255 l40 -19 -39 -7 c-22 -3 -45 -15 -53 -25 -10 -14 -13 -114 -13 -496 0 -567 -12 -518 130 -518 l90 0 0 -155 0 -154 -57 -3 c-53 -3 -59 -6 -78 -35 l-20 -32 -197 -1 -196 0 -42 53 c-48 61 -136 137 -197 169 l-43 23 0 142 0 143 128 0 c187 0 172 -32 172 371 l0 326 -23 21 c-23 22 -26 22 -424 22 -483 0 -446 11 -444 -128 l2 -92 -271 0 -270 0 0 54 c0 47 -4 57 -26 75 -25 20 -39 21 -271 21 l-244 0 -24 -25 -25 -24 0 -251 0 -251 25 -24 c19 -20 34 -25 75 -25 l50 0 0 -95 0 -95 -115 0 -115 0 0 -268 0 -268 -61 -25 -61 -25 -54 -130 c-30 -71 -54 -136 -54 -144 0 -8 24 -73 54 -144 l54 -130 137 -56 137 -57 136 57 137 57 24 62 24 61 174 0 173 0 0 37 c0 47 8 38 34 -40 39 -117 141 -256 235 -321 l41 -29 0 -273 0 -274 419 0 420 0 27 23 c24 21 27 30 25 75 l-1 52 45 0 45 0 0 -110 0 -110 185 0 185 0 0 -49 c0 -34 6 -56 21 -75 l20 -26 333 0 c326 0 333 0 352 21 18 20 19 39 19 274 0 235 -1 254 -19 274 -19 21 -26 21 -352 21 l-333 0 -20 -26 c-15 -19 -21 -41 -21 -75 l0 -49 -40 0 -40 0 0 115 0 115 -190 0 -190 0 -1 48 c-1 89 0 112 3 145 l3 32 228 3 227 2 0 -48 c0 -35 6 -57 21 -76 l20 -26 333 0 c326 0 333 0 352 21 18 20 19 43 19 499 0 570 13 520 -132 520 l-93 0 0 155 0 155 55 0 c42 0 60 5 75 20 19 19 20 33 20 484 l0 464 128 52 c70 29 132 57 138 63 23 23 194 453 194 487 0 34 -171 464 -194 486 -13 14 -471 204 -489 204 -7 -1 -115 -44 -242 -96z m463 -72 l214 -88 85 -204 c47 -113 90 -211 95 -217 7 -9 7 -17 0 -25 -6 -7 -48 -105 -95 -217 l-84 -204 -114 -48 c-108 -45 -118 -47 -181 -42 l-68 6 0 -42 0 -41 40 0 40 0 -1 -450 0 -450 -55 0 c-46 0 -54 3 -54 19 0 16 -11 19 -101 24 -142 7 -209 0 -209 -24 0 -17 -9 -19 -90 -19 l-90 0 0 450 0 450 115 0 115 0 0 39 0 39 -107 45 -108 45 -87 209 c-48 114 -87 215 -87 223 0 8 39 109 87 224 l87 208 210 88 c116 49 215 89 220 89 6 1 106 -39 223 -87z m-1123 -1572 l0 -295 -152 -3 -153 -3 0 -149 0 -150 -76 0 -75 0 3 -31 c3 -30 6 -32 76 -50 158 -40 320 -162 387 -291 31 -60 50 -76 39 -33 l-6 25 246 0 246 0 0 40 0 40 110 0 110 0 0 75 0 75 -35 0 -35 0 0 143 0 142 70 0 70 0 0 -67 0 -68 41 0 c36 0 40 -3 39 -22 -1 -13 -2 -80 -1 -150 l1 -128 110 0 110 0 0 -450 0 -450 -295 0 -295 0 0 75 0 75 -286 0 c-284 0 -286 0 -305 -22 -10 -14 -18 -39 -19 -61 0 -21 -11 -60 -25 -87 -31 -61 -31 -60 0 -60 24 0 25 -2 25 -75 l0 -75 189 0 189 0 -1 -107 -2 -108 118 -3 117 -3 0 76 0 75 295 0 295 0 0 -225 0 -225 -295 0 -295 0 0 75 0 75 -190 0 -190 0 0 115 0 115 -115 0 -115 0 0 -75 0 -75 -297 0 -298 0 0 92 0 93 -74 0 -75 0 3 114 c2 88 7 123 21 151 l18 36 -42 22 c-140 75 -264 238 -297 391 -7 31 -15 61 -19 66 -8 11 -6 142 2 165 3 8 13 44 22 78 55 213 227 378 444 429 l72 17 0 108 0 108 75 0 75 0 0 75 0 75 -150 0 -150 0 0 115 0 115 -312 0 -313 0 0 70 0 70 313 0 312 0 0 115 0 115 372 -2 373 -3 0 -295z m-1427 0 l0 -220 -74 0 -74 0 0 -245 0 -245 -115 0 -115 0 2 -182 3 -183 71 -30 70 -30 30 -70 30 -70 87 -3 87 -3 0 41 0 40 110 0 110 0 0 -75 0 -75 -35 0 c-33 0 -35 -2 -35 -35 l0 -35 -162 -2 -163 -3 -29 -71 -28 -70 -109 -44 -108 -43 -73 28 c-144 55 -140 52 -188 167 l-43 103 17 47 c9 27 30 77 45 112 29 63 30 64 100 91 l71 28 0 256 0 256 110 -3 110 -3 0 175 0 176 -75 0 -75 0 0 220 0 220 224 0 224 0 0 -220z m611 -241 c-2 -110 6 -122 89 -129 l57 -5 0 -113 0 -113 -81 -28 c-197 -68 -362 -236 -426 -433 l-22 -68 -148 0 -148 0 0 -35 c0 -32 -3 -35 -28 -35 -26 0 -31 6 -53 62 -24 61 -26 63 -87 87 l-62 24 0 124 0 124 110 -3 110 -3 0 243 0 242 49 0 c73 0 101 26 101 96 l0 54 270 0 271 0 -2 -91z&quot;/><path d=&quot;M2460 4115 l0 -35 55 0 55 0 -40 -80 c-22 -44 -40 -82 -40 -85 0 -7 61 -37 66 -32 4 4 104 256 104 263 0 2 -45 4 -100 4 l-100 0 0 -35z&quot;/><path d=&quot;M2030 3342 c0 -13 9 -22 26 -26 31 -8 29 -36 -4 -51 -26 -12 -29 -35 -4 -35 9 0 23 -4 31 -9 21 -13 -4 -41 -35 -41 -17 0 -24 -6 -24 -20 0 -23 17 -25 71 -10 46 13 73 42 64 69 -3 12 -13 21 -22 21 -8 0 -13 3 -11 8 2 4 10 20 18 35 12 25 12 30 -6 47 -10 11 -38 22 -61 26 -39 6 -43 5 -43 -14z&quot;/><path d=&quot;M718 3293 c-18 -4 -24 -19 -31 -80 -3 -30 -1 -33 24 -33 15 0 31 -5 34 -10 9 -15 -12 -38 -38 -42 -16 -2 -22 -10 -22 -28 0 -21 4 -24 25 -21 101 14 147 114 65 141 -47 15 -44 30 5 30 36 0 40 3 40 25 0 23 -4 25 -42 24 -24 -1 -51 -3 -60 -6z&quot;/><path d=&quot;M3782 1492 c-72 -72 -80 -161 -18 -191 42 -20 100 -1 116 38 16 40 5 69 -36 88 -34 17 -34 17 -15 37 17 18 18 24 7 45 l-13 24 -41 -41z m38 -107 c17 -20 8 -50 -15 -50 -15 0 -21 8 -23 33 -4 35 16 44 38 17z&quot;/><path d=&quot;M91 1043 c-33 -46 -61 -90 -61 -98 0 -11 13 -15 50 -15 38 0 50 -4 50 -15 0 -10 10 -15 30 -15 23 0 30 4 30 20 0 11 7 20 15 20 8 0 15 9 15 20 0 11 -7 20 -15 20 -12 0 -15 14 -15 69 0 59 -3 69 -19 74 -14 3 -33 -15 -80 -80z m39 -48 c0 -18 -5 -25 -20 -25 -20 0 -20 1 -4 25 9 14 18 25 20 25 2 0 4 -11 4 -25z&quot;/><path d=&quot;M1306 843 c-15 -16 -3 -41 26 -54 49 -21 47 -44 -8 -100 l-48 -49 64 0 c36 0 75 -3 88 -6 19 -5 22 -2 22 20 0 23 -4 26 -32 26 l-31 0 20 23 c57 62 31 116 -68 140 -14 4 -29 4 -33 0z&quot;/><path d=&quot;M3748 415 c-37 -20 -45 -29 -41 -45 4 -16 9 -18 24 -9 18 9 19 5 19 -66 l0 -75 30 0 30 0 0 110 c0 61 -3 110 -7 110 -5 -1 -29 -12 -55 -25z&quot;/></g>"
+					},
+					"reachable": true,
+					"story": "Inside the first room of the temple are small booths with religious decoration, where the faithful can sit in quiet contemplation. In one of the booths are some fangs of unknown origin scattered around. The passage continues to the west.",
+                    "directions": [
+						{
+							"to": "walk-through-hallway",
+							"story": "The passage leads on further into the temple. The passage is partially submerged in water. The water does not seems to inhibit your movements."
+						}
+					]
+				},
+                {
+					"name": "walk-through-hallway",
+					"reachable": true,
+					"story": "At the end of the hallway, it opens up into a larger area - it is a kennel of some sort. Instead of cages, the kennel has aquariums full of quippers, tiny blue and red pirahna. The kennel is connected to a large open room with circular walls. It appears to be some sort of kitchen, or some other place where food is prepared. Two crabmen are sat at a table eating.",
+					"directions": [
+						{
+							"to": "sneak-past",
+							"story": "The crabmen look preoccupied with their food. It might be possible to sneak past them."
+						},
+                        {
+							"to": "approach-crabmen",
+							"story": "The crabmen look like they are going to be trouble later on. It seems best to approach them and see if they can be reasoned with."
+						},
+                        {
+							"to": "attack-crabmen",
+							"story": "We should attack the crabmen while they haven't noticed us yet. That way we can get the jump on them!"
+						}
+					]
+				},
+                {
+					"name": "sneak-past",
+					"reachable": true,
+					"story": "",
+                    "switch": "stealth-success", 
+                    "switch-story": "Did the party succeed a sneak action?",
+					"directions": [
+						{
+                            "case": "stealth-success",
+							"to": "main-hall",
+							"story": "The crabmen have not noticed the party and are none the wiser, still enjoying their meal."
+						},
+                        {
+                            "case": "stealth-success", 
+							"to": "approach-crabmen",
+							"story": "The party is spotted by the crabmen because of their lack of stealth."
+						}
+					]
+				},
+                {
+					"name": "approach-crabmen",
+					"reachable": true,
+					"story": "The second the crabmen notice the party they gurgle a shout in Aquatic and a Giant Frog emerges from the waters. They attack the party.",
+                    "combat": "#C3",
+					"directions": [
+						{
+							"to": "main-hall",
+							"story": "With the crabmen defeated, the party continues on to the main hall."
+						}
+					]
+				},
+                {
+					"name": "attack-crabmen",
+					"reachable": true,
+					"story": "The party attacks the crabmen, who are caught unaware. After a moment, however, they regain their footing and fight back. In their first combat turn (if combat is played in turns) one of the crabmen spawns a Giant Frog with a loud Aquatic gurgle.",
+					"combat": "#C3",
+					"directions": [
+						{
+							"to": "main-hall",
+							"story": "With the crabmen defeated, the party continues on to the main hall."
+						}
+					]
+				},
+                {
+					"name": "main-hall",
+					"reachable": true,
+					"story": "There's 3 passageways leading to the north, east, and west from this central room. The north is an open passage while the west is behind a small wooden door, and the east is a great stone door covered in arcane symbols.",
+					"directions": [
+						{
+							"to": "north-hall",
+							"story": "The room to the north has a number of cells and appears to be some sort of sacrifice chamber."
+						},
+                        {
+							"to": "east-hall-locked",
+                            "reachable": "!east-hall-unlocked?",
+							"story": "The party decides to check out the door to the east."
+						},
+                        {
+							"to": "east-hall",
+                            "reachable": "east-hall-unlocked?",
+							"story": "Go to the eastern room where the door has been previously opened."
+						},
+                        {
+							"to": "west-hall-locked",
+                            "reachable": "!west-hall-unlocked?",
+							"story": "The party decides to check the wooden door to the west."
+						},
+                        {
+							"to": "west-hall",
+                            "reachable": "west-hall-unlocked?",
+							"story": "The party decides to go to the western room again."
+						}
+					]
+				},
+                {
+					"name": "north-hall",
+					"reachable": true,
+					"story": "The room to the north has a number of cells and appears to be some sort of sacrifice chamber. This room is almost completely flooded, with water up to your neck. Within the cells are a number of Merfolk.",                    
+					"directions": [
+						{
+							"to": "speak-to-merfolk",
+							"story": "The party decides to try to talk to the merfolk."
+						},
+                        {
+							"to": "continue-north-hall",
+							"story": "The party decides to keep going through the hall."
+						}
+					]
+				},
+                {
+					"name": "speak-to-merfolk",
+					"reachable": true,
+					"story": "The room to the north has a number of cells and appears to be some sort of sacrifice chamber. This room is almost completely flooded, with water up to your neck. Within the cells are a number of Merfolk.",
+                    "switch": "aquan-speaker",
+                    "switch-story": "Does the party have an Aquan-speaker?",
+					"directions": [
+						{
+                            "case": "true", 
+							"to": "continue-north-hall",
+							"story": "The party decides to try to talk to the merfolk. Luckily someone speaks Aquatic and can convince the otherwise hostile-looking Merfolk to help the party out. They explain that they were captured by Sahuagin, a people descendent from the Naga. They point at the key present in the corner of their cell and hand it over to you.",
+                            "loot":"key-north-hall"
+						},
+                        {
+                            "case": "false", 
+							"to": "north-hall",
+							"story": "The Merfolk cannot understand you and look at you angrily. Inside the cage, in the back, a key can be seen lying on the ground. Maybe someone can retrieve it through the prison bars by physical or magical means?",
+                            "loot":"key-north-hall"
+						}
+					]
+				},                
+                {
+					"name": "east-hall-locked",
+					"reachable": true,
+					"story": "The door is about 10 meters high and stuck fast. The door doesn't bulge in the slightest by physical means.",
+                    "switch": "aqua-token",
+                    "switch-story": "Does the party have the aqua-token?",
+					"directions": [
+						{
+                            "case": "true", 
+							"to": "east-hall",
+							"story": "The door glows at the sight of the aqua token and slowlys starts to creak open."
+						},
+                        {
+                            "case": "false", 
+							"to": "main-hall",
+							"story": "The door seems impossible to open. There is nothing else to see here."
+						}
+					]
+				},
+                {
+					"name": "east-hall",
+					"reachable": true,
+					"story": "A hallway flanked with great marble and coral pillars heads north down an intricately decorated and ceremonious run. A great silence hangs over the hallway, and you can smell incense burning in braziers hanging from the ceiling. On the ceiling is a phrase written in a bunch of different languages, it simply reads: 'quiet.'",
+					"directions": [
+						{
+							"to": "east-hall-way",
+							"story": "It seems the only way forward is straight ahead."
+						}
+					]
+				},
+                {
+					"name": "west-hall-locked",
+					"reachable": true,
+					"story": "The wooden door is locked fast. The party can attempt to force the door open or pick the lock, it is up to you to decide what happens with it.",
+					"directions": [
+						{
+							"to": "main-hall",
+							"story": "If the party cannot open the door, there is nothing left to do but go back to the main hall."
+						},
+                        {
+							"to": "west-hall",
+							"story": "The party has forced the door open and is now in the west hall."
+						}
+					]
+				},
+                {
+					"name": "west-hall",
+					"reachable": "west-hall-unlock",
+					"story": "In this room is a large dormitory for study. There are two doors, one to the east and one to the north. Along the north wall is a lectern with 6 levers all in a row, and a chalkboard with a riddle written upon it: /n Your dexterous and charismatic ways always have two in-between. /n While your raw strength comes first, it's not to be mean. /n If I were to rate your intellect, it's next to your fortitude. /n Which itself comes next to your nimbleness.Placing your charisma and brutish strength together would cause great impotence. /n To proceed, draw on your wisdom to enter this room. /n You'll find it next to your dexterity, pull it now or be doomed. /n As you finish reading the riddle, both the doors slam shut.",
+					"directions": [
+						{
+							"to": "activate-trap",
+							"story": "Pull the first lever from the left."
+						},
+                        {
+							"to": "west-hall-unlocked",
+							"story": "Pull the second lever from the left.",
+                            "set-story-variable": "west-hall-unlock"
+						},
+                        {
+							"to": "activate-trap",
+							"story": "Pull the third lever from the left."
+						},
+                        {
+							"to": "activate-trap",
+							"story": "Pull the fourth lever from the left."
+						},
+                        {
+							"to": "activate-trap",
+							"story": "Pull the fifth lever from the left."
+						},
+                        {
+							"to": "activate-trap",
+							"story": "Pull the sixth lever from the left."
+						}
+					]
+				}
+			]
+		}
+	],
+    "states": [
+        {
+        "west-hall-unlock": "false"
+        }
+    ],
+	"combat-list": [
+		{
+			"id": "C1",
+			"enemies": {
+				"1":"HARPY",
+				"2":"HARPY",
+				"3":"HARPY",
+				"4":"HARPY"
+			},
+			"loot": "placeholder",
+			"experience": 10
+		},
+		{
+			"id": "C2",
+			"enemies": {
+				"1":"GOBLIN-THIEF",
+				"2":"GOBLIN-THIEF",
+				"3":"GOBLIN-THIEF",
+				"4":"GOBLIN-CHIEF"
+			},
+			"loot": "placeholder",
+			"experience": 10
+		},
+		{
+			"id": "C3",
+			"enemies": {
+				"1":"CRABMAN",
+				"2":"CRABMAN",
+				"3":"GIANT-FROG",
+                "4":"QUIPPER-SCHOOL"
+			},
+			"loot": "placeholder",
+			"experience": 10
+		}
+	],
+	"enemies": [
+		{
+			"name": "HARPY",
+			"stats": {
+				"health":20,
+				"damage":5,
+				"speed":10
+			}
+		},
+		{
+			"name": "GOBLIN-THIEF",
+			"stats": {
+				"health":20,
+				"damage":5,
+				"speed":10
+			}
+		},
+		{
+			"name": "GOBLIN-CHIEF",
+			"stats": {
+				"health":20,
+				"damage":5,
+				"speed":10
+			}
+		},
+		{
+			"name": "CRABMAN",
+			"stats": {
+				"health":20,
+				"damage":6,
+				"speed":8
+			},
+            "spells": {
+                "summon_frog": {
+                    "mana_cost":0,
+                    "damage":0,
+                    "effect":"SPAWN-GIANT-FROG"
+                }
+            }
+		},
+        {
+			"name": "GIANT-FROG",
+			"stats": {
+				"health":75,
+				"damage":3,
+				"speed":6
+			}
+		},
+        {
+			"name": "QUIPPER-SCHOOL",
+			"stats": {
+				"health":10,
+				"damage":12,
+				"speed":10
+			}
+		},
+        {
+			"name": "SAHUAGIN-WARRIOR",
+			"stats": {
+				"health":30,
+				"damage":6,
+				"speed":8
+			}
+		},
+		{
+			"name": "SAHUAGIN-PRIESTESS",
+			"stats": {
+				"health":15,
+				"damage":2,
+				"spells": {
+					"frostbolt": {
+						"mana_cost":5,
+						"damage":10,
+						"effect":"slow"
+					},
+					"hold_person": {
+						"mana_cost":20,
+						"damage":0,
+						"effect":"paralysis"
+					}
+				},
+				"speed":10
+			}
+		}
+	],
+	"characters": [
+		{
+			"name": "Arnoud Krabbius",
+			"race": "Half-Orc",
+			"title": "The Barbarian",
+      "description": "Arnoud is a big, muscular half-orc. He loves fighting, using his gigantic two handed broad axe. Although he is an impressive combatant, he is easily tricked when facing witty enemies.",
+      "backstory":  "Arnoud grew up in Arnhem, where 'Messentrekken' was a common move on the streets. This way he learned to always be ready for a fight."
+		},
+    {
+      "name": "Joey Feed'r",
+      "race": "Human",
+      "title": "Longshot Lackey",
+      "description": "He can throw a frikadel like no other.",
+      "backstory": "Joey has always enjoyed food, and prefers to have breakfast that isn't particulary healthy. This passion for food gave him exceptional abilities when preparing future meals. He can throw any fast food with great power and accuracy."
+    },
+    {
+      "name": "Spincent",
+      "race": "Arachnid",
+      "title": "The Scary Spider",
+      "description": "Big, Hairy, nasty.",
+      "backstory": "After an unfortunate event Spincent grew extra legs, at first this seemed like a disadvantage, but soon he evolved. This turned him into a spider who has the size and strength of a human."
+    }
+	]
+}
