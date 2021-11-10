@@ -1,20 +1,21 @@
 import { useState } from 'react'
-import data from './json/tutorial.json'
+import data from './json/maze.json' // book
 
 function App() {
-
-  const [location, setLocation] = useState(data['start-location'])
+  const [location, setLocation] = useState(data['start-location']) // state
 
   return (
     <div className="svg-background min-h-screen">
       <main>
-        <p>{ data.locations[location].story }</p>
+        <h1>{ data.locations[location].name }</h1>
+        <p>{ data.locations[location].description }</p>
 
-        { data.locations[location].directions.map(direction => (
-          <div key={direction.to} style={{ marginTop: "8px" }}>
-            <p>{ direction.story }</p>
-            <button onClick={() => setLocation(direction.to)}>
-              { direction.to }
+        { data.locations[location].directions.map((direction, index) => (
+          <div key={index}>
+            <button
+              onClick={() => setLocation(direction)} // action
+            >
+              { direction }
             </button>
           </div>
         ))}
