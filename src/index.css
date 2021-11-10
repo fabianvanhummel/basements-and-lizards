@@ -2,19 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  color: #fff;
-}
-
-main {
-  padding: 12px;
-}
-
-button {
-  --tw-bg-opacity: 1;
-  background-color: rgba(190, 24, 93, var(--tw-bg-opacity));
-}
-
 .svg-background {
   background-color: #0b7;
   background-image:url("./endless-constellation.svg");
