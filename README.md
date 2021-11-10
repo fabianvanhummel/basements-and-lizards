@@ -129,3 +129,10 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+## Packages
+
+- [TailwindCSS](https://tailwindcss.com/): Allows us to use do styling within the JSX to keep all HTML, CSS, and JS tpgether.
+- [Meraki UI](https://merakiui.com/#main): Instead of installing a UI library, we use this page for ideas and copy the code.
+
+For more UI ideas, we can also use [Kometa](https://kitwind.io/products/kometa/components) or any other [Tailwind library](https://superdevresources.com/tailwind-ui-kits/).
