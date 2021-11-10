@@ -8,15 +8,10 @@ Our app consists of three main parts: the **rules**, the **book** (story), and t
 
 ### Rules
 
-The rules tell the players how *Basements & Lizards* is played. It explains how the book interacts with the state and does this through actions. For example, the `move to [direction]` action requires a direction from the book and stores that in the `location` state of the playthrough.
+The rules tell the players how *Basements & Lizards* is played. It explains how the book interacts with the state and does this through actions. For example, the `move to [direction]` action changes the `location` state to the `direction` that's chosen by the BM. This requires a direction from the book.
 
-Possible actions:
-- `move to [direction]`
-- `talk to [character]`
-- `pick up [item]`
-- `attack [character]`
-- `wield [item]`
-- etc.
+Actions:
+- `move to [direction]`: changes `location` state to `direction`
 
 ### Books
 
@@ -24,37 +19,30 @@ The books contain all the information needed for the story and are much like tra
 
 The idea is to make story writing available for everyone, which is why we use a standard `json` structure to do this. Basement Masters (BMs) can thus write their own books to be played with friends. This should also allow them to alter existing stories to their liking. The structure of the book is well defined and should be validated for completeness.
 
-Book structure:
-- Title (string)
-- Description (string)
-- Introduction (string)
-- Locations (object)
-  - Name (string)
-  - Story (string)
-  - Description (string)
-  - Directions (list)
-    - Location (slug)
-  - NPCs
-    - Character (slug)
-  - Items
-    - Item (slug)
-- Characters (object)
-  - Name (string)
-  - Description (string)
-  - isPlayable (boolean)
-- Items (object)
-  - Name (string)
-  - Description (string)
-  - Type (enum: static, weapon, quest, map, etc.)
+```
+// name-of-book.json
+{
+  name: string,
+  description: string,
+  start-location: int, // initial state of the location
+  locations: {
+    <int>: {
+      name: string,
+      description: string,
+      destinations: [
+        int
+      ]
+    }
+  }
+}
+```
 
 ### State
 
 Whenever the players perform a certain action on a book component, this will be stored in the state. For example, if the party `move to [direction]`, the location state will change to the location the party moves towards. Or when a player picks up an item, this should be represented in his inventory state.
 
-Playthrough state:
-- location (slug)
-- inventory (list of items for each player)
-- character status (alive, dead, friendly, aggressive)
+States:
+- location: string
 
 ---
 
