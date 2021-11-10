@@ -62,6 +62,54 @@ Playthrough state:
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Github
+
+Weekly meetings follow this agenda: [B&L Meeting Agenda](https://docs.google.com/document/d/1rLChTkkyS77AWu8Nw200Vly71aZE5wgi8-H5Rex5NwY/edit)
+
+### Brief overview
+
+Requirements are documented using Notes and Issues. Tasks are tracked using Issues and Pull Requests.
+- Notes:
+  - Are used to document requirements
+  - Are discussed during meetings
+  - Can be converted to Issues when more details are known
+- Issues:
+  - Are used to track work and requirements
+  - Should be linked to a Project
+  - Should be linked to a Milestone
+- Pull Requests:
+  - Contain code that satisfies requirements
+  - Should be linked to a Project
+  - Should be linked to a Milestone
+  - Can be linked to Issues when they satisfy their requirements
+
+### Github methods
+
+We use Github Projects to monitor our work. The project board contains the following columns:
+- Notes: Any items in this column are considered new input for the next meeting
+- Backlog: The entire collection with known tasks
+- To Do: Tasks that are to be done before the next meeting
+- In progress: Tasks that are being executed
+- Done: Completed tasks, these will be archived during the next meeting
+
+Certain automation rules apply to the project board:
+- New Issues go to "Backlog"
+- New Pull Requests go to "To Do"
+- Reopened Issues and Pull Requests go to "In progress"
+- Closed Issues go to "Done"
+- Merged or closed Pull Requests go to "Done"
+
+Further things to consider:
+- Projects
+  - Any new requirements that are established can be added to the "Notes" column.
+  - Any work that needs to be done is described and tracked using Issues. These Issues are connected to a project and can therefore be tracked using the project board.
+  - Pull Requests are also linked to a project so they can easily be tracked. When a Pull Request satisfies the requirements captured within an Issue, they should be linked. When that Pull Request is merged, the linked Issues are automatically closed as well.
+  - Requirements that are deemed beyond the scope of a project are documented in the "Future Versions" project.
+- Milestones
+  - Milestones represent components of the end product.
+  - The order of milestones roughly translate to the order in which they should be built.
+  - Issues and Pull Requests should be linked to milestones in order to easily track our work.
+
 ## Getting started
 
 1. Make sure you have Git installed on your computer: https://git-scm.com/
