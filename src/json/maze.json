@@ -16,7 +16,10 @@
     "3": {
       "name": "Room number 3",
       "description": "This is a description of room number 3",
-      "directions": ["4", "5"]
+      "directions": ["4", "5"],
+      "triggers": [
+        "open-location-7"
+      ]
     },
     "4": {
       "name": "Room number 4",
@@ -26,17 +29,47 @@
     "5": {
       "name": "Room number 5",
       "description": "This is a description of room number 5",
-      "directions": ["3", "6"]
+      "directions": ["3", "6"],
+      "triggers": [
+        "open-location-7-2"
+      ]
     },
     "6": {
       "name": "Room number 6",
       "description": "This is a description of room number 6",
-      "directions": ["5", "7"]
+      "directions": ["5", "7"],
+      "requirements": [
+        "open-location-6"
+      ]
     },
     "7": {
       "name": "Room number 7",
       "description": "This is a description of room number 7, you win!",
-      "directions": ["4", "6"]
+      "directions": ["4", "6"],
+      "requirements": [
+        "open-location-7",
+        "open-location-7-2"
+      ],
+      "triggers": [
+        "open-location-6"
+      ]
+    }
+  },
+  "triggers": {
+    "open-location-6": {
+      "value": false,
+      "triggerValue": true,
+      "message": "Room 6 has opened!"
+    },
+    "open-location-7": {
+      "value": false,
+      "triggerValue": true,
+      "message": "You hear a loud BANG!"
+    },
+    "open-location-7-2": {
+      "value": false,
+      "triggerValue": true,
+      "message": "Room 7 has opened!"
     }
   }
 } 

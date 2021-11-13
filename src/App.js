@@ -3,6 +3,7 @@ import data from "./json/maze.json"; // book
 
 function App() {
   const [location, setLocation] = useState(data["start-location"]); // state
+  const [triggers, execTrigger] = useState(data["triggers"]); // state
 
   return (
     <main className="p-4 svg-background min-h-screen">
@@ -18,6 +19,9 @@ function App() {
           <p className="mt-2 text-gray-600 dark:text-gray-300">
             {data.locations[location].description}
           </p>
+          <p className="mt-2 text-gray-600 dark:text-gray-300">
+            {triggers.message}
+          </p>
         </div>
 
         <div className="mt-4">
@@ -25,10 +29,44 @@ function App() {
             Move to:
           </p>
 
-          {data.locations[location].directions.map((direction, index) => (
+          {data.locations[location].directions.filter(
+              direction => {
+                if (data.locations[direction].requirements){
+                  let reqMet = true
+                  data.locations[direction].requirements.forEach( (requirement) => {
+                    if (!(triggers[requirement].value)) {
+                      reqMet = false
+                    }
+                  })
+                  return reqMet
+                }
+                else {
+                  return true
+                }
+              } // Checkt of de directions aan alle requirements voldoen
+            ).map((direction, index) => (
             <div key={index} className="flex items-center mt-2">
               <button
-                onClick={() => setLocation(direction)} // action
+                onClick={() => {
+                  execTrigger({
+                    ...triggers,
+                    message: null
+                  }); // Clears triggerMessages
+                  if (data.locations[direction].triggers) {
+                    data.locations[direction].triggers.forEach((trigger) => {
+                      if (triggers[trigger].value !== triggers[trigger].triggerValue) {
+                        const updatedTrigger = triggers[trigger]
+                        updatedTrigger.value = triggers[trigger].triggerValue // Assign new values
+                        execTrigger({
+                          ...triggers,
+                          [trigger]: updatedTrigger,
+                          message: triggers[trigger].message
+                        }) // Update trigger State
+                      }
+                    })
+                  }; // Handles Triggers
+                  setLocation(direction); // Updates Location
+                }} // action
                 className="px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-200 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500"
               >
                 {data.locations[direction].name}
