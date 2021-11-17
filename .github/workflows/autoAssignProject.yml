@@ -4,7 +4,7 @@ on:
   issues:
     types: opened
   pull_request:
-    types: opened
+    types: [opened, synchronize]
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -15,11 +15,11 @@ jobs:
     steps:
     - name: Assign NEW issues and NEW pull requests to project 1
       uses: srggrs/assign-one-project-github-action@1.2.1
-      if: github.event.action == 'opened'
+      if: github.event.action == 'synchronize'
       with:
         project: 'https://github.com/fabianvanhummel/basements-and-lizards/projects/1'
     - name: Assign creator as Assignee to NEW pull requests
       uses: kentaro-m/auto-assign-action@v1.2.0
-      if: github.event_name == 'pull_request' && github.event.action == 'opened'
+      if: github.event_name == 'pull_request' && github.event.action == 'synchronize'
       with:
         configuration-path: ".github/autoAssignmentConfig.yml" # Only needed if you use something other than .github/auto_assign.yml
