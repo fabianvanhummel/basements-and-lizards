@@ -10,11 +10,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_PROJECT_URL: https://github.com/fabianvanhummel/basements-and-lizards/projects/1
-        GITHUB_PROJECT_COLUMN_NAME: Needs triage
+        GITHUB_PROJECT_COLUMN_NAME: Notes
     - name: add-new-prs-to-repository-based-project-column
       uses: docker://takanabe/github-actions-automate-projects:v0.0.1
       if: github.event_name == 'pull_request' && github.event.action == 'opened'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_PROJECT_URL: https://github.com/fabianvanhummel/basements-and-lizards/projects/1
-        GITHUB_PROJECT_COLUMN_NAME: Needs triage
+        GITHUB_PROJECT_COLUMN_NAME: Notes
