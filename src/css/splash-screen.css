@@ -1,0 +1,62 @@
+.splash-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+  background: linear-gradient(#88A28E, #587175);
+}
+
+.splash-text {
+  font-size: 80px;
+  font-family: sans-serif;
+  font-style: italic;
+  color: darkolivegreen;
+  margin-top: 10%;
+  text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}
+
+.button-text {
+  font-size: 40px;
+  font-family: sans-serif;
+  font-style: italic;
+  color: white;
+  align-items: center;
+}
+
+.dlimage {
+  background-image: url("../images/d&l.jpg");
+  height: 100%;
+  width: 33%;
+  background-repeat: no-repeat;
+}
+
+.fade-in-out-5s {
+  -webkit-animation: fadeInOut 5s linear forwards;
+  animation: fadeInOut 5s linear forwards;
+}
+
+.fade-in-2s {
+  -webkit-animation: fadeIn 2s linear forwards;
+  animation: fadeIn 2s linear forwards;
+}
+
+@-webkit-keyframes fadeInOut {
+  0%,100% {opacity: 0;}
+  30%, 80% {opacity: 1;}
+}
+@keyframes fadeInOut {
+  0%,100% {opacity: 0;}
+  30%, 80% {opacity: 1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
