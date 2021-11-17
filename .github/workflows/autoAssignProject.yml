@@ -1,20 +1,25 @@
-name: Add a new GitHub Project card linked to a GitHub issue to the specified project column
-on: [issues, pull_request]
+name: Auto Assign Project(s) and Assignees
+
+on:
+  issues:
+    types: opened
+  pull_request:
+    types: opened
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
-  github-actions-automate-projects:
+  assign_one_project:
     runs-on: ubuntu-latest
+    name: Assign to Project and PR Assignee
     steps:
-    - name: add-new-issues-to-repository-based-project-column
-      uses: docker://takanabe/github-actions-automate-projects:v0.0.1
-      if: github.event_name == 'issues' && github.event.action == 'opened'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_PROJECT_URL: https://github.com/fabianvanhummel/basements-and-lizards/projects/1
-        GITHUB_PROJECT_COLUMN_NAME: Notes
-    - name: add-new-prs-to-repository-based-project-column
-      uses: docker://takanabe/github-actions-automate-projects:v0.0.1
+    - name: Assign NEW issues and NEW pull requests to project 1
+      uses: srggrs/assign-one-project-github-action@1.2.1
+      if: github.event.action == 'opened'
+      with:
+        project: 'https://github.com/fabianvanhummel/basements-and-lizards/projects/1'
+    - name: Assign creator as Assignee to NEW pull requests
+      uses: kentaro-m/auto-assign-action@v1.2.0
       if: github.event_name == 'pull_request' && github.event.action == 'opened'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_PROJECT_URL: https://github.com/fabianvanhummel/basements-and-lizards/projects/1
-        GITHUB_PROJECT_COLUMN_NAME: Notes
+      with:
+        configuration-path: ".github/autoAssignmentConfig.yml" # Only needed if you use something other than .github/auto_assign.yml
