@@ -18,8 +18,8 @@ function App() {
   ).sort(
     (a,b) => {
       if(a.reqMet === b.reqMet){
-        var nameA = a.path.to.toUpperCase(); // ignore upper and lowercase
-        var nameB = b.path.to.toUpperCase(); // ignore upper and lowercase
+        const nameA = a.path.to.toUpperCase(); // ignore upper and lowercase
+        const nameB = b.path.to.toUpperCase(); // ignore upper and lowercase
         if (nameA < nameB) {
           return -1;
         }
