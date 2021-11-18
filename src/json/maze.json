@@ -17,7 +17,7 @@
       "name": "Room number 3",
       "description": "This is a description of room number 3",
       "directions": ["4", "5"],
-      "triggers": [
+      "events": [
         "open-location-7"
       ]
     },
@@ -30,7 +30,7 @@
       "name": "Room number 5",
       "description": "This is a description of room number 5",
       "directions": ["3", "6"],
-      "triggers": [
+      "events": [
         "open-location-7-2"
       ]
     },
@@ -50,25 +50,25 @@
         "open-location-7",
         "open-location-7-2"
       ],
-      "triggers": [
+      "events": [
         "open-location-6"
       ]
     }
   },
-  "triggers": {
+  "events": {
     "open-location-6": {
       "value": false,
-      "triggerValue": true,
+      "eventValue": true,
       "message": "Room 6 has opened!"
     },
     "open-location-7": {
       "value": false,
-      "triggerValue": true,
+      "eventValue": true,
       "message": "You hear a loud BANG!"
     },
     "open-location-7-2": {
       "value": false,
-      "triggerValue": true,
+      "eventValue": true,
       "message": "Room 7 has opened!"
     }
   }

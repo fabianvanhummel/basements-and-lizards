@@ -3,7 +3,7 @@ import data from "./json/maze.json"; // book
 
 function App() {
   const [location, setLocation] = useState(data["start-location"]); // state
-  const [triggers, execTrigger] = useState(data["triggers"]); // state
+  const [events, execEvent] = useState(data["events"]); // state
 
   return (
     <main className="p-4 svg-background min-h-screen">
@@ -20,7 +20,7 @@ function App() {
             {data.locations[location].description}
           </p>
           <p className="mt-2 text-gray-600 dark:text-gray-300">
-            {triggers.message}
+            {events.message}
           </p>
         </div>
 
@@ -34,7 +34,7 @@ function App() {
                 if (data.locations[direction].requirements){
                   let reqMet = true
                   data.locations[direction].requirements.forEach( (requirement) => {
-                    if (!(triggers[requirement].value)) {
+                    if (!(events[requirement].value)) {
                       reqMet = false
                     }
                   })
@@ -48,23 +48,23 @@ function App() {
             <div key={index} className="flex items-center mt-2">
               <button
                 onClick={() => {
-                  execTrigger({
-                    ...triggers,
+                  execEvent({
+                    ...events,
                     message: null
-                  }); // Clears triggerMessages
-                  if (data.locations[direction].triggers) {
-                    data.locations[direction].triggers.forEach((trigger) => {
-                      if (triggers[trigger].value !== triggers[trigger].triggerValue) {
-                        const updatedTrigger = triggers[trigger]
-                        updatedTrigger.value = triggers[trigger].triggerValue // Assign new values
-                        execTrigger({
-                          ...triggers,
-                          [trigger]: updatedTrigger,
-                          message: triggers[trigger].message
-                        }) // Update trigger State
+                  }); // Clears eventMessages
+                  if (data.locations[direction].events) {
+                    data.locations[direction].events.forEach((event) => {
+                      if (events[event].value !== events[event].eventValue) {
+                        const updatedEvent = events[event]
+                        updatedEvent.value = events[event].eventValue // Assign new values
+                        execEvent({
+                          ...events,
+                          [event]: updatedEvent,
+                          message: events[event].message
+                        }) // Update event State
                       }
                     })
-                  }; // Handles Triggers
+                  }; // Handles Events
                   setLocation(direction); // Updates Location
                 }} // action
                 className="px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-200 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500"
