@@ -29,11 +29,11 @@ function App() {
             Move to:
           </p>
 
-          {data.locations[location].directions.filter(
-              direction => {
-                if (data.locations[direction].requirements){
+          {data.locations[location].paths.filter(
+              path => {
+                if (data.locations[path].requirements){
                   let reqMet = true
-                  data.locations[direction].requirements.forEach( (requirement) => {
+                  data.locations[path].requirements.forEach( (requirement) => {
                     if (!(events[requirement].value)) {
                       reqMet = false
                     }
@@ -43,8 +43,8 @@ function App() {
                 else {
                   return true
                 }
-              } // Checkt of de directions aan alle requirements voldoen
-            ).map((direction, index) => (
+              } // Checkt of de paths aan alle requirements voldoen
+            ).map((path, index) => (
             <div key={index} className="flex items-center mt-2">
               <button
                 onClick={() => {
@@ -52,8 +52,8 @@ function App() {
                     ...events,
                     message: null
                   }); // Clears eventMessages
-                  if (data.locations[direction].events) {
-                    data.locations[direction].events.forEach((event) => {
+                  if (data.locations[path].events) {
+                    data.locations[path].events.forEach((event) => {
                       if (events[event].value !== events[event].eventValue) {
                         const updatedEvent = events[event]
                         updatedEvent.value = events[event].eventValue // Assign new values
@@ -65,11 +65,11 @@ function App() {
                       }
                     })
                   }; // Handles Events
-                  setLocation(direction); // Updates Location
+                  setLocation(path); // Updates Location
                 }} // action
                 className="px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-200 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500"
               >
-                {data.locations[direction].name}
+                {data.locations[path].name}
               </button>
             </div>
           ))}

@@ -6,17 +6,17 @@
     "1": {
       "name": "Room number 1",
       "description": "This is a description of room number 1",
-      "directions": ["2"]
+      "paths": ["2"]
     },
     "2": {
       "name": "Room number 2",
       "description": "This is a description of room number 2",
-      "directions": ["1", "4", "4", "4"]
+      "paths": ["1", "4", "4", "4"]
     },
     "3": {
       "name": "Room number 3",
       "description": "This is a description of room number 3",
-      "directions": ["4", "5"],
+      "paths": ["4", "5"],
       "events": [
         "open-location-7"
       ]
@@ -24,12 +24,12 @@
     "4": {
       "name": "Room number 4",
       "description": "This is a description of room number 4",
-      "directions": ["2", "2", "3", "7"]
+      "paths": ["2", "2", "3", "7"]
     },
     "5": {
       "name": "Room number 5",
       "description": "This is a description of room number 5",
-      "directions": ["3", "6"],
+      "paths": ["3", "6"],
       "events": [
         "open-location-7-2"
       ]
@@ -37,7 +37,7 @@
     "6": {
       "name": "Room number 6",
       "description": "This is a description of room number 6",
-      "directions": ["5", "7"],
+      "paths": ["5", "7"],
       "requirements": [
         "open-location-6"
       ]
@@ -45,7 +45,7 @@
     "7": {
       "name": "Room number 7",
       "description": "This is a description of room number 7, you win!",
-      "directions": ["4", "6"],
+      "paths": ["4", "6"],
       "requirements": [
         "open-location-7",
         "open-location-7-2"
