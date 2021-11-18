@@ -7,9 +7,9 @@ function App() {
 
   const listedPaths = data.locations[location].paths.filter(
     path => {
-      if (data.locations[path].requirements){
+      if (path.requirements){
         let reqMet = true
-        data.locations[path].requirements.forEach( (requirement) => {
+        path.requirements.forEach( (requirement) => {
           if (!(events[requirement].value)) {
             reqMet = false
           }
@@ -27,8 +27,8 @@ function App() {
       ...events,
       message: null
     }); // Clears eventMessages
-    if (data.locations[path].events) {
-      data.locations[path].events.forEach((event) => {
+    if (data.locations[path.to].events) {
+      data.locations[path.to].events.forEach((event) => {
         if (events[event].value !== events[event].eventValue) {
           const updatedEvent = events[event]
           updatedEvent.value = events[event].eventValue // Assign new values
@@ -40,7 +40,7 @@ function App() {
         }
       })
     }; // Handles Events
-    setLocation(path); // Updates Location
+    setLocation(path.to); // Updates Location
   }
 
   return (
@@ -73,7 +73,7 @@ function App() {
                 onClick={() => {handleTravelAction(path)}} // Travel Action
                 className="px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-200 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500"
               >
-                {data.locations[path].name}
+                {data.locations[path.to].name}
               </button>
             </div>
           ))}

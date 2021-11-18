@@ -6,17 +6,42 @@
     "1": {
       "name": "Room number 1",
       "description": "This is a description of room number 1",
-      "paths": ["2"]
+      "paths": [
+        {
+          "to": "2",
+          "requirements": []
+        }
+      ]
     },
     "2": {
       "name": "Room number 2",
       "description": "This is a description of room number 2",
-      "paths": ["1", "4", "4", "4"]
+      "paths": [
+        {
+          "to": "1"
+        },
+        {
+          "to": "4"
+        },
+        {
+          "to": "4"
+        },
+        {
+          "to": "4"
+        }
+      ]
     },
     "3": {
       "name": "Room number 3",
       "description": "This is a description of room number 3",
-      "paths": ["4", "5"],
+      "paths": [
+        {
+          "to": "4"
+        },
+        {
+          "to": "5"
+        }
+      ],
       "events": [
         "open-location-7"
       ]
@@ -24,12 +49,39 @@
     "4": {
       "name": "Room number 4",
       "description": "This is a description of room number 4",
-      "paths": ["2", "2", "3", "7"]
+      "paths": [
+        {
+          "to": "2"
+        },
+        {
+          "to": "2"
+        },
+        {
+          "to": "3"
+        },
+        {
+          "to": "7",
+          "requirements": [
+            "open-location-7",
+            "open-location-7-2"
+          ]
+        }
+      ]
     },
     "5": {
       "name": "Room number 5",
       "description": "This is a description of room number 5",
-      "paths": ["3", "6"],
+      "paths": [
+        {
+          "to": "3"
+        },
+        {
+          "to": "6",
+          "requirements": [
+            "open-location-6"
+          ]
+        }
+      ],
       "events": [
         "open-location-7-2"
       ]
@@ -37,18 +89,32 @@
     "6": {
       "name": "Room number 6",
       "description": "This is a description of room number 6",
-      "paths": ["5", "7"],
-      "requirements": [
-        "open-location-6"
+      "paths": [
+        {
+          "to": "5"
+        },
+        {
+          "to": "7",
+          "requirements": [
+            "open-location-7",
+            "open-location-7-2"
+          ]
+        }
       ]
     },
     "7": {
       "name": "Room number 7",
       "description": "This is a description of room number 7, you win!",
-      "paths": ["4", "6"],
-      "requirements": [
-        "open-location-7",
-        "open-location-7-2"
+      "paths": [
+        {
+          "to": "4"
+        },
+        {
+          "to": "6",
+          "requirements": [
+            "open-location-6"
+          ]
+        }
       ],
       "events": [
         "open-location-6"
