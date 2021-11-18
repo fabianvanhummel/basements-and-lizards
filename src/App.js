@@ -3,7 +3,7 @@ import data from "./json/maze.json"; // book
 
 function App() {
   const [location, setLocation] = useState(data["start-location"]); // state
-  const [events, execEvent] = useState(data["events"]); // state
+  const [events, setEvents] = useState(data["events"]); // state
 
   const listedPaths = data.locations[location].paths.filter(
     path => {
@@ -23,7 +23,7 @@ function App() {
   )
 
   const handleTravelAction = (path) => {
-    execEvent({
+    setEvents({
       ...events,
       message: null
     }); // Clears eventMessages
@@ -32,7 +32,7 @@ function App() {
         if (events[event].value !== events[event].eventValue) {
           const updatedEvent = events[event]
           updatedEvent.value = events[event].eventValue // Assign new values
-          execEvent({
+          setEvents({
             ...events,
             [event]: updatedEvent,
             message: events[event].message
