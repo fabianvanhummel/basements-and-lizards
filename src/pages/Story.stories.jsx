@@ -1,6 +1,6 @@
 import React from 'react';
 import { Story } from './Story';
-import maze from '../json/maze.json'
+import maze from '../books/maze.json'
 
 export default {
   title: 'Pages/Story',

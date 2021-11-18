@@ -1,5 +1,5 @@
 import { useState } from "react";
-import data from "./json/maze.json"; // book
+import data from "./books/maze.json"; // book
 
 function App() {
   const [location, setLocation] = useState(data["start-location"]); // state
