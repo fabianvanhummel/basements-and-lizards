@@ -2,7 +2,20 @@ import { useState } from "react";
 import { Location } from "../components/Location";
 
 export const Story = ({ book }) => {
-  const [location, setLocation] = useState(book["start-location"]); // state
+  const [location, setLocation] = useState(book["start-location"]);
+  const [events, setEvents] = useState([]);
+
+  const addEvent = (eventId) => {
+    setEvents([...events, eventId]);
+  };
+
+  const locationEvents =
+    book.locations[location].events &&
+    book.locations[location].events.map((eventId) => ({
+      ...book.events[eventId],
+      id: eventId,
+      hasHappened: events.includes(eventId),
+    }));
 
   return (
     <main>
@@ -10,10 +23,13 @@ export const Story = ({ book }) => {
         You are at
       </p>
 
-      {/* TODO: add paths and events when they're added to maze.json */}
       <Location
         name={book.locations[location].name}
         description={book.locations[location].description}
+        events={locationEvents}
+        paths={book.locations[location].paths}
+        setLocation={setLocation}
+        addEvent={addEvent}
       />
     </main>
   );

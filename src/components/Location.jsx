@@ -1,6 +1,6 @@
 import { Event } from "./Event";
 
-export const Location = ({ name, description, events, paths, setLocation }) => (
+export const Location = ({ name, description, events, paths, setLocation, addEvent }) => (
   <div class="max-w-2xl px-8 py-4 mx-auto bg-green-50 rounded-lg shadow-md dark:bg-gray-800">
     <div class="flex items-center justify-between">
       <h1 class="text-2xl font-bold text-gray-700 dark:text-white">{name}</h1>
@@ -19,7 +19,7 @@ export const Location = ({ name, description, events, paths, setLocation }) => (
         <ul>
           {events.map((event, index) => (
             <li key={index} class="mt-2">
-              <Event {...event} />
+              <Event {...event} addEvent={addEvent} />
             </li>
           ))}
         </ul>

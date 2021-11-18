@@ -22,6 +22,7 @@ Primary.args = {
     description: Faker.lorem.sentences(),
   })),
   setLocation: () => {},
+  addEvent: () => {},
 };
 
 export const Empty = Template.bind({});

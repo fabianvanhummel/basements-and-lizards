@@ -11,5 +11,6 @@ const Template = (args) => <Event {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  message: Faker.lorem.sentences()
+  message: Faker.lorem.sentences(),
+  addEvent: () => {},
 };
