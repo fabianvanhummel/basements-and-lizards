@@ -5,21 +5,33 @@ function App() {
   const [location, setLocation] = useState(data["start-location"]); // state
   const [events, setEvents] = useState(data["events"]); // state
 
-  const listedPaths = data.locations[location].paths.filter(
+  const sortedPaths = data.locations[location].paths.map(
     path => {
-      if (path.requirements){
-        let reqMet = true
-        path.requirements.forEach( (requirement) => {
-          if (!(events[requirement].value)) {
-            reqMet = false
-          }
-        })
-        return reqMet
+      let reqMet = true
+      path.requirements && (path.requirements.forEach((requirement) => {
+        if (!(events[requirement].value)) {
+          reqMet = false
+        }
+      })) // Checks paths for requirements
+      return {reqMet,path}
+    } 
+  ).sort(
+    (a,b) => {
+      if(a.reqMet === b.reqMet){
+        var nameA = a.path.to.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.path.to.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
       }
-      else {
-        return true
+      else if (a.reqMet) {
+        return -1
       }
-    } // Checks paths for requirements
+      return 1
+    } // Sort locations on met requirements and alfabetic
   )
 
   const handleTravelAction = (path) => {
@@ -67,13 +79,13 @@ function App() {
             Move to:
           </p>
 
-          {listedPaths.map((path, index) => (
+          {sortedPaths.map((sortedPath, index) => (
             <div key={index} className="flex items-center mt-2">
               <button
-                onClick={() => {handleTravelAction(path)}} // Travel Action
+                onClick={() => {if (sortedPath.reqMet) {handleTravelAction(sortedPath.path)}}} // Travel Action
                 className="px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-200 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500"
               >
-                {data.locations[path.to].name}
+                {sortedPath.reqMet ? data.locations[sortedPath.path.to].name : <strike> {data.locations[sortedPath.path.to].name} </strike>}
               </button>
             </div>
           ))}
