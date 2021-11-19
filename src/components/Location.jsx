@@ -2,24 +2,25 @@ import { Event } from "./Event";
 import { Path } from "./Path";
 
 export const Location = ({ name, description, events, paths, setLocation, addEvent }) => {
-  const sortedPaths = paths.sort(
-    (a,b) => {
-      if(a.reqMet === b.reqMet){
-        const nameA = a.to.toUpperCase(); // ignore upper and lowercase
-        const nameB = b.to.toUpperCase(); // ignore upper and lowercase
-        if (nameA < nameB) {
-          return -1;
+  const sortedPaths = 
+    paths && paths.sort(
+      (a,b) => {
+        if(a.reqMet === b.reqMet){
+          const nameA = a.to.toUpperCase(); // ignore upper and lowercase
+          const nameB = b.to.toUpperCase(); // ignore upper and lowercase
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
         }
-        if (nameA > nameB) {
-          return 1;
+        else if (a.reqMet) {
+          return -1
         }
-      }
-      else if (a.reqMet) {
-        return -1
-      }
-      return 1
-    } // Sort locations on met requirements and alfabetic
-  );
+        return 1
+      } // Sort locations on met requirements and alfabetic
+    );
   return (
     <div class="max-w-2xl px-8 py-4 mx-auto bg-green-50 rounded-lg shadow-md dark:bg-gray-800">
       <div class="flex items-center justify-between">
