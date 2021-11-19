@@ -20,6 +20,7 @@ export const Story = ({ book }) => {
       return {
         reqMet: reqMet,
         to: path.to,
+        name: path.name,
         description: path.description,
       }
     } 
