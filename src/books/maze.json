@@ -49,6 +49,11 @@
         },
         {
           "to": "5"
+        },
+        {
+          "to": "portal-chamber",
+          "name": "Blue Portal",
+          "description": "A sizeable portal, with a whirling blue color"
         }
       ],
       "events": [
@@ -129,6 +134,24 @@
       ],
       "events": [
         "open-location-6"
+      ]
+    },
+    "portal-chamber": {
+      "name": "Portal chamber",
+      "description": "Red, Green, Green, Red, Red",
+      "paths": [
+        {
+          "to": "3",
+          "name": "Blue Portal"
+        },
+        {
+          "to": "portal-chamber",
+          "name": "Red Portal"
+        },
+        {
+          "to": "portal-chamber",
+          "name": "Green Portal"
+        }
       ]
     }
   },
