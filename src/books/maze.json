@@ -25,7 +25,7 @@
         {
           "to": "4",
           "name": "Old wooden door",
-          "description": "This door seems stuck",
+          "description": "This door seems like it has seen better days",
           "requirements": ["open-old-wooden-door-4"]
         },
         {
