@@ -9,6 +9,39 @@ export const Story = ({ book }) => {
     setEvents([...events, eventId]);
   };
 
+  const sortedPaths = book.locations[location].paths.map(
+    path => {
+      let reqMet = true
+      path.requirements && (path.requirements.forEach((eventId) => {
+        if (!(events.includes(eventId))) {
+          reqMet = false
+        }
+      })) // Checks paths for requirements
+      return {
+        reqMet: reqMet,
+        to: path.to,
+        description: path.description,
+      }
+    } 
+  ).sort(
+    (a,b) => {
+      if(a.reqMet === b.reqMet){
+        const nameA = a.to.toUpperCase(); // ignore upper and lowercase
+        const nameB = b.to.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+      }
+      else if (a.reqMet) {
+        return -1
+      }
+      return 1
+    } // Sort locations on met requirements and alfabetic
+  )
+
   const locationEvents =
     book.locations[location].events &&
     book.locations[location].events.map((eventId) => ({
@@ -27,7 +60,7 @@ export const Story = ({ book }) => {
         name={book.locations[location].name}
         description={book.locations[location].description}
         events={locationEvents}
-        paths={book.locations[location].paths}
+        paths={sortedPaths}
         setLocation={setLocation}
         addEvent={addEvent}
       />
