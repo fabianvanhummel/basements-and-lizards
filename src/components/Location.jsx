@@ -6,8 +6,10 @@ export const Location = ({ name, description, events, paths, setLocation, addEve
     paths && paths.sort(
       (a,b) => {
         if(a.reqMet === b.reqMet){
-          const nameA = a.to.toUpperCase(); // ignore upper and lowercase
-          const nameB = b.to.toUpperCase(); // ignore upper and lowercase
+          const NameToA = a.name ? a.name : a.to
+          const NameToB = b.name ? b.name : b.to
+          const nameA = NameToA.toUpperCase(); // ignore upper and lowercase
+          const nameB = NameToB.toUpperCase(); // ignore upper and lowercase
           if (nameA < nameB) {
             return -1;
           }
