@@ -1,9 +1,9 @@
 
-export const Path = ({ reqMet, to, description, setLocation}) => (
+export const Path = ({ reqMet, to, name, description, setLocation}) => (
   <div class="max-w-2xl px-8 py-4 mx-auto bg-pink-50 rounded-lg shadow-md dark:bg-gray-800">
     <div class="flex items-center justify-between">
       <h1 class="text-xl font-bold text-gray-700 dark:text-white">
-        {to}
+        {name ? name : to}
       </h1>
       <div class="px-3 py-1 text-sm font-bold text-gray-100 bg-pink-600 rounded">
         Path
