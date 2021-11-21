@@ -13,7 +13,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   reqMet: true,
   to: Faker.lorem.word(),
-  name: Faker.lorem.words(),
+  name: Faker.address.city(),
   description: Faker.lorem.sentences(),
   setLocation: () => {},
 };
@@ -22,7 +22,7 @@ export const Unavailable = Template.bind({});
 Unavailable.args = {
   reqMet: false,
   to: Faker.lorem.word(),
-  name: Faker.lorem.words(),
+  name: Faker.address.city(),
   description: Faker.lorem.sentences(),
   setLocation: () => {},
 };
