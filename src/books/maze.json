@@ -38,6 +38,14 @@
           "name": "Ventilation shaft",
           "description": "It looks very dusty"
         }
+      ],
+      "items": [
+        {
+          "id": "old-metal-key",
+          "events": [
+            "open-old-wooden-door-4"
+          ]
+        }
       ]
     },
     "3": {
@@ -132,6 +140,12 @@
       ]
     }
   },
+  "items": {
+    "old-metal-key": {
+      "name": "Old Metal Key",
+      "description": "This key can be used to open the old wooden door"
+    }
+  },
   "events": {
     "open-location-6": {
       "value": false,
@@ -151,7 +165,7 @@
     "open-old-wooden-door-4": {
       "value": false,
       "eventValue": true,
-      "message": "Room 7 has opened!"
+      "message": "Old wooden door has opened!"
     }
   }
 } 

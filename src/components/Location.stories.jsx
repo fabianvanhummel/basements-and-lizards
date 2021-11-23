@@ -28,6 +28,7 @@ Primary.args = {
   })),
   setLocation: () => {},
   addEvent: () => {},
+  addItem: () => {},
 };
 
 export const Empty = Template.bind({});

@@ -13,4 +13,5 @@ export const Primary = Template.bind({});
 Primary.args = {
   name: Faker.commerce.productName(),
   description: Faker.commerce.productDescription(),
+  addItem: () => {},
 };
