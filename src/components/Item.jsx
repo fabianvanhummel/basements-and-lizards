@@ -14,12 +14,16 @@ export const Item = ({ id, isPickedUp, name, description, addItem }) => (
       {description}
     </p>
 
-    <button
-      onClick={() => {addItem(id)}}
-      class="mt-2 px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80"
-    >
-      Pick up {name}
-    </button>
+    {isPickedUp ? (
+      <p>this item was looted</p>
+    ) : (
+      <button
+        onClick={() => {addItem(id)}}
+        class="mt-2 px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80"
+      >
+        Pick up {name}
+      </button>
+    )}
   </div>
 );
 

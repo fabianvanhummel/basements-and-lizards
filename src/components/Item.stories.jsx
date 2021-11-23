@@ -15,3 +15,11 @@ Primary.args = {
   description: Faker.commerce.productDescription(),
   addItem: () => {},
 };
+
+export const isPickedUp = Template.bind({});
+isPickedUp.args = {
+  isPickedUp: true,
+  name: Faker.commerce.productName(),
+  description: Faker.commerce.productDescription(),
+  addItem: () => {},
+};
