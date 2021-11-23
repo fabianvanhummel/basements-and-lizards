@@ -17,6 +17,10 @@ Primary.args = {
   events: Array(3).fill().map(() => ({
     message: Faker.lorem.sentences(),
   })),
+  items: Array(3).fill().map(() => ({
+    name: Faker.commerce.productName(),
+    description: Faker.commerce.productDescription(),
+  })),
   paths: Array(3).fill().map(() => ({
     reqMet: Faker.datatype.boolean(),
     to: Faker.address.city(),
