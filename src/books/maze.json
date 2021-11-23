@@ -146,16 +146,70 @@
         },
         {
           "to": "portal-chamber",
-          "name": "Red Portal"
+          "name": "Red Portal",
+          "events": [
+            { 
+              "id": "portal-puzzle",
+              "value": "R"
+            }
+          ]
         },
         {
           "to": "portal-chamber",
-          "name": "Green Portal"
+          "name": "Green Portal",
+          "events": [
+            { 
+              "id": "portal-puzzle",
+              "value": "G"
+            }
+          ]
+        },
+        {
+          "to": "7",
+          "name": "Yellow Portal",
+          "requirements": [
+            "open-yellow-portal"
+          ]
         }
       ]
     }
   },
   "events": {
+    "portal-puzzle": {
+      "type": "stringBuilder",
+      "value": "",
+      "finalValue": "RGGRR",
+      "message": [
+        {
+          "success": "Step 1 succesfull",
+          "fail": "Step 1 failed"
+        },
+        {
+          "success": "Step 2 succesfull",
+          "fail": "Step 2 failed"
+        },
+        {
+          "success": "Step 3 succesfull",
+          "fail": "Step 3 failed"
+        },
+        {
+          "success": "Step 4 succesfull",
+          "fail": "Step 4 failed"
+        },
+        {
+          "success": "Step 5 succesfull",
+          "fail": "Step 5 failed"
+        }
+      ],
+      "events": [
+        "open-yellow-portal"
+      ]
+    },
+    "open-yellow-portal": {
+      "value": false,
+      "eventValue": true,
+      "message": "Yellow portal"
+    },
     "open-location-6": {
       "value": false,
       "eventValue": true,
