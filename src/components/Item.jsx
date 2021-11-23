@@ -1,5 +1,6 @@
+import { Event } from "./Event";
 
-export const Item = ({ id, isPickedUp, name, description, addItem }) => (
+export const Item = ({ id, isPickedUp, name, description, events, addItem, addEvent }) => (
   <div class="max-w-2xl px-8 py-4 mx-auto bg-yellow-100 rounded-lg shadow-md dark:bg-gray-800">
     <div class="flex items-center justify-between">
       <h1 class="text-xl font-bold text-gray-700 dark:text-white">
@@ -15,7 +16,23 @@ export const Item = ({ id, isPickedUp, name, description, addItem }) => (
     </p>
 
     {isPickedUp ? (
-      <p>this item was looted</p>
+      <p>
+        this item was looted
+        {events && (
+          <div class="mt-4">
+            <span class="text-sm font-light text-gray-600 dark:text-gray-400">
+              Events
+            </span>
+            <ul>
+              {events.map((event, index) => (
+                <li key={index} class="mt-2">
+                  <Event {...event} addEvent={addEvent} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </p>
     ) : (
       <button
         onClick={() => {addItem(id)}}

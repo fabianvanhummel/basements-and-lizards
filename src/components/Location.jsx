@@ -37,7 +37,7 @@ export const Location = ({ name, description, events, items, paths, setLocation,
           <ul>
             {items.map((item, index) => (
               <li key={index} class="mt-2">
-                <Item {...item} addItem={addItem} />
+                <Item {...item} addItem={addItem} addEvent={addEvent} />
               </li>
             ))}
           </ul>

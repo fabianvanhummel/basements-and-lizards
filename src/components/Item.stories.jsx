@@ -16,8 +16,21 @@ Primary.args = {
   addItem: () => {},
 };
 
-export const isPickedUp = Template.bind({});
-isPickedUp.args = {
+export const isPickedUpPrimary = Template.bind({});
+isPickedUpPrimary.args = {
+  isPickedUp: true,
+  name: Faker.commerce.productName(),
+  description: Faker.commerce.productDescription(),
+  events: Array(3).fill().map(() => ({
+    hasHappened: Faker.datatype.boolean(),
+    message: Faker.lorem.sentences(),
+  })),
+  addItem: () => {},
+  addEvent: () => {},
+};
+
+export const isPickedUpEmpty = Template.bind({});
+isPickedUpEmpty.args = {
   isPickedUp: true,
   name: Faker.commerce.productName(),
   description: Faker.commerce.productDescription(),
