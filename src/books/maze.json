@@ -168,12 +168,24 @@
         {
           "to": "portal-chamber",
           "name": "Red Portal",
-          "events": ["portal-puzzel-step-1", "portal-puzzel-step-4", "portal-puzzel-step-5"]
+          "events": [
+            "portal-puzzel-step-1",
+            "portal-puzzel-step-2-fail",
+            "portal-puzzel-step-3-fail",
+            "portal-puzzel-step-4",
+            "portal-puzzel-step-5"
+          ]
         },
         {
           "to": "portal-chamber",
           "name": "Green Portal",
-          "events": ["portal-puzzel-step-2", "portal-puzzel-step-3"]
+          "events": [
+            "portal-puzzel-step-1-fail",
+            "portal-puzzel-step-2",
+            "portal-puzzel-step-3",
+            "portal-puzzel-step-4-fail",
+            "portal-puzzel-step-5-fail"
+          ]
         }
       ]
     }
@@ -193,21 +205,61 @@
     "portal-puzzel-step-1": {
       "message": "You are send back to the middle of the room, but the yellow portal station, something starts to glow."
     },
+    "portal-puzzel-step-1-fail": {
+      "blockedByEvents": ["portal-puzzel-step-1"],
+      "revertEvents": ["portal-puzzel-step-1-fail"],
+      "message": "Nothing interesting happened."
+    },
     "portal-puzzel-step-2": {
       "requirements": ["portal-puzzel-step-1"],
       "message": "Send back again, but the glow starts to increase in size and brightness."
+    },
+    "portal-puzzel-step-2-fail": {
+      "blockedByEvents": ["portal-puzzel-step-2"],
+      "revertEvents": ["portal-puzzel-step-1", "portal-puzzel-step-2-fail"],
+      "message": "The glow that was there a second ago disappeared again."
     },
     "portal-puzzel-step-3": {
       "requirements": ["portal-puzzel-step-2"],
       "message": "The glow grows again, it starts to look like a portal, but too small."
     },
+    "portal-puzzel-step-3-fail": {
+      "blockedByEvents": ["portal-puzzel-step-3"],
+      "revertEvents": [
+        "portal-puzzel-step-1",
+        "portal-puzzel-step-2",
+        "portal-puzzel-step-3-fail"
+      ],
+      "message": "The glow that was growing has now disappeared."
+    },
     "portal-puzzel-step-4": {
       "requirements": ["portal-puzzel-step-3"],
       "message": "The portal size increases again, but isn't as large as the other portals yet."
     },
+    "portal-puzzel-step-4-fail": {
+      "blockedByEvents": ["portal-puzzel-step-4"],
+      "revertEvents": [
+        "portal-puzzel-step-1",
+        "portal-puzzel-step-2",
+        "portal-puzzel-step-3",
+        "portal-puzzel-step-4-fail"
+      ],
+      "message": "The small portal grows smaller and then disappears leaving some shiny particles that dim slowly until they're gone."
+    },
     "portal-puzzel-step-5": {
       "requirements": ["portal-puzzel-step-4"],
       "message": "The yellow portal now has a normal size, you can probably use it now."
+    },
+    "portal-puzzel-step-5-fail": {
+      "blockedByEvents": ["portal-puzzel-step-5"],
+      "revertEvents": [
+        "portal-puzzel-step-1",
+        "portal-puzzel-step-2",
+        "portal-puzzel-step-3",
+        "portal-puzzel-step-4",
+        "portal-puzzel-step-5-fail"
+      ],
+      "message": "The portal starts to pulsate faster and faster until it explodes leaving an empty portal station once again."
     },
     "open-location-6": {
       "name": "Unlock room 6",
