@@ -159,7 +159,7 @@
     },
     "portal-chamber": {
       "name": "Portal chamber",
-      "description": "Red, Green, Green, Red, Red",
+      "description": "You see four portal stations, blue, green, red, and yellow. The yellow one isn't working, but the other three are. You also notice a writing on the wall: 'Follow the Ridiculously Gorgeous and Greatly Rusty Radish.'",
       "paths": [
         {
           "to": "3",
@@ -167,11 +167,13 @@
         },
         {
           "to": "portal-chamber",
-          "name": "Red Portal"
+          "name": "Red Portal",
+          "events": ["portal-puzzel-step-1", "portal-puzzel-step-4", "portal-puzzel-step-5"]
         },
         {
           "to": "portal-chamber",
-          "name": "Green Portal"
+          "name": "Green Portal",
+          "events": ["portal-puzzel-step-2", "portal-puzzel-step-3"]
         }
       ]
     }
@@ -188,6 +190,25 @@
     }
   },
   "events": {
+    "portal-puzzel-step-1": {
+      "message": "You are send back to the middle of the room, but the yellow portal station, something starts to glow."
+    },
+    "portal-puzzel-step-2": {
+      "requirements": ["portal-puzzel-step-1"],
+      "message": "Send back again, but the glow starts to increase in size and brightness."
+    },
+    "portal-puzzel-step-3": {
+      "requirements": ["portal-puzzel-step-2"],
+      "message": "The glow grows again, it starts to look like a portal, but too small."
+    },
+    "portal-puzzel-step-4": {
+      "requirements": ["portal-puzzel-step-3"],
+      "message": "The portal size increases again, but isn't as large as the other portals yet."
+    },
+    "portal-puzzel-step-5": {
+      "requirements": ["portal-puzzel-step-4"],
+      "message": "The yellow portal now has a normal size, you can probably use it now."
+    },
     "open-location-6": {
       "name": "Unlock room 6",
       "description": "Clears the way to room 6",
