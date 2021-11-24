@@ -9,6 +9,23 @@ export const Story = ({ book }) => {
     setEvents([...events, eventId]);
   };
 
+  const locationPaths = book.locations[location].paths.map(
+    path => {
+      let reqMet = true
+      path.requirements && (path.requirements.forEach((eventId) => {
+        if (!(events.includes(eventId))) {
+          reqMet = false
+        }
+      })) // Checks paths for requirements
+      return {
+        reqMet: reqMet,
+        to: path.to,
+        name: path.name,
+        description: path.description,
+      }
+    } 
+  )
+
   const locationEvents =
     book.locations[location].events &&
     book.locations[location].events.map((eventId) => ({
@@ -27,7 +44,7 @@ export const Story = ({ book }) => {
         name={book.locations[location].name}
         description={book.locations[location].description}
         events={locationEvents}
-        paths={book.locations[location].paths}
+        paths={locationPaths}
         setLocation={setLocation}
         addEvent={addEvent}
       />

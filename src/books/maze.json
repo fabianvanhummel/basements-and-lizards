@@ -9,6 +9,7 @@
       "paths": [
         {
           "to": "2",
+          "name": "Big door",
           "requirements": []
         }
       ]
@@ -18,16 +19,24 @@
       "description": "This is a description of room number 2",
       "paths": [
         {
-          "to": "1"
+          "to": "1",
+          "name": "Big door"
         },
         {
-          "to": "4"
+          "to": "4",
+          "name": "Old wooden door",
+          "description": "This door seems like it has seen better days",
+          "requirements": ["open-old-wooden-door-4"]
         },
         {
-          "to": "4"
+          "to": "4",
+          "name": "Hallway",
+          "description": "A narrow hallway, infested with snake eating spiders"
         },
         {
-          "to": "4"
+          "to": "4",
+          "name": "Ventilation shaft",
+          "description": "It looks very dusty"
         }
       ]
     },
@@ -51,10 +60,12 @@
       "description": "This is a description of room number 4",
       "paths": [
         {
-          "to": "2"
+          "to": "2",
+          "name": "Hallway"
         },
         {
-          "to": "2"
+          "to": "2",
+          "name": "Old wooden door"
         },
         {
           "to": "3"
@@ -133,6 +144,11 @@
       "message": "You hear a loud BANG!"
     },
     "open-location-7-2": {
+      "value": false,
+      "eventValue": true,
+      "message": "Room 7 has opened!"
+    },
+    "open-old-wooden-door-4": {
       "value": false,
       "eventValue": true,
       "message": "Room 7 has opened!"
