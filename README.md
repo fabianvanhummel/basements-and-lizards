@@ -130,6 +130,12 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npm run storybook`
+
+Starts Storybook in development mode
+
+We use Storybook for easier development with isolated components. View the [Storybook website](https://storybook.js.org/) for more information.
+
 ## Packages
 
 - [TailwindCSS](https://tailwindcss.com/): Allows us to use do styling within the JSX to keep all HTML, CSS, and JS tpgether.
