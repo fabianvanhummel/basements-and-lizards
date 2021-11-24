@@ -19,7 +19,7 @@ export const Story = ({ book }) => {
 
   return (
     <main>
-      <p className="mb-2 text-sm font-light text-gray-600 dark:text-gray-400">
+      <p className="mb-2 text-sm font-light text-gray-600 dark:text-gray-400 text-center text-3xl font-sans">
         You are at
       </p>
 
