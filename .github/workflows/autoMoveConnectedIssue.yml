@@ -1,0 +1,18 @@
+name: Auto Move Issue when connecting PR
+
+on:
+  issues:
+    types: connected
+
+jobs:
+  github-actions-automate-projects:
+    runs-on: ubuntu-latest
+    name: Move Issue to desired column
+    steps:
+    - name: Move Issue to column "In progress" in Project 1
+      uses: docker://takanabe/github-actions-automate-projects:v0.0.1
+      if: github.event_name == 'issues' && github.event.action == 'connected'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_PROJECT_URL: https://github.com/fabianvanhummel/basements-and-lizards/projects/1
+        GITHUB_PROJECT_COLUMN_NAME: In progress
