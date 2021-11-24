@@ -1,7 +1,8 @@
 import { Event } from "./Event";
 import { Path } from "./Path";
+// import { PathHistory } from "../components/Path";
 
-export const Location = ({ name, description, events, paths, setLocation, addEvent }) => {
+export const Location = ({ name, description, events, paths, setLocation, addEvent, setHistory }) => {
   const sortedPaths = 
     paths && paths.sort(
       (a,b) => {
@@ -57,7 +58,10 @@ export const Location = ({ name, description, events, paths, setLocation, addEve
           <ul>
             {sortedPaths.map((path, index) => (
               <li key={index} class="mt-2">
-                <Path {...path} setLocation={setLocation} />
+                <Path {...path} 
+                setLocation={setLocation} 
+                setHistory = {setHistory} 
+                />
               </li>
             ))}
           </ul>

@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Location } from "../components/Location";
+import { History } from "../components/History";
+import "../index.css" // TODO: zorg dat dit global is geregeld in storybook
 
 export const Story = ({ book }) => {
   const [location, setLocation] = useState(book["start-location"]);
   const [events, setEvents] = useState([]);
+  const [history, setHistory] = useState([])
 
   const addEvent = (eventId) => {
     setEvents([...events, eventId]);
@@ -21,9 +24,10 @@ export const Story = ({ book }) => {
         reqMet: reqMet,
         to: path.to,
         name: path.name,
+        id: path.id,
         description: path.description,
       }
-    } 
+    }
   )
 
   const locationEvents =
@@ -47,7 +51,12 @@ export const Story = ({ book }) => {
         paths={locationPaths}
         setLocation={setLocation}
         addEvent={addEvent}
+        setHistory = {setHistory}
       />
+
+      <History history={history}      
+      />
+
     </main>
   );
 };

@@ -138,20 +138,34 @@
     },
     "portal-chamber": {
       "name": "Portal chamber",
-      "description": "Red, Green, Green, Red, Red",
+      "description": "In this room you see three portals: a blue portal, a red portal and a green portal.",
       "paths": [
         {
+          "id": "101",
           "to": "3",
           "name": "Blue Portal"
         },
         {
+          "id": "102",
           "to": "portal-chamber",
           "name": "Red Portal"
         },
         {
+          "id": "103",
           "to": "portal-chamber",
           "name": "Green Portal"
+        },
+        {
+          "id": "104",
+          "to": "7",
+          "name": "The End",
+          "requirements": [
+            "portal-puzzle"
+          ]
         }
+      ],
+      "events": [
+        "portal-puzzle"
       ]
     }
   },
@@ -175,6 +189,11 @@
       "value": false,
       "eventValue": true,
       "message": "Room 7 has opened!"
+    },
+    "portal-puzzle": {
+      "value": false,
+      "eventValue": true,
+      "message": "The portal starts working if the party has entered the colored portals in the following sequence: /n Red, //n//n Green, Green, Red, Red. If the party chooses wrong once, the puzzle starts over. The last 10 taken paths can be viewed on the right side of the screen."
     }
   }
 } 
