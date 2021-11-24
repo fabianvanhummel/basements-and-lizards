@@ -1,7 +1,7 @@
 import { Event } from "./Event";
 
 export const Item = ({ id, isPickedUp, name, description, events, addItem, addEvent }) => (
-  <div class="max-w-2xl px-8 py-4 mx-auto bg-yellow-100 rounded-lg shadow-md dark:bg-gray-800">
+  <div class="max-w-2xl px-8 py-4 mx-auto bg-yellow-50 rounded-lg shadow-md dark:bg-gray-800">
     <div class="flex items-center justify-between">
       <h1 class="text-xl font-bold text-gray-700 dark:text-white">
         {name}
