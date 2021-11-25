@@ -3,7 +3,7 @@ export const Path = ({ reqMet, to, name, description, setLocation}) => (
   <div className="max-w-2xl px-8 py-4 mx-auto bg-pink-50 rounded-lg shadow-md dark:bg-gray-800">
     <div className="flex items-center justify-between">
       <h1 className="text-xl font-bold text-gray-700 dark:text-white">
-        {name ? name : to /* TODO: use name if this becomes a required field in source json */}
+        {name}
       </h1>
       <div className="px-3 py-1 text-sm font-bold text-gray-100 bg-pink-600 rounded">
         Path
