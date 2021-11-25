@@ -12,7 +12,7 @@ const Template = (args) => <Path {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   reqMet: true,
-  to: Faker.lorem.word(),
+  toLocationId: Faker.lorem.word(),
   name: Faker.address.city(),
   description: Faker.lorem.sentences(),
   setLocation: () => {},
@@ -21,7 +21,7 @@ Primary.args = {
 export const Unavailable = Template.bind({});
 Unavailable.args = {
   reqMet: false,
-  to: Faker.lorem.word(),
+  toLocationId: Faker.lorem.word(),
   name: Faker.address.city(),
   description: Faker.lorem.sentences(),
   setLocation: () => {},

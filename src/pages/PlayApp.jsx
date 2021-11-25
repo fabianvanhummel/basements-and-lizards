@@ -24,7 +24,7 @@ export const PlayApp = ({ book }) => {
       })) // Checks paths for requirements
       return {
         reqMet: reqMet,
-        to: path.to,
+        toLocationId: path.toLocationId,
         name: path.name,
         description: path.description,
       }

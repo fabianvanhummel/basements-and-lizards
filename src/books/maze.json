@@ -8,7 +8,7 @@
       "description": "This is a description of room number 1",
       "paths": [
         {
-          "to": "2",
+          "toLocationId": "2",
           "name": "Big door",
           "requirements": []
         }
@@ -19,22 +19,22 @@
       "description": "This is a description of room number 2",
       "paths": [
         {
-          "to": "1",
+          "toLocationId": "1",
           "name": "Big door"
         },
         {
-          "to": "4",
+          "toLocationId": "4",
           "name": "Old wooden door",
           "description": "This door seems like it has seen better days",
           "requirements": ["open-old-wooden-door-4"]
         },
         {
-          "to": "4",
+          "toLocationId": "4",
           "name": "Hallway",
           "description": "A narrow hallway, infested with snake eating spiders"
         },
         {
-          "to": "4",
+          "toLocationId": "4",
           "name": "Ventilation shaft",
           "description": "It looks very dusty"
         }
@@ -53,10 +53,10 @@
       "description": "This is a description of room number 3",
       "paths": [
         {
-          "to": "4"
+          "toLocationId": "4"
         },
         {
-          "to": "5"
+          "toLocationId": "5"
         }
       ],
       "events": [
@@ -68,18 +68,18 @@
       "description": "This is a description of room number 4",
       "paths": [
         {
-          "to": "2",
+          "toLocationId": "2",
           "name": "Hallway"
         },
         {
-          "to": "2",
+          "toLocationId": "2",
           "name": "Old wooden door"
         },
         {
-          "to": "3"
+          "toLocationId": "3"
         },
         {
-          "to": "7",
+          "toLocationId": "7",
           "requirements": [
             "open-location-7",
             "open-location-7-2"
@@ -92,10 +92,10 @@
       "description": "This is a description of room number 5",
       "paths": [
         {
-          "to": "3"
+          "toLocationId": "3"
         },
         {
-          "to": "6",
+          "toLocationId": "6",
           "requirements": [
             "open-location-6"
           ]
@@ -110,10 +110,10 @@
       "description": "This is a description of room number 6",
       "paths": [
         {
-          "to": "5"
+          "toLocationId": "5"
         },
         {
-          "to": "7",
+          "toLocationId": "7",
           "requirements": [
             "open-location-7",
             "open-location-7-2"
@@ -126,10 +126,10 @@
       "description": "This is a description of room number 7, you win!",
       "paths": [
         {
-          "to": "4"
+          "toLocationId": "4"
         },
         {
-          "to": "6",
+          "toLocationId": "6",
           "requirements": [
             "open-location-6"
           ]

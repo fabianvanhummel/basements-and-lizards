@@ -25,7 +25,7 @@ Primary.args = {
   })),
   paths: Array(3).fill().map(() => ({
     reqMet: Faker.datatype.boolean(),
-    to: Faker.address.city(),
+    toLocationId: Faker.address.city(),
     description: Faker.lorem.sentences(),
   })),
   setLocation: () => {},
