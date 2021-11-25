@@ -1,15 +1,15 @@
-import React from 'react';
-import { Story } from './Story';
-import maze from '../books/maze.json'
+import React from "react";
+import { BMApp } from "./BMApp";
+import maze from "../books/maze.json";
 
 export default {
-  title: 'Pages/Story',
-  component: Story,
+  title: "Pages/BMApp",
+  component: BMApp,
 };
 
-const Template = (args) => <Story {...args} />;
+const Template = (args) => <BMApp {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  book: maze
+  book: maze,
 };
