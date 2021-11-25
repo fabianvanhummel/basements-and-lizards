@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Location } from "../components/Location";
 
-export const Story = ({ book }) => {
+export const PlayApp = ({ book }) => {
   const [location, setLocation] = useState(book["start-location"]);
   const [events, setEvents] = useState([]);
   const [items, setItems] = useState([]);
