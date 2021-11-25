@@ -1,4 +1,11 @@
-export const Event = ({ id, name, description, hasHappened, message, addEvent }) => (
+export const Event = ({
+  id,
+  name,
+  description,
+  hasHappened,
+  message,
+  addEvent,
+}) => (
   <div className="max-w-2xl px-8 py-4 mx-auto bg-blue-50 rounded-lg shadow-md dark:bg-gray-800">
     <div className="flex items-center justify-between">
       <h1 className="text-xl font-bold text-gray-700 dark:text-white">
@@ -9,9 +16,7 @@ export const Event = ({ id, name, description, hasHappened, message, addEvent })
       </div>
     </div>
 
-    <p className="mt-2 text-gray-600 dark:text-gray-300">
-      {description}
-    </p>
+    <p className="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
 
     {hasHappened ? (
       <p>{message}</p>

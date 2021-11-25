@@ -1,9 +1,9 @@
-import React from 'react';
-import Faker from 'faker'
-import { Event } from './Event';
+import React from "react";
+import Faker from "faker";
+import { Event } from "./Event";
 
 export default {
-  title: 'Components/Event',
+  title: "Components/Event",
   component: Event,
 };
 

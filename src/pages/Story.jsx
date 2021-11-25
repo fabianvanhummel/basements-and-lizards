@@ -14,22 +14,21 @@ export const Story = ({ book }) => {
     setItems([...items, itemId]);
   };
 
-  const locationPaths = book.locations[location].paths.map(
-    path => {
-      let reqMet = true
-      path.requirements && (path.requirements.forEach((eventId) => {
-        if (!(events.includes(eventId))) {
-          reqMet = false
+  const locationPaths = book.locations[location].paths.map((path) => {
+    let reqMet = true;
+    path.requirements &&
+      path.requirements.forEach((eventId) => {
+        if (!events.includes(eventId)) {
+          reqMet = false;
         }
-      })) // Checks paths for requirements
-      return {
-        reqMet: reqMet,
-        to: path.to,
-        name: path.name,
-        description: path.description,
-      }
-    } 
-  )
+      }); // Checks paths for requirements
+    return {
+      reqMet: reqMet,
+      to: path.to,
+      name: path.name,
+      description: path.description,
+    };
+  });
 
   const locationEvents =
     book.locations[location].events &&
@@ -39,7 +38,7 @@ export const Story = ({ book }) => {
       hasHappened: events.includes(eventId),
     }));
 
-  const locationItems = 
+  const locationItems =
     book.locations[location].items &&
     book.locations[location].items.map((item) => ({
       ...book.items[item.id],
@@ -49,7 +48,7 @@ export const Story = ({ book }) => {
         ...book.events[eventId],
         id: eventId,
         hasHappened: events.includes(eventId),
-      }))
+      })),
     }));
 
   return (

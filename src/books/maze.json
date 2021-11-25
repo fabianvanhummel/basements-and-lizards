@@ -44,9 +44,7 @@
       "items": [
         {
           "id": "old-metal-key",
-          "events": [
-            "open-old-wooden-door-4"
-          ]
+          "events": ["open-old-wooden-door-4"]
         }
       ]
     },
@@ -65,9 +63,7 @@
           "description": "Shiny metal doorway"
         }
       ],
-      "events": [
-        "open-location-7"
-      ]
+      "events": ["open-location-7"]
     },
     "4": {
       "name": "Room number 4",
@@ -93,10 +89,7 @@
           "to": "7",
           "name": "THE door",
           "description": "A very pretty door with glass and gold, you really want to go through!",
-          "requirements": [
-            "open-location-7",
-            "open-location-7-2"
-          ]
+          "requirements": ["open-location-7", "open-location-7-2"]
         }
       ]
     },
@@ -113,14 +106,10 @@
           "to": "6",
           "name": "Stacked stones",
           "description": "There is a stack of stones, when peering through you see another room",
-          "requirements": [
-            "open-location-6"
-          ]
+          "requirements": ["open-location-6"]
         }
       ],
-      "events": [
-        "open-location-7-2"
-      ]
+      "events": ["open-location-7-2"]
     },
     "6": {
       "name": "Room number 6",
@@ -135,10 +124,7 @@
           "to": "7",
           "name": "Window",
           "description": "A medium-sized open window",
-          "requirements": [
-            "open-location-7",
-            "open-location-7-2"
-          ]
+          "requirements": ["open-location-7", "open-location-7-2"]
         }
       ]
     },
@@ -155,14 +141,10 @@
           "to": "6",
           "name": "Window",
           "description": "A medium-sized open window",
-          "requirements": [
-            "open-location-6"
-          ]
+          "requirements": ["open-location-6"]
         }
       ],
-      "events": [
-        "open-location-6"
-      ]
+      "events": ["open-location-6"]
     }
   },
   "items": {
@@ -201,4 +183,4 @@
       "message": "Old wooden door has opened!"
     }
   }
-} 
+}
