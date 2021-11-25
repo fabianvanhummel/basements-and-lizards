@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { Location } from "../components/Location";
+import { HistoryTab } from "../pages/HistoryTab";
 
 export const BMApp = ({ book }) => {
   const [location, setLocation] = useState(book["start-location"]);
@@ -52,21 +54,31 @@ export const BMApp = ({ book }) => {
     }));
 
   return (
-    <main>
-      <p className="mb-2 text-sm font-light text-gray-600 dark:text-gray-400 text-center text-3xl font-sans">
-        You are at
-      </p>
+    <BrowserRouter>
 
-      <Location
-        name={book.locations[location].name}
-        description={book.locations[location].description}
-        events={locationEvents}
-        items={locationItems}
-        paths={locationPaths}
-        setLocation={setLocation}
-        addEvent={addEvent}
-        addItem={addItem}
-      />
-    </main>
+      <Routes>
+        <Route path="/" element={<div>StartTabPlaceholder</div>} />
+
+        <Route
+          path="/location"
+          element={
+            <Location
+              name={book.locations[location].name}
+              description={book.locations[location].description}
+              events={locationEvents}
+              items={locationItems}
+              paths={locationPaths}
+              setLocation={setLocation}
+              addEvent={addEvent}
+              addItem={addItem}
+            />
+          }
+        />
+
+        <Route path="/inventory" element={<div>InventoryTabPlaceholder</div>} />
+
+        <Route path="/history" element={<HistoryTab />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
