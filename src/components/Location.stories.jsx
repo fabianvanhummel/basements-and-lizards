@@ -19,7 +19,7 @@ Primary.args = {
     message: Faker.lorem.sentences(),
   })),
   items: Array(3).fill().map(() => ({
-    isPickedUp: Faker.datatype.boolean(),
+    isPresent: Faker.datatype.boolean(),
     name: Faker.commerce.productName(),
     description: Faker.commerce.productDescription(),
   })),

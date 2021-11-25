@@ -16,9 +16,9 @@ Primary.args = {
   addItem: () => {},
 };
 
-export const isPickedUpPrimary = Template.bind({});
-isPickedUpPrimary.args = {
-  isPickedUp: true,
+export const isPresentPrimary = Template.bind({});
+isPresentPrimary.args = {
+  isPresent: false,
   name: Faker.commerce.productName(),
   description: Faker.commerce.productDescription(),
   events: Array(3).fill().map(() => ({
@@ -29,9 +29,9 @@ isPickedUpPrimary.args = {
   addEvent: () => {},
 };
 
-export const isPickedUpEmpty = Template.bind({});
-isPickedUpEmpty.args = {
-  isPickedUp: true,
+export const isPresentEmpty = Template.bind({});
+isPresentEmpty.args = {
+  isPresent: false,
   name: Faker.commerce.productName(),
   description: Faker.commerce.productDescription(),
   addItem: () => {},

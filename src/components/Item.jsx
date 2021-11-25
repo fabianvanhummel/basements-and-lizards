@@ -1,6 +1,6 @@
 import { Event } from "./Event";
 
-export const Item = ({ id, isPickedUp, name, description, events, addItem, addEvent }) => (
+export const Item = ({ id, isPresent, name, description, events, addItem, addEvent }) => (
   <div class="max-w-2xl px-8 py-4 mx-auto bg-yellow-50 rounded-lg shadow-md dark:bg-gray-800">
     <div class="flex items-center justify-between">
       <h1 class="text-xl font-bold text-gray-700 dark:text-white">
@@ -15,7 +15,7 @@ export const Item = ({ id, isPickedUp, name, description, events, addItem, addEv
       {description}
     </p>
 
-    {isPickedUp ? (
+    {!isPresent ? (
       <p>
         this item was looted
         {events && (

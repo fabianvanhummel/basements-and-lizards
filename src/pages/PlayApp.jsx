@@ -44,7 +44,7 @@ export const PlayApp = ({ book }) => {
     book.locations[location].items.map((item) => ({
       ...book.items[item.id],
       id: item.id,
-      isPickedUp: items.includes(item.id),
+      isPresent: !items.includes(item.id),
       events: item.events.map((eventId) => ({
         ...book.events[eventId],
         id: eventId,
