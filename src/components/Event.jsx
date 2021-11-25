@@ -1,5 +1,3 @@
-import "../index.css" // TODO: zorg dat dit global is geregeld in storybook
-
 export const Event = ({ id, hasHappened, message, addEvent }) => (
   <div className="max-w-2xl px-8 py-4 mx-auto bg-blue-50 rounded-lg shadow-md dark:bg-gray-800">
     <div className="flex items-start justify-between">

@@ -4,9 +4,14 @@ import { Location } from "../components/Location";
 export const Story = ({ book }) => {
   const [location, setLocation] = useState(book["start-location"]);
   const [events, setEvents] = useState([]);
+  const [items, setItems] = useState([]);
 
   const addEvent = (eventId) => {
     setEvents([...events, eventId]);
+  };
+
+  const addItem = (itemId) => {
+    setItems([...items, itemId]);
   };
 
   const locationPaths = book.locations[location].paths.map(
@@ -34,6 +39,19 @@ export const Story = ({ book }) => {
       hasHappened: events.includes(eventId),
     }));
 
+  const locationItems = 
+    book.locations[location].items &&
+    book.locations[location].items.map((item) => ({
+      ...book.items[item.id],
+      id: item.id,
+      isPickedUp: items.includes(item.id),
+      events: item.events.map((eventId) => ({
+        ...book.events[eventId],
+        id: eventId,
+        hasHappened: events.includes(eventId),
+      }))
+    }));
+
   return (
     <main>
       <p className="mb-2 text-sm font-light text-gray-600 dark:text-gray-400 text-center text-3xl font-sans">
@@ -44,9 +62,11 @@ export const Story = ({ book }) => {
         name={book.locations[location].name}
         description={book.locations[location].description}
         events={locationEvents}
+        items={locationItems}
         paths={locationPaths}
         setLocation={setLocation}
         addEvent={addEvent}
+        addItem={addItem}
       />
     </main>
   );
