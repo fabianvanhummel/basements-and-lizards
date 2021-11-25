@@ -2,23 +2,23 @@ import { useState } from "react";
 import { Location } from "../components/Location";
 
 export const PlayApp = ({ book }) => {
-  const [location, setLocation] = useState(book["start-location"]);
-  const [events, setEvents] = useState([]);
-  const [items, setItems] = useState([]);
+  const [locationIdState, setLocation] = useState(book["start-location"]);
+  const [eventsIdState, setEvents] = useState([]);
+  const [itemsIdState, setItems] = useState([]);
 
   const addEvent = (eventId) => {
-    setEvents([...events, eventId]);
+    setEvents([...eventsIdState, eventId]);
   };
 
   const addItem = (itemId) => {
-    setItems([...items, itemId]);
+    setItems([...itemsIdState, itemId]);
   };
 
-  const locationPaths = book.locations[location].paths.map(
+  const locationPaths = book.locations[locationIdState].paths.map(
     path => {
       let reqMet = true
       path.requirements && (path.requirements.forEach((eventId) => {
-        if (!(events.includes(eventId))) {
+        if (!(eventsIdState.includes(eventId))) {
           reqMet = false
         }
       })) // Checks paths for requirements
@@ -32,23 +32,23 @@ export const PlayApp = ({ book }) => {
   )
 
   const locationEvents =
-    book.locations[location].events &&
-    book.locations[location].events.map((eventId) => ({
+    book.locations[locationIdState].events &&
+    book.locations[locationIdState].events.map((eventId) => ({
       ...book.events[eventId],
       id: eventId,
-      didHappen: events.includes(eventId),
+      didHappen: eventsIdState.includes(eventId),
     }));
 
   const locationItems = 
-    book.locations[location].items &&
-    book.locations[location].items.map((item) => ({
+    book.locations[locationIdState].items &&
+    book.locations[locationIdState].items.map((item) => ({
       ...book.items[item.id],
       id: item.id,
-      isPresent: !items.includes(item.id),
+      isPresent: !itemsIdState.includes(item.id),
       events: item.events.map((eventId) => ({
         ...book.events[eventId],
         id: eventId,
-        didHappen: events.includes(eventId),
+        didHappen: eventsIdState.includes(eventId),
       }))
     }));
 
@@ -59,8 +59,8 @@ export const PlayApp = ({ book }) => {
       </p>
 
       <Location
-        name={book.locations[location].name}
-        description={book.locations[location].description}
+        name={book.locations[locationIdState].name}
+        description={book.locations[locationIdState].description}
         events={locationEvents}
         items={locationItems}
         paths={locationPaths}
