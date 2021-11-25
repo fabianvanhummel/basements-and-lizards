@@ -24,6 +24,8 @@ isPickedUpPrimary.args = {
   events: Array(3)
     .fill()
     .map(() => ({
+      name: Faker.lorem.word(),
+      description: Faker.lorem.words(),
       hasHappened: Faker.datatype.boolean(),
       message: Faker.lorem.sentences(),
     })),

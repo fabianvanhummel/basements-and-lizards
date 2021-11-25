@@ -17,6 +17,8 @@ Primary.args = {
   events: Array(3)
     .fill()
     .map(() => ({
+      name: Faker.lorem.word(),
+      description: Faker.lorem.words(),
       hasHappened: Faker.datatype.boolean(),
       message: Faker.lorem.sentences(),
     })),
@@ -31,7 +33,8 @@ Primary.args = {
     .fill()
     .map(() => ({
       reqMet: Faker.datatype.boolean(),
-      to: Faker.address.city(),
+      to: Faker.lorem.word(),
+      name: Faker.address.city(),
       description: Faker.lorem.sentences(),
     })),
   setLocation: () => {},
