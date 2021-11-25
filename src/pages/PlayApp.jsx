@@ -36,7 +36,7 @@ export const PlayApp = ({ book }) => {
     book.locations[location].events.map((eventId) => ({
       ...book.events[eventId],
       id: eventId,
-      hasHappened: events.includes(eventId),
+      didHappen: events.includes(eventId),
     }));
 
   const locationItems = 
@@ -48,7 +48,7 @@ export const PlayApp = ({ book }) => {
       events: item.events.map((eventId) => ({
         ...book.events[eventId],
         id: eventId,
-        hasHappened: events.includes(eventId),
+        didHappen: events.includes(eventId),
       }))
     }));
 

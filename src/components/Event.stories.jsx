@@ -15,9 +15,9 @@ Primary.args = {
   addEvent: () => {},
 };
 
-export const hasHappened = Template.bind({});
-hasHappened.args = {
-  hasHappened: true,
+export const didHappen = Template.bind({});
+didHappen.args = {
+  didHappen: true,
   message: Faker.lorem.sentences(),
   addEvent: () => {},
 };

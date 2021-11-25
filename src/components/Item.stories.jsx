@@ -22,7 +22,7 @@ isPickedUpPrimary.args = {
   name: Faker.commerce.productName(),
   description: Faker.commerce.productDescription(),
   events: Array(3).fill().map(() => ({
-    hasHappened: Faker.datatype.boolean(),
+    didHappen: Faker.datatype.boolean(),
     message: Faker.lorem.sentences(),
   })),
   addItem: () => {},

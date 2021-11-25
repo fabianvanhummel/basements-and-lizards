@@ -1,4 +1,4 @@
-export const Event = ({ id, hasHappened, message, addEvent }) => (
+export const Event = ({ id, didHappen, message, addEvent }) => (
   <div className="max-w-2xl px-8 py-4 mx-auto bg-blue-50 rounded-lg shadow-md dark:bg-gray-800">
     <div className="flex items-start justify-between">
       <p className="text-gray-600 dark:text-gray-300">{message}</p>
@@ -7,7 +7,7 @@ export const Event = ({ id, hasHappened, message, addEvent }) => (
       </div>
     </div>
 
-    {hasHappened ? (
+    {didHappen ? (
       <p>has happened</p>
     ) : (
       <button
