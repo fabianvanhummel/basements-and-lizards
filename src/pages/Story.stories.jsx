@@ -1,13 +1,13 @@
 import React from 'react';
-import { PlayApp } from './PlayApp';
+import { Story } from './Story';
 import maze from '../books/maze.json'
 
 export default {
-  title: 'Pages/PlayApp',
-  component: PlayApp,
+  title: 'Pages/Story',
+  component: Story,
 };
 
-const Template = (args) => <PlayApp {...args} />;
+const Template = (args) => <Story {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
