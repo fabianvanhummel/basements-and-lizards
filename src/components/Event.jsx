@@ -2,7 +2,7 @@ export const Event = ({
   id,
   name,
   description,
-  hasHappened,
+  didHappen,
   message,
   addEvent,
 }) => (
@@ -18,7 +18,7 @@ export const Event = ({
 
     <p className="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
 
-    {hasHappened ? (
+    {didHappen ? (
       <p>{message}</p>
     ) : (
       <button

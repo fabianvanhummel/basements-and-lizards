@@ -19,13 +19,13 @@ Primary.args = {
     .map(() => ({
       name: Faker.lorem.word(),
       description: Faker.lorem.words(),
-      hasHappened: Faker.datatype.boolean(),
+      didHappen: Faker.datatype.boolean(),
       message: Faker.lorem.sentences(),
     })),
   items: Array(3)
     .fill()
     .map(() => ({
-      isPickedUp: Faker.datatype.boolean(),
+      isPresent: Faker.datatype.boolean(),
       name: Faker.commerce.productName(),
       description: Faker.commerce.productDescription(),
     })),
@@ -33,7 +33,7 @@ Primary.args = {
     .fill()
     .map(() => ({
       reqMet: Faker.datatype.boolean(),
-      to: Faker.lorem.word(),
+      toLocationId: Faker.lorem.word(),
       name: Faker.address.city(),
       description: Faker.lorem.sentences(),
     })),

@@ -2,7 +2,7 @@ import { Event } from "./Event";
 
 export const Item = ({
   id,
-  isPickedUp,
+  isPresent,
   name,
   description,
   events,
@@ -19,7 +19,7 @@ export const Item = ({
 
     <p class="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
 
-    {isPickedUp ? (
+    {!isPresent ? (
       <p>
         this item was looted
         {events && (
