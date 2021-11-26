@@ -21,7 +21,7 @@
       "paths": [
         {
           "toLocationId": "1",
-          "name": "Big door"
+          "name": "Big door",
           "description": "Very BIG door"
         },
         {
