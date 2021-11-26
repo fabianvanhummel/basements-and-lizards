@@ -3,22 +3,22 @@ import { Location } from "../components/Location";
 
 export const Story = ({ book }) => {
   const [locationIdState, setLocation] = useState(book["start-location"]);
-  const [eventsIdState, setEvents] = useState([]);
-  const [itemsIdState, setItems] = useState([]);
+  const [eventIdsState, setEvents] = useState([]);
+  const [itemIdsState, setItems] = useState([]);
 
   const addEvent = (eventId) => {
-    setEvents([...eventsIdState, eventId]);
+    setEvents([...eventIdsState, eventId]);
   };
 
   const addItem = (itemId) => {
-    setItems([...itemsIdState, itemId]);
+    setItems([...itemIdsState, itemId]);
   };
 
   const locationPaths = book.locations[locationIdState].paths.map(
     path => {
       let reqMet = true
       path.requirements && (path.requirements.forEach((eventId) => {
-        if (!(eventsIdState.includes(eventId))) {
+        if (!(eventIdsState.includes(eventId))) {
           reqMet = false
         }
       })) // Checks paths for requirements
@@ -36,7 +36,7 @@ export const Story = ({ book }) => {
     book.locations[locationIdState].events.map((eventId) => ({
       ...book.events[eventId],
       id: eventId,
-      didHappen: eventsIdState.includes(eventId),
+      didHappen: eventIdsState.includes(eventId),
     }));
 
   const locationItems = 
@@ -44,11 +44,11 @@ export const Story = ({ book }) => {
     book.locations[locationIdState].items.map((item) => ({
       ...book.items[item.id],
       id: item.id,
-      isPresent: !itemsIdState.includes(item.id),
+      isPresent: !itemIdsState.includes(item.id),
       events: item.events.map((eventId) => ({
         ...book.events[eventId],
         id: eventId,
-        didHappen: eventsIdState.includes(eventId),
+        didHappen: eventIdsState.includes(eventId),
       }))
     }));
 
