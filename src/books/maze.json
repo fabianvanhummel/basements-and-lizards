@@ -10,6 +10,7 @@
         {
           "to": "2",
           "name": "Big door",
+          "description": "Very BIG door",
           "requirements": []
         }
       ]
@@ -20,7 +21,8 @@
       "paths": [
         {
           "to": "1",
-          "name": "Big door"
+          "name": "Big door",
+          "description": "Very BIG door"
         },
         {
           "to": "4",
@@ -42,9 +44,7 @@
       "items": [
         {
           "id": "old-metal-key",
-          "events": [
-            "open-old-wooden-door-4"
-          ]
+          "events": ["open-old-wooden-door-4"]
         }
       ]
     },
@@ -53,15 +53,17 @@
       "description": "This is a description of room number 3",
       "paths": [
         {
-          "to": "4"
+          "to": "4",
+          "name": "Passage",
+          "description": "Hard to go through for crabbies"
         },
         {
-          "to": "5"
+          "to": "5",
+          "name": "Door",
+          "description": "Shiny metal doorway"
         }
       ],
-      "events": [
-        "open-location-7"
-      ]
+      "events": ["open-location-7"]
     },
     "4": {
       "name": "Room number 4",
@@ -69,21 +71,25 @@
       "paths": [
         {
           "to": "2",
-          "name": "Hallway"
+          "name": "Hallway",
+          "description": "A narrow hallway, infested with snake eating spiders"
         },
         {
           "to": "2",
-          "name": "Old wooden door"
+          "name": "Old wooden door",
+          "description": "This door seems like it has seen better days",
+          "requirements": ["open-old-wooden-door-4"]
         },
         {
-          "to": "3"
+          "to": "3",
+          "name": "Passage",
+          "description": "Hard to go through for crabbies"
         },
         {
           "to": "7",
-          "requirements": [
-            "open-location-7",
-            "open-location-7-2"
-          ]
+          "name": "THE door",
+          "description": "A very pretty door with glass and gold, you really want to go through!",
+          "requirements": ["open-location-7", "open-location-7-2"]
         }
       ]
     },
@@ -92,32 +98,33 @@
       "description": "This is a description of room number 5",
       "paths": [
         {
-          "to": "3"
+          "to": "3",
+          "name": "Door",
+          "description": "Shiny metal doorway"
         },
         {
           "to": "6",
-          "requirements": [
-            "open-location-6"
-          ]
+          "name": "Stacked stones",
+          "description": "There is a stack of stones, when peering through you see another room",
+          "requirements": ["open-location-6"]
         }
       ],
-      "events": [
-        "open-location-7-2"
-      ]
+      "events": ["open-location-7-2"]
     },
     "6": {
       "name": "Room number 6",
       "description": "This is a description of room number 6",
       "paths": [
         {
-          "to": "5"
+          "to": "5",
+          "name": "Stacked stones",
+          "description": "It looks like you could relatively easily move some stones to enter another room"
         },
         {
           "to": "7",
-          "requirements": [
-            "open-location-7",
-            "open-location-7-2"
-          ]
+          "name": "Window",
+          "description": "A medium-sized open window",
+          "requirements": ["open-location-7", "open-location-7-2"]
         }
       ]
     },
@@ -126,18 +133,18 @@
       "description": "This is a description of room number 7, you win!",
       "paths": [
         {
-          "to": "4"
+          "to": "4",
+          "name": "THE door",
+          "description": "Why leave, you just got here!?"
         },
         {
           "to": "6",
-          "requirements": [
-            "open-location-6"
-          ]
+          "name": "Window",
+          "description": "A medium-sized open window",
+          "requirements": ["open-location-6"]
         }
       ],
-      "events": [
-        "open-location-6"
-      ]
+      "events": ["open-location-6"]
     }
   },
   "items": {
@@ -148,24 +155,32 @@
   },
   "events": {
     "open-location-6": {
+      "name": "Unlock room 6",
+      "description": "Clears the way to room 6",
       "value": false,
       "eventValue": true,
       "message": "Room 6 has opened!"
     },
     "open-location-7": {
+      "name": "Open Location 7 Lock",
+      "description": "This opens a locking mechanism of THE door",
       "value": false,
       "eventValue": true,
       "message": "You hear a loud BANG!"
     },
     "open-location-7-2": {
+      "name": "Open Location 7 Lock",
+      "description": "This opens a lock on THE door",
       "value": false,
       "eventValue": true,
       "message": "Room 7 has opened!"
     },
     "open-old-wooden-door-4": {
+      "name": "Open old wooden door",
+      "description": "Use the key to open the old wooden door",
       "value": false,
       "eventValue": true,
       "message": "Old wooden door has opened!"
     }
   }
-} 
+}

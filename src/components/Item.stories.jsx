@@ -1,9 +1,9 @@
-import React from 'react';
-import Faker from 'faker'
-import { Item } from './Item';
+import React from "react";
+import Faker from "faker";
+import { Item } from "./Item";
 
 export default {
-  title: 'Components/Item',
+  title: "Components/Item",
   component: Item,
 };
 
@@ -21,10 +21,14 @@ isPickedUpPrimary.args = {
   isPickedUp: true,
   name: Faker.commerce.productName(),
   description: Faker.commerce.productDescription(),
-  events: Array(3).fill().map(() => ({
-    hasHappened: Faker.datatype.boolean(),
-    message: Faker.lorem.sentences(),
-  })),
+  events: Array(3)
+    .fill()
+    .map(() => ({
+      name: Faker.lorem.word(),
+      description: Faker.lorem.words(),
+      hasHappened: Faker.datatype.boolean(),
+      message: Faker.lorem.sentences(),
+    })),
   addItem: () => {},
   addEvent: () => {},
 };

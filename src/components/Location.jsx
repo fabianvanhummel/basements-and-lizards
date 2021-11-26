@@ -2,11 +2,22 @@ import { Event } from "./Event";
 import { Item } from "./Item";
 import { Path } from "./Path";
 
-export const Location = ({ name, description, events, items, paths, setLocation, addEvent, addItem }) => {
+export const Location = ({
+  name,
+  description,
+  events,
+  items,
+  paths,
+  setLocation,
+  addEvent,
+  addItem,
+}) => {
   return (
     <div className="max-w-2xl px-8 py-4 mx-auto bg-green-50 rounded-lg shadow-md dark:bg-gray-800">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-700 dark:text-white">{name}</h1>
+        <h1 className="text-2xl font-bold text-gray-700 dark:text-white">
+          {name}
+        </h1>
         <div className="px-3 py-1 text-sm font-bold text-gray-100 bg-green-600 rounded">
           Location
         </div>
@@ -59,7 +70,7 @@ export const Location = ({ name, description, events, items, paths, setLocation,
         </div>
       )}
     </div>
-  )
+  );
 };
 
 export default Location;
