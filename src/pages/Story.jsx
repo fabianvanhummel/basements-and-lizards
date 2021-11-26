@@ -14,22 +14,21 @@ export const Story = ({ book }) => {
     setItems([...itemIdsState, itemId]);
   };
 
-  const locationPaths = book.locations[locationIdState].paths.map(
-    path => {
-      let reqMet = true
-      path.requirements && (path.requirements.forEach((eventId) => {
-        if (!(eventIdsState.includes(eventId))) {
-          reqMet = false
+  const locationPaths = book.locations[locationIdState].paths.map((path) => {
+    let reqMet = true;
+    path.requirements &&
+      path.requirements.forEach((eventId) => {
+        if (!eventIdsState.includes(eventId)) {
+          reqMet = false;
         }
-      })) // Checks paths for requirements
-      return {
-        reqMet: reqMet,
-        toLocationId: path.toLocationId,
-        name: path.name,
-        description: path.description,
-      }
-    } 
-  )
+      }); // Checks paths for requirements
+    return {
+      reqMet: reqMet,
+      toLocationId: path.toLocationId,
+      name: path.name,
+      description: path.description,
+    };
+  });
 
   const locationEvents =
     book.locations[locationIdState].events &&
@@ -39,7 +38,7 @@ export const Story = ({ book }) => {
       didHappen: eventIdsState.includes(eventId),
     }));
 
-  const locationItems = 
+  const locationItems =
     book.locations[locationIdState].items &&
     book.locations[locationIdState].items.map((item) => ({
       ...book.items[item.id],
@@ -49,7 +48,7 @@ export const Story = ({ book }) => {
         ...book.events[eventId],
         id: eventId,
         didHappen: eventIdsState.includes(eventId),
-      }))
+      })),
     }));
 
   return (
