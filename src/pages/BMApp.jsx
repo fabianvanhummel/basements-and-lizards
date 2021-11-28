@@ -121,8 +121,8 @@ export const BMApp = ({ book }) => {
           path="/location"
           element={
             <Location
-              name={book.locations[location].name}
-              description={book.locations[location].description}
+              name={book.locations[locationIdState].name}
+              description={book.locations[locationIdState].description}
               events={locationEvents}
               items={locationItems}
               paths={locationPaths}
