@@ -2,6 +2,7 @@ const path = require('path')
 
 module.exports = {
   "stories": [
+    "../src/index.css",
     "../src/**/*.stories.mdx",
     "../src/**/*.stories.@(js|jsx|ts|tsx)"
   ],
@@ -25,7 +26,7 @@ module.exports = {
           }
         }
       ],
-      include: path.resolve(__dirname, '../'),
+      include: path.resolve(__dirname, '../src/index.css'),
     })
     return config
   }

@@ -1,9 +1,9 @@
-import React from 'react';
-import Faker from 'faker';
-import { Location } from './Location';
+import React from "react";
+import Faker from "faker";
+import { Location } from "./Location";
 
 export default {
-  title: 'Components/Location',
+  title: "Components/Location",
   component: Location,
 };
 
@@ -14,16 +14,32 @@ export const Primary = Template.bind({});
 Primary.args = {
   name: Faker.address.city(),
   description: Faker.lorem.sentences(),
-  events: Array(3).fill().map(() => ({
-    message: Faker.lorem.sentences(),
-  })),
-  paths: Array(3).fill().map(() => ({
-    reqMet: Faker.datatype.boolean(),
-    to: Faker.address.city(),
-    description: Faker.lorem.sentences(),
-  })),
+  events: Array(3)
+    .fill()
+    .map(() => ({
+      name: Faker.lorem.word(),
+      description: Faker.lorem.words(),
+      didHappen: Faker.datatype.boolean(),
+      message: Faker.lorem.sentences(),
+    })),
+  items: Array(3)
+    .fill()
+    .map(() => ({
+      isPresent: Faker.datatype.boolean(),
+      name: Faker.commerce.productName(),
+      description: Faker.commerce.productDescription(),
+    })),
+  paths: Array(3)
+    .fill()
+    .map(() => ({
+      reqMet: Faker.datatype.boolean(),
+      toLocationId: Faker.lorem.word(),
+      name: Faker.address.city(),
+      description: Faker.lorem.sentences(),
+    })),
   setLocation: () => {},
   addEvent: () => {},
+  addItem: () => {},
 };
 
 export const Empty = Template.bind({});

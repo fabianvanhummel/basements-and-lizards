@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Assign to Project and PR Assignee
     steps:
-    - name: Assign NEW issues and NEW pull requests to project 1
+    - name: Assign NEW issues to project 1
       uses: srggrs/assign-one-project-github-action@1.2.1
-      if: github.event.action == 'opened'
+      if: github.event_name == 'issues' && github.event.action == 'opened'
       with:
         project: 'https://github.com/fabianvanhummel/basements-and-lizards/projects/1'
     - name: Assign creator as Assignee to NEW pull requests
