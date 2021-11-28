@@ -1,14 +1,25 @@
-export const Event = ({ id, hasHappened, message, addEvent }) => (
+export const Event = ({
+  id,
+  name,
+  description,
+  didHappen,
+  message,
+  addEvent,
+}) => (
   <div className="max-w-2xl px-8 py-4 mx-auto bg-blue-50 rounded-lg shadow-md dark:bg-gray-800">
-    <div className="flex items-start justify-between">
-      <p className="text-gray-600 dark:text-gray-300">{message}</p>
-      <div className="ml-2 px-3 py-1 text-sm font-bold text-gray-100 bg-blue-600 rounded">
+    <div className="flex items-center justify-between">
+      <h1 className="text-xl font-bold text-gray-700 dark:text-white">
+        {name}
+      </h1>
+      <div className="px-3 py-1 text-sm font-bold text-gray-100 bg-blue-600 rounded">
         Event
       </div>
     </div>
 
-    {hasHappened ? (
-      <p>has happened</p>
+    <p className="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
+
+    {didHappen ? (
+      <p>{message}</p>
     ) : (
       <button
         onClick={() => addEvent(id)}

@@ -1,9 +1,9 @@
-import React from 'react';
-import Faker from 'faker'
-import { Item } from './Item';
+import React from "react";
+import Faker from "faker";
+import { Item } from "./Item";
 
 export default {
-  title: 'Components/Item',
+  title: "Components/Item",
   component: Item,
 };
 
@@ -16,22 +16,26 @@ Primary.args = {
   addItem: () => {},
 };
 
-export const isPickedUpPrimary = Template.bind({});
-isPickedUpPrimary.args = {
-  isPickedUp: true,
+export const isPresentPrimary = Template.bind({});
+isPresentPrimary.args = {
+  isPresent: false,
   name: Faker.commerce.productName(),
   description: Faker.commerce.productDescription(),
-  events: Array(3).fill().map(() => ({
-    hasHappened: Faker.datatype.boolean(),
-    message: Faker.lorem.sentences(),
-  })),
+  events: Array(3)
+    .fill()
+    .map(() => ({
+      name: Faker.lorem.word(),
+      description: Faker.lorem.words(),
+      didHappen: Faker.datatype.boolean(),
+      message: Faker.lorem.sentences(),
+    })),
   addItem: () => {},
   addEvent: () => {},
 };
 
-export const isPickedUpEmpty = Template.bind({});
-isPickedUpEmpty.args = {
-  isPickedUp: true,
+export const isPresentEmpty = Template.bind({});
+isPresentEmpty.args = {
+  isPresent: false,
   name: Faker.commerce.productName(),
   description: Faker.commerce.productDescription(),
   addItem: () => {},
