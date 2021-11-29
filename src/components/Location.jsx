@@ -1,17 +1,23 @@
+import { useContext } from "react";
+
 import { Event } from "./Event";
 import { Item } from "./Item";
 import { Path } from "./Path";
 
-export const Location = ({
-  name,
-  description,
-  events,
-  items,
-  paths,
-  setLocation,
-  addEvent,
-  addItem,
-}) => {
+import { Context } from "../bm-app/context";
+
+export const Location = () => {
+  const {
+    name,
+    description,
+    events,
+    items,
+    paths,
+    setLocation,
+    addEvent,
+    addItem,
+  } = useContext(Context);
+
   return (
     <div className="max-w-2xl px-8 py-4 mx-auto bg-green-50 rounded-lg shadow-md dark:bg-gray-800">
       <div className="flex items-center justify-between">

@@ -1,60 +1,13 @@
-import { useState } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
 import { OverviewTab } from "./OverviewTab";
 import { LocationTab } from "./LocationTab";
 import { InventoryTab } from "./InventoryTab";
 import { HistoryTab } from "./HistoryTab";
 
+import { ContextProvider } from "./context";
+
 export const BMApp = ({ book }) => {
-  const [locationIdState, setLocation] = useState(book["start-location"]);
-  const [eventIdsState, setEvents] = useState([]);
-  const [itemIdsState, setItems] = useState([]);
-
-  const addEvent = (eventId) => {
-    setEvents([...eventIdsState, eventId]);
-  };
-
-  const addItem = (itemId) => {
-    setItems([...itemIdsState, itemId]);
-  };
-
-  const locationPaths = book.locations[locationIdState].paths.map((path) => {
-    let reqMet = true;
-    path.requirements &&
-      path.requirements.forEach((eventId) => {
-        if (!eventIdsState.includes(eventId)) {
-          reqMet = false;
-        }
-      }); // Checks paths for requirements
-    return {
-      reqMet: reqMet,
-      toLocationId: path.toLocationId,
-      name: path.name,
-      description: path.description,
-    };
-  });
-
-  const locationEvents =
-    book.locations[locationIdState].events &&
-    book.locations[locationIdState].events.map((eventId) => ({
-      ...book.events[eventId],
-      id: eventId,
-      didHappen: eventIdsState.includes(eventId),
-    }));
-
-  const locationItems =
-    book.locations[locationIdState].items &&
-    book.locations[locationIdState].items.map((item) => ({
-      ...book.items[item.id],
-      id: item.id,
-      isPresent: !itemIdsState.includes(item.id),
-      events: item.events.map((eventId) => ({
-        ...book.events[eventId],
-        id: eventId,
-        didHappen: eventIdsState.includes(eventId),
-      })),
-    }));
-
   return (
     <BrowserRouter>
       <nav className="bg-white shadow dark:bg-gray-800">
@@ -116,29 +69,14 @@ export const BMApp = ({ book }) => {
         </div>
       </nav>
 
-      <Routes>
-        <Route path="/" element={<OverviewTab />} />
-
-        <Route
-          path="/location"
-          element={
-            <LocationTab
-              name={book.locations[locationIdState].name}
-              description={book.locations[locationIdState].description}
-              events={locationEvents}
-              items={locationItems}
-              paths={locationPaths}
-              setLocation={setLocation}
-              addEvent={addEvent}
-              addItem={addItem}
-            />
-          }
-        />
-
-        <Route path="/inventory" element={<InventoryTab />} />
-
-        <Route path="/history" element={<HistoryTab />} />
-      </Routes>
+      <ContextProvider book={book}>
+        <Routes>
+          <Route path="/" element={<OverviewTab />} />
+          <Route path="/location" element={<LocationTab />} />
+          <Route path="/inventory" element={<InventoryTab />} />
+          <Route path="/history" element={<HistoryTab />} />
+        </Routes>
+      </ContextProvider>
     </BrowserRouter>
   );
 };
