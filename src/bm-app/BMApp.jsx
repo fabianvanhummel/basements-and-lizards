@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { Location } from "../components/Location";
+import { OverviewTab } from "./OverviewTab";
+import { LocationTab } from "./LocationTab";
+import { InventoryTab } from "./InventoryTab";
 import { HistoryTab } from "./HistoryTab";
 
 export const BMApp = ({ book }) => {
@@ -115,12 +117,12 @@ export const BMApp = ({ book }) => {
       </nav>
 
       <Routes>
-        <Route path="/" element={<div>StartTabPlaceholder</div>} />
+        <Route path="/" element={<OverviewTab />} />
 
         <Route
           path="/location"
           element={
-            <Location
+            <LocationTab
               name={book.locations[locationIdState].name}
               description={book.locations[locationIdState].description}
               events={locationEvents}
@@ -133,7 +135,7 @@ export const BMApp = ({ book }) => {
           }
         />
 
-        <Route path="/inventory" element={<div>InventoryTabPlaceholder</div>} />
+        <Route path="/inventory" element={<InventoryTab />} />
 
         <Route path="/history" element={<HistoryTab />} />
       </Routes>
