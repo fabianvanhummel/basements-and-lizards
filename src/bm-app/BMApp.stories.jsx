@@ -3,7 +3,7 @@ import { BMApp } from "./BMApp";
 import maze from "../books/maze.json";
 
 export default {
-  title: "Pages/BMApp",
+  title: "BM App/BMApp",
   component: BMApp,
 };
 

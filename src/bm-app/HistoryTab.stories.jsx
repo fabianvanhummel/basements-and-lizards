@@ -2,7 +2,7 @@ import React from "react";
 import { HistoryTab } from "./HistoryTab";
 
 export default {
-  title: "Pages/HistoryTab",
+  title: "BM App/HistoryTab",
   component: HistoryTab,
 };
 

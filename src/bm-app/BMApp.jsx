@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { Location } from "../components/Location";
-import { HistoryTab } from "../pages/HistoryTab";
+import { HistoryTab } from "./HistoryTab";
 
 export const BMApp = ({ book }) => {
   const [locationIdState, setLocation] = useState(book["start-location"]);
