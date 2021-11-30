@@ -1,22 +1,13 @@
 import { useContext } from "react";
+import { Context } from "../bm-app/context";
 
 import { Event } from "./Event";
 import { Item } from "./Item";
 import { Path } from "./Path";
 
-import { Context } from "../bm-app/context";
-
 export const Location = () => {
-  const {
-    name,
-    description,
-    events,
-    items,
-    paths,
-    setLocation,
-    addEvent,
-    addItem,
-  } = useContext(Context);
+  const { activeLocation } = useContext(Context);
+  const { name, description, events, paths, items } = activeLocation;
 
   return (
     <div className="max-w-2xl px-8 py-4 mx-auto bg-green-50 rounded-lg shadow-md dark:bg-gray-800">
@@ -37,9 +28,9 @@ export const Location = () => {
             Events
           </span>
           <ul>
-            {events.map((event, index) => (
+            {events.map((id, index) => (
               <li key={index} className="mt-2">
-                <Event {...event} addEvent={addEvent} />
+                <Event id={id} />
               </li>
             ))}
           </ul>
@@ -54,7 +45,7 @@ export const Location = () => {
           <ul>
             {items.map((item, index) => (
               <li key={index} class="mt-2">
-                <Item {...item} addItem={addItem} addEvent={addEvent} />
+                <Item {...item} />
               </li>
             ))}
           </ul>
@@ -69,7 +60,7 @@ export const Location = () => {
           <ul>
             {paths.map((path, index) => (
               <li key={index} className="mt-2">
-                <Path {...path} setLocation={setLocation} />
+                <Path {...path} />
               </li>
             ))}
           </ul>
@@ -78,5 +69,3 @@ export const Location = () => {
     </div>
   );
 };
-
-export default Location;

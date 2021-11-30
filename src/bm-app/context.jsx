@@ -17,51 +17,37 @@ export const ContextProvider = ({ children, book }) => {
     setItems([...itemIdsState, itemId]);
   };
 
-  const locationPaths = book.locations[locationIdState].paths.map((path) => {
-    let reqMet = true;
-    path.requirements &&
-      path.requirements.forEach((eventId) => {
-        if (!eventIdsState.includes(eventId)) {
-          reqMet = false;
-        }
-      }); // Checks paths for requirements
-    return {
-      reqMet: reqMet,
-      toLocationId: path.toLocationId,
-      name: path.name,
-      description: path.description,
-    };
+  const activeLocation = book.locations[locationIdState];
+
+  const getEvent = (id) => ({
+    ...book.events[id],
+    didHappen: eventIdsState.includes(id),
   });
 
-  const locationEvents =
-    book.locations[locationIdState].events &&
-    book.locations[locationIdState].events.map((eventId) => ({
-      ...book.events[eventId],
-      id: eventId,
-      didHappen: eventIdsState.includes(eventId),
-    }));
+  const getItem = (id) => ({
+    ...book.items[id],
+    isPresent: !itemIdsState.includes(id),
+  });
 
-  const locationItems =
-    book.locations[locationIdState].items &&
-    book.locations[locationIdState].items.map((item) => ({
-      ...book.items[item.id],
-      id: item.id,
-      isPresent: !itemIdsState.includes(item.id),
-      events: item.events.map((eventId) => ({
-        ...book.events[eventId],
-        id: eventId,
-        didHappen: eventIdsState.includes(eventId),
-      })),
-    }));
+  const checkRequirements = (requirements) => {
+    if (!requirements) return true;
+
+    let reqMet = true;
+    requirements.forEach((eventId) => {
+      if (!eventIdsState.includes(eventId)) {
+        reqMet = false;
+      }
+    });
+    return reqMet;
+  };
 
   return (
     <Context.Provider
       value={{
-        book,
-        locationIdState,
-        events: locationEvents,
-        items: locationItems,
-        paths: locationPaths,
+        activeLocation,
+        getEvent,
+        getItem,
+        checkRequirements,
         setLocation,
         addEvent,
         addItem,
