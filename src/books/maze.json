@@ -157,29 +157,21 @@
     "open-location-6": {
       "name": "Unlock room 6",
       "description": "Clears the way to room 6",
-      "value": false,
-      "eventValue": true,
       "message": "Room 6 has opened!"
     },
     "open-location-7": {
       "name": "Open Location 7 Lock",
       "description": "This opens a locking mechanism of THE door",
-      "value": false,
-      "eventValue": true,
       "message": "You hear a loud BANG!"
     },
     "open-location-7-2": {
       "name": "Open Location 7 Lock",
       "description": "This opens a lock on THE door",
-      "value": false,
-      "eventValue": true,
       "message": "Room 7 has opened!"
     },
     "open-old-wooden-door-4": {
       "name": "Open old wooden door",
       "description": "Use the key to open the old wooden door",
-      "value": false,
-      "eventValue": true,
       "message": "Old wooden door has opened!"
     }
   }
