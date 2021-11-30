@@ -6,7 +6,7 @@ export default {
   component: InventoryTab,
 };
 
-const Template = (args) => <InventoryTab />;
+const Template = (args) => <InventoryTab {...args}/>;
 
 export const Primary = Template.bind({});
 Primary.args = {};
