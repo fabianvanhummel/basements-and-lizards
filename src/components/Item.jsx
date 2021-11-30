@@ -20,7 +20,7 @@ export const Item = ({
     <p className="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
 
     {!isPresent ? (
-      <p>
+      <div>
         this item was looted
         {events && (
           <div className="mt-4">
@@ -36,7 +36,7 @@ export const Item = ({
             </ul>
           </div>
         )}
-      </p>
+      </div>
     ) : (
       <button
         onClick={() => {
