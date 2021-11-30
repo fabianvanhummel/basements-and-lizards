@@ -48,11 +48,27 @@ export const BMApp = ({ book }) => {
       ...book.items[item.id],
       id: item.id,
       isPresent: !itemIdsState.includes(item.id),
-      events: item.events.map((eventId) => ({
-        ...book.events[eventId],
-        id: eventId,
-        didHappen: eventIdsState.includes(eventId),
-      })),
+      events:
+        item.events &&
+        item.events.map((eventId) => ({
+          ...book.events[eventId],
+          id: eventId,
+          didHappen: eventIdsState.includes(eventId),
+        })),
+    }));
+
+  const inventoryItems =
+    itemIdsState &&
+    itemIdsState.map((itemId) => ({
+      ...book.items[itemId],
+      id: itemId,
+      events:
+        book.items[itemId].events &&
+        book.items[itemId].events.map((eventId) => ({
+          ...book.events[eventId],
+          id: eventId,
+          didHappen: eventIdsState.includes(eventId),
+        })),
     }));
 
   return (
@@ -135,7 +151,10 @@ export const BMApp = ({ book }) => {
           }
         />
 
-        <Route path="/inventory" element={<InventoryTab />} />
+        <Route
+          path="/inventory"
+          element={<InventoryTab items={inventoryItems} addEvent={addEvent} />}
+        />
 
         <Route path="/history" element={<HistoryTab />} />
       </Routes>

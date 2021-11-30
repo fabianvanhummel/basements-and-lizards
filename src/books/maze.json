@@ -38,7 +38,8 @@
         {
           "toLocationId": "4",
           "name": "Ventilation shaft",
-          "description": "It looks very dusty"
+          "description": "It looks very dusty",
+          "requirements": ["put-on-mouth-mask"]
         }
       ],
       "items": [
@@ -63,7 +64,12 @@
           "description": "Shiny metal doorway"
         }
       ],
-      "events": ["open-location-7"]
+      "events": ["open-location-7"],
+      "items": [
+        {
+          "id": "black-mouth-mask"
+        }
+      ]
     },
     "4": {
       "name": "Room number 4",
@@ -151,6 +157,11 @@
     "old-metal-key": {
       "name": "Old Metal Key",
       "description": "This key can be used to open the old wooden door"
+    },
+    "black-mouth-mask": {
+      "name": "Black Mouth Mask",
+      "description": "A black mouth mask that can be worn on your face",
+      "events": ["put-on-mouth-mask"]
     }
   },
   "events": {
@@ -173,6 +184,11 @@
       "name": "Open old wooden door",
       "description": "Use the key to open the old wooden door",
       "message": "Old wooden door has opened!"
+    },
+    "put-on-mouth-mask": {
+      "name": "Put on mouth mask",
+      "description": "While wearing a mouth mask you're very safe!",
+      "message": "You can now enter dusty environments!"
     }
   }
 }
