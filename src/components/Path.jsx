@@ -23,7 +23,7 @@ export const Path = ({ reqMet, toLocationId, name, description, setLocation }) =
           "Follow this path to " + toLocationId
         ) : (
           <strike> {"Follow this path to " + toLocationId} </strike>
-        ) /* TODO: Remove strike if class is updated for disabled UI */
+        ) /* TODO: Remove strike if className is updated for disabled UI */
       }
     </button>
   </div>
