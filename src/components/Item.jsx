@@ -8,7 +8,20 @@ export const Item = ({
   events,
   addItem,
   addEvent,
-}) => (
+}) => {
+  const boringEvents =
+    events &&
+    events.filter((event) => {
+      return event.didHappen;
+    });
+
+  const funEvents =
+    events &&
+    events.filter((event) => {
+      return !event.didHappen;
+    });
+
+
   <div className="max-w-2xl px-8 py-4 mx-auto bg-yellow-50 rounded-lg shadow-md dark:bg-gray-800">
     <div className="flex items-center justify-between">
       <h1 className="text-xl font-bold text-gray-700 dark:text-white">{name}</h1>
@@ -48,6 +61,6 @@ export const Item = ({
       </button>
     )}
   </div>
-);
+};
 
 export default Item;
