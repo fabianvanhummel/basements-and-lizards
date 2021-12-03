@@ -16,12 +16,12 @@
   /* Label formatting when open */
   .tab input:checked + label {
     /*@apply text-xl p-5 border-l-2 border-indigo-500 bg-gray-100 text-indigo*/
-    font-size: 1.25rem; /*.text-xl*/
-    padding: 1.25rem; /*.p-5*/
-    border-left-width: 2px; /*.border-l-2*/
-    border-color: #6574cd; /*.border-indigo*/
-    background-color: #f8fafc; /*.bg-gray-100 */
-    color: #6574cd; /*.text-indigo*/
+    //font-size: 1.25rem; /*.text-xl*/
+    //padding: 1.25rem; /*.p-5*/
+    //border-left-width: 2px; /*.border-l-2*/
+    //border-color: #6574cd; /*.border-indigo*/
+    //background-color: #f8fafc; /*.bg-gray-100 */
+    //color: #6574cd; /*.text-indigo*/
   }
   /* Icon */
   .tab label::after {
@@ -40,7 +40,7 @@
   }
   /* Icon formatting - closed */
   .tab input[type="checkbox"] + label::after {
-    content: "+";
+    content: "\25BE";
     font-weight: bold; /*.font-bold*/
     border-width: 1px; /*.border*/
     border-radius: 9999px; /*.rounded-full */
@@ -55,7 +55,7 @@
   }
   /* Icon formatting - open */
   .tab input[type="checkbox"]:checked + label::after {
-    transform: rotate(315deg);
+    transform: rotate(180deg);
     background-color: #6574cd; /*.bg-indigo*/
     color: #f8fafc; /*.text-grey-lightest*/
   }
