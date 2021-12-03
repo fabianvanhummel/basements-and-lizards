@@ -12,6 +12,18 @@ export const Location = ({
   addEvent,
   addItem,
 }) => {
+  const availablePaths =
+    paths &&
+    paths.filter((path) => {
+      return path.reqMet;
+    });
+
+  const blockedPaths =
+    paths &&
+    paths.filter((path) => {
+      return !path.reqMet;
+    });
+
   return (
     <div className="max-w-2xl px-8 py-4 mx-auto bg-green-50 rounded-lg shadow-md dark:bg-gray-800">
       <div className="flex items-center justify-between">
@@ -60,13 +72,44 @@ export const Location = ({
           <span className="text-sm font-light text-gray-600 dark:text-gray-400">
             Paths
           </span>
-          <ul>
-            {paths.map((path, index) => (
-              <li key={index} className="mt-2">
-                <Path {...path} setLocation={setLocation} />
-              </li>
-            ))}
-          </ul>
+          {availablePaths.length ? (
+            <ul>
+              {availablePaths.map((path, index) => (
+                <li key={index} className="mt-2">
+                  <Path {...path} setLocation={setLocation} />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            ""
+          )}
+          {blockedPaths.length ? (
+            <div className="tab mt-4">
+              <input
+                className="absolute opacity-0 "
+                id="tab-multi-one"
+                type="checkbox"
+                name="tabs"
+              ></input>
+              <label
+                className="block p-5 cursor-pointer"
+                htmlFor="tab-multi-one"
+              >
+                Blocked Paths
+              </label>
+              <div className="tab-content overflow-hidden">
+                <ul>
+                  {blockedPaths.map((path, index) => (
+                    <li key={index} className="mt-2">
+                      <Path {...path} setLocation={setLocation} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       )}
     </div>
