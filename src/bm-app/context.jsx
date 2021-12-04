@@ -29,16 +29,22 @@ export const ContextProvider = ({ children, book }) => {
     isPresent: !itemIdsState.includes(id),
   });
 
-  const checkRequirements = (requirements) => {
-    if (!requirements) return true;
-
+  const checkRequirements = (requirements = [], blockedByEvents = []) => {
     let reqMet = true;
     requirements.forEach((eventId) => {
       if (!eventIdsState.includes(eventId)) {
         reqMet = false;
       }
     });
-    return reqMet;
+
+    let blocked = false;
+    blockedByEvents.forEach((eventId) => {
+      if (eventIdsState.includes(eventId)) {
+        blocked = true;
+      }
+    });
+
+    return reqMet && !blocked;
   };
 
   const items =
