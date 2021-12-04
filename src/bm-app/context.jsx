@@ -41,10 +41,25 @@ export const ContextProvider = ({ children, book }) => {
     return reqMet;
   };
 
+  const items =
+    itemIdsState &&
+    itemIdsState.map((itemId) => ({
+      ...book.items[itemId],
+      id: itemId,
+      events:
+        book.items[itemId].events &&
+        book.items[itemId].events.map((eventId) => ({
+          ...book.events[eventId],
+          id: eventId,
+          didHappen: eventIdsState.includes(eventId),
+        })),
+    }));
+
   return (
     <Context.Provider
       value={{
         activeLocation,
+        items,
         getEvent,
         getItem,
         checkRequirements,

@@ -38,13 +38,13 @@ export const Location = () => {
       )}
 
       {items && (
-        <div class="mt-4">
-          <span class="text-sm font-light text-gray-600 dark:text-gray-400">
+        <div className="mt-4">
+          <span className="text-sm font-light text-gray-600 dark:text-gray-400">
             Items
           </span>
           <ul>
             {items.map((item, index) => (
-              <li key={index} class="mt-2">
+              <li key={index} className="mt-2">
                 <Item {...item} />
               </li>
             ))}
