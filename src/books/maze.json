@@ -38,7 +38,8 @@
         {
           "toLocationId": "4",
           "name": "Ventilation shaft",
-          "description": "It looks very dusty"
+          "description": "It looks very dusty",
+          "requirements": ["put-on-mouth-mask"]
         }
       ],
       "items": [
@@ -63,7 +64,12 @@
           "description": "Shiny metal doorway"
         }
       ],
-      "events": ["open-location-7"]
+      "events": ["open-location-7"],
+      "items": [
+        {
+          "id": "black-mouth-mask"
+        }
+      ]
     },
     "4": {
       "name": "Room number 4",
@@ -151,36 +157,38 @@
     "old-metal-key": {
       "name": "Old Metal Key",
       "description": "This key can be used to open the old wooden door"
+    },
+    "black-mouth-mask": {
+      "name": "Black Mouth Mask",
+      "description": "A black mouth mask that can be worn on your face",
+      "events": ["put-on-mouth-mask"]
     }
   },
   "events": {
     "open-location-6": {
       "name": "Unlock room 6",
       "description": "Clears the way to room 6",
-      "value": false,
-      "eventValue": true,
       "message": "Room 6 has opened!"
     },
     "open-location-7": {
       "name": "Open Location 7 Lock",
       "description": "This opens a locking mechanism of THE door",
-      "value": false,
-      "eventValue": true,
       "message": "You hear a loud BANG!"
     },
     "open-location-7-2": {
       "name": "Open Location 7 Lock",
       "description": "This opens a lock on THE door",
-      "value": false,
-      "eventValue": true,
       "message": "Room 7 has opened!"
     },
     "open-old-wooden-door-4": {
       "name": "Open old wooden door",
       "description": "Use the key to open the old wooden door",
-      "value": false,
-      "eventValue": true,
       "message": "Old wooden door has opened!"
+    },
+    "put-on-mouth-mask": {
+      "name": "Put on mouth mask",
+      "description": "While wearing a mouth mask you're very safe!",
+      "message": "You can now enter dusty environments!"
     }
   }
 }

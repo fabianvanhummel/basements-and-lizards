@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { Location } from "../components/Location";
-import { HistoryTab } from "../pages/HistoryTab";
+import { OverviewTab } from "./OverviewTab";
+import { LocationTab } from "./LocationTab";
+import { InventoryTab } from "./InventoryTab";
+import { HistoryTab } from "./HistoryTab";
 
 export const BMApp = ({ book }) => {
   const [locationIdState, setLocation] = useState(book["start-location"]);
@@ -46,11 +48,27 @@ export const BMApp = ({ book }) => {
       ...book.items[item.id],
       id: item.id,
       isPresent: !itemIdsState.includes(item.id),
-      events: item.events.map((eventId) => ({
-        ...book.events[eventId],
-        id: eventId,
-        didHappen: eventIdsState.includes(eventId),
-      })),
+      events:
+        item.events &&
+        item.events.map((eventId) => ({
+          ...book.events[eventId],
+          id: eventId,
+          didHappen: eventIdsState.includes(eventId),
+        })),
+    }));
+
+  const inventoryItems =
+    itemIdsState &&
+    itemIdsState.map((itemId) => ({
+      ...book.items[itemId],
+      id: itemId,
+      events:
+        book.items[itemId].events &&
+        book.items[itemId].events.map((eventId) => ({
+          ...book.events[eventId],
+          id: eventId,
+          didHappen: eventIdsState.includes(eventId),
+        })),
     }));
 
   return (
@@ -115,12 +133,12 @@ export const BMApp = ({ book }) => {
       </nav>
 
       <Routes>
-        <Route path="/" element={<div>StartTabPlaceholder</div>} />
+        <Route path="/" element={<OverviewTab />} />
 
         <Route
           path="/location"
           element={
-            <Location
+            <LocationTab
               name={book.locations[locationIdState].name}
               description={book.locations[locationIdState].description}
               events={locationEvents}
@@ -133,7 +151,10 @@ export const BMApp = ({ book }) => {
           }
         />
 
-        <Route path="/inventory" element={<div>InventoryTabPlaceholder</div>} />
+        <Route
+          path="/inventory"
+          element={<InventoryTab items={inventoryItems} addEvent={addEvent} />}
+        />
 
         <Route path="/history" element={<HistoryTab />} />
       </Routes>
