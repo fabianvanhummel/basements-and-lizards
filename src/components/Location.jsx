@@ -74,7 +74,7 @@ export const Location = ({
           <span className="text-sm font-light text-gray-600 dark:text-gray-400">
             Paths
           </span>
-          {availablePaths.length ? (
+          {availablePaths.length > 0 && (
             <ul>
               {availablePaths.map((path, index) => (
                 <li key={index} className="mt-2">
@@ -82,10 +82,8 @@ export const Location = ({
                 </li>
               ))}
             </ul>
-          ) : (
-            ""
           )}
-          {blockedPaths.length ? (
+          {blockedPaths.length > 0 && (
             <div className="border rounded shadow-sm">
               <button
                 type="button"
@@ -128,8 +126,6 @@ export const Location = ({
                 </div>
               )}
             </div>
-          ) : (
-            ""
           )}
         </div>
       )}
