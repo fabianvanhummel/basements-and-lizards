@@ -2,41 +2,52 @@ import React from "react";
 import Faker from "faker";
 import { Item } from "./Item";
 
+import { ContextProvider } from "../bm-app/context";
+
+const itemStory = {
+  "start-location": "dummy-start",
+  locations: {
+    "dummy-start": {},
+  },
+  items: {
+    primary: {
+      name: Faker.lorem.word(),
+      description: Faker.lorem.words(),
+    },
+    "with-event": {
+      name: Faker.lorem.word(),
+      description: Faker.lorem.words(),
+      events: ["primary"],
+    },
+  },
+  events: {
+    primary: {
+      name: Faker.lorem.word(),
+      description: Faker.lorem.words(),
+      message: Faker.lorem.sentences(),
+    },
+  },
+};
+
 export default {
   title: "Components/Item",
   component: Item,
+  decorators: [
+    (StoryFn) => {
+      return <ContextProvider book={itemStory}>{StoryFn()}</ContextProvider>;
+    },
+  ],
 };
 
 const Template = (args) => <Item {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  name: Faker.commerce.productName(),
-  description: Faker.commerce.productDescription(),
-  addItem: () => {},
+  id: "primary",
 };
 
-export const isPresentPrimary = Template.bind({});
-isPresentPrimary.args = {
-  isPresent: false,
-  name: Faker.commerce.productName(),
-  description: Faker.commerce.productDescription(),
-  events: Array(3)
-    .fill()
-    .map(() => ({
-      name: Faker.lorem.word(),
-      description: Faker.lorem.words(),
-      didHappen: Faker.datatype.boolean(),
-      message: Faker.lorem.sentences(),
-    })),
-  addItem: () => {},
-  addEvent: () => {},
-};
-
-export const isPresentEmpty = Template.bind({});
-isPresentEmpty.args = {
-  isPresent: false,
-  name: Faker.commerce.productName(),
-  description: Faker.commerce.productDescription(),
-  addItem: () => {},
+export const WithEvent = Template.bind({});
+WithEvent.args = {
+  id: "with-event",
+  events: ["primary"],
 };

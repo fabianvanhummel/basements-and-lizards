@@ -5,12 +5,12 @@ import { Event } from "./Event";
 import { ContextProvider } from "../bm-app/context";
 
 const eventStory = {
-  "start-location": 1,
+  "start-location": "dummy-start",
   locations: {
-    1: {},
+    "dummy-start": {},
   },
   events: {
-    1: {
+    primary: {
       name: Faker.lorem.word(),
       description: Faker.lorem.words(),
       message: Faker.lorem.sentences(),
@@ -32,5 +32,5 @@ const Template = (args) => <Event {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  id: "1",
+  id: "primary",
 };
