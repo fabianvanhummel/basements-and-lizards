@@ -1,7 +1,15 @@
 import { useContext } from "react";
 import { Context } from "../bm-app/context";
 
-export const Path = ({ toLocationId, name, description, requirements }) => {
+import { Event } from "./Event";
+
+export const Path = ({
+  toLocationId,
+  name,
+  description,
+  events,
+  requirements,
+}) => {
   const { checkRequirements, setLocation } = useContext(Context);
   const reqMet = checkRequirements(requirements);
 
@@ -33,6 +41,16 @@ export const Path = ({ toLocationId, name, description, requirements }) => {
           ) /* TODO: Remove strike if class is updated for disabled UI */
         }
       </button>
+
+      {events && (
+        <ul className="mt-4">
+          {events.map((eventId, index) => (
+            <li key={index} className="mt-2">
+              <Event id={eventId} />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

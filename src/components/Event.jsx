@@ -2,8 +2,17 @@ import { useContext } from "react";
 import { Context } from "../bm-app/context";
 
 export const Event = ({ id }) => {
-  const { getEvent, addEvent } = useContext(Context);
-  const { name, description, message, didHappen } = getEvent(id);
+  const { getEvent, addEvent, checkRequirements } = useContext(Context);
+  const {
+    name,
+    description,
+    message,
+    requirements,
+    blockedByEvents,
+    didHappen,
+  } = getEvent(id);
+
+  const reqMet = checkRequirements(requirements, blockedByEvents);
 
   return (
     <div className="max-w-2xl px-8 py-4 mx-auto bg-blue-50 rounded-lg shadow-md dark:bg-gray-800">
@@ -22,8 +31,9 @@ export const Event = ({ id }) => {
         <p>{message}</p>
       ) : (
         <button
+          disabled={!reqMet}
           onClick={() => addEvent(id)}
-          className="mt-2 px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80"
+          className="mt-2 px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80 disabled:opacity-50"
         >
           Mark event as happened
         </button>
