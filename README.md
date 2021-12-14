@@ -50,6 +50,10 @@ States:
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Story Driven Development
+
+We generally follow the Storybook Driven Development (SDD) pattern described in [this article](https://medium.com/nulogy/storybook-driven-development-a3c517276c07) for reasons described here as well. This restricts us from using `React.Context`, so we will not use pattern similar to that. For any additional design decisions, we will use [this article](https://medium.com/@theinterned/a-design-systems-reading-list-8f492413281#28cf)'s content to make sensible decisions.
+
 ## Github
 
 Weekly meetings follow this agenda: [B&L Meeting Agenda](https://docs.google.com/document/d/1rLChTkkyS77AWu8Nw200Vly71aZE5wgi8-H5Rex5NwY/edit)
