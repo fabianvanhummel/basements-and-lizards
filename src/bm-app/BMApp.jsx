@@ -18,6 +18,13 @@ export const BMApp = ({ book }) => {
     setItems([...itemIdsState, itemId]);
   };
 
+  const getEvent = (id) => ({
+    id,
+    didHappen: eventIdsState.includes(id),
+    addEvent,
+    ...book.events[id],
+  });
+
   const locationPaths = book.locations[locationIdState].paths.map((path) => {
     let reqMet = true;
     path.requirements &&
@@ -26,11 +33,13 @@ export const BMApp = ({ book }) => {
           reqMet = false;
         }
       }); // Checks paths for requirements
+
     return {
       reqMet: reqMet,
       toLocationId: path.toLocationId,
       name: path.name,
       description: path.description,
+      events: path.events && path.events.map((eventId) => getEvent(eventId)),
     };
   });
 
