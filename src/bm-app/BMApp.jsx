@@ -18,9 +18,31 @@ export const BMApp = ({ book }) => {
     setItems([...itemIdsState, itemId]);
   };
 
+  const checkRequirements = (requirements = [], blockedByEvents = []) => {
+    let reqMet = true;
+    requirements.forEach((eventId) => {
+      if (!eventIdsState.includes(eventId)) {
+        reqMet = false;
+      }
+    });
+
+    let blocked = false;
+    blockedByEvents.forEach((eventId) => {
+      if (eventIdsState.includes(eventId)) {
+        blocked = true;
+      }
+    });
+
+    return reqMet && !blocked;
+  };
+
   const getEvent = (id) => ({
     id,
     didHappen: eventIdsState.includes(id),
+    reqMet: checkRequirements(
+      book.events[id].requirements,
+      book.events[id].blockedByEvents,
+    ),
     addEvent,
     ...book.events[id],
   });

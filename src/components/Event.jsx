@@ -2,6 +2,7 @@ export const Event = ({
   id,
   name,
   description,
+  reqMet,
   didHappen,
   message,
   addEvent,
@@ -23,7 +24,8 @@ export const Event = ({
     ) : (
       <button
         onClick={() => addEvent(id)}
-        className="mt-2 px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80"
+        disabled={!reqMet}
+        className="mt-2 px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80 disabled:opacity-50"
       >
         Mark event as happened
       </button>
