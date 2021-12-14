@@ -11,7 +11,10 @@ export const BMApp = ({ book }) => {
   const [itemIdsState, setItems] = useState([]);
 
   const addEvent = (eventId) => {
-    setEvents([...eventIdsState, eventId]);
+    const revertIds = book.events[eventId].revertEvents || [];
+    setEvents(
+      [...eventIdsState, eventId].filter((id) => !revertIds.includes(id))
+    );
   };
 
   const addItem = (itemId) => {
