@@ -11,12 +11,44 @@ export const BMApp = ({ book }) => {
   const [itemIdsState, setItems] = useState([]);
 
   const addEvent = (eventId) => {
-    setEvents([...eventIdsState, eventId]);
+    const revertIds = book.events[eventId].revertEvents || [];
+    setEvents(
+      [...eventIdsState, eventId].filter((id) => !revertIds.includes(id))
+    );
   };
 
   const addItem = (itemId) => {
     setItems([...itemIdsState, itemId]);
   };
+
+  const checkRequirements = (requirements = [], blockedByEvents = []) => {
+    let reqMet = true;
+    requirements.forEach((eventId) => {
+      if (!eventIdsState.includes(eventId)) {
+        reqMet = false;
+      }
+    });
+
+    let blocked = false;
+    blockedByEvents.forEach((eventId) => {
+      if (eventIdsState.includes(eventId)) {
+        blocked = true;
+      }
+    });
+
+    return reqMet && !blocked;
+  };
+
+  const getEvent = (id) => ({
+    id,
+    didHappen: eventIdsState.includes(id),
+    reqMet: checkRequirements(
+      book.events[id].requirements,
+      book.events[id].blockedByEvents,
+    ),
+    addEvent,
+    ...book.events[id],
+  });
 
   const locationPaths = book.locations[locationIdState].paths.map((path) => {
     let reqMet = true;
@@ -26,11 +58,13 @@ export const BMApp = ({ book }) => {
           reqMet = false;
         }
       }); // Checks paths for requirements
+
     return {
       reqMet: reqMet,
       toLocationId: path.toLocationId,
       name: path.name,
       description: path.description,
+      events: path.events && path.events.map((eventId) => getEvent(eventId)),
     };
   });
 

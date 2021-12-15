@@ -1,8 +1,11 @@
+import { Event } from "./Event";
+
 export const Path = ({
   reqMet,
   toLocationId,
   name,
   description,
+  events,
   setLocation,
 }) => (
   <div className="max-w-2xl px-8 py-4 mx-auto bg-pink-50 rounded-lg shadow-md dark:bg-gray-800">
@@ -26,6 +29,16 @@ export const Path = ({
     >
       {"Follow this path to " + toLocationId}
     </button>
+
+    {events && (
+      <ul className="mt-4">
+        {events.map((event, index) => (
+          <li key={index} className="mt-2">
+            <Event {...event} />
+          </li>
+        ))}
+      </ul>
+    )}
   </div>
 );
 
