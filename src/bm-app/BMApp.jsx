@@ -71,6 +71,7 @@ export const BMApp = ({ book }) => {
       name: path.name,
       description: path.description,
       events: path.events && path.events.map((eventId) => getEvent(eventId)),
+      showBlocked: showBlockedState,
     };
   });
 

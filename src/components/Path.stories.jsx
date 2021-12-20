@@ -25,4 +25,5 @@ Unavailable.args = {
   name: Faker.address.city(),
   description: Faker.lorem.sentences(),
   setLocation: () => {},
+  showBlocked: true,
 };

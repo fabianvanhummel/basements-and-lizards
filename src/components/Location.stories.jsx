@@ -31,13 +31,14 @@ Primary.args = {
       name: Faker.commerce.productName(),
       description: Faker.commerce.productDescription(),
     })),
-  paths: Array(3)
+  paths: Array(4)
     .fill()
     .map(() => ({
       reqMet: Faker.datatype.boolean(),
       toLocationId: Faker.lorem.word(),
       name: Faker.address.city(),
       description: Faker.lorem.sentences(),
+      showBlocked: Faker.datatype.boolean(),
     })),
   setLocation: () => {},
   addEvent: () => {},
