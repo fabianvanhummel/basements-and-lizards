@@ -14,13 +14,15 @@ export const Primary = Template.bind({});
 Primary.args = {
   name: Faker.address.city(),
   description: Faker.lorem.sentences(),
-  events: Array(3)
+  events: Array(5)
     .fill()
     .map(() => ({
       name: Faker.lorem.word(),
       description: Faker.lorem.words(),
       didHappen: Faker.datatype.boolean(),
       message: Faker.lorem.sentences(),
+      reqMet: Faker.datatype.boolean(),
+      showBlocked: Faker.datatype.boolean(),
     })),
   items: Array(3)
     .fill()

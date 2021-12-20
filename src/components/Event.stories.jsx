@@ -13,15 +13,29 @@ export const Primary = Template.bind({});
 Primary.args = {
   name: Faker.lorem.word(),
   description: Faker.lorem.words(),
+  reqMet: true,
   message: Faker.lorem.sentences(),
   addEvent: () => {},
+  showBlocked: true,
+};
+
+export const reqNotMet = Template.bind({});
+reqNotMet.args = {
+  name: Faker.lorem.word(),
+  description: Faker.lorem.words(),
+  reqMet: false,
+  message: Faker.lorem.sentences(),
+  addEvent: () => {},
+  showBlocked: true,
 };
 
 export const didHappen = Template.bind({});
 didHappen.args = {
   name: Faker.lorem.word(),
   description: Faker.lorem.words(),
+  reqMet: true,
   didHappen: true,
   message: Faker.lorem.sentences(),
   addEvent: () => {},
+  showBlocked: true,
 };
