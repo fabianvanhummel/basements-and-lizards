@@ -85,13 +85,7 @@ export const BMApp = ({ book }) => {
       ...book.items[item.id],
       id: item.id,
       isPresent: !itemIdsState.includes(item.id),
-      events:
-        item.events &&
-        item.events.map((eventId) => ({
-          ...book.events[eventId],
-          id: eventId,
-          didHappen: eventIdsState.includes(eventId),
-        })),
+      events: item.events && item.events.map((eventId) => getEvent(eventId)),
     }));
 
   const inventoryItems =
@@ -101,11 +95,7 @@ export const BMApp = ({ book }) => {
       id: itemId,
       events:
         book.items[itemId].events &&
-        book.items[itemId].events.map((eventId) => ({
-          ...book.events[eventId],
-          id: eventId,
-          didHappen: eventIdsState.includes(eventId),
-        })),
+        book.items[itemId].events.map((eventId) => getEvent(eventId)),
     }));
 
   return (
