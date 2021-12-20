@@ -77,11 +77,7 @@ export const BMApp = ({ book }) => {
 
   const locationEvents =
     book.locations[locationIdState].events &&
-    book.locations[locationIdState].events.map((eventId) => ({
-      ...book.events[eventId],
-      id: eventId,
-      didHappen: eventIdsState.includes(eventId),
-    }));
+    book.locations[locationIdState].events.map((eventId) => getEvent(eventId));
 
   const locationItems =
     book.locations[locationIdState].items &&
