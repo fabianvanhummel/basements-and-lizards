@@ -1,14 +1,24 @@
 import "../index.css" // TODO: zorg dat dit global is geregeld in storybook
 
 var historyArray = [];
+function setColor(value) {
+  if (value === 'location-swap') {
+    return 'bg-blue-300 rounded-lg px-1 py-1 -my-1'
+  } else if (value === 'event-happened') {
+    return 'bg-red-300 rounded-lg px-1 py-1 -my-1'
+  } else {
+    return 'bg-green-300 rounded-lg px-1 py-1 -my-1'
+  }
+}
 
-export const HistoryTab = ({ locationHistory, travelBackInTime }) => {
-  let stateHistory = locationHistory
-  historyArray = Object.values(stateHistory)
+export const HistoryTab = ({ gameStateHistory, travelBackInTime, deduceLocationHistory }) => {
+
+  let stateHistory = gameStateHistory
+  historyArray = Object.values(deduceLocationHistory(stateHistory))
   historyArray = historyArray.slice(-10)
 
   return (
-    <div className="mx-auto max-w-sm px-8 py-4 my-10 bg-blue-50 rounded-lg shadow-md dark:bg-gray-800 ">
+    <div className="mx-auto max-w-xl px-8 py-4 my-10 bg-blue-50 rounded-lg shadow-md dark:bg-gray-800 ">
       <div className="flex items-start justify-between">
         <p className="text-gray-600 dark:text-gray-300 bold font-sans text-lg">
           The past 10 paths are:
@@ -20,12 +30,19 @@ export const HistoryTab = ({ locationHistory, travelBackInTime }) => {
       <div>
         <p className="text-gray-600 dark:text-gray-300 bold font-sans text-base">
           {historyArray.map((name, index) => (
-            <div className="max-w-sm my-2 px-4 py-2 bg-green-50 rounded-lg shadow-md">
-              {historyArray.length - index === 1 ? "Latest" : 10 - index}:  {name}
+            <div className="max-w-lg my-2 px-4 py-2 bg-green-50 shadow-md">
+              <div className="float-left px-2 text-black-100 absolute">
+                <div className={setColor(name[1])}>
+                  {name[1]}
+                </div>
+              </div>
+              <div className="text-center">
+                {historyArray.length - index === 1 ? "Latest" : 10 - index}:  {name[0]}
+              </div>
               <button onClick={() => {
                 travelBackInTime(index);
               }}
-                className="text-black-600 max-w-sm mx-auto bg-red-100 px-1 rounded-lg shadow-md float-right">Back to here</button>
+                className="text-black-600 max-w-sm mx-auto bg-red-100 px-1 rounded-lg shadow-md float-right -my-6">Back to here</button>
             </div>
           ))}
         </p>

@@ -7,41 +7,38 @@ import { HistoryTab } from "./HistoryTab";
 
 // History of gameStates
 var gameStateHistory = [];
+var inventoryItems = [];
+var happenedEvents = [];
 
 export const BMApp = ({ book }) => {
 
   const [gameState, setState] = useState(
     {
       locationIdState: book["start-location"],
-      eventIdsState: [],
-      itemIdsState: []
+      changeLog: ['location-swap'],
+      eventHappenedTrigger: [],
+      itemPickupTrigger: []
     }
   );
 
   function saveState(currentState) {
-    gameStateHistory.push(currentState)
+    gameStateHistory.push([currentState, inventoryItems, happenedEvents])
+    console.log(gameStateHistory)
+    // Check dit met Pim
   }
 
   function travelBackInTime(index) {
-    console.log(gameStateHistory)
-    console.log(index)
-    // shenanigans
-    setState(gameStateHistory[index])
-    gameStateHistory = gameStateHistory.slice(-(index+1))
-  }
-
-  function deduceLocationHistory() {
-    var historyNames = [];
-    for (const key in gameStateHistory) {
-      historyNames.push(book.locations[gameStateHistory[key].locationIdState].name)
-    }
-    return(historyNames)
+    setState(gameStateHistory[index][0])
+    gameStateHistory = gameStateHistory.slice(-(index + 1))
+    inventoryItems = gameStateHistory[index][1]
+    happenedEvents = gameStateHistory[index][2]
   }
 
   const setLocation = (locationId) => {
     setState({
       ...gameState,
-      locationIdState: locationId
+      locationIdState: locationId,
+      changeLog: 'location-swap'
     })
     saveState(gameState)
   }
@@ -49,44 +46,29 @@ export const BMApp = ({ book }) => {
   // Adders
   const addEvent = (eventId) => {
     saveState(gameState)
-    setState({ ...gameState, eventIdsState: eventId })
+    happenedEvents.push(eventId)
+    setState({
+      ...gameState,
+      eventHappenedTrigger: eventId,
+      changeLog: 'event-happened'
+    })
   };
 
   const addItem = (itemId) => {
     saveState(gameState)
-    setState({ ...gameState, itemIdsState: itemId })
-  };
-
-  // Getters
-  const locationHistory = deduceLocationHistory()
-
-  const getEvent = (id) => ({
-    ...book.events[id],
-    didHappen: gameState.eventIdsState.includes(id),
-  });
-
-  const getItem = (id) => ({
-    ...book.items[id],
-    isPresent: !gameState.itemIdsState.includes(id),
-  });
-
-  const checkRequirements = (requirements) => {
-    if (!requirements) return true;
-
-    let reqMet = true;
-    requirements.forEach((eventId) => {
-      if (!gameState.eventIdsState.includes(eventId)) {
-        reqMet = false;
-      }
-    });
-    return reqMet;
+    inventoryItems.push(itemId)
+    setState({
+      ...gameState,
+      itemPickupTrigger: itemId,
+      changeLog: 'item-added'
+    })
   };
 
   const locationPaths = book.locations[gameState.locationIdState].paths.map((path) => {
     let reqMet = true;
     path.requirements &&
       path.requirements.forEach((eventId) => {
-        if (!gameState.eventIdsState.includes(eventId)) {
+        if (!happenedEvents.includes(eventId)) {
           reqMet = false;
         }
       }); // Checks paths for requirements
@@ -103,7 +85,7 @@ export const BMApp = ({ book }) => {
     book.locations[gameState.locationIdState].events.map((eventId) => ({
       ...book.events[eventId],
       id: eventId,
-      didHappen: gameState.eventIdsState.includes(eventId),
+      didHappen: happenedEvents.includes(eventId),
     }));
 
   const locationItems =
@@ -111,29 +93,24 @@ export const BMApp = ({ book }) => {
     book.locations[gameState.locationIdState].items.map((item) => ({
       ...book.items[item.id],
       id: item.id,
-      isPresent: !gameState.itemIdsState.includes(item.id),
+      isPresent: !inventoryItems.includes(item.id),
       events:
         item.events &&
         item.events.map((eventId) => ({
           ...book.events[eventId],
           id: eventId,
-          didHappen: gameState.eventIdsState.includes(eventId),
+          didHappen: happenedEvents.includes(eventId),
         })),
     }));
 
-  const inventoryItems =
-    gameState.itemIdsState &&
-    gameState.itemIdsState.map((itemId) => ({
-      ...book.items[itemId],
-      id: itemId,
-      events:
-        book.items[itemId].events &&
-        book.items[itemId].events.map((eventId) => ({
-          ...book.events[eventId],
-          id: eventId,
-          didHappen: gameState.eventIdsState.includes(eventId),
-        })),
-    }));
+  function deduceLocationHistory() {
+    var historyNames = [];
+    for (const key in gameStateHistory) {
+      historyNames.push([book.locations[gameStateHistory[key][0].locationIdState].name, gameStateHistory[key][0].changeLog])
+    }
+    return (historyNames)
+  }
+
 
   return (
     <BrowserRouter>
@@ -220,7 +197,7 @@ export const BMApp = ({ book }) => {
           element={<InventoryTab items={inventoryItems} addEvent={addEvent} />}
         />
 
-        <Route path="/history" element={<HistoryTab locationHistory={locationHistory} travelBackInTime={travelBackInTime}/>} />
+        <Route path="/history" element={<HistoryTab gameStateHistory={gameStateHistory} travelBackInTime={travelBackInTime} deduceLocationHistory={deduceLocationHistory} />} />
 
       </Routes>
     </BrowserRouter>
