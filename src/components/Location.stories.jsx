@@ -40,10 +40,12 @@ Primary.args = {
   setLocation: () => {},
   addEvent: () => {},
   addItem: () => {},
+  toggleShowBlockedState: () => {},
 };
 
 export const Empty = Template.bind({});
 Empty.args = {
   name: Faker.address.city(),
   description: Faker.lorem.sentences(),
+  toggleShowBlockedState: () => {},
 };
