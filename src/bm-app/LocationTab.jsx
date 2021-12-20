@@ -10,6 +10,7 @@ export const LocationTab = ({
   setLocation,
   addEvent,
   addItem,
+  toggleShowBlockedState,
 }) => (
   <div className="p-4">
     <p className="mb-2 text-sm font-light text-gray-600 dark:text-gray-400 text-center text-3xl font-sans">
@@ -24,6 +25,7 @@ export const LocationTab = ({
       setLocation={setLocation}
       addEvent={addEvent}
       addItem={addItem}
+      toggleShowBlockedState={toggleShowBlockedState}
     />
   </div>
 );

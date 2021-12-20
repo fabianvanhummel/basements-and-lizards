@@ -9,6 +9,7 @@ export const BMApp = ({ book }) => {
   const [locationIdState, setLocation] = useState(book["start-location"]);
   const [eventIdsState, setEvents] = useState([]);
   const [itemIdsState, setItems] = useState([]);
+  const [showBlockedState, setShowBlockedState] = useState(false);
 
   const addEvent = (eventId) => {
     const revertIds = book.events[eventId].revertEvents || [];
@@ -19,6 +20,10 @@ export const BMApp = ({ book }) => {
 
   const addItem = (itemId) => {
     setItems([...itemIdsState, itemId]);
+  };
+
+  const toggleShowBlockedState = () => {
+    setShowBlockedState(!showBlockedState);
   };
 
   const checkRequirements = (requirements = [], blockedByEvents = []) => {
@@ -44,8 +49,9 @@ export const BMApp = ({ book }) => {
     didHappen: eventIdsState.includes(id),
     reqMet: checkRequirements(
       book.events[id].requirements,
-      book.events[id].blockedByEvents,
+      book.events[id].blockedByEvents
     ),
+    showBlocked: showBlockedState,
     addEvent,
     ...book.events[id],
   });
@@ -181,6 +187,7 @@ export const BMApp = ({ book }) => {
               setLocation={setLocation}
               addEvent={addEvent}
               addItem={addItem}
+              toggleShowBlockedState={toggleShowBlockedState}
             />
           }
         />
