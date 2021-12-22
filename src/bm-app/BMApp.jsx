@@ -5,37 +5,34 @@ import { LocationTab } from "./LocationTab";
 import { InventoryTab } from "./InventoryTab";
 import { HistoryTab } from "./HistoryTab";
 
-// History of gameStates
-var gameStateHistory = [];
-var inventoryItems = [];
-var happenedEvents = [];
-
 export const BMApp = ({ book }) => {
 
-  const [gameState, setState] = useState(
+  const [gameState, setGameState] = useState(
     {
       locationIdState: book["start-location"],
-      changeLog: ['location-swap'],
-      eventHappenedTrigger: [],
-      itemPickupTrigger: []
+      changeLog: 'location-swap',
+      happenedEvents: [],
+      inventoryItems: []
     }
   );
 
+  // Rework vars naar states
+  const [gameStateHistory, setGameStateHistory] = useState(
+    []
+  );
+
+  // History: hierin slaan we states de states op
   function saveState(currentState) {
-    gameStateHistory.push([currentState, inventoryItems, happenedEvents])
-    console.log(gameStateHistory)
-    // Check dit met Pim
+    setGameStateHistory([...gameStateHistory, [currentState]])
   }
 
   function travelBackInTime(index) {
-    setState(gameStateHistory[index][0])
-    gameStateHistory = gameStateHistory.slice(-(index + 1))
-    inventoryItems = gameStateHistory[index][1]
-    happenedEvents = gameStateHistory[index][2]
+    setGameStateHistory(gameStateHistory.slice(-gameStateHistory.length, -(gameStateHistory.length-index)))
+    setGameState(gameStateHistory[index][0])
   }
 
   const setLocation = (locationId) => {
-    setState({
+    setGameState({
       ...gameState,
       locationIdState: locationId,
       changeLog: 'location-swap'
@@ -45,30 +42,28 @@ export const BMApp = ({ book }) => {
 
   // Adders
   const addEvent = (eventId) => {
-    saveState(gameState)
-    happenedEvents.push(eventId)
-    setState({
+    setGameState({
       ...gameState,
-      eventHappenedTrigger: eventId,
+      happenedEvents: [...gameState.happenedEvents, eventId],
       changeLog: 'event-happened'
     })
+    saveState(gameState)
   };
 
   const addItem = (itemId) => {
-    saveState(gameState)
-    inventoryItems.push(itemId)
-    setState({
+    setGameState({
       ...gameState,
-      itemPickupTrigger: itemId,
+      inventoryItems: [...gameState.inventoryItems, itemId],
       changeLog: 'item-added'
     })
+    saveState(gameState)
   };
 
   const locationPaths = book.locations[gameState.locationIdState].paths.map((path) => {
     let reqMet = true;
     path.requirements &&
       path.requirements.forEach((eventId) => {
-        if (!happenedEvents.includes(eventId)) {
+        if (!gameState.happenedEvents.includes(eventId)) {
           reqMet = false;
         }
       }); // Checks paths for requirements
@@ -85,7 +80,7 @@ export const BMApp = ({ book }) => {
     book.locations[gameState.locationIdState].events.map((eventId) => ({
       ...book.events[eventId],
       id: eventId,
-      didHappen: happenedEvents.includes(eventId),
+      didHappen: gameState.happenedEvents.includes(eventId),
     }));
 
   const locationItems =
@@ -93,13 +88,13 @@ export const BMApp = ({ book }) => {
     book.locations[gameState.locationIdState].items.map((item) => ({
       ...book.items[item.id],
       id: item.id,
-      isPresent: !inventoryItems.includes(item.id),
+      isPresent: !gameState.inventoryItems.includes(item.id),
       events:
         item.events &&
         item.events.map((eventId) => ({
           ...book.events[eventId],
           id: eventId,
-          didHappen: happenedEvents.includes(eventId),
+          didHappen: gameState.happenedEvents.includes(eventId),
         })),
     }));
 
@@ -194,7 +189,7 @@ export const BMApp = ({ book }) => {
 
         <Route
           path="/inventory"
-          element={<InventoryTab items={inventoryItems} addEvent={addEvent} />}
+          element={<InventoryTab items={gameState.inventoryItems} addEvent={addEvent} />}
         />
 
         <Route path="/history" element={<HistoryTab gameStateHistory={gameStateHistory} travelBackInTime={travelBackInTime} deduceLocationHistory={deduceLocationHistory} />} />
