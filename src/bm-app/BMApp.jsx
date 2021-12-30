@@ -44,7 +44,7 @@ export const BMApp = ({ book }) => {
     didHappen: eventIdsState.includes(id),
     reqMet: checkRequirements(
       book.events[id].requirements,
-      book.events[id].blockedByEvents,
+      book.events[id].blockedByEvents
     ),
     addEvent,
     ...book.events[id],
@@ -63,7 +63,7 @@ export const BMApp = ({ book }) => {
 
   const locationId = checkOverride(locationIdState);
 
-  const locationPaths = book.locations[locationIdState].paths.map((path) => {
+  const locationPaths = book.locations[locationId].paths.map((path) => {
     let reqMet = true;
     path.requirements &&
       path.requirements.forEach((eventId) => {
@@ -82,16 +82,12 @@ export const BMApp = ({ book }) => {
   });
 
   const locationEvents =
-    book.locations[locationIdState].events &&
-    book.locations[locationIdState].events.map((eventId) => ({
-      ...book.events[eventId],
-      id: eventId,
-      didHappen: eventIdsState.includes(eventId),
-    }));
+    book.locations[locationId].events &&
+    book.locations[locationId].events.map((id) => getEvent(id));
 
   const locationItems =
-    book.locations[locationIdState].items &&
-    book.locations[locationIdState].items.map((item) => ({
+    book.locations[locationId].items &&
+    book.locations[locationId].items.map((item) => ({
       ...book.items[item.id],
       id: item.id,
       isPresent: !itemIdsState.includes(item.id),
@@ -186,8 +182,8 @@ export const BMApp = ({ book }) => {
           path="/location"
           element={
             <LocationTab
-              name={book.locations[locationIdState].name}
-              description={book.locations[locationIdState].description}
+              name={book.locations[locationId].name}
+              description={book.locations[locationId].description}
               events={locationEvents}
               items={locationItems}
               paths={locationPaths}
