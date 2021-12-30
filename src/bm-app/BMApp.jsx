@@ -50,6 +50,19 @@ export const BMApp = ({ book }) => {
     ...book.events[id],
   });
 
+  // Check if the location has overrides and if so, checks if any requirements are met.
+  // Recursively checks new location if so, or just returns the value if not. 
+  const checkOverride = (locationId) => {
+    if (!book.locations[locationId].override) return locationId;
+    const override = book.locations[locationId].override.find((override) =>
+      checkRequirements(override.requirements)
+    );
+    if (override) return checkOverride(override.byLocationId);
+    return locationId;
+  };
+
+  const locationId = checkOverride(locationIdState);
+
   const locationPaths = book.locations[locationIdState].paths.map((path) => {
     let reqMet = true;
     path.requirements &&
