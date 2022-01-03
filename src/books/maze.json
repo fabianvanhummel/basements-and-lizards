@@ -66,6 +66,12 @@
         },
         {
           "id": "new-metal-key"
+        },
+        {
+          "id": "random-shiny-coin",
+          "requirements": [
+            { "type": "ITEM_IN_INVENTORY", "id": "new-metal-key" }
+          ]
         }
       ]
     },
@@ -242,6 +248,10 @@
       "name": "Black Mouth Mask",
       "description": "A black mouth mask that can be worn on your face",
       "events": ["put-on-mouth-mask"]
+    },
+    "random-shiny-coin": {
+      "name": "Shiny Coin",
+      "description": "It does nothing, but you are still happy you found it."
     }
   },
   "events": {

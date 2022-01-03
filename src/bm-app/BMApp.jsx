@@ -89,6 +89,7 @@ export const BMApp = ({ book }) => {
       ...book.items[item.id],
       id: item.id,
       isPresent: !itemIdsState.includes(item.id),
+      reqMet: checkRequirements(item.requirements),
       events: makeEventList(item.events),
     }));
 

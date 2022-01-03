@@ -11,6 +11,8 @@ const Template = (args) => <Item {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
+  isPresent: true,
+  reqMet: true,
   name: Faker.commerce.productName(),
   description: Faker.commerce.productDescription(),
   addItem: () => {},
@@ -19,6 +21,7 @@ Primary.args = {
 export const isPresentPrimary = Template.bind({});
 isPresentPrimary.args = {
   isPresent: false,
+  reqMet: true,
   name: Faker.commerce.productName(),
   description: Faker.commerce.productDescription(),
   events: Array(3)
@@ -36,6 +39,17 @@ isPresentPrimary.args = {
 export const isPresentEmpty = Template.bind({});
 isPresentEmpty.args = {
   isPresent: false,
+  reqMet: true,
+  name: Faker.commerce.productName(),
+  description: Faker.commerce.productDescription(),
+  addItem: () => {},
+};
+
+
+export const Unavailable = Template.bind({});
+Unavailable.args = {
+  isPresent: true,
+  reqMet: false,
   name: Faker.commerce.productName(),
   description: Faker.commerce.productDescription(),
   addItem: () => {},
