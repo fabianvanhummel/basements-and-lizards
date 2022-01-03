@@ -26,18 +26,24 @@ export const BMApp = ({ book }) => {
     setShowBlockedState(!showBlockedState);
   };
 
-  const checkRequirements = (requirements = [], blockedByEvents = []) => {
+  const checkRequirements = (requirements = []) => {
     let reqMet = true;
-    requirements.forEach((eventId) => {
-      if (!eventIdsState.includes(eventId)) {
-        reqMet = false;
-      }
-    });
-
     let blocked = false;
-    blockedByEvents.forEach((eventId) => {
-      if (eventIdsState.includes(eventId)) {
-        blocked = true;
+    requirements.forEach((requirement) => {
+      switch (requirement.type) {
+        case "EVENT_DID_HAPPEN":
+          if (!eventIdsState.includes(requirement.id)) {
+            reqMet = false;
+          }
+          break;
+        case "EVENT_NOT_HAPPENED":
+          if (eventIdsState.includes(requirement.id)) {
+            blocked = true;
+          }
+          break;
+        default:
+          // Do Nothing
+          break;
       }
     });
 
@@ -47,10 +53,7 @@ export const BMApp = ({ book }) => {
   const getEvent = (id) => ({
     id,
     didHappen: eventIdsState.includes(id),
-    reqMet: checkRequirements(
-      book.events[id].requirements,
-      book.events[id].blockedByEvents
-    ),
+    reqMet: checkRequirements(book.events[id].requirements),
     showBlocked: showBlockedState,
     addEvent,
     ...book.events[id],
@@ -64,16 +67,8 @@ export const BMApp = ({ book }) => {
 
   const locationPaths = book.locations[locationIdState].paths
     .map((path) => {
-      let reqMet = true;
-      path.requirements &&
-        path.requirements.forEach((eventId) => {
-          if (!eventIdsState.includes(eventId)) {
-            reqMet = false;
-          }
-        }); // Checks paths for requirements
-
       return {
-        reqMet: reqMet,
+        reqMet: checkRequirements(path.requirements),
         toLocationId: path.toLocationId,
         name: path.name,
         description: path.description,
