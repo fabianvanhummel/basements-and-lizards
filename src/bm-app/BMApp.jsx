@@ -130,7 +130,7 @@ export const BMApp = ({ book }) => {
       isPresent: !gameState.inventoryItems.includes(item.id),
       reqMet: checkRequirements(item.requirements),
       events: makeEventList(item.events),
-    }));
+    })).filter((item) => item.reqMet || showBlockedState);
 
   const inventoryItems =
     gameState.inventoryItems &&
