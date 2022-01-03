@@ -54,7 +54,6 @@ export const BMApp = ({ book }) => {
     id,
     didHappen: eventIdsState.includes(id),
     reqMet: checkRequirements(book.events[id].requirements),
-    showBlocked: showBlockedState,
     addEvent,
     ...book.events[id],
   });

@@ -16,7 +16,6 @@ Primary.args = {
   reqMet: true,
   message: Faker.lorem.sentences(),
   addEvent: () => {},
-  showBlocked: true,
 };
 
 export const reqNotMet = Template.bind({});
@@ -26,7 +25,6 @@ reqNotMet.args = {
   reqMet: false,
   message: Faker.lorem.sentences(),
   addEvent: () => {},
-  showBlocked: true,
 };
 
 export const didHappen = Template.bind({});
@@ -37,5 +35,4 @@ didHappen.args = {
   didHappen: true,
   message: Faker.lorem.sentences(),
   addEvent: () => {},
-  showBlocked: true,
 };
