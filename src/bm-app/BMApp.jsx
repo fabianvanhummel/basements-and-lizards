@@ -56,28 +56,35 @@ export const BMApp = ({ book }) => {
     ...book.events[id],
   });
 
-  const locationPaths = book.locations[locationIdState].paths.map((path) => {
-    let reqMet = true;
-    path.requirements &&
-      path.requirements.forEach((eventId) => {
-        if (!eventIdsState.includes(eventId)) {
-          reqMet = false;
-        }
-      }); // Checks paths for requirements
+  const locationPaths = book.locations[locationIdState].paths
+    .map((path) => {
+      let reqMet = true;
+      path.requirements &&
+        path.requirements.forEach((eventId) => {
+          if (!eventIdsState.includes(eventId)) {
+            reqMet = false;
+          }
+        }); // Checks paths for requirements
 
-    return {
-      reqMet: reqMet,
-      toLocationId: path.toLocationId,
-      name: path.name,
-      description: path.description,
-      events: path.events && path.events.map((eventId) => getEvent(eventId)),
-      showBlocked: showBlockedState,
-    };
-  });
+      return {
+        reqMet: reqMet,
+        toLocationId: path.toLocationId,
+        name: path.name,
+        description: path.description,
+        events:
+          path.events &&
+          path.events
+            .map((eventId) => getEvent(eventId))
+            .filter((event) => event.reqMet || showBlockedState),
+      };
+    })
+    .filter((path) => path.reqMet || showBlockedState);
 
   const locationEvents =
     book.locations[locationIdState].events &&
-    book.locations[locationIdState].events.map((eventId) => getEvent(eventId));
+    book.locations[locationIdState].events
+      .map((eventId) => getEvent(eventId))
+      .filter((event) => event.reqMet || showBlockedState);
 
   const locationItems =
     book.locations[locationIdState].items &&
@@ -85,7 +92,11 @@ export const BMApp = ({ book }) => {
       ...book.items[item.id],
       id: item.id,
       isPresent: !itemIdsState.includes(item.id),
-      events: item.events && item.events.map((eventId) => getEvent(eventId)),
+      events:
+        item.events &&
+        item.events
+          .map((eventId) => getEvent(eventId))
+          .filter((event) => event.reqMet || showBlockedState),
     }));
 
   const inventoryItems =
@@ -95,7 +106,9 @@ export const BMApp = ({ book }) => {
       id: itemId,
       events:
         book.items[itemId].events &&
-        book.items[itemId].events.map((eventId) => getEvent(eventId)),
+        book.items[itemId].events
+          .map((eventId) => getEvent(eventId))
+          .filter((event) => event.reqMet || showBlockedState),
     }));
 
   return (
