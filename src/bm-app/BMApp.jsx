@@ -67,11 +67,13 @@ export const BMApp = ({ book }) => {
           reqMet = false;
         }
       }); // Checks paths for requirements
+
     return {
       reqMet: reqMet,
       toLocationId: path.toLocationId,
       name: path.name,
       description: path.description,
+      events: path.events && path.events.map((eventId) => getEvent(eventId)),
     };
   });
 
