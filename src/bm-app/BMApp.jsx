@@ -56,6 +56,12 @@ export const BMApp = ({ book }) => {
     ...book.events[id],
   });
 
+  const makeEventList = (eventIds) =>
+    eventIds &&
+    eventIds
+      .map((eventId) => getEvent(eventId))
+      .filter((event) => event.reqMet || showBlockedState);
+
   const locationPaths = book.locations[locationIdState].paths
     .map((path) => {
       let reqMet = true;
@@ -71,20 +77,12 @@ export const BMApp = ({ book }) => {
         toLocationId: path.toLocationId,
         name: path.name,
         description: path.description,
-        events:
-          path.events &&
-          path.events
-            .map((eventId) => getEvent(eventId))
-            .filter((event) => event.reqMet || showBlockedState),
+        events: makeEventList(path.events),
       };
     })
     .filter((path) => path.reqMet || showBlockedState);
 
-  const locationEvents =
-    book.locations[locationIdState].events &&
-    book.locations[locationIdState].events
-      .map((eventId) => getEvent(eventId))
-      .filter((event) => event.reqMet || showBlockedState);
+  const locationEvents = makeEventList(book.locations[locationIdState].events);
 
   const locationItems =
     book.locations[locationIdState].items &&
@@ -92,11 +90,7 @@ export const BMApp = ({ book }) => {
       ...book.items[item.id],
       id: item.id,
       isPresent: !itemIdsState.includes(item.id),
-      events:
-        item.events &&
-        item.events
-          .map((eventId) => getEvent(eventId))
-          .filter((event) => event.reqMet || showBlockedState),
+      events: makeEventList(item.events),
     }));
 
   const inventoryItems =
@@ -104,11 +98,7 @@ export const BMApp = ({ book }) => {
     itemIdsState.map((itemId) => ({
       ...book.items[itemId],
       id: itemId,
-      events:
-        book.items[itemId].events &&
-        book.items[itemId].events
-          .map((eventId) => getEvent(eventId))
-          .filter((event) => event.reqMet || showBlockedState),
+      events: makeEventList(book.items[itemId].events),
     }));
 
   return (
