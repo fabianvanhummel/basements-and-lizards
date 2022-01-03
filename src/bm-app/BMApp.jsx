@@ -36,6 +36,11 @@ export const BMApp = ({ book }) => {
             reqMet = false;
           }
           break;
+        case "ITEM_IN_INVENTORY":
+          if (!itemIdsState.includes(requirement.id)) {
+            reqMet = false;
+          }
+          break;
         case "EVENT_NOT_HAPPENED":
           if (eventIdsState.includes(requirement.id)) {
             blocked = true;

@@ -39,6 +39,14 @@
         },
         {
           "toLocationId": "4",
+          "name": "New wooden door",
+          "description": "This door seems newer than it's neighbour",
+          "requirements": [
+            { "type": "ITEM_IN_INVENTORY", "id": "new-metal-key" }
+          ]
+        },
+        {
+          "toLocationId": "4",
           "name": "Hallway",
           "description": "A narrow hallway, infested with snake eating spiders"
         },
@@ -55,6 +63,9 @@
         {
           "id": "old-metal-key",
           "events": ["open-old-wooden-door-4"]
+        },
+        {
+          "id": "new-metal-key"
         }
       ]
     },
@@ -222,6 +233,10 @@
     "old-metal-key": {
       "name": "Old Metal Key",
       "description": "This key can be used to open the old wooden door"
+    },
+    "new-metal-key": {
+      "name": "New Metal Key",
+      "description": "Having this key opens the new wooden door"
     },
     "black-mouth-mask": {
       "name": "Black Mouth Mask",
