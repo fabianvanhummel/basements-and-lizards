@@ -236,7 +236,9 @@
     },
     "portal-puzzel-step-1-fail": {
       "name": "Step 1",
-      "blockedByEvents": ["portal-puzzel-step-1"],
+      "requirements": [
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-1" }
+      ],
       "revertEvents": ["portal-puzzel-step-1-fail"],
       "description": "Nothing interesting happened."
     },
@@ -250,9 +252,9 @@
     "portal-puzzel-step-2-fail": {
       "name": "Step 2",
       "requirements": [
-        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-1" }
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-1" },
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-2" }
       ],
-      "blockedByEvents": ["portal-puzzel-step-2"],
       "revertEvents": ["portal-puzzel-step-1", "portal-puzzel-step-2-fail"],
       "description": "The glow that was there a second ago disappeared again."
     },
@@ -266,9 +268,9 @@
     "portal-puzzel-step-3-fail": {
       "name": "Step 3",
       "requirements": [
-        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-2" }
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-2" },
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-3" }
       ],
-      "blockedByEvents": ["portal-puzzel-step-3"],
       "revertEvents": [
         "portal-puzzel-step-1",
         "portal-puzzel-step-2",
@@ -286,9 +288,9 @@
     "portal-puzzel-step-4-fail": {
       "name": "Step 4",
       "requirements": [
-        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-3" }
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-3" },
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-4" }
       ],
-      "blockedByEvents": ["portal-puzzel-step-4"],
       "revertEvents": [
         "portal-puzzel-step-1",
         "portal-puzzel-step-2",
@@ -307,9 +309,9 @@
     "portal-puzzel-step-5-fail": {
       "name": "Step 5",
       "requirements": [
-        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-4" }
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-4" },
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-5" }
       ],
-      "blockedByEvents": ["portal-puzzel-step-5"],
       "revertEvents": [
         "portal-puzzel-step-1",
         "portal-puzzel-step-2",
