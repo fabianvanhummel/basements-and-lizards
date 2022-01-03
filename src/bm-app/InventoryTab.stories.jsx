@@ -14,6 +14,7 @@ Primary.args = {
   items: Array(2)
     .fill()
     .map(() => ({
+      inventoryItem: true,
       name: Faker.commerce.productName(),
       description: Faker.commerce.productDescription(),
     }))
@@ -21,6 +22,7 @@ Primary.args = {
       Array(2)
         .fill()
         .map(() => ({
+          inventoryItem: true,
           name: Faker.commerce.productName(),
           description: Faker.commerce.productDescription(),
           events: Array(3)

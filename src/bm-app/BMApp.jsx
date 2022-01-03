@@ -138,6 +138,7 @@ export const BMApp = ({ book }) => {
       ...book.items[itemId],
       id: itemId,
       events: makeEventList(book.items[itemId].events),
+      inventoryItem: true,
       isPresent: !gameState.inventoryItems.includes(itemId),
     }));
 

@@ -2,6 +2,7 @@ import { Event } from "./Event";
 
 export const Item = ({
   id,
+  inventoryItem,
   isPresent,
   reqMet,
   name,
@@ -22,7 +23,24 @@ export const Item = ({
 
     <p className="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
 
-    {!isPresent ? (
+    {inventoryItem ? (
+      <div>
+        {events && (
+          <div className="mt-4">
+            <span className="text-sm font-light text-gray-600 dark:text-gray-400">
+              Events
+            </span>
+            <ul>
+              {events.map((event, index) => (
+                <li key={index} className="mt-2">
+                  <Event {...event} addEvent={addEvent} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    ) : !isPresent ? (
       <div>
         this item was looted
         {events && (
