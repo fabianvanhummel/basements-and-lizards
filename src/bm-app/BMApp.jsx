@@ -6,76 +6,107 @@ import { InventoryTab } from "./InventoryTab";
 import { HistoryTab } from "./HistoryTab";
 
 export const BMApp = ({ book }) => {
-
-  const [gameState, setGameState] = useState(
-    {
-      locationIdState: book["start-location"],
-      changeLog: 'location-swap',
-      happenedEvents: [],
-      inventoryItems: []
-    }
-  );
+  const [gameState, setGameState] = useState({
+    locationIdState: book["start-location"],
+    changeLog: "location-swap",
+    happenedEvents: [],
+    inventoryItems: [],
+  });
 
   // Rework vars naar states
-  const [gameStateHistory, setGameStateHistory] = useState(
-    []
-  );
+  const [gameStateHistory, setGameStateHistory] = useState([]);
 
   // History: hierin slaan we states de states op
   function saveState(currentState) {
-    setGameStateHistory([...gameStateHistory, [currentState]])
+    setGameStateHistory([...gameStateHistory, [currentState]]);
   }
 
   function travelBackInTime(index) {
-    setGameStateHistory(gameStateHistory.slice(-gameStateHistory.length, -(gameStateHistory.length-index)))
-    setGameState(gameStateHistory[index][0])
+    setGameStateHistory(
+      gameStateHistory.slice(
+        -gameStateHistory.length,
+        -(gameStateHistory.length - index)
+      )
+    );
+    setGameState(gameStateHistory[index][0]);
   }
 
   const setLocation = (locationId) => {
     setGameState({
       ...gameState,
       locationIdState: locationId,
-      changeLog: 'location-swap'
-    })
-    saveState(gameState)
-  }
+      changeLog: "location-swap",
+    });
+    saveState(gameState);
+  };
 
   // Adders
   const addEvent = (eventId) => {
     setGameState({
       ...gameState,
       happenedEvents: [...gameState.happenedEvents, eventId],
-      changeLog: 'event-happened'
-    })
-    saveState(gameState)
+      changeLog: "event-happened",
+    });
+    saveState(gameState);
   };
 
   const addItem = (itemId) => {
     setGameState({
       ...gameState,
       inventoryItems: [...gameState.inventoryItems, itemId],
-      changeLog: 'item-added'
-    })
-    saveState(gameState)
+      changeLog: "item-added",
+    });
+    saveState(gameState);
   };
 
-  const locationPaths = book.locations[gameState.locationIdState].paths.map((path) => {
+  const checkRequirements = (requirements = [], blockedByEvents = []) => {
     let reqMet = true;
-    path.requirements &&
-      path.requirements.forEach((eventId) => {
-        if (!gameState.happenedEvents.includes(eventId)) {
-          reqMet = false;
-        }
-      }); // Checks paths for requirements
+    requirements.forEach((eventId) => {
+      if (!gameState.happenedEvents.includes(eventId)) {
+        reqMet = false;
+      }
+    });
 
-    return {
-      reqMet: reqMet,
-      toLocationId: path.toLocationId,
-      name: path.name,
-      description: path.description,
-      events: path.events && path.events.map((eventId) => getEvent(eventId)),
-    };
+    let blocked = false;
+    blockedByEvents.forEach((eventId) => {
+      if (gameState.happenedEvents.includes(eventId)) {
+        blocked = true;
+      }
+    });
+
+    return reqMet && !blocked;
+  };
+
+  const getEvent = (id) => ({
+    id,
+    didHappen: gameState.happenedEvents.includes(id),
+    reqMet: checkRequirements(
+      book.events[id].requirements,
+      book.events[id].blockedByEvents,
+    ),
+    addEvent,
+    ...book.events[id],
   });
+
+  const locationPaths = book.locations[gameState.locationIdState].paths.map(
+    (path) => {
+      let reqMet = true;
+      path.requirements &&
+        path.requirements.forEach((eventId) => {
+          if (!gameState.happenedEvents.includes(eventId)) {
+            reqMet = false;
+          }
+        }); // Checks paths for requirements
+
+      return {
+        reqMet: reqMet,
+        toLocationId: path.toLocationId,
+        name: path.name,
+        description: path.description,
+        events: path.events && path.events.map((eventId) => getEvent(eventId)),
+      };
+    }
+  );
 
   const locationEvents =
     book.locations[gameState.locationIdState].events &&
@@ -103,11 +134,13 @@ export const BMApp = ({ book }) => {
   function deduceLocationHistory() {
     var historyNames = [];
     for (const key in gameStateHistory) {
-      historyNames.push([book.locations[gameStateHistory[key][0].locationIdState].name, gameStateHistory[key][0].changeLog])
+      historyNames.push([
+        book.locations[gameStateHistory[key][0].locationIdState].name,
+        gameStateHistory[key][0].changeLog,
+      ]);
     }
-    return (historyNames)
+    return historyNames;
   }
-
 
   return (
     <BrowserRouter>
@@ -178,7 +211,9 @@ export const BMApp = ({ book }) => {
           element={
             <LocationTab
               name={book.locations[gameState.locationIdState].name}
-              description={book.locations[gameState.locationIdState].description}
+              description={
+                book.locations[gameState.locationIdState].description
+              }
               events={locationEvents}
               items={locationItems}
               paths={locationPaths}
@@ -191,11 +226,24 @@ export const BMApp = ({ book }) => {
 
         <Route
           path="/inventory"
-          element={<InventoryTab items={gameState.inventoryItems} addEvent={addEvent} />}
+          element={
+            <InventoryTab
+              items={gameState.inventoryItems}
+              addEvent={addEvent}
+            />
+          }
         />
 
-        <Route path="/history" element={<HistoryTab gameStateHistory={gameStateHistory} travelBackInTime={travelBackInTime} deduceLocationHistory={deduceLocationHistory} />} />
-
+        <Route
+          path="/history"
+          element={
+            <HistoryTab
+              gameStateHistory={gameStateHistory}
+              travelBackInTime={travelBackInTime}
+              deduceLocationHistory={deduceLocationHistory}
+            />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
