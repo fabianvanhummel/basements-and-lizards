@@ -51,7 +51,6 @@ export const BMApp = ({ book }) => {
       book.events[id].requirements,
       book.events[id].blockedByEvents
     ),
-    showBlocked: showBlockedState,
     addEvent,
     ...book.events[id],
   });
