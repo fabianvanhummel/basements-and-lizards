@@ -9,7 +9,7 @@ export const BMApp = ({ book }) => {
   const [showBlockedState, setShowBlockedState] = useState(false);
 
   const [gameState, setGameState] = useState({
-    locationIdState: book["start-location"],
+    locationIdState: book["initialLocation"],
     changeLog: "location-swap",
     happenedEvents: [],
     inventoryItems: [],
