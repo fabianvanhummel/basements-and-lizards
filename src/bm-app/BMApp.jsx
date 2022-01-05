@@ -157,7 +157,8 @@ export const BMApp = ({ book }) => {
     book.locations[gameState.locationIdState].npcs &&
     book.locations[gameState.locationIdState].npcs.map((npcId) =>
     ({
-      ...book.npcs[npcId]
+      ...book.npcs[npcId],
+      reqMet: checkRequirements(book.npcs[npcId].requirements),
     }))
 
   return (
