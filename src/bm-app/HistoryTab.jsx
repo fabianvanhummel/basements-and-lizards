@@ -1,7 +1,16 @@
-export const HistoryTab = ({ gameStateHistory, travelBackInTime, deduceLocationHistory }) => {
+export const HistoryTab = ({ gameStateHistory, travelBackInTime, book }) => {
 
   // Create historyArray that can dynamically be filled from the current gamestatehistory
   var historyArray = [];
+
+  // Function to deduce the location history from the gameStateHistory
+  function deduceLocationHistory() {
+    var historyNames = [];
+    for (const key in gameStateHistory) {
+      historyNames.push([book.locations[gameStateHistory[key][0].locationIdState].name, gameStateHistory[key][0].changeLog])
+    }
+    return (historyNames)
+  }
 
   // Color the types of changes that can occur in the BM App. Currently blue for events, yellow for items and green for locations - subject to change
   function setColor(value) {

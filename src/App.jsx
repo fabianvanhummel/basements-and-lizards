@@ -1,13 +1,14 @@
 import { BMApp } from "./bm-app/BMApp";
 import maze from "./books/maze.json";
 import "./styles/splashscreen.css"
-import { Component, useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 
 // Disable this boolean if you dont want the startup screen (please do this when testing)
-const doStartScreen = false;
+const doStartScreen = true;
 
 // Note: this component is meant to control rendering of different apps. Since we only have one app now, it's still very basic.
 
+// Determine loading message Div wrapper and make it a function
 function LoadingMessage() {
   return (
     <div className="fade-in-out-5s background-gradient h-screen w-screen">
@@ -20,41 +21,16 @@ function LoadingMessage() {
   );
 }
 
-export function splashScreen(WrappedComponent) {
-  return class extends Component {
-    constructor() {
-      super();
-      this.state = {
-        loading: true,
-      };
-    }
-
-    async componentDidMount() {
-      setTimeout(() => {
-        this.setState({
-          loading: false,
-        });
-      }, 5500) // Deze tijd kunnen we later nog aanpassen. Voor nu past 5500 ms prima
-    }
-
-    render() {
-      // while checking user session, show "loading" message
-      if (this.state.loading) return LoadingMessage();
-
-      // otherwise, show the desired route
-      return <WrappedComponent />;
-    }
-  };
-}
-
 export const App = () => {
+  // Use states to determine if page is still loading
   const [loading, setLoading] = useState(true)
   useEffect(() => {
+    // Arbitrary 5 second loading time.. can be changes to dynamically listen to an API/server call or whatever
     setTimeout(() => {
       setLoading(false);
     }, 5000);
   });
 
-  if (loading && doStartScreen) return <LoadingMessage />
+  if (loading & doStartScreen) return <LoadingMessage />
   return <BMApp book={maze} />
 }

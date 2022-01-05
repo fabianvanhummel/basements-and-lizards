@@ -7,9 +7,9 @@
   animation: fadeInOut 5s linear forwards;
 }
 
-.fade-in-2s {
-  -webkit-animation: fadeIn 2s linear forwards;
-  animation: fadeIn 2s linear forwards;
+.fade-in-1s {
+  -webkit-animation: fadeIn 1s linear forwards;
+  animation: fadeIn 1s linear forwards;
 }
 
 .background-gradient {
