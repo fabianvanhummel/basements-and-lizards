@@ -81,6 +81,59 @@ Primary.args = {
   },
 };
 
+export const GivesItem = Template.bind({});
+GivesItem.args = {
+  reqMet: true,
+  name: Faker.name.findName(),
+  description: Faker.lorem.sentences(),
+  conversation: {
+    initial: {
+      npcLine: Faker.lorem.sentence(),
+      responses: [
+        {
+          text: "Item plz?",
+          consequences: [
+            {
+              type: "CONVERSATION",
+              id: "item-offered",
+            },
+          ],
+        },
+        {
+          text: "Bye!",
+          consequences: [
+            {
+              type: "CONVERSATION",
+              id: "end-conversation",
+            },
+          ],
+        },
+      ],
+    },
+    "item-offered": {
+      npcLine: "Sure, want this Crappy item?",
+      responses: [
+        {
+          text: "Yes, thank you!",
+          consequences: [
+            {
+              type: "GET-ITEM",
+              id: "crappy-item",
+            },
+            {
+              type: "CONVERSATION",
+              id: "initial",
+            },
+          ],
+        },
+      ],
+    },
+    "end-conversation": {
+      npcLine: "Ok, Bye!",
+    },
+  },
+};
+
 export const Unavailable = Template.bind({});
 Unavailable.args = {
   reqMet: false,

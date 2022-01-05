@@ -253,6 +253,10 @@
     "random-shiny-coin": {
       "name": "Shiny Coin",
       "description": "It does nothing, but you are still happy you found it."
+    },
+    "random-crappy-ring": {
+      "name": "Crappy ring",
+      "description": "After inspecting this ring, you notice it is completely worthless, you are slightly dissapointed"
     }
   },
   "npcs": {
@@ -273,7 +277,52 @@
               ]
             },
             {
+              "text": "Gimme an item plz!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "asked-item"
+                }
+              ]
+            },
+            {
               "text": "Sorry, no time, bye!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "end-conversation"
+                }
+              ]
+            }
+          ]
+        },
+        "asked-item": {
+          "npcLine": "Sure, you can have this ring.",
+          "responses": [
+            {
+              "text": "Thanks!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "initial"
+                },
+                {
+                  "type": "GET-ITEM",
+                  "id": "random-crappy-ring"
+                }
+              ]
+            },
+            {
+              "text": "No thanks!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "initial"
+                }
+              ]
+            },
+            {
+              "text": "Bye!",
               "consequences": [
                 {
                   "type": "CONVERSATION",

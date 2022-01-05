@@ -94,7 +94,7 @@ export const Location = ({
           <ul>
             {npcs.map((npc, index) => (
               <li key={index} className="mt-2">
-                <NPC {...npc} />
+                <NPC {...npc} addItem={addItem} />
               </li>
             ))}
           </ul>
