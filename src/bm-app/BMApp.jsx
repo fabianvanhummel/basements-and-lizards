@@ -65,18 +65,29 @@ export const BMApp = ({ book }) => {
     setShowBlockedState(!showBlockedState);
   };
 
-  const checkRequirements = (requirements = [], blockedByEvents = []) => {
+  const checkRequirements = (requirements = []) => {
     let reqMet = true;
-    requirements.forEach((eventId) => {
-      if (!gameState.happenedEvents.includes(eventId)) {
-        reqMet = false;
-      }
-    });
-
     let blocked = false;
-    blockedByEvents.forEach((eventId) => {
-      if (gameState.happenedEvents.includes(eventId)) {
-        blocked = true;
+    requirements.forEach((requirement) => {
+      switch (requirement.type) {
+        case "EVENT_DID_HAPPEN":
+          if (!gameState.happenedEvents.includes(requirement.id)) {
+            reqMet = false;
+          }
+          break;
+        case "ITEM_IN_INVENTORY":
+          if (!gameState.inventoryItems.includes(requirement.id)) {
+            reqMet = false;
+          }
+          break;
+        case "EVENT_NOT_HAPPENED":
+          if (gameState.happenedEvents.includes(requirement.id)) {
+            blocked = true;
+          }
+          break;
+        default:
+          // Do Nothing
+          break;
       }
     });
 
@@ -86,10 +97,7 @@ export const BMApp = ({ book }) => {
   const getEvent = (id) => ({
     id,
     didHappen: gameState.happenedEvents.includes(id),
-    reqMet: checkRequirements(
-      book.events[id].requirements,
-      book.events[id].blockedByEvents
-    ),
+    reqMet: checkRequirements(book.events[id].requirements),
     addEvent,
     ...book.events[id],
   });
@@ -102,16 +110,8 @@ export const BMApp = ({ book }) => {
 
   const locationPaths = book.locations[gameState.locationIdState].paths
     .map((path) => {
-      let reqMet = true;
-      path.requirements &&
-        path.requirements.forEach((eventId) => {
-          if (!gameState.happenedEvents.includes(eventId)) {
-            reqMet = false;
-          }
-        }); // Checks paths for requirements
-
       return {
-        reqMet: reqMet,
+        reqMet: checkRequirements(path.requirements),
         toLocationId: path.toLocationId,
         name: path.name,
         description: path.description,
@@ -128,8 +128,9 @@ export const BMApp = ({ book }) => {
       ...book.items[item.id],
       id: item.id,
       isPresent: !gameState.inventoryItems.includes(item.id),
+      reqMet: checkRequirements(item.requirements),
       events: makeEventList(item.events),
-    }));
+    })).filter((item) => item.reqMet || showBlockedState);
 
   const inventoryItems =
     gameState.inventoryItems &&
@@ -137,6 +138,7 @@ export const BMApp = ({ book }) => {
       ...book.items[itemId],
       id: itemId,
       events: makeEventList(book.items[itemId].events),
+      inventoryItem: true,
       isPresent: !gameState.inventoryItems.includes(itemId),
     }));
 
