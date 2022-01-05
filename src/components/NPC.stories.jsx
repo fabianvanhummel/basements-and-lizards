@@ -11,6 +11,6 @@ const Template = (args) => <NPC {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  name: Faker.address.city(),
+  name: Faker.name.findName(),
   description: Faker.lorem.sentences(),
 };

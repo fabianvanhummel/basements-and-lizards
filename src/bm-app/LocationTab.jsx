@@ -6,6 +6,7 @@ export const LocationTab = ({
   description,
   events,
   items,
+  npcs,
   paths,
   setLocation,
   addEvent,
@@ -21,6 +22,7 @@ export const LocationTab = ({
       description={description}
       events={events}
       items={items}
+      npcs={npcs}
       paths={paths}
       setLocation={setLocation}
       addEvent={addEvent}

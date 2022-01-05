@@ -153,6 +153,13 @@ export const BMApp = ({ book }) => {
     return historyNames;
   }
 
+  const locationNpcs =
+    book.locations[gameState.locationIdState].npcs &&
+    book.locations[gameState.locationIdState].npcs.map((npcId) =>
+    ({
+      ...book.npcs[npcId]
+    }))
+
   return (
     <BrowserRouter>
       <nav className="bg-white shadow dark:bg-gray-800">
@@ -227,6 +234,7 @@ export const BMApp = ({ book }) => {
               }
               events={locationEvents}
               items={locationItems}
+              npcs={locationNpcs}
               paths={locationPaths}
               setLocation={setLocation}
               addEvent={addEvent}

@@ -18,7 +18,8 @@
           "name": "Blue portal",
           "description": "A large blue portal"
         }
-      ]
+      ],
+      "npcs": ["tour-guide"]
     },
     "2": {
       "name": "Room number 2",
@@ -252,6 +253,12 @@
     "random-shiny-coin": {
       "name": "Shiny Coin",
       "description": "It does nothing, but you are still happy you found it."
+    }
+  },
+  "npcs": {
+    "tour-guide": {
+      "name": "Tour Guide",
+      "description": "This guy seems he might know the way around town, and the maze"
     }
   },
   "events": {
