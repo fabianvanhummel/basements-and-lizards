@@ -1,6 +1,13 @@
 import { useState } from "react";
 
-export const NPC = ({ reqMet, name, description, conversation, addItem }) => {
+export const NPC = ({
+  reqMet,
+  name,
+  description,
+  conversation,
+  addItem,
+  addEvent,
+}) => {
   const [conversationStarted, setConversationStarted] = useState(false);
   const [conversationId, setConversationId] = useState("initial");
 
@@ -12,6 +19,9 @@ export const NPC = ({ reqMet, name, description, conversation, addItem }) => {
           break;
         case "GET-ITEM":
           addItem(consequence.id);
+          break;
+        case "EXECUTE-EVENT":
+          addEvent(consequence.id);
           break;
         default:
           // Do Nothing

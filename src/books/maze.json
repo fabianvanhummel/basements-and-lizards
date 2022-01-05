@@ -286,6 +286,15 @@
               ]
             },
             {
+              "text": "Make it rain!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "asked-event"
+                }
+              ]
+            },
+            {
               "text": "Sorry, no time, bye!",
               "consequences": [
                 {
@@ -318,6 +327,33 @@
                 {
                   "type": "CONVERSATION",
                   "id": "initial"
+                }
+              ]
+            },
+            {
+              "text": "Bye!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "end-conversation"
+                }
+              ]
+            }
+          ]
+        },
+        "asked-event": {
+          "npcLine": "Okay, here you go!",
+          "responses": [
+            {
+              "text": "Thanks",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "initial"
+                },
+                {
+                  "type": "EXECUTE-EVENT",
+                  "id": "make-it-rain"
                 }
               ]
             },
@@ -468,6 +504,11 @@
       "name": "Put on mouth mask",
       "description": "While wearing a mouth mask you're very safe!",
       "message": "You can now enter dusty environments!"
+    },
+    "make-it-rain": {
+      "name": "Make it rain",
+      "description": "This will make it rain!",
+      "message": "It is now raining"
     }
   }
 }

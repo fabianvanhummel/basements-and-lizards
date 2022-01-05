@@ -86,6 +86,7 @@ GivesItem.args = {
   reqMet: true,
   name: Faker.name.findName(),
   description: Faker.lorem.sentences(),
+  addItem: () => {},
   conversation: {
     initial: {
       npcLine: Faker.lorem.sentence(),
@@ -119,6 +120,60 @@ GivesItem.args = {
             {
               type: "GET-ITEM",
               id: "crappy-item",
+            },
+            {
+              type: "CONVERSATION",
+              id: "initial",
+            },
+          ],
+        },
+      ],
+    },
+    "end-conversation": {
+      npcLine: "Ok, Bye!",
+    },
+  },
+};
+
+export const CallsEvent = Template.bind({});
+CallsEvent.args = {
+  reqMet: true,
+  name: Faker.name.findName(),
+  description: Faker.lorem.sentences(),
+  addEvent: () => {},
+  conversation: {
+    initial: {
+      npcLine: Faker.lorem.sentence(),
+      responses: [
+        {
+          text: "Event plz?",
+          consequences: [
+            {
+              type: "CONVERSATION",
+              id: "event-offered",
+            },
+          ],
+        },
+        {
+          text: "Bye!",
+          consequences: [
+            {
+              type: "CONVERSATION",
+              id: "end-conversation",
+            },
+          ],
+        },
+      ],
+    },
+    "event-offered": {
+      npcLine: "Are you sure u want me to perform an event?",
+      responses: [
+        {
+          text: "Yes, go for it!",
+          consequences: [
+            {
+              type: "EXECUTE-EVENT",
+              id: "dummy-event",
             },
             {
               type: "CONVERSATION",
