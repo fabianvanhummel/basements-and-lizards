@@ -1,7 +1,8 @@
 {
   "name": "Maze",
   "description": "A simple maze generator from https://donjon.bin.sh/. The goal is to get from room number 1 to 7.",
-  "start-location": "1",
+  "initialLocation": "1",
+  "finalEvent": "game-end",
   "locations": {
     "1": {
       "name": "Room number 1",
@@ -193,7 +194,7 @@
           ]
         }
       ],
-      "events": ["open-location-6"]
+      "events": ["open-location-6","game-end"]
     },
     "portal-chamber": {
       "name": "Portal chamber",
@@ -370,6 +371,14 @@
       "name": "Put on mouth mask",
       "description": "While wearing a mouth mask you're very safe!",
       "message": "You can now enter dusty environments!"
+    },
+    "game-end": {
+      "name": "You won!",
+      "description": "You have reached the ending, congrats!",
+      "message": "The game is now over, you can reload the page.",
+      "requirements": [
+        { "type": "ITEM_IN_INVENTORY", "id": "random-shiny-coin" }
+      ]
     }
   }
 }
