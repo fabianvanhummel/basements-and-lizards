@@ -4,10 +4,6 @@ export const NPC = ({ reqMet, name, description, conversation }) => {
   const [conversationStarted, setConversationStarted] = useState(false);
   const [conversationId, setConversationId] = useState("initial");
 
-  const conversationToggle = () => {
-    setConversationStarted(!conversationStarted);
-  };
-
   const handleConsequences = (consequences) => {
     consequences.forEach((consequence) => {
       switch (consequence.type) {
@@ -72,7 +68,7 @@ export const NPC = ({ reqMet, name, description, conversation }) => {
         <button
           disabled={!reqMet}
           onClick={() => {
-            conversationToggle();
+            setConversationStarted(!conversationStarted);
           }}
           className="disabled:opacity-50 disabled:pointer-events-none disabled:cursor-auto mt-2 px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80"
         >
@@ -84,7 +80,7 @@ export const NPC = ({ reqMet, name, description, conversation }) => {
           <div className="text-right">
             <button
               onClick={() => {
-                conversationToggle();
+                setConversationStarted(!conversationStarted);
                 setConversationId("initial");
               }}
               className="disabled:opacity-50 disabled:pointer-events-none disabled:cursor-auto mt-2 px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80"
