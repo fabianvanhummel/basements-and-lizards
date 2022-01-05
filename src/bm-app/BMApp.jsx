@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../styles/splashscreen.css'
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { OverviewTab } from "./OverviewTab";
 import { LocationTab } from "./LocationTab";
@@ -27,8 +28,11 @@ export const BMApp = ({ book }) => {
   }
 
   function travelBackInTime(index) {
-    setGameStateHistory(gameStateHistory.slice(-gameStateHistory.length, -(gameStateHistory.length-index)))
-    setGameState(gameStateHistory[index][0])
+    console.log(index)
+    console.log(gameStateHistory)
+    console.log("Set gamestatehistory from index to index: ", 0, gameStateHistory.length - (index+1))
+    setGameStateHistory(gameStateHistory.slice(0, gameStateHistory.length - (index+1)))
+    setGameState(gameStateHistory[gameStateHistory.length - (index + 1)][0])
   }
 
   const setLocation = (locationId) => {
@@ -108,6 +112,7 @@ export const BMApp = ({ book }) => {
 
 
   return (
+    <div className="fade-in-2s ">
     <BrowserRouter>
       <nav className="bg-white shadow dark:bg-gray-800">
         <div className="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
@@ -196,5 +201,6 @@ export const BMApp = ({ book }) => {
 
       </Routes>
     </BrowserRouter>
+    </div>
   );
 };
