@@ -102,13 +102,26 @@ export const BMApp = ({ book }) => {
     ...book.events[id],
   });
 
+  // Check if the location has overrides and if so, checks if any requirements are met.
+  // Recursively checks new location if so, or just returns the value if not.
+  const checkOverride = (locationId) => {
+    if (!book.locations[locationId].override) return locationId;
+    const override = book.locations[locationId].override.find((override) =>
+      checkRequirements(override.requirements)
+    );
+    if (override) return checkOverride(override.byLocationId);
+    return locationId;
+  };
+
+  const locationId = checkOverride(gameState.locationIdState);
+
   const makeEventList = (eventIds) =>
     eventIds &&
     eventIds
       .map((eventId) => getEvent(eventId))
       .filter((event) => event.reqMet || showBlockedState);
 
-  const locationPaths = book.locations[gameState.locationIdState].paths
+  const locationPaths = book.locations[locationId].paths
     .map((path) => {
       return {
         reqMet: checkRequirements(path.requirements),
@@ -120,17 +133,19 @@ export const BMApp = ({ book }) => {
     })
     .filter((path) => path.reqMet || showBlockedState);
 
-  const locationEvents = makeEventList(book.locations[gameState.locationIdState].events);
+  const locationEvents = makeEventList(book.locations[locationId].events);
 
   const locationItems =
-    book.locations[gameState.locationIdState].items &&
-    book.locations[gameState.locationIdState].items.map((item) => ({
-      ...book.items[item.id],
-      id: item.id,
-      isPresent: !gameState.inventoryItems.includes(item.id),
-      reqMet: checkRequirements(item.requirements),
-      events: makeEventList(item.events),
-    })).filter((item) => item.reqMet || showBlockedState);
+    book.locations[locationId].items &&
+    book.locations[locationId].items
+      .map((item) => ({
+        ...book.items[item.id],
+        id: item.id,
+        isPresent: !gameState.inventoryItems.includes(item.id),
+        reqMet: checkRequirements(item.requirements),
+        events: makeEventList(item.events),
+      }))
+      .filter((item) => item.reqMet || showBlockedState);
 
   const inventoryItems =
     gameState.inventoryItems &&
@@ -221,10 +236,8 @@ export const BMApp = ({ book }) => {
           path="/location"
           element={
             <LocationTab
-              name={book.locations[gameState.locationIdState].name}
-              description={
-                book.locations[gameState.locationIdState].description
-              }
+              name={book.locations[locationId].name}
+              description={book.locations[locationId].description}
               events={locationEvents}
               items={locationItems}
               paths={locationPaths}

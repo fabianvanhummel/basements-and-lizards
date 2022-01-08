@@ -6,7 +6,7 @@
   "locations": {
     "1": {
       "name": "Room number 1",
-      "description": "This is a description of room number 1",
+      "description": "This is a default description of room number 1",
       "paths": [
         {
           "toLocationId": "2",
@@ -18,6 +18,48 @@
           "toLocationId": "portal-chamber",
           "name": "Blue portal",
           "description": "A large blue portal"
+        },
+        {
+          "toLocationId": "test-override-room",
+          "name": "Door to override",
+          "description": "Follow this path to test the override"
+        }
+      ],
+      "override": [
+        {
+          "byLocationId": "1-override",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "test-override-event" }
+          ]
+        }
+      ]
+    },
+    "1-override": {
+      "name": "Room number 1 (override)",
+      "description": "This is a overridden description of room number 1",
+      "paths": [
+        {
+          "toLocationId": "2",
+          "name": "Big door",
+          "description": "Very BIG door",
+          "requirements": []
+        },
+        {
+          "toLocationId": "portal-chamber",
+          "name": "Blue portal",
+          "description": "A large blue portal"
+        }
+      ]
+    },
+    "test-override-room": {
+      "name": "Test override room",
+      "description": "The event on this room should trigger a change in description in room 1.",
+      "events": ["test-override-event"],
+      "paths": [
+        {
+          "toLocationId": "1",
+          "name": "Back",
+          "description": "Go back to room 1"
         }
       ]
     },
@@ -194,7 +236,7 @@
           ]
         }
       ],
-      "events": ["open-location-6","game-end"]
+      "events": ["open-location-6", "game-end"]
     },
     "portal-chamber": {
       "name": "Portal chamber",
@@ -256,6 +298,10 @@
     }
   },
   "events": {
+    "test-override-event": {
+      "name": "Room 1 changed",
+      "description": "Because you entered this room, the description of room 1 changed."
+    },
     "portal-puzzel-step-1": {
       "name": "Step 1",
       "description": "You are send back to the middle of the room, but the yellow portal station, something starts to glow."
