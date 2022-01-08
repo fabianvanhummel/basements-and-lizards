@@ -31,6 +31,12 @@ Primary.args = {
       name: Faker.commerce.productName(),
       description: Faker.commerce.productDescription(),
     })),
+  npcs: Array(2)
+    .fill()
+    .map(() => ({
+      name: Faker.name.findName(),
+      description: Faker.lorem.sentences(),
+    })),
   paths: Array(4)
     .fill()
     .map(() => ({

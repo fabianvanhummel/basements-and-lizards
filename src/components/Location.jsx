@@ -1,12 +1,14 @@
 import { Event } from "./Event";
 import { Item } from "./Item";
 import { Path } from "./Path";
+import { NPC } from "./NPC";
 
 export const Location = ({
   name,
   description,
   events,
   items,
+  npcs,
   paths,
   setLocation,
   addEvent,
@@ -78,6 +80,21 @@ export const Location = ({
             {items.map((item, index) => (
               <li key={index} className="mt-2">
                 <Item {...item} addItem={addItem} addEvent={addEvent} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {npcs && (
+        <div className="mt-4">
+          <span className="text-sm font-light text-gray-600 dark:text-gray-400">
+            NPCs
+          </span>
+          <ul>
+            {npcs.map((npc, index) => (
+              <li key={index} className="mt-2">
+                <NPC {...npc} addItem={addItem} addEvent={addEvent} />
               </li>
             ))}
           </ul>

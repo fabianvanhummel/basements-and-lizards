@@ -61,7 +61,8 @@
           "name": "Back",
           "description": "Go back to room 1"
         }
-      ]
+      ],
+      "npcs": ["tour-guide"]
     },
     "2": {
       "name": "Room number 2",
@@ -295,6 +296,139 @@
     "random-shiny-coin": {
       "name": "Shiny Coin",
       "description": "It does nothing, but you are still happy you found it."
+    },
+    "random-crappy-ring": {
+      "name": "Crappy ring",
+      "description": "After inspecting this ring, you notice it is completely worthless, you are slightly dissapointed"
+    }
+  },
+  "npcs": {
+    "tour-guide": {
+      "name": "Tour Guide",
+      "description": "This guy seems he might know the way around town, and the maze",
+      "conversation": {
+        "initial": {
+          "npcLine": "Hello friend!",
+          "responses": [
+            {
+              "text": "Can you tell me where the exit is please?",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "describe-maze"
+                }
+              ]
+            },
+            {
+              "text": "Gimme an item plz!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "asked-item"
+                }
+              ]
+            },
+            {
+              "text": "Make it rain!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "asked-event"
+                }
+              ]
+            },
+            {
+              "text": "Sorry, no time, bye!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "end-conversation"
+                }
+              ]
+            }
+          ]
+        },
+        "asked-item": {
+          "npcLine": "Sure, you can have this ring.",
+          "responses": [
+            {
+              "text": "Thanks!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "initial"
+                },
+                {
+                  "type": "GET-ITEM",
+                  "id": "random-crappy-ring"
+                }
+              ]
+            },
+            {
+              "text": "No thanks!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "initial"
+                }
+              ]
+            },
+            {
+              "text": "Bye!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "end-conversation"
+                }
+              ]
+            }
+          ]
+        },
+        "asked-event": {
+          "npcLine": "Okay, here you go!",
+          "responses": [
+            {
+              "text": "Thanks",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "initial"
+                },
+                {
+                  "type": "EXECUTE-EVENT",
+                  "id": "make-it-rain"
+                }
+              ]
+            },
+            {
+              "text": "Bye!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "end-conversation"
+                }
+              ]
+            }
+          ]
+        },
+        "describe-maze": {
+          "npcLine": "Sure, you are in a maze. I know that this maze has at least 7 rooms. Some pathways are easily accesable, other are more difficult to enter. If you manage to reach room 7 you might find an exit.",
+          "responses": [
+            {
+              "text": "Thanks, I'll be on my way!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "end-conversation"
+                }
+              ]
+            }
+          ]
+        },
+        "end-conversation": {
+          "npcLine": "Bye, be safe!"
+        }
+      }
     }
   },
   "events": {
@@ -417,6 +551,11 @@
       "name": "Put on mouth mask",
       "description": "While wearing a mouth mask you're very safe!",
       "message": "You can now enter dusty environments!"
+    },
+    "make-it-rain": {
+      "name": "Make it rain",
+      "description": "This will make it rain!",
+      "message": "It is now raining"
     },
     "game-end": {
       "name": "You won!",
