@@ -1,7 +1,6 @@
 import { Event } from "./Event";
 import { Item } from "./Item";
 import { Path } from "./Path";
-import { useState } from "react";
 
 export const Location = ({
   name,
@@ -12,26 +11,42 @@ export const Location = ({
   setLocation,
   addEvent,
   addItem,
+  toggleShowBlockedState,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const availablePaths =
-    paths &&
-    paths.filter((path) => {
-      return path.reqMet;
-    });
-
-  const blockedPaths =
-    paths &&
-    paths.filter((path) => {
-      return !path.reqMet;
-    });
-
   return (
     <div className="max-w-2xl px-8 py-4 mx-auto bg-green-50 rounded-lg shadow-md dark:bg-gray-800">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-gray-700 dark:text-white">
           {name}
         </h1>
+
+        <button
+          className="flex items-center justify-center sm:w-auto sm:mx-1 w-full px-2 py-1 font-medium tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500"
+          onClick={() => toggleShowBlockedState()}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-5 h-5 mx-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+            />
+          </svg>
+          <span className="mx-1">Toggle blocked elements</span>
+        </button>
+
         <div className="px-3 py-1 text-sm font-bold text-gray-100 bg-green-600 rounded">
           Location
         </div>
@@ -74,59 +89,13 @@ export const Location = ({
           <span className="text-sm font-light text-gray-600 dark:text-gray-400">
             Paths
           </span>
-          {availablePaths.length > 0 && (
-            <ul>
-              {availablePaths.map((path, index) => (
-                <li key={index} className="mt-2">
-                  <Path {...path} setLocation={setLocation} />
-                </li>
-              ))}
-            </ul>
-          )}
-          {blockedPaths.length > 0 && (
-            <div className="border rounded shadow-sm">
-              <button
-                type="button"
-                aria-label="Open item"
-                title="Open item"
-                className="flex items-center justify-between w-full p-4 focus:outline-none"
-                onClick={() => setIsOpen(!isOpen)}
-              >
-                <p className="text-lg font-medium">Blocked Paths</p>
-                <div className="flex items-center justify-center w-8 h-8 border rounded-full">
-                  <svg
-                    viewBox="0 0 24 24"
-                    className={`w-3 text-gray-600 transition-transform duration-200 ${
-                      isOpen ? "transform rotate-180" : ""
-                    }`}
-                  >
-                    <polyline
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeMiterlimit="10"
-                      points="2,7 12,17 22,7"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-              </button>
-              {isOpen && (
-                <div className="p-4 pt-0">
-                  {
-                    <ul>
-                      {blockedPaths.map((path, index) => (
-                        <li key={index} className="mt-2">
-                          <Path {...path} setLocation={setLocation} />
-                        </li>
-                      ))}
-                    </ul>
-                  }
-                </div>
-              )}
-            </div>
-          )}
+          <ul>
+            {paths.map((path, index) => (
+              <li key={index} className="mt-2">
+                <Path {...path} setLocation={setLocation} />
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>

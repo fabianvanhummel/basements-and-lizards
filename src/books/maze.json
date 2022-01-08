@@ -1,7 +1,8 @@
 {
   "name": "Maze",
   "description": "A simple maze generator from https://donjon.bin.sh/. The goal is to get from room number 1 to 7.",
-  "start-location": "1",
+  "initialLocation": "1",
+  "finalEvent": "game-end",
   "locations": {
     "1": {
       "name": "Room number 1",
@@ -25,7 +26,12 @@
         }
       ],
       "override": [
-        { "byLocationId": "1-override", "requirements": ["test-override-event"] }
+        {
+          "byLocationId": "1-override",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "test-override-event" }
+          ]
+        }
       ]
     },
     "1-override": {
@@ -70,7 +76,17 @@
           "toLocationId": "4",
           "name": "Old wooden door",
           "description": "This door seems like it has seen better days",
-          "requirements": ["open-old-wooden-door-4"]
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "open-old-wooden-door-4" }
+          ]
+        },
+        {
+          "toLocationId": "4",
+          "name": "New wooden door",
+          "description": "This door seems newer than it's neighbour",
+          "requirements": [
+            { "type": "ITEM_IN_INVENTORY", "id": "new-metal-key" }
+          ]
         },
         {
           "toLocationId": "4",
@@ -81,13 +97,24 @@
           "toLocationId": "4",
           "name": "Ventilation shaft",
           "description": "It looks very dusty",
-          "requirements": ["put-on-mouth-mask"]
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "put-on-mouth-mask" }
+          ]
         }
       ],
       "items": [
         {
           "id": "old-metal-key",
           "events": ["open-old-wooden-door-4"]
+        },
+        {
+          "id": "new-metal-key"
+        },
+        {
+          "id": "random-shiny-coin",
+          "requirements": [
+            { "type": "ITEM_IN_INVENTORY", "id": "new-metal-key" }
+          ]
         }
       ]
     },
@@ -131,7 +158,9 @@
           "toLocationId": "2",
           "name": "Old wooden door",
           "description": "This door seems like it has seen better days",
-          "requirements": ["open-old-wooden-door-4"]
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "open-old-wooden-door-4" }
+          ]
         },
         {
           "toLocationId": "3",
@@ -142,7 +171,10 @@
           "toLocationId": "7",
           "name": "THE door",
           "description": "A very pretty door with glass and gold, you really want to go through!",
-          "requirements": ["open-location-7", "open-location-7-2"]
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "open-location-7" },
+            { "type": "EVENT_DID_HAPPEN", "id": "open-location-7-2" }
+          ]
         }
       ]
     },
@@ -159,7 +191,9 @@
           "toLocationId": "6",
           "name": "Stacked stones",
           "description": "There is a stack of stones, when peering through you see another room",
-          "requirements": ["open-location-6"]
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "open-location-6" }
+          ]
         }
       ],
       "events": ["open-location-7-2"]
@@ -177,7 +211,10 @@
           "toLocationId": "7",
           "name": "Window",
           "description": "A medium-sized open window",
-          "requirements": ["open-location-7", "open-location-7-2"]
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "open-location-7" },
+            { "type": "EVENT_DID_HAPPEN", "id": "open-location-7-2" }
+          ]
         }
       ]
     },
@@ -194,10 +231,12 @@
           "toLocationId": "6",
           "name": "Window",
           "description": "A medium-sized open window",
-          "requirements": ["open-location-6"]
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "open-location-6" }
+          ]
         }
       ],
-      "events": ["open-location-6"]
+      "events": ["open-location-6", "game-end"]
     },
     "portal-chamber": {
       "name": "Portal chamber",
@@ -232,7 +271,9 @@
         {
           "toLocationId": "3",
           "name": "Yellow Portal",
-          "requirements": ["portal-puzzel-step-5"]
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-5" }
+          ]
         }
       ]
     }
@@ -242,10 +283,18 @@
       "name": "Old Metal Key",
       "description": "This key can be used to open the old wooden door"
     },
+    "new-metal-key": {
+      "name": "New Metal Key",
+      "description": "Having this key opens the new wooden door"
+    },
     "black-mouth-mask": {
       "name": "Black Mouth Mask",
       "description": "A black mouth mask that can be worn on your face",
       "events": ["put-on-mouth-mask"]
+    },
+    "random-shiny-coin": {
+      "name": "Shiny Coin",
+      "description": "It does nothing, but you are still happy you found it."
     }
   },
   "events": {
@@ -259,31 +308,41 @@
     },
     "portal-puzzel-step-1-fail": {
       "name": "Step 1",
-      "blockedByEvents": ["portal-puzzel-step-1"],
+      "requirements": [
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-1" }
+      ],
       "revertEvents": ["portal-puzzel-step-1-fail"],
       "description": "Nothing interesting happened."
     },
     "portal-puzzel-step-2": {
       "name": "Step 2",
-      "requirements": ["portal-puzzel-step-1"],
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-1" }
+      ],
       "description": "Send back again, but the glow starts to increase in size and brightness."
     },
     "portal-puzzel-step-2-fail": {
       "name": "Step 2",
-      "requirements": ["portal-puzzel-step-1"],
-      "blockedByEvents": ["portal-puzzel-step-2"],
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-1" },
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-2" }
+      ],
       "revertEvents": ["portal-puzzel-step-1", "portal-puzzel-step-2-fail"],
       "description": "The glow that was there a second ago disappeared again."
     },
     "portal-puzzel-step-3": {
       "name": "Step 3",
-      "requirements": ["portal-puzzel-step-2"],
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-2" }
+      ],
       "description": "The glow grows again, it starts to look like a portal, but too small."
     },
     "portal-puzzel-step-3-fail": {
       "name": "Step 3",
-      "requirements": ["portal-puzzel-step-2"],
-      "blockedByEvents": ["portal-puzzel-step-3"],
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-2" },
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-3" }
+      ],
       "revertEvents": [
         "portal-puzzel-step-1",
         "portal-puzzel-step-2",
@@ -293,13 +352,17 @@
     },
     "portal-puzzel-step-4": {
       "name": "Step 4",
-      "requirements": ["portal-puzzel-step-3"],
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-3" }
+      ],
       "description": "The portal size increases again, but isn't as large as the other portals yet."
     },
     "portal-puzzel-step-4-fail": {
       "name": "Step 4",
-      "requirements": ["portal-puzzel-step-3"],
-      "blockedByEvents": ["portal-puzzel-step-4"],
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-3" },
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-4" }
+      ],
       "revertEvents": [
         "portal-puzzel-step-1",
         "portal-puzzel-step-2",
@@ -310,13 +373,17 @@
     },
     "portal-puzzel-step-5": {
       "name": "Step 5",
-      "requirements": ["portal-puzzel-step-4"],
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-4" }
+      ],
       "description": "The yellow portal now has a normal size, you can probably use it now."
     },
     "portal-puzzel-step-5-fail": {
       "name": "Step 5",
-      "requirements": ["portal-puzzel-step-4"],
-      "blockedByEvents": ["portal-puzzel-step-5"],
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-4" },
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-5" }
+      ],
       "revertEvents": [
         "portal-puzzel-step-1",
         "portal-puzzel-step-2",
@@ -350,6 +417,14 @@
       "name": "Put on mouth mask",
       "description": "While wearing a mouth mask you're very safe!",
       "message": "You can now enter dusty environments!"
+    },
+    "game-end": {
+      "name": "You won!",
+      "description": "You have reached the ending, congrats!",
+      "message": "The game is now over, you can reload the page.",
+      "requirements": [
+        { "type": "ITEM_IN_INVENTORY", "id": "random-shiny-coin" }
+      ]
     }
   }
 }

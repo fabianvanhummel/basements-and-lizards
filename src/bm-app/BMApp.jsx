@@ -6,33 +6,88 @@ import { InventoryTab } from "./InventoryTab";
 import { HistoryTab } from "./HistoryTab";
 
 export const BMApp = ({ book }) => {
-  const [locationIdState, setLocation] = useState(book["start-location"]);
-  const [eventIdsState, setEvents] = useState([]);
-  const [itemIdsState, setItems] = useState([]);
+  const [showBlockedState, setShowBlockedState] = useState(false);
 
-  const addEvent = (eventId) => {
-    const revertIds = book.events[eventId].revertEvents || [];
-    setEvents(
-      [...eventIdsState, eventId].filter((id) => !revertIds.includes(id))
+  const [gameState, setGameState] = useState({
+    locationIdState: book["initialLocation"],
+    changeLog: "location-swap",
+    happenedEvents: [],
+    inventoryItems: [],
+  });
+
+  // Rework vars naar states
+  const [gameStateHistory, setGameStateHistory] = useState([]);
+
+  // History: hierin slaan we states de states op
+  function saveState(currentState) {
+    setGameStateHistory([...gameStateHistory, [currentState]]);
+  }
+
+  function travelBackInTime(index) {
+    setGameStateHistory(
+      gameStateHistory.slice(
+        -gameStateHistory.length,
+        -(gameStateHistory.length - index)
+      )
     );
+    setGameState(gameStateHistory[index][0]);
+  }
+
+  const setLocation = (locationId) => {
+    setGameState({
+      ...gameState,
+      locationIdState: locationId,
+      changeLog: "location-swap",
+    });
+    saveState(gameState);
+  };
+
+  // Adders
+  const addEvent = (eventId) => {
+    setGameState({
+      ...gameState,
+      happenedEvents: [...gameState.happenedEvents, eventId],
+      changeLog: "event-happened",
+    });
+    saveState(gameState);
   };
 
   const addItem = (itemId) => {
-    setItems([...itemIdsState, itemId]);
+    setGameState({
+      ...gameState,
+      inventoryItems: [...gameState.inventoryItems, itemId],
+      changeLog: "item-added",
+    });
+    saveState(gameState);
   };
 
-  const checkRequirements = (requirements = [], blockedByEvents = []) => {
-    let reqMet = true;
-    requirements.forEach((eventId) => {
-      if (!eventIdsState.includes(eventId)) {
-        reqMet = false;
-      }
-    });
+  const toggleShowBlockedState = () => {
+    setShowBlockedState(!showBlockedState);
+  };
 
+  const checkRequirements = (requirements = []) => {
+    let reqMet = true;
     let blocked = false;
-    blockedByEvents.forEach((eventId) => {
-      if (eventIdsState.includes(eventId)) {
-        blocked = true;
+    requirements.forEach((requirement) => {
+      switch (requirement.type) {
+        case "EVENT_DID_HAPPEN":
+          if (!gameState.happenedEvents.includes(requirement.id)) {
+            reqMet = false;
+          }
+          break;
+        case "ITEM_IN_INVENTORY":
+          if (!gameState.inventoryItems.includes(requirement.id)) {
+            reqMet = false;
+          }
+          break;
+        case "EVENT_NOT_HAPPENED":
+          if (gameState.happenedEvents.includes(requirement.id)) {
+            blocked = true;
+          }
+          break;
+        default:
+          // Do Nothing
+          break;
       }
     });
 
@@ -41,17 +96,14 @@ export const BMApp = ({ book }) => {
 
   const getEvent = (id) => ({
     id,
-    didHappen: eventIdsState.includes(id),
-    reqMet: checkRequirements(
-      book.events[id].requirements,
-      book.events[id].blockedByEvents
-    ),
+    didHappen: gameState.happenedEvents.includes(id),
+    reqMet: checkRequirements(book.events[id].requirements),
     addEvent,
     ...book.events[id],
   });
 
   // Check if the location has overrides and if so, checks if any requirements are met.
-  // Recursively checks new location if so, or just returns the value if not. 
+  // Recursively checks new location if so, or just returns the value if not.
   const checkOverride = (locationId) => {
     if (!book.locations[locationId].override) return locationId;
     const override = book.locations[locationId].override.find((override) =>
@@ -61,58 +113,60 @@ export const BMApp = ({ book }) => {
     return locationId;
   };
 
-  const locationId = checkOverride(locationIdState);
+  const locationId = checkOverride(gameState.locationIdState);
 
-  const locationPaths = book.locations[locationId].paths.map((path) => {
-    let reqMet = true;
-    path.requirements &&
-      path.requirements.forEach((eventId) => {
-        if (!eventIdsState.includes(eventId)) {
-          reqMet = false;
-        }
-      }); // Checks paths for requirements
+  const makeEventList = (eventIds) =>
+    eventIds &&
+    eventIds
+      .map((eventId) => getEvent(eventId))
+      .filter((event) => event.reqMet || showBlockedState);
 
-    return {
-      reqMet: reqMet,
-      toLocationId: path.toLocationId,
-      name: path.name,
-      description: path.description,
-      events: path.events && path.events.map((eventId) => getEvent(eventId)),
-    };
-  });
+  const locationPaths = book.locations[locationId].paths
+    .map((path) => {
+      return {
+        reqMet: checkRequirements(path.requirements),
+        toLocationId: path.toLocationId,
+        name: path.name,
+        description: path.description,
+        events: makeEventList(path.events),
+      };
+    })
+    .filter((path) => path.reqMet || showBlockedState);
 
-  const locationEvents =
-    book.locations[locationId].events &&
-    book.locations[locationId].events.map((id) => getEvent(id));
+  const locationEvents = makeEventList(book.locations[locationId].events);
 
   const locationItems =
     book.locations[locationId].items &&
-    book.locations[locationId].items.map((item) => ({
-      ...book.items[item.id],
-      id: item.id,
-      isPresent: !itemIdsState.includes(item.id),
-      events:
-        item.events &&
-        item.events.map((eventId) => ({
-          ...book.events[eventId],
-          id: eventId,
-          didHappen: eventIdsState.includes(eventId),
-        })),
-    }));
+    book.locations[locationId].items
+      .map((item) => ({
+        ...book.items[item.id],
+        id: item.id,
+        isPresent: !gameState.inventoryItems.includes(item.id),
+        reqMet: checkRequirements(item.requirements),
+        events: makeEventList(item.events),
+      }))
+      .filter((item) => item.reqMet || showBlockedState);
 
   const inventoryItems =
-    itemIdsState &&
-    itemIdsState.map((itemId) => ({
+    gameState.inventoryItems &&
+    gameState.inventoryItems.map((itemId) => ({
       ...book.items[itemId],
       id: itemId,
-      events:
-        book.items[itemId].events &&
-        book.items[itemId].events.map((eventId) => ({
-          ...book.events[eventId],
-          id: eventId,
-          didHappen: eventIdsState.includes(eventId),
-        })),
+      events: makeEventList(book.items[itemId].events),
+      inventoryItem: true,
+      isPresent: !gameState.inventoryItems.includes(itemId),
     }));
+
+  function deduceLocationHistory() {
+    var historyNames = [];
+    for (const key in gameStateHistory) {
+      historyNames.push([
+        book.locations[gameStateHistory[key][0].locationIdState].name,
+        gameStateHistory[key][0].changeLog,
+      ]);
+    }
+    return historyNames;
+  }
 
   return (
     <BrowserRouter>
@@ -190,6 +244,7 @@ export const BMApp = ({ book }) => {
               setLocation={setLocation}
               addEvent={addEvent}
               addItem={addItem}
+              toggleShowBlockedState={toggleShowBlockedState}
             />
           }
         />
@@ -199,7 +254,16 @@ export const BMApp = ({ book }) => {
           element={<InventoryTab items={inventoryItems} addEvent={addEvent} />}
         />
 
-        <Route path="/history" element={<HistoryTab />} />
+        <Route
+          path="/history"
+          element={
+            <HistoryTab
+              gameStateHistory={gameStateHistory}
+              travelBackInTime={travelBackInTime}
+              deduceLocationHistory={deduceLocationHistory}
+            />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
