@@ -1,6 +1,6 @@
 import React from "react";
 import { Item } from "../components/Item";
-import { makeInventoryItemList } from "../modules/functions";
+import { makeInventoryItemList } from "../modules/listFunctions";
 
 export const InventoryTab = ({ book, stateObject }) => {
   const items = makeInventoryItemList(book, stateObject);

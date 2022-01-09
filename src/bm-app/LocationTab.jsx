@@ -6,7 +6,7 @@ import {
   makeLocationItemList,
   makeLocationNpcList,
   checkOverride,
-} from "../modules/functions";
+} from "../modules/listFunctions";
 
 export const LocationTab = ({ toggleShowBlockedState, book, stateObject }) => {
   let locationId = checkOverride(

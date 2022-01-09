@@ -2,8 +2,8 @@ import {
   actionAddEvent,
   actionSetLocation,
   actionAddItem,
-} from "../modules/actions";
-import { checkRequirements } from "../modules/requirements";
+} from "./actions";
+import { checkRequirements } from "./requirements";
 
 // Helpers
 const getEvent = (book, stateObject, eventId) => {
