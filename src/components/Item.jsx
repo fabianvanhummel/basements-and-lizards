@@ -9,7 +9,6 @@ export const Item = ({
   description,
   events,
   addItem,
-  addEvent,
 }) => (
   <div className="max-w-2xl px-8 py-4 mx-auto bg-yellow-50 rounded-lg shadow-md dark:bg-gray-800">
     <div className="flex items-center justify-between">
@@ -33,7 +32,7 @@ export const Item = ({
             <ul>
               {events.map((event, index) => (
                 <li key={index} className="mt-2">
-                  <Event {...event} addEvent={addEvent} />
+                  <Event {...event} />
                 </li>
               ))}
             </ul>
@@ -51,7 +50,7 @@ export const Item = ({
             <ul>
               {events.map((event, index) => (
                 <li key={index} className="mt-2">
-                  <Event {...event} addEvent={addEvent} />
+                  <Event {...event} />
                 </li>
               ))}
             </ul>

@@ -10,9 +10,6 @@ export const Location = ({
   items,
   npcs,
   paths,
-  setLocation,
-  addEvent,
-  addItem,
   toggleShowBlockedState,
 }) => {
   return (
@@ -64,7 +61,7 @@ export const Location = ({
           <ul>
             {events.map((event, index) => (
               <li key={index} className="mt-2">
-                <Event {...event} addEvent={addEvent} />
+                <Event {...event} />
               </li>
             ))}
           </ul>
@@ -79,7 +76,7 @@ export const Location = ({
           <ul>
             {items.map((item, index) => (
               <li key={index} className="mt-2">
-                <Item {...item} addItem={addItem} addEvent={addEvent} />
+                <Item {...item} />
               </li>
             ))}
           </ul>
@@ -94,7 +91,7 @@ export const Location = ({
           <ul>
             {npcs.map((npc, index) => (
               <li key={index} className="mt-2">
-                <NPC {...npc} addItem={addItem} addEvent={addEvent} />
+                <NPC {...npc} />
               </li>
             ))}
           </ul>
@@ -109,7 +106,7 @@ export const Location = ({
           <ul>
             {paths.map((path, index) => (
               <li key={index} className="mt-2">
-                <Path {...path} setLocation={setLocation} />
+                <Path {...path} />
               </li>
             ))}
           </ul>

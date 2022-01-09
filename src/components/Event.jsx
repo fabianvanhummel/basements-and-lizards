@@ -24,7 +24,9 @@ export const Event = ({
         <p>{message}</p>
       ) : (
         <button
-          onClick={() => addEvent(id)}
+          onClick={() => {
+            addEvent(id);
+          }}
           disabled={!reqMet}
           className="mt-2 px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80 disabled:opacity-50"
         >

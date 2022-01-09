@@ -1,33 +1,33 @@
 import React from "react";
 import { Location } from "../components/Location";
+import {
+  makeLocationPathList,
+  makeLocationEventList,
+  makeLocationItemList,
+  makeLocationNpcList,
+  checkOverride,
+} from "../modules/functions";
 
-export const LocationTab = ({
-  name,
-  description,
-  events,
-  items,
-  npcs,
-  paths,
-  setLocation,
-  addEvent,
-  addItem,
-  toggleShowBlockedState,
-}) => (
-  <div className="p-4">
-    <p className="mb-2 text-sm font-light text-gray-600 dark:text-gray-400 text-center text-3xl font-sans">
-      You are at
-    </p>
-    <Location
-      name={name}
-      description={description}
-      events={events}
-      items={items}
-      npcs={npcs}
-      paths={paths}
-      setLocation={setLocation}
-      addEvent={addEvent}
-      addItem={addItem}
-      toggleShowBlockedState={toggleShowBlockedState}
-    />
-  </div>
-);
+export const LocationTab = ({ toggleShowBlockedState, book, stateObject }) => {
+  let locationId = checkOverride(
+    book,
+    stateObject.gameState,
+    stateObject.gameState.locationIdState
+  );
+  return (
+    <div className="p-4">
+      <p className="mb-2 text-sm font-light text-gray-600 dark:text-gray-400 text-center text-3xl font-sans">
+        You are at
+      </p>
+      <Location
+        name={book.locations[locationId].name}
+        description={book.locations[locationId].description}
+        events={makeLocationEventList(book, stateObject, locationId)}
+        items={makeLocationItemList(book, stateObject, locationId)}
+        npcs={makeLocationNpcList(book, stateObject, locationId)}
+        paths={makeLocationPathList(book, stateObject, locationId)}
+        toggleShowBlockedState={toggleShowBlockedState}
+      />
+    </div>
+  );
+};
