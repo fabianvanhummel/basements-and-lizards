@@ -30,10 +30,6 @@ export const BMApp = ({ book }) => {
     setGameStateHistory([...gameStateHistory, [gameState]]);
   }, [gameState]);
 
-  function saveState(currentState) {
-    setGameStateHistory([...gameStateHistory, [currentState]]);
-  }
-
   function travelBackInTime(index) {
     setGameStateHistory(
       gameStateHistory.slice(
