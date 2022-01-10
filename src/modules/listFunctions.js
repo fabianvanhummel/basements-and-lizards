@@ -1,8 +1,4 @@
-import {
-  actionAddEvent,
-  actionSetLocation,
-  actionAddItem,
-} from "./actions";
+import { actionAddEvent, actionSetLocation, actionAddItem } from "./actions";
 import { checkRequirements } from "./requirements";
 
 // Helpers
@@ -32,6 +28,9 @@ const getEventList = (book, stateObject, eventIds) =>
 // Location
 
 export const checkOverride = (book, gameState, locationId) => {
+  console.log("book: ", book);
+  console.log("gameState: ", gameState);
+  console.log("locationId: ", locationId);
   if (!book.locations[locationId].override) return locationId;
   const override = book.locations[locationId].override.find((override) =>
     checkRequirements(gameState, override.requirements)
@@ -46,18 +45,21 @@ export const makeLocationPathList = (book, stateObject, locationId) => {
   const setLocation = (id) => {
     actionSetLocation(stateObject, id);
   };
-  return book.locations[locationId].paths
-    .map((path) => {
-      return {
-        reqMet: checkRequirements(stateObject.gameState, path.requirements),
-        toLocationId: path.toLocationId,
-        name: path.name,
-        description: path.description,
-        events: getEventList(book, stateObject, path.events),
-        setLocation,
-      };
-    })
-    .filter((path) => path.reqMet || stateObject.showBlockedState);
+  return (
+    book.locations[locationId].paths &&
+    book.locations[locationId].paths
+      .map((path) => {
+        return {
+          reqMet: checkRequirements(stateObject.gameState, path.requirements),
+          toLocationId: path.toLocationId,
+          name: path.name,
+          description: path.description,
+          events: getEventList(book, stateObject, path.events),
+          setLocation,
+        };
+      })
+      .filter((path) => path.reqMet || stateObject.showBlockedState)
+  );
 };
 
 export const makeLocationEventList = (book, stateObject, locationId) => {
