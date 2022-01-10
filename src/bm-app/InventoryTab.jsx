@@ -1,9 +1,9 @@
 import React from "react";
-import { Item } from "../components/Item";
+import { InventoryItem } from "../components/Item";
 import { makeInventoryItemList } from "../modules/listFunctions";
 
 export const InventoryTab = ({ book, stateObject }) => {
-  const items = makeInventoryItemList(book, stateObject);
+  const inventoryItems = makeInventoryItemList(book, stateObject);
   return (
     <div className="p-4">
       <div className="max-w-2xl px-8 py-4 mx-auto bg-red-50 rounded-lg shadow-md dark:bg-gray-800">
@@ -16,15 +16,12 @@ export const InventoryTab = ({ book, stateObject }) => {
           </div>
         </div>
 
-        {items && (
+        {inventoryItems && (
           <div className="mt-4">
-            <span className="text-sm font-light text-gray-600 dark:text-gray-400">
-              Items
-            </span>
             <ul>
-              {items.map((item, index) => (
+              {inventoryItems.map((inventoryItem, index) => (
                 <li key={index} className="mt-2">
-                  <Item {...item} />
+                  <InventoryItem {...inventoryItem} />
                 </li>
               ))}
             </ul>

@@ -19,9 +19,7 @@ const getEvent = (book, stateObject, eventId) => {
 };
 
 const getEventList = (book, stateObject, eventIds) =>
-  eventIds &&
-  eventIds
-    .map((eventId) => getEvent(book, stateObject, eventId))
+  eventIds && eventIds.map((eventId) => getEvent(book, stateObject, eventId));
 
 // EXPORTED
 // Location
@@ -43,17 +41,16 @@ export const makeLocationPathList = (book, stateObject, locationId) => {
   };
   return (
     book.locations[locationId].paths &&
-    book.locations[locationId].paths
-      .map((path) => {
-        return {
-          reqMet: checkRequirements(stateObject.gameState, path.requirements),
-          toLocationId: path.toLocationId,
-          name: path.name,
-          description: path.description,
-          events: getEventList(book, stateObject, path.events),
-          setLocation,
-        };
-      })
+    book.locations[locationId].paths.map((path) => {
+      return {
+        reqMet: checkRequirements(stateObject.gameState, path.requirements),
+        toLocationId: path.toLocationId,
+        name: path.name,
+        description: path.description,
+        events: getEventList(book, stateObject, path.events),
+        setLocation,
+      };
+    })
   );
 };
 
@@ -67,15 +64,14 @@ export const makeLocationItemList = (book, stateObject, locationId) => {
   };
   return (
     book.locations[locationId].items &&
-    book.locations[locationId].items
-      .map((item) => ({
-        ...book.items[item.id],
-        id: item.id,
-        isPresent: !stateObject.gameState.inventoryItems.includes(item.id),
-        reqMet: checkRequirements(stateObject.gameState, item.requirements),
-        events: getEventList(book, stateObject, item.events),
-        addItem,
-      }))
+    book.locations[locationId].items.map((item) => ({
+      ...book.items[item.id],
+      id: item.id,
+      isPresent: !stateObject.gameState.inventoryItems.includes(item.id),
+      reqMet: checkRequirements(stateObject.gameState, item.requirements),
+      events: getEventList(book, stateObject, item.events),
+      addItem,
+    }))
   );
 };
 
@@ -105,10 +101,7 @@ export const makeInventoryItemList = (book, stateObject) => {
     stateObject.gameState.inventoryItems &&
     stateObject.gameState.inventoryItems.map((itemId) => ({
       ...book.items[itemId],
-      id: itemId,
       events: getEventList(book, stateObject, book.items[itemId].events),
-      inventoryItem: true,
-      isPresent: !stateObject.gameState.inventoryItems.includes(itemId),
     }))
   );
 };
