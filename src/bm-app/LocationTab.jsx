@@ -9,8 +9,7 @@ import {
   checkOverride,
 } from "../modules/listFunctions";
 
-export const LocationTab = ({ toggleShowBlockedState, book, stateObject }) => {
-
+export const LocationTab = ({ book, stateObject }) => {
   let locationId = checkOverride(
     book,
     stateObject.gameState,
@@ -28,7 +27,6 @@ export const LocationTab = ({ toggleShowBlockedState, book, stateObject }) => {
         items={makeLocationItemList(book, stateObject, locationId)}
         npcs={makeLocationNpcList(book, stateObject, locationId)}
         paths={makeLocationPathList(book, stateObject, locationId)}
-        toggleShowBlockedState={toggleShowBlockedState}
       />
     </div>
   );

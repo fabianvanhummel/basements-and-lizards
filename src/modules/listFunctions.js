@@ -22,7 +22,6 @@ const getEventList = (book, stateObject, eventIds) =>
   eventIds &&
   eventIds
     .map((eventId) => getEvent(book, stateObject, eventId))
-    .filter((event) => event.reqMet || stateObject.showBlockedState);
 
 // EXPORTED
 // Location
@@ -55,7 +54,6 @@ export const makeLocationPathList = (book, stateObject, locationId) => {
           setLocation,
         };
       })
-      .filter((path) => path.reqMet || stateObject.showBlockedState)
   );
 };
 
@@ -78,7 +76,6 @@ export const makeLocationItemList = (book, stateObject, locationId) => {
         events: getEventList(book, stateObject, item.events),
         addItem,
       }))
-      .filter((item) => item.reqMet || stateObject.showBlockedState)
   );
 };
 

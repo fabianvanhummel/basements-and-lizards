@@ -6,8 +6,6 @@ import { InventoryTab } from "./InventoryTab";
 import { HistoryTab } from "./HistoryTab";
 
 export const BMApp = ({ book }) => {
-  const [showBlockedState, setShowBlockedState] = useState(false);
-
   const [gameState, setGameState] = useState({
     locationIdState: book["initialLocation"],
     changeLog: "location-swap",
@@ -17,7 +15,6 @@ export const BMApp = ({ book }) => {
 
   const stateObject = {
     gameState,
-    showBlockedState,
     setGameState,
   };
 
@@ -39,10 +36,6 @@ export const BMApp = ({ book }) => {
     );
     setGameState(gameStateHistory[index][0]);
   }
-
-  const toggleShowBlockedState = () => {
-    setShowBlockedState(!showBlockedState);
-  };
 
   function deduceLocationHistory() {
     var historyNames = [];
@@ -121,13 +114,7 @@ export const BMApp = ({ book }) => {
 
         <Route
           path="/location"
-          element={
-            <LocationTab
-              toggleShowBlockedState={toggleShowBlockedState}
-              book={book}
-              stateObject={stateObject}
-            />
-          }
+          element={<LocationTab book={book} stateObject={stateObject} />}
         />
 
         <Route
