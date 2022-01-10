@@ -45,7 +45,6 @@ isPresentEmpty.args = {
   addItem: () => {},
 };
 
-
 export const Unavailable = Template.bind({});
 Unavailable.args = {
   isPresent: true,

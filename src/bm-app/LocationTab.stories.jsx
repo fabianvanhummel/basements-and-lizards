@@ -6,7 +6,7 @@ export default {
   component: LocationTab,
 };
 
-const Template = (args) => <LocationTab {...args}/>;
+const Template = (args) => <LocationTab {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -14,9 +14,9 @@ Primary.args = {
   book: {
     locations: {
       1: {
-        name: null
-      }
-    }
+        name: null,
+      },
+    },
   },
   stateObject: {
     gameState: {
@@ -25,6 +25,6 @@ Primary.args = {
       happenedEvents: [],
       inventoryItems: [],
     },
-    setGameState: () => {}
+    setGameState: () => {},
   },
 };

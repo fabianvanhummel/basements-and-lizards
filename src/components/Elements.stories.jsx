@@ -60,38 +60,13 @@ export const PrimaryPaths = Template.bind({});
 PrimaryPaths.args = {
   type: "Paths",
   elements: Array(4)
-  .fill()
-  .map(() => ({
-    reqMet: Faker.datatype.boolean(),
-    toLocationId: Faker.lorem.word(),
-    name: Faker.address.city(),
-    description: Faker.lorem.sentences(),
-    reqMet: Faker.datatype.boolean(),
-    setLocation: () => {},
-  })),
-};
-
-/*
-  paths: Array(4)
     .fill()
     .map(() => ({
       reqMet: Faker.datatype.boolean(),
       toLocationId: Faker.lorem.word(),
       name: Faker.address.city(),
       description: Faker.lorem.sentences(),
-      showBlocked: Faker.datatype.boolean(),
+      reqMet: Faker.datatype.boolean(),
+      setLocation: () => {},
     })),
-  setLocation: () => {},
-  addEvent: () => {},
-  addItem: () => {},
-  toggleShowBlockedState: () => {},
 };
-*/
-/*
-export const Empty = Template.bind({});
-Empty.args = {
-  name: Faker.address.city(),
-  description: Faker.lorem.sentences(),
-  toggleShowBlockedState: () => {},
-};
-*/

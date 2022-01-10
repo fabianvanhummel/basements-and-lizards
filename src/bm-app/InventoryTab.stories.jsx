@@ -47,8 +47,8 @@ Primary.args = {
       locationIdState: 1,
       changeLog: null,
       happenedEvents: [],
-      inventoryItems: [1,2,3],
+      inventoryItems: [1, 2, 3],
     },
-    setGameState: () => {} 
+    setGameState: () => {},
   },
 };
