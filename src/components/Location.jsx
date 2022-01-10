@@ -1,8 +1,5 @@
-import { Event } from "./Event";
-import { Item } from "./Item";
-import { Path } from "./Path";
-import { NPC } from "./NPC";
 import { ButtonToggleBlocked } from "../components/Buttons";
+import { ElementList } from "../components/Elements";
 
 export const Location = ({
   name,
@@ -28,65 +25,13 @@ export const Location = ({
 
       <p className="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
 
-      {events && (
-        <div className="mt-4">
-          <span className="text-sm font-light text-gray-600 dark:text-gray-400">
-            Events
-          </span>
-          <ul>
-            {events.map((event, index) => (
-              <li key={index} className="mt-2">
-                <Event {...event} />
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {events && <ElementList type="Events" elements={events} />}
 
-      {items && (
-        <div className="mt-4">
-          <span className="text-sm font-light text-gray-600 dark:text-gray-400">
-            Items
-          </span>
-          <ul>
-            {items.map((item, index) => (
-              <li key={index} className="mt-2">
-                <Item {...item} />
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {items && <ElementList type="Items" elements={items} />}
 
-      {npcs && (
-        <div className="mt-4">
-          <span className="text-sm font-light text-gray-600 dark:text-gray-400">
-            NPCs
-          </span>
-          <ul>
-            {npcs.map((npc, index) => (
-              <li key={index} className="mt-2">
-                <NPC {...npc} />
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {npcs && <ElementList type="Npcs" elements={npcs} />}
 
-      {paths && (
-        <div className="mt-4">
-          <span className="text-sm font-light text-gray-600 dark:text-gray-400">
-            Paths
-          </span>
-          <ul>
-            {paths.map((path, index) => (
-              <li key={index} className="mt-2">
-                <Path {...path} />
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {paths && <ElementList type="Paths" elements={paths} />}
     </div>
   );
 };

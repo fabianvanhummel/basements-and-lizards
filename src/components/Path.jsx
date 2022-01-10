@@ -1,5 +1,5 @@
-import { Event } from "./Event";
 import { DefaultButton } from "../components/Buttons";
+import { ElementList } from "../components/Elements";
 
 export const Path = ({
   reqMet,
@@ -30,15 +30,7 @@ export const Path = ({
         disabled={!reqMet}
       />
 
-      {events && (
-        <ul className="mt-4">
-          {events.map((event, index) => (
-            <li key={index} className="mt-2">
-              <Event {...event} />
-            </li>
-          ))}
-        </ul>
-      )}
+      {events && <ElementList type="Events" elements={events} />}
     </div>
   );
 };

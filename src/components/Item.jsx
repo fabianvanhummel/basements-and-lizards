@@ -1,5 +1,5 @@
-import { Event } from "./Event";
 import { DefaultButton } from "../components/Buttons";
+import { ElementList } from "../components/Elements";
 
 export const Item = ({
   id,
@@ -24,39 +24,11 @@ export const Item = ({
     <p className="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
 
     {inventoryItem ? (
-      <div>
-        {events && (
-          <div className="mt-4">
-            <span className="text-sm font-light text-gray-600 dark:text-gray-400">
-              Events
-            </span>
-            <ul>
-              {events.map((event, index) => (
-                <li key={index} className="mt-2">
-                  <Event {...event} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
+      <div>{events && <ElementList type="Events" elements={events} />}</div>
     ) : !isPresent ? (
       <div>
         this item was looted
-        {events && (
-          <div className="mt-4">
-            <span className="text-sm font-light text-gray-600 dark:text-gray-400">
-              Events
-            </span>
-            <ul>
-              {events.map((event, index) => (
-                <li key={index} className="mt-2">
-                  <Event {...event} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        {events && <ElementList type="Events" elements={events} />}
       </div>
     ) : (
       <DefaultButton
