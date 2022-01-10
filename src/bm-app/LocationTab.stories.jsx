@@ -25,5 +25,6 @@ Primary.args = {
       happenedEvents: [],
       inventoryItems: [],
     },
+    setGameState: () => {}
   },
 };
