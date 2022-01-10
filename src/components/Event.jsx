@@ -1,3 +1,5 @@
+import { DefaultButton } from "../components/Buttons";
+
 export const Event = ({
   id,
   name,
@@ -7,6 +9,9 @@ export const Event = ({
   message,
   addEvent,
 }) => {
+  let onClick = () => {
+    addEvent(id)
+  }
   return (
     <div className="max-w-2xl px-8 py-4 mx-auto bg-blue-50 rounded-lg shadow-md dark:bg-gray-800">
       <div className="flex items-center justify-between">
@@ -23,15 +28,12 @@ export const Event = ({
       {didHappen ? (
         <p>{message}</p>
       ) : (
-        <button
-          onClick={() => {
-            addEvent(id);
-          }}
-          disabled={!reqMet}
-          className="mt-2 px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80 disabled:opacity-50"
-        >
-          Mark event as happened
-        </button>
+        <DefaultButton
+        buttonText = "Mark event as happened"
+        onClick = {onClick}
+        isDisabled = {!reqMet}
+        />
+        
       )}
     </div>
   );
