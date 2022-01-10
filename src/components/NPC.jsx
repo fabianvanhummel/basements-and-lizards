@@ -82,7 +82,7 @@ export const NPC = ({
           onClick={() => {
             setConversationStarted(!conversationStarted);
           }}
-          disabled={!reqMet}
+          isDisabled={!reqMet}
         />
       ) : (
         <div>
