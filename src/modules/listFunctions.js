@@ -28,9 +28,6 @@ const getEventList = (book, stateObject, eventIds) =>
 // Location
 
 export const checkOverride = (book, gameState, locationId) => {
-  console.log("book: ", book);
-  console.log("gameState: ", gameState);
-  console.log("locationId: ", locationId);
   if (!book.locations[locationId].override) return locationId;
   const override = book.locations[locationId].override.find((override) =>
     checkRequirements(gameState, override.requirements)

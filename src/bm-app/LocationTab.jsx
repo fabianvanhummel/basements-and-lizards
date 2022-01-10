@@ -1,5 +1,6 @@
 import React from "react";
 import { Location } from "../components/Location";
+
 import {
   makeLocationPathList,
   makeLocationEventList,
@@ -9,6 +10,7 @@ import {
 } from "../modules/listFunctions";
 
 export const LocationTab = ({ toggleShowBlockedState, book, stateObject }) => {
+
   let locationId = checkOverride(
     book,
     stateObject.gameState,
