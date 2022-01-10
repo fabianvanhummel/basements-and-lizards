@@ -58,3 +58,22 @@ export const ElementList = ({ type, elements }) => {
     )
   );
 };
+
+export const ElementHeader = ({ title, tag, color }) => {
+  return (
+    <div className="flex items-center justify-between">
+      <h1 className="text-xl font-bold text-gray-700 dark:text-white">
+        {title}
+      </h1>
+      <div
+        className={
+          "px-3 py-1 text-sm font-bold text-gray-100 bg-" +
+          color +
+          "-600 rounded"
+        }
+      >
+        {tag}
+      </div>
+    </div>
+  );
+};
