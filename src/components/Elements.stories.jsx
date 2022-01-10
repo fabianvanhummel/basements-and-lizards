@@ -1,20 +1,19 @@
 import React from "react";
 import Faker from "faker";
-import { Location } from "./Location";
+import { ElementList } from "./Elements";
 
 export default {
-  title: "Components/Location",
-  component: Location,
+  title: "Components/Elements",
+  component: ElementList,
 };
 
-const Template = (args) => <Location {...args} />;
+const Template = (args) => <ElementList {...args} />;
 
-export const Primary = Template.bind({});
+export const PrimaryEvents = Template.bind({});
 // Note: this is not what the actual data structure is like.
-Primary.args = {
-  name: Faker.address.city(),
-  description: Faker.lorem.sentences(),
-  events: Array(5)
+PrimaryEvents.args = {
+  elementType: "Events",
+  elements: Array(5)
     .fill()
     .map(() => ({
       name: Faker.lorem.word(),
@@ -25,6 +24,8 @@ Primary.args = {
       showBlocked: Faker.datatype.boolean(),
       addEvent: () => {}
     })),
+};
+/*
   items: Array(3)
     .fill()
     .map(() => ({
@@ -52,10 +53,12 @@ Primary.args = {
   addItem: () => {},
   toggleShowBlockedState: () => {},
 };
-
+*/
+/*
 export const Empty = Template.bind({});
 Empty.args = {
   name: Faker.address.city(),
   description: Faker.lorem.sentences(),
   toggleShowBlockedState: () => {},
 };
+*/

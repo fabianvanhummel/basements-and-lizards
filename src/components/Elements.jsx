@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { Event } from "./Event";
 import { Path } from "./Path";
 import { Item } from "./Item";
 import { NPC } from "./NPC";
+import { NewButtonToggleBlocked } from "./Buttons";
 
 export const ElementList = ({ type, elements }) => {
+  const [showBlockedState, setShowBlockedState] = useState(false);
   let elementList;
   switch (type) {
     case "Events":
@@ -42,8 +45,12 @@ export const ElementList = ({ type, elements }) => {
   return (
     elementList && (
       <div className="mt-4">
-        <span className="text-sm font-light text-gray-600 dark:text-gray-400">
+        <span className="text-sm font-light text-gray-600 dark:text-gray-400 flex items-center justify-between">
           {type}
+          <NewButtonToggleBlocked
+            showBlockedState={showBlockedState}
+            setShowBlockedState={setShowBlockedState}
+          />
         </span>
         <ul>{elementList}</ul>
       </div>
