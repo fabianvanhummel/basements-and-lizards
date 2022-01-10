@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { DefaultButton } from "../components/Buttons";
 
 export const NPC = ({
   reqMet,
@@ -46,14 +47,12 @@ export const NPC = ({
             <ul>
               {conversation[conversationId].responses.map((response, index) => (
                 <li key={index} className="mt-2">
-                  <button
+                  <DefaultButton
+                    buttonText={response.text}
                     onClick={() => {
                       handleConsequences(response.consequences);
                     }}
-                    className="disabled:opacity-50 disabled:pointer-events-none disabled:cursor-auto mt-2 px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80"
-                  >
-                    {response.text}
-                  </button>
+                  />
                 </li>
               ))}
             </ul>
@@ -78,28 +77,24 @@ export const NPC = ({
       <p className="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
 
       {!conversationStarted ? (
-        <button
-          disabled={!reqMet}
+        <DefaultButton
+          buttonText={"Approach " + name}
           onClick={() => {
             setConversationStarted(!conversationStarted);
           }}
-          className="disabled:opacity-50 disabled:pointer-events-none disabled:cursor-auto mt-2 px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80"
-        >
-          {"Approach " + name}
-        </button>
+          disabled={!reqMet}
+        />
       ) : (
         <div>
           {conversationHandler()}
           <div className="text-right">
-            <button
+            <DefaultButton
+              buttonText={"End conversation"}
               onClick={() => {
                 setConversationStarted(!conversationStarted);
                 setConversationId("initial");
               }}
-              className="disabled:opacity-50 disabled:pointer-events-none disabled:cursor-auto mt-2 px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80"
-            >
-              End conversation
-            </button>
+            />
           </div>
         </div>
       )}

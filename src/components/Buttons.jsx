@@ -1,4 +1,4 @@
-export const DefaultButton = ({ buttonText, onClick, isDisabled }) => {
+export const DefaultButton = ({ buttonText, onClick, isDisabled = false }) => {
   return (
     <button
       onClick={() => {

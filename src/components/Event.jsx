@@ -9,9 +9,6 @@ export const Event = ({
   message,
   addEvent,
 }) => {
-  let onClick = () => {
-    addEvent(id)
-  }
   return (
     <div className="max-w-2xl px-8 py-4 mx-auto bg-blue-50 rounded-lg shadow-md dark:bg-gray-800">
       <div className="flex items-center justify-between">
@@ -29,11 +26,12 @@ export const Event = ({
         <p>{message}</p>
       ) : (
         <DefaultButton
-        buttonText = "Mark event as happened"
-        onClick = {onClick}
-        isDisabled = {!reqMet}
+          buttonText="Mark event as happened"
+          onClick={() => {
+            addEvent(id);
+          }}
+          isDisabled={!reqMet}
         />
-        
       )}
     </div>
   );
