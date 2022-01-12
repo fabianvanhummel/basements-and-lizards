@@ -11,7 +11,7 @@ const Template = (args) => <InventoryTab {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  items: Array(2)
+  inventoryItems: Array(2)
     .fill()
     .map(() => ({
       inventoryItem: true,
@@ -30,8 +30,10 @@ Primary.args = {
             .map(() => ({
               name: Faker.lorem.word(),
               description: Faker.lorem.words(),
+              reqMet: Faker.datatype.boolean(),
               didHappen: Faker.datatype.boolean(),
               message: Faker.lorem.sentences(),
+              addEvent: () => {},
             })),
         }))
     ),

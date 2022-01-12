@@ -23,6 +23,7 @@ Primary.args = {
       message: Faker.lorem.sentences(),
       reqMet: Faker.datatype.boolean(),
       showBlocked: Faker.datatype.boolean(),
+      addEvent: () => {},
     })),
   items: Array(3)
     .fill()
