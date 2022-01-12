@@ -49,7 +49,7 @@ export const NPC = ({
               {conversation[conversationId].responses.map((response, index) => (
                 <li key={index} className="mt-2">
                   <DefaultButton
-                    buttonText={response.text}
+                    children={response.text}
                     onClick={() => {
                       handleConsequences(response.consequences);
                     }}
@@ -73,7 +73,7 @@ export const NPC = ({
 
       {!conversationStarted ? (
         <DefaultButton
-          buttonText={"Approach " + name}
+          children={"Approach " + name}
           onClick={() => {
             setConversationStarted(!conversationStarted);
           }}
@@ -84,7 +84,7 @@ export const NPC = ({
           {conversationHandler()}
           <div className="text-right">
             <DefaultButton
-              buttonText={"End conversation"}
+              children={"End conversation"}
               onClick={() => {
                 setConversationStarted(!conversationStarted);
                 setConversationId("initial");

@@ -22,7 +22,7 @@ export const Item = ({
       </div>
     ) : (
       <DefaultButton
-        buttonText={"Pick up " + name}
+        children={"Pick up " + name}
         onClick={() => {
           addItem(id);
         }}

@@ -20,7 +20,7 @@ export const Event = ({
         <p>{message}</p>
       ) : (
         <DefaultButton
-          buttonText="Mark event as happened"
+          children="Mark event as happened"
           onClick={() => {
             addEvent(id);
           }}

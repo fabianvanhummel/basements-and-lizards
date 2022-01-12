@@ -13,7 +13,7 @@ const ButtonToggleBlockedTemplate = (args) => <ButtonToggleBlocked {...args} />;
 
 export const DefaultButtonPrimary = DefaultButtonTemplate.bind({});
 DefaultButtonPrimary.args = {
-  buttonText: Faker.lorem.words(),
+  children: Faker.lorem.words(),
   onClick: () => {},
   isDisabled: false,
 };

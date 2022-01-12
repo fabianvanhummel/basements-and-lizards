@@ -16,7 +16,7 @@ export const Path = ({
       <p className="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
 
       <DefaultButton
-        buttonText={"Follow this path to " + toLocationId}
+        children={"Follow this path to " + toLocationId}
         onClick={() => {
           setLocation(toLocationId);
         }}
