@@ -109,7 +109,6 @@ export const BMApp = ({ book }) => {
   // Check if the location has overrides and if so, checks if any requirements are met.
   // Recursively checks new location if so, or just returns the value if not.
   const checkOverride = (locationId) => {
-    console.log(gameState)
     if (!book.locations[locationId].override) return locationId;
     const override = book.locations[locationId].override.find((override) =>
       checkRequirements(override.requirements)
@@ -172,7 +171,7 @@ export const BMApp = ({ book }) => {
     }))
 
   return (
-    <div className="fade-in-1s">
+    <div className="fade-in-1s h-full">
     <BrowserRouter>
       <nav className="bg-white shadow dark:bg-gray-800">
         <div className="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
@@ -234,7 +233,7 @@ export const BMApp = ({ book }) => {
       </nav>
 
       <Routes>
-        <Route path="/" element={<OverviewTab />} />
+        <Route path="/" element={<OverviewTab book={book} gameState={gameState} gameStateHistory={gameStateHistory} />} />
 
         <Route
           path="/location"
