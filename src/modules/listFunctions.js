@@ -1,6 +1,37 @@
 import { actionAddEvent, actionSetLocation, actionAddItem } from "./actions";
 import { checkRequirements } from "./requirements";
 
+// EXPORTS
+
+// Location
+export const getLocation = (book, gameState, setGameState) => {
+  let locationId = checkOverride(book, gameState, gameState.locationIdState);
+  return {
+    name: book.locations[locationId].name,
+    description: book.locations[locationId].description,
+    events: makeLocationEventList(book, gameState, setGameState, locationId),
+    items: makeLocationItemList(book, gameState, setGameState, locationId),
+    npcs: makeLocationNpcList(book, gameState, setGameState, locationId),
+    paths: makeLocationPathList(book, gameState, setGameState, locationId),
+  };
+};
+
+// Inventory
+export const makeInventoryItemList = (book, gameState, setGameState) => {
+  return (
+    gameState.inventoryItems &&
+    gameState.inventoryItems.map((itemId) => ({
+      ...book.items[itemId],
+      events: getEventList(
+        book,
+        gameState,
+        setGameState,
+        book.items[itemId].events
+      ),
+    }))
+  );
+};
+
 // Helpers
 const getEvent = (book, gameState, setGameState, eventId) => {
   const addEvent = (id) => {
@@ -9,22 +40,19 @@ const getEvent = (book, gameState, setGameState, eventId) => {
   return {
     id: eventId,
     didHappen: gameState.happenedEvents.includes(eventId),
-    reqMet: checkRequirements(
-      gameState,
-      book.events[eventId].requirements
-    ),
+    reqMet: checkRequirements(gameState, book.events[eventId].requirements),
     addEvent,
     ...book.events[eventId],
   };
 };
 
 const getEventList = (book, gameState, setGameState, eventIds) =>
-  eventIds && eventIds.map((eventId) => getEvent(book, gameState, setGameState, eventId));
+  eventIds &&
+  eventIds.map((eventId) => getEvent(book, gameState, setGameState, eventId));
 
-// EXPORTED
 // Location
 
-export const checkOverride = (book, gameState, locationId) => {
+const checkOverride = (book, gameState, locationId) => {
   if (!book.locations[locationId].override) return locationId;
   const override = book.locations[locationId].override.find((override) =>
     checkRequirements(gameState, override.requirements)
@@ -33,9 +61,7 @@ export const checkOverride = (book, gameState, locationId) => {
   return locationId;
 };
 
-// List makers
-
-export const makeLocationPathList = (book, gameState, setGameState, locationId) => {
+const makeLocationPathList = (book, gameState, setGameState, locationId) => {
   const setLocation = (id) => {
     actionSetLocation(gameState, setGameState, id);
   };
@@ -54,11 +80,16 @@ export const makeLocationPathList = (book, gameState, setGameState, locationId) 
   );
 };
 
-export const makeLocationEventList = (book, gameState, setGameState, locationId) => {
-  return getEventList(book, gameState, setGameState, book.locations[locationId].events);
+const makeLocationEventList = (book, gameState, setGameState, locationId) => {
+  return getEventList(
+    book,
+    gameState,
+    setGameState,
+    book.locations[locationId].events
+  );
 };
 
-export const makeLocationItemList = (book, gameState, setGameState, locationId) => {
+const makeLocationItemList = (book, gameState, setGameState, locationId) => {
   const addItem = (id) => {
     actionAddItem(gameState, setGameState, id);
   };
@@ -75,7 +106,7 @@ export const makeLocationItemList = (book, gameState, setGameState, locationId) 
   );
 };
 
-export const makeLocationNpcList = (book, gameState, setGameState, locationId) => {
+const makeLocationNpcList = (book, gameState, setGameState, locationId) => {
   const addEvent = (id) => {
     actionAddEvent(gameState, setGameState, id);
   };
@@ -86,22 +117,9 @@ export const makeLocationNpcList = (book, gameState, setGameState, locationId) =
     book.locations[locationId].npcs &&
     book.locations[locationId].npcs.map((npcId) => ({
       ...book.npcs[npcId],
-      reqMet: checkRequirements(
-        gameState,
-        book.npcs[npcId].requirements
-      ),
+      reqMet: checkRequirements(gameState, book.npcs[npcId].requirements),
       addEvent,
       addItem,
-    }))
-  );
-};
-
-export const makeInventoryItemList = (book, gameState, setGameState) => {
-  return (
-    gameState.inventoryItems &&
-    gameState.inventoryItems.map((itemId) => ({
-      ...book.items[itemId],
-      events: getEventList(book, gameState, setGameState, book.items[itemId].events),
     }))
   );
 };
