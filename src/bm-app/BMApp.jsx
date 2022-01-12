@@ -109,7 +109,6 @@ export const BMApp = ({ book }) => {
   // Check if the location has overrides and if so, checks if any requirements are met.
   // Recursively checks new location if so, or just returns the value if not.
   const checkOverride = (locationId) => {
-    console.log(gameState)
     if (!book.locations[locationId].override) return locationId;
     const override = book.locations[locationId].override.find((override) =>
       checkRequirements(override.requirements)
