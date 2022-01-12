@@ -53,7 +53,16 @@ export const ElementList = ({ type, elements }) => {
             setShowBlockedState={setShowBlockedState}
           />
         </span>
-        <ul>{elementList}</ul>
+        <ul>
+          {elementList.map((element, index) => (
+            <li key={index} className="mt-2">
+              {type === "Events" && <Event {...element} />}
+              {type === "Paths" && <Path {...element} />}
+              {type === "Items" && <Item {...element} />}
+              {type === "Npcs" && <NPC {...element} />}
+            </li>
+          ));
+        </ul>
       </div>
     )
   );
