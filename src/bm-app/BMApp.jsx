@@ -13,11 +13,6 @@ export const BMApp = ({ book }) => {
     inventoryItems: [],
   });
 
-  const stateObject = {
-    gameState,
-    setGameState,
-  };
-
   // Rework vars naar states
   const [gameStateHistory, setGameStateHistory] = useState([]);
 
@@ -114,12 +109,24 @@ export const BMApp = ({ book }) => {
 
         <Route
           path="/location"
-          element={<LocationTab book={book} stateObject={stateObject} />}
+          element={
+            <LocationTab
+              book={book}
+              gameState={gameState}
+              setGameState={setGameState}
+            />
+          }
         />
 
         <Route
           path="/inventory"
-          element={<InventoryTab book={book} stateObject={stateObject} />}
+          element={
+            <InventoryTab
+              book={book}
+              gameState={gameState}
+              setGameState={setGameState}
+            />
+          }
         />
 
         <Route

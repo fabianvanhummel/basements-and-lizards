@@ -1,24 +1,24 @@
 // Actions
-export const actionAddEvent = (stateObject, eventId) => {
-  stateObject.setGameState({
-    ...stateObject.gameState,
-    happenedEvents: [...stateObject.gameState.happenedEvents, eventId],
+export const actionAddEvent = (gameState, setGameState, eventId) => {
+  setGameState({
+    ...gameState,
+    happenedEvents: [...gameState.happenedEvents, eventId],
     changeLog: "event-happened",
   });
 };
 
-export const actionSetLocation = (stateObject, locationId) => {
-  stateObject.setGameState({
-    ...stateObject.gameState,
+export const actionSetLocation = (gameState, setGameState, locationId) => {
+  setGameState({
+    ...gameState,
     locationIdState: locationId,
     changeLog: "location-swap",
   });
 };
 
-export const actionAddItem = (stateObject, itemId) => {
-  stateObject.setGameState({
-    ...stateObject.gameState,
-    inventoryItems: [...stateObject.gameState.inventoryItems, itemId],
+export const actionAddItem = (gameState, setGameState, itemId) => {
+  setGameState({
+    ...gameState,
+    inventoryItems: [...gameState.inventoryItems, itemId],
     changeLog: "item-added",
   });
 };

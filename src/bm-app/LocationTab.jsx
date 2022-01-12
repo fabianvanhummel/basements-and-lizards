@@ -9,11 +9,11 @@ import {
   checkOverride,
 } from "../modules/listFunctions";
 
-export const LocationTab = ({ book, stateObject }) => {
+export const LocationTab = ({ book, gameState, setGameState }) => {
   let locationId = checkOverride(
     book,
-    stateObject.gameState,
-    stateObject.gameState.locationIdState
+    gameState,
+    gameState.locationIdState
   );
   return (
     <div className="p-4">
@@ -23,10 +23,15 @@ export const LocationTab = ({ book, stateObject }) => {
       <Location
         name={book.locations[locationId].name}
         description={book.locations[locationId].description}
-        events={makeLocationEventList(book, stateObject, locationId)}
-        items={makeLocationItemList(book, stateObject, locationId)}
-        npcs={makeLocationNpcList(book, stateObject, locationId)}
-        paths={makeLocationPathList(book, stateObject, locationId)}
+        events={makeLocationEventList(
+          book,
+          gameState,
+          setGameState,
+          locationId
+        )}
+        items={makeLocationItemList(book, gameState, setGameState, locationId)}
+        npcs={makeLocationNpcList(book, gameState, setGameState, locationId)}
+        paths={makeLocationPathList(book, gameState, setGameState, locationId)}
       />
     </div>
   );
