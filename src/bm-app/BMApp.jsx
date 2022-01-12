@@ -12,7 +12,7 @@ export const BMApp = ({ book }) => {
   // Create base gamestate. This state is used to track the current location of the party, the obtained items and the happened events. For now the change that occurred to reach the current state is also saved, this might be refactored in the future.
   const [gameState, setGameState] = useState(
     {
-      locationIdState: book["start-location"],
+      locationIdState: book["initialLocation"],
       changeLog: 'location-swap',
       happenedEvents: [],
       inventoryItems: []
@@ -109,6 +109,7 @@ export const BMApp = ({ book }) => {
   // Check if the location has overrides and if so, checks if any requirements are met.
   // Recursively checks new location if so, or just returns the value if not.
   const checkOverride = (locationId) => {
+    console.log(gameState)
     if (!book.locations[locationId].override) return locationId;
     const override = book.locations[locationId].override.find((override) =>
       checkRequirements(override.requirements)
