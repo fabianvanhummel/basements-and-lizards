@@ -7,6 +7,7 @@ import { InventoryTab } from "./InventoryTab";
 import { HistoryTab } from "./HistoryTab";
 
 export const BMApp = ({ book }) => {
+  const [showBlockedState, setShowBlockedState] = useState(false);
 
   // Create base gamestate. This state is used to track the current location of the party, the obtained items and the happened events. For now the change that occurred to reach the current state is also saved, this might be refactored in the future.
   const [gameState, setGameState] = useState(
@@ -25,7 +26,7 @@ export const BMApp = ({ book }) => {
 
   // History: save the old state in history array
   function saveState(currentState) {
-    setGameStateHistory([...gameStateHistory, [currentState]])
+    setGameStateHistory([...gameStateHistory, [currentState]]);
   }
 
   // Revert to an older gamestate that has been saved in the gameStateHistory array. Changes both the history (slices off the parts that are reverted) and the current gamestate.
@@ -39,19 +40,19 @@ export const BMApp = ({ book }) => {
     setGameState({
       ...gameState,
       locationIdState: locationId,
-      changeLog: 'location-swap'
-    })
-    saveState(gameState)
-  }
+      changeLog: "location-swap",
+    });
+    saveState(gameState);
+  };
 
   // Add a happened event to the gameState
   const addEvent = (eventId) => {
     setGameState({
       ...gameState,
       happenedEvents: [...gameState.happenedEvents, eventId],
-      changeLog: 'event-happened'
-    })
-    saveState(gameState)
+      changeLog: "event-happened",
+    });
+    saveState(gameState);
   };
 
   // Add an obtained item to the gameState
@@ -59,54 +60,116 @@ export const BMApp = ({ book }) => {
     setGameState({
       ...gameState,
       inventoryItems: [...gameState.inventoryItems, itemId],
-      changeLog: 'item-added'
-    })
-    saveState(gameState)
+      changeLog: "item-added",
+    });
+    saveState(gameState);
   };
 
-  // Determine paths belonging to current location
-  const locationPaths = book.locations[gameState.locationIdState].paths.map((path) => {
+  const toggleShowBlockedState = () => {
+    setShowBlockedState(!showBlockedState);
+  };
+
+  const checkRequirements = (requirements = []) => {
     let reqMet = true;
-    path.requirements &&
-      path.requirements.forEach((eventId) => {
-        if (!gameState.happenedEvents.includes(eventId)) {
-          reqMet = false;
-        }
-      }); // Checks paths for requirements
-    return {
-      reqMet: reqMet,
-      toLocationId: path.toLocationId,
-      name: path.name,
-      description: path.description,
-    };
+    let blocked = false;
+    requirements.forEach((requirement) => {
+      switch (requirement.type) {
+        case "EVENT_DID_HAPPEN":
+          if (!gameState.happenedEvents.includes(requirement.id)) {
+            reqMet = false;
+          }
+          break;
+        case "ITEM_IN_INVENTORY":
+          if (!gameState.inventoryItems.includes(requirement.id)) {
+            reqMet = false;
+          }
+          break;
+        case "EVENT_NOT_HAPPENED":
+          if (gameState.happenedEvents.includes(requirement.id)) {
+            blocked = true;
+          }
+          break;
+        default:
+          // Do Nothing
+          break;
+      }
+    });
+
+    return reqMet && !blocked;
+  };
+
+  const getEvent = (id) => ({
+    id,
+    didHappen: gameState.happenedEvents.includes(id),
+    reqMet: checkRequirements(book.events[id].requirements),
+    addEvent,
+    ...book.events[id],
   });
 
-  // Determine events belonging to current location
-  const locationEvents =
-    book.locations[gameState.locationIdState].events &&
-    book.locations[gameState.locationIdState].events.map((eventId) => ({
-      ...book.events[eventId],
-      id: eventId,
-      didHappen: gameState.happenedEvents.includes(eventId),
-    }));
+  // Check if the location has overrides and if so, checks if any requirements are met.
+  // Recursively checks new location if so, or just returns the value if not.
+  const checkOverride = (locationId) => {
+    if (!book.locations[locationId].override) return locationId;
+    const override = book.locations[locationId].override.find((override) =>
+      checkRequirements(override.requirements)
+    );
+    if (override) return checkOverride(override.byLocationId);
+    return locationId;
+  };
+
+  const locationId = checkOverride(gameState.locationIdState);
+
+  const makeEventList = (eventIds) =>
+    eventIds &&
+    eventIds
+      .map((eventId) => getEvent(eventId))
+      .filter((event) => event.reqMet || showBlockedState);
+
+  const locationPaths = book.locations[locationId].paths
+    .map((path) => {
+      return {
+        reqMet: checkRequirements(path.requirements),
+        toLocationId: path.toLocationId,
+        name: path.name,
+        description: path.description,
+        events: makeEventList(path.events),
+      };
+    })
+    .filter((path) => path.reqMet || showBlockedState);
+
+  const locationEvents = makeEventList(book.locations[locationId].events);
 
   // Determine items belonging to current location
   const locationItems =
-    book.locations[gameState.locationIdState].items &&
-    book.locations[gameState.locationIdState].items.map((item) => ({
-      ...book.items[item.id],
-      id: item.id,
-      isPresent: !gameState.inventoryItems.includes(item.id),
-      events:
-        item.events &&
-        item.events.map((eventId) => ({
-          ...book.events[eventId],
-          id: eventId,
-          didHappen: gameState.happenedEvents.includes(eventId),
-        })),
+    book.locations[locationId].items &&
+    book.locations[locationId].items
+      .map((item) => ({
+        ...book.items[item.id],
+        id: item.id,
+        isPresent: !gameState.inventoryItems.includes(item.id),
+        reqMet: checkRequirements(item.requirements),
+        events: makeEventList(item.events),
+      }))
+      .filter((item) => item.reqMet || showBlockedState);
+
+  const inventoryItems =
+    gameState.inventoryItems &&
+    gameState.inventoryItems.map((itemId) => ({
+      ...book.items[itemId],
+      id: itemId,
+      events: makeEventList(book.items[itemId].events),
+      inventoryItem: true,
+      isPresent: !gameState.inventoryItems.includes(itemId),
     }));
 
-    
+  const locationNpcs =
+    book.locations[gameState.locationIdState].npcs &&
+    book.locations[gameState.locationIdState].npcs.map((npcId) =>
+    ({
+      ...book.npcs[npcId],
+      reqMet: checkRequirements(book.npcs[npcId].requirements),
+    }))
+
   return (
     <div className="fade-in-1s">
     <BrowserRouter>
@@ -176,24 +239,34 @@ export const BMApp = ({ book }) => {
           path="/location"
           element={
             <LocationTab
-              name={book.locations[gameState.locationIdState].name}
-              description={book.locations[gameState.locationIdState].description}
+              name={book.locations[locationId].name}
+              description={book.locations[locationId].description}
               events={locationEvents}
               items={locationItems}
+              npcs={locationNpcs}
               paths={locationPaths}
               setLocation={setLocation}
               addEvent={addEvent}
               addItem={addItem}
+              toggleShowBlockedState={toggleShowBlockedState}
             />
           }
         />
 
         <Route
           path="/inventory"
-          element={<InventoryTab items={gameState.inventoryItems} addEvent={addEvent} />}
+          element={<InventoryTab items={inventoryItems} addEvent={addEvent} />}
         />
 
-        <Route path="/history" element={<HistoryTab gameStateHistory={gameStateHistory} travelBackInTime={travelBackInTime} book={book} />} />
+        <Route path="/history" 
+          element={
+            <HistoryTab 
+              gameStateHistory={gameStateHistory} 
+              travelBackInTime={travelBackInTime} 
+              book={book} 
+            />
+           } 
+          />
 
       </Routes>
     </BrowserRouter>

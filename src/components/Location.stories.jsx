@@ -14,13 +14,15 @@ export const Primary = Template.bind({});
 Primary.args = {
   name: Faker.address.city(),
   description: Faker.lorem.sentences(),
-  events: Array(3)
+  events: Array(5)
     .fill()
     .map(() => ({
       name: Faker.lorem.word(),
       description: Faker.lorem.words(),
       didHappen: Faker.datatype.boolean(),
       message: Faker.lorem.sentences(),
+      reqMet: Faker.datatype.boolean(),
+      showBlocked: Faker.datatype.boolean(),
     })),
   items: Array(3)
     .fill()
@@ -29,21 +31,30 @@ Primary.args = {
       name: Faker.commerce.productName(),
       description: Faker.commerce.productDescription(),
     })),
-  paths: Array(3)
+  npcs: Array(2)
+    .fill()
+    .map(() => ({
+      name: Faker.name.findName(),
+      description: Faker.lorem.sentences(),
+    })),
+  paths: Array(4)
     .fill()
     .map(() => ({
       reqMet: Faker.datatype.boolean(),
       toLocationId: Faker.lorem.word(),
       name: Faker.address.city(),
       description: Faker.lorem.sentences(),
+      showBlocked: Faker.datatype.boolean(),
     })),
   setLocation: () => {},
   addEvent: () => {},
   addItem: () => {},
+  toggleShowBlockedState: () => {},
 };
 
 export const Empty = Template.bind({});
 Empty.args = {
   name: Faker.address.city(),
   description: Faker.lorem.sentences(),
+  toggleShowBlockedState: () => {},
 };

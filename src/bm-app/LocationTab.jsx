@@ -6,10 +6,12 @@ export const LocationTab = ({
   description,
   events,
   items,
+  npcs,
   paths,
   setLocation,
   addEvent,
   addItem,
+  toggleShowBlockedState,
 }) => (
   <div className="p-4">
     <p className="mb-2 text-sm font-light text-gray-600 dark:text-gray-400 text-center text-3xl font-sans">
@@ -20,10 +22,12 @@ export const LocationTab = ({
       description={description}
       events={events}
       items={items}
+      npcs={npcs}
       paths={paths}
       setLocation={setLocation}
       addEvent={addEvent}
       addItem={addItem}
+      toggleShowBlockedState={toggleShowBlockedState}
     />
   </div>
 );

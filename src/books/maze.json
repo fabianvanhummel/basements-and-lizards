@@ -1,19 +1,68 @@
 {
   "name": "Maze",
   "description": "A simple maze generator from https://donjon.bin.sh/. The goal is to get from room number 1 to 7.",
-  "start-location": "1",
+  "initialLocation": "1",
+  "finalEvent": "game-end",
   "locations": {
     "1": {
       "name": "Room number 1",
-      "description": "This is a description of room number 1",
+      "description": "This is a default description of room number 1",
       "paths": [
         {
           "toLocationId": "2",
           "name": "Big door",
           "description": "Very BIG door",
           "requirements": []
+        },
+        {
+          "toLocationId": "portal-chamber",
+          "name": "Blue portal",
+          "description": "A large blue portal"
+        },
+        {
+          "toLocationId": "test-override-room",
+          "name": "Door to override",
+          "description": "Follow this path to test the override"
+        }
+      ],
+      "override": [
+        {
+          "byLocationId": "1-override",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "test-override-event" }
+          ]
         }
       ]
+    },
+    "1-override": {
+      "name": "Room number 1 (override)",
+      "description": "This is a overridden description of room number 1",
+      "paths": [
+        {
+          "toLocationId": "2",
+          "name": "Big door",
+          "description": "Very BIG door",
+          "requirements": []
+        },
+        {
+          "toLocationId": "portal-chamber",
+          "name": "Blue portal",
+          "description": "A large blue portal"
+        }
+      ]
+    },
+    "test-override-room": {
+      "name": "Test override room",
+      "description": "The event on this room should trigger a change in description in room 1.",
+      "events": ["test-override-event"],
+      "paths": [
+        {
+          "toLocationId": "1",
+          "name": "Back",
+          "description": "Go back to room 1"
+        }
+      ],
+      "npcs": ["tour-guide"]
     },
     "2": {
       "name": "Room number 2",
@@ -28,7 +77,17 @@
           "toLocationId": "4",
           "name": "Old wooden door",
           "description": "This door seems like it has seen better days",
-          "requirements": ["open-old-wooden-door-4"]
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "open-old-wooden-door-4" }
+          ]
+        },
+        {
+          "toLocationId": "4",
+          "name": "New wooden door",
+          "description": "This door seems newer than it's neighbour",
+          "requirements": [
+            { "type": "ITEM_IN_INVENTORY", "id": "new-metal-key" }
+          ]
         },
         {
           "toLocationId": "4",
@@ -39,13 +98,24 @@
           "toLocationId": "4",
           "name": "Ventilation shaft",
           "description": "It looks very dusty",
-          "requirements": ["put-on-mouth-mask"]
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "put-on-mouth-mask" }
+          ]
         }
       ],
       "items": [
         {
           "id": "old-metal-key",
           "events": ["open-old-wooden-door-4"]
+        },
+        {
+          "id": "new-metal-key"
+        },
+        {
+          "id": "random-shiny-coin",
+          "requirements": [
+            { "type": "ITEM_IN_INVENTORY", "id": "new-metal-key" }
+          ]
         }
       ]
     },
@@ -62,6 +132,11 @@
           "toLocationId": "5",
           "name": "Door",
           "description": "Shiny metal doorway"
+        },
+        {
+          "toLocationId": "portal-chamber",
+          "name": "Blue Portal",
+          "description": "A sizeable portal, with a whirling blue color"
         }
       ],
       "events": ["open-location-7"],
@@ -84,7 +159,9 @@
           "toLocationId": "2",
           "name": "Old wooden door",
           "description": "This door seems like it has seen better days",
-          "requirements": ["open-old-wooden-door-4"]
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "open-old-wooden-door-4" }
+          ]
         },
         {
           "toLocationId": "3",
@@ -95,7 +172,10 @@
           "toLocationId": "7",
           "name": "THE door",
           "description": "A very pretty door with glass and gold, you really want to go through!",
-          "requirements": ["open-location-7", "open-location-7-2"]
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "open-location-7" },
+            { "type": "EVENT_DID_HAPPEN", "id": "open-location-7-2" }
+          ]
         }
       ]
     },
@@ -112,7 +192,9 @@
           "toLocationId": "6",
           "name": "Stacked stones",
           "description": "There is a stack of stones, when peering through you see another room",
-          "requirements": ["open-location-6"]
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "open-location-6" }
+          ]
         }
       ],
       "events": ["open-location-7-2"]
@@ -130,7 +212,10 @@
           "toLocationId": "7",
           "name": "Window",
           "description": "A medium-sized open window",
-          "requirements": ["open-location-7", "open-location-7-2"]
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "open-location-7" },
+            { "type": "EVENT_DID_HAPPEN", "id": "open-location-7-2" }
+          ]
         }
       ]
     },
@@ -147,10 +232,51 @@
           "toLocationId": "6",
           "name": "Window",
           "description": "A medium-sized open window",
-          "requirements": ["open-location-6"]
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "open-location-6" }
+          ]
         }
       ],
-      "events": ["open-location-6"]
+      "events": ["open-location-6", "game-end"]
+    },
+    "portal-chamber": {
+      "name": "Portal chamber",
+      "description": "You see four portal stations, blue, green, red, and yellow. The yellow one isn't working, but the other three are. You also notice a writing on the wall: 'Follow the Ridiculously Gorgeous and Greatly Rusty Radish.'",
+      "paths": [
+        {
+          "toLocationId": "3",
+          "name": "Blue Portal"
+        },
+        {
+          "toLocationId": "portal-chamber",
+          "name": "Red Portal",
+          "events": [
+            "portal-puzzel-step-1",
+            "portal-puzzel-step-2-fail",
+            "portal-puzzel-step-3-fail",
+            "portal-puzzel-step-4",
+            "portal-puzzel-step-5"
+          ]
+        },
+        {
+          "toLocationId": "portal-chamber",
+          "name": "Green Portal",
+          "events": [
+            "portal-puzzel-step-1-fail",
+            "portal-puzzel-step-2",
+            "portal-puzzel-step-3",
+            "portal-puzzel-step-4-fail",
+            "portal-puzzel-step-5-fail"
+          ]
+        },
+        {
+          "toLocationId": "3",
+          "name": "Yellow Portal",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-5" }
+          ]
+        }
+      ]
     }
   },
   "items": {
@@ -158,13 +284,249 @@
       "name": "Old Metal Key",
       "description": "This key can be used to open the old wooden door"
     },
+    "new-metal-key": {
+      "name": "New Metal Key",
+      "description": "Having this key opens the new wooden door"
+    },
     "black-mouth-mask": {
       "name": "Black Mouth Mask",
       "description": "A black mouth mask that can be worn on your face",
       "events": ["put-on-mouth-mask"]
+    },
+    "random-shiny-coin": {
+      "name": "Shiny Coin",
+      "description": "It does nothing, but you are still happy you found it."
+    },
+    "random-crappy-ring": {
+      "name": "Crappy ring",
+      "description": "After inspecting this ring, you notice it is completely worthless, you are slightly dissapointed"
+    }
+  },
+  "npcs": {
+    "tour-guide": {
+      "name": "Tour Guide",
+      "description": "This guy seems he might know the way around town, and the maze",
+      "conversation": {
+        "initial": {
+          "npcLine": "Hello friend!",
+          "responses": [
+            {
+              "text": "Can you tell me where the exit is please?",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "describe-maze"
+                }
+              ]
+            },
+            {
+              "text": "Gimme an item plz!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "asked-item"
+                }
+              ]
+            },
+            {
+              "text": "Make it rain!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "asked-event"
+                }
+              ]
+            },
+            {
+              "text": "Sorry, no time, bye!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "end-conversation"
+                }
+              ]
+            }
+          ]
+        },
+        "asked-item": {
+          "npcLine": "Sure, you can have this ring.",
+          "responses": [
+            {
+              "text": "Thanks!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "initial"
+                },
+                {
+                  "type": "GET-ITEM",
+                  "id": "random-crappy-ring"
+                }
+              ]
+            },
+            {
+              "text": "No thanks!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "initial"
+                }
+              ]
+            },
+            {
+              "text": "Bye!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "end-conversation"
+                }
+              ]
+            }
+          ]
+        },
+        "asked-event": {
+          "npcLine": "Okay, here you go!",
+          "responses": [
+            {
+              "text": "Thanks",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "initial"
+                },
+                {
+                  "type": "EXECUTE-EVENT",
+                  "id": "make-it-rain"
+                }
+              ]
+            },
+            {
+              "text": "Bye!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "end-conversation"
+                }
+              ]
+            }
+          ]
+        },
+        "describe-maze": {
+          "npcLine": "Sure, you are in a maze. I know that this maze has at least 7 rooms. Some pathways are easily accesable, other are more difficult to enter. If you manage to reach room 7 you might find an exit.",
+          "responses": [
+            {
+              "text": "Thanks, I'll be on my way!",
+              "consequences": [
+                {
+                  "type": "CONVERSATION",
+                  "id": "end-conversation"
+                }
+              ]
+            }
+          ]
+        },
+        "end-conversation": {
+          "npcLine": "Bye, be safe!"
+        }
+      }
     }
   },
   "events": {
+    "test-override-event": {
+      "name": "Room 1 changed",
+      "description": "Because you entered this room, the description of room 1 changed."
+    },
+    "portal-puzzel-step-1": {
+      "name": "Step 1",
+      "description": "You are send back to the middle of the room, but the yellow portal station, something starts to glow."
+    },
+    "portal-puzzel-step-1-fail": {
+      "name": "Step 1",
+      "requirements": [
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-1" }
+      ],
+      "revertEvents": ["portal-puzzel-step-1-fail"],
+      "description": "Nothing interesting happened."
+    },
+    "portal-puzzel-step-2": {
+      "name": "Step 2",
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-1" }
+      ],
+      "description": "Send back again, but the glow starts to increase in size and brightness."
+    },
+    "portal-puzzel-step-2-fail": {
+      "name": "Step 2",
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-1" },
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-2" }
+      ],
+      "revertEvents": ["portal-puzzel-step-1", "portal-puzzel-step-2-fail"],
+      "description": "The glow that was there a second ago disappeared again."
+    },
+    "portal-puzzel-step-3": {
+      "name": "Step 3",
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-2" }
+      ],
+      "description": "The glow grows again, it starts to look like a portal, but too small."
+    },
+    "portal-puzzel-step-3-fail": {
+      "name": "Step 3",
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-2" },
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-3" }
+      ],
+      "revertEvents": [
+        "portal-puzzel-step-1",
+        "portal-puzzel-step-2",
+        "portal-puzzel-step-3-fail"
+      ],
+      "description": "The glow that was growing has now disappeared."
+    },
+    "portal-puzzel-step-4": {
+      "name": "Step 4",
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-3" }
+      ],
+      "description": "The portal size increases again, but isn't as large as the other portals yet."
+    },
+    "portal-puzzel-step-4-fail": {
+      "name": "Step 4",
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-3" },
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-4" }
+      ],
+      "revertEvents": [
+        "portal-puzzel-step-1",
+        "portal-puzzel-step-2",
+        "portal-puzzel-step-3",
+        "portal-puzzel-step-4-fail"
+      ],
+      "description": "The small portal grows smaller and then disappears leaving some shiny particles that dim slowly until they're gone."
+    },
+    "portal-puzzel-step-5": {
+      "name": "Step 5",
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-4" }
+      ],
+      "description": "The yellow portal now has a normal size, you can probably use it now."
+    },
+    "portal-puzzel-step-5-fail": {
+      "name": "Step 5",
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-4" },
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-5" }
+      ],
+      "revertEvents": [
+        "portal-puzzel-step-1",
+        "portal-puzzel-step-2",
+        "portal-puzzel-step-3",
+        "portal-puzzel-step-4",
+        "portal-puzzel-step-5-fail"
+      ],
+      "description": "The portal starts to pulsate faster and faster until it explodes leaving an empty portal station once again."
+    },
     "open-location-6": {
       "name": "Unlock room 6",
       "description": "Clears the way to room 6",
@@ -189,6 +551,19 @@
       "name": "Put on mouth mask",
       "description": "While wearing a mouth mask you're very safe!",
       "message": "You can now enter dusty environments!"
+    },
+    "make-it-rain": {
+      "name": "Make it rain",
+      "description": "This will make it rain!",
+      "message": "It is now raining"
+    },
+    "game-end": {
+      "name": "You won!",
+      "description": "You have reached the ending, congrats!",
+      "message": "The game is now over, you can reload the page.",
+      "requirements": [
+        { "type": "ITEM_IN_INVENTORY", "id": "random-shiny-coin" }
+      ]
     }
   }
 }
