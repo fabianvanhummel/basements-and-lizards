@@ -20,7 +20,7 @@ export const Path = ({
         onClick={() => {
           setLocation(toLocationId);
         }}
-        isDisabled={!reqMet}
+        disabled={!reqMet}
       />
 
       {events && <ElementList type="Events" elements={events} />}

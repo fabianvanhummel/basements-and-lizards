@@ -26,7 +26,7 @@ export const Item = ({
         onClick={() => {
           addItem(id);
         }}
-        isDisabled={!reqMet}
+        disabled={!reqMet}
       />
     )}
   </div>

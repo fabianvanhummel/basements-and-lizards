@@ -15,7 +15,7 @@ export const DefaultButtonPrimary = DefaultButtonTemplate.bind({});
 DefaultButtonPrimary.args = {
   children: Faker.lorem.words(),
   onClick: () => {},
-  isDisabled: false,
+  disabled: false,
 };
 
 export const ButtonToggleBlockedPrimary = ButtonToggleBlockedTemplate.bind({});
