@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../styles/splashscreen.css'
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { OverviewTab } from "./OverviewTab";
 import { LocationTab } from "./LocationTab";
@@ -8,31 +9,33 @@ import { HistoryTab } from "./HistoryTab";
 export const BMApp = ({ book }) => {
   const [showBlockedState, setShowBlockedState] = useState(false);
 
-  const [gameState, setGameState] = useState({
-    locationIdState: book["initialLocation"],
-    changeLog: "location-swap",
-    happenedEvents: [],
-    inventoryItems: [],
-  });
+  // Create base gamestate. This state is used to track the current location of the party, the obtained items and the happened events. For now the change that occurred to reach the current state is also saved, this might be refactored in the future.
+  const [gameState, setGameState] = useState(
+    {
+      locationIdState: book["start-location"],
+      changeLog: 'location-swap',
+      happenedEvents: [],
+      inventoryItems: []
+    }
+  );
 
-  // Rework vars naar states
-  const [gameStateHistory, setGameStateHistory] = useState([]);
+  // Rework vars to states
+  const [gameStateHistory, setGameStateHistory] = useState(
+    []
+  );
 
-  // History: hierin slaan we states de states op
+  // History: save the old state in history array
   function saveState(currentState) {
     setGameStateHistory([...gameStateHistory, [currentState]]);
   }
 
+  // Revert to an older gamestate that has been saved in the gameStateHistory array. Changes both the history (slices off the parts that are reverted) and the current gamestate.
   function travelBackInTime(index) {
-    setGameStateHistory(
-      gameStateHistory.slice(
-        -gameStateHistory.length,
-        -(gameStateHistory.length - index)
-      )
-    );
-    setGameState(gameStateHistory[index][0]);
+    setGameStateHistory(gameStateHistory.slice(0, gameStateHistory.length - (index+1)))
+    setGameState(gameStateHistory[gameStateHistory.length - (index + 1)][0])
   }
 
+  // Change location and save it to the gameStateHistory
   const setLocation = (locationId) => {
     setGameState({
       ...gameState,
@@ -42,7 +45,7 @@ export const BMApp = ({ book }) => {
     saveState(gameState);
   };
 
-  // Adders
+  // Add a happened event to the gameState
   const addEvent = (eventId) => {
     setGameState({
       ...gameState,
@@ -52,6 +55,7 @@ export const BMApp = ({ book }) => {
     saveState(gameState);
   };
 
+  // Add an obtained item to the gameState
   const addItem = (itemId) => {
     setGameState({
       ...gameState,
@@ -135,6 +139,7 @@ export const BMApp = ({ book }) => {
 
   const locationEvents = makeEventList(book.locations[locationId].events);
 
+  // Determine items belonging to current location
   const locationItems =
     book.locations[locationId].items &&
     book.locations[locationId].items
@@ -157,17 +162,6 @@ export const BMApp = ({ book }) => {
       isPresent: !gameState.inventoryItems.includes(itemId),
     }));
 
-  function deduceLocationHistory() {
-    var historyNames = [];
-    for (const key in gameStateHistory) {
-      historyNames.push([
-        book.locations[gameStateHistory[key][0].locationIdState].name,
-        gameStateHistory[key][0].changeLog,
-      ]);
-    }
-    return historyNames;
-  }
-
   const locationNpcs =
     book.locations[gameState.locationIdState].npcs &&
     book.locations[gameState.locationIdState].npcs.map((npcId) =>
@@ -177,6 +171,7 @@ export const BMApp = ({ book }) => {
     }))
 
   return (
+    <div className="fade-in-1s">
     <BrowserRouter>
       <nav className="bg-white shadow dark:bg-gray-800">
         <div className="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
@@ -263,17 +258,18 @@ export const BMApp = ({ book }) => {
           element={<InventoryTab items={inventoryItems} addEvent={addEvent} />}
         />
 
-        <Route
-          path="/history"
+        <Route path="/history" 
           element={
-            <HistoryTab
-              gameStateHistory={gameStateHistory}
-              travelBackInTime={travelBackInTime}
-              deduceLocationHistory={deduceLocationHistory}
+            <HistoryTab 
+              gameStateHistory={gameStateHistory} 
+              travelBackInTime={travelBackInTime} 
+              book={book} 
             />
-          }
-        />
+           } 
+          />
+
       </Routes>
     </BrowserRouter>
+    </div>
   );
 };
