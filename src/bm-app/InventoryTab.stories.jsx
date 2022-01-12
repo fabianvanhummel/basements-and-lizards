@@ -11,44 +11,31 @@ const Template = (args) => <InventoryTab {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  book: {
-    items: {
-      1: {
-        name: Faker.commerce.productName(),
-        description: Faker.commerce.productDescription(),
-      },
-      2: {
-        name: Faker.commerce.productName(),
-        description: Faker.commerce.productDescription(),
-      },
-      3: {
-        name: Faker.commerce.productName(),
-        description: Faker.commerce.productDescription(),
-        events: [1, 2],
-      },
-    },
-    events: {
-      1: {
-        name: Faker.lorem.word(),
-        description: Faker.lorem.words(),
-        reqMet: true,
-        message: Faker.lorem.sentences(),
-      },
-      2: {
-        name: Faker.lorem.word(),
-        description: Faker.lorem.words(),
-        reqMet: true,
-        message: Faker.lorem.sentences(),
-      },
-    },
-  },
-  stateObject: {
-    gameState: {
-      locationIdState: 1,
-      changeLog: null,
-      happenedEvents: [],
-      inventoryItems: [1, 2, 3],
-    },
-    setGameState: () => {},
-  },
+  inventoryItems: Array(2)
+    .fill()
+    .map(() => ({
+      inventoryItem: true,
+      name: Faker.commerce.productName(),
+      description: Faker.commerce.productDescription(),
+    }))
+    .concat(
+      Array(2)
+        .fill()
+        .map(() => ({
+          inventoryItem: true,
+          name: Faker.commerce.productName(),
+          description: Faker.commerce.productDescription(),
+          events: Array(3)
+            .fill()
+            .map(() => ({
+              name: Faker.lorem.word(),
+              description: Faker.lorem.words(),
+              reqMet: Faker.datatype.boolean(),
+              didHappen: Faker.datatype.boolean(),
+              message: Faker.lorem.sentences(),
+              addEvent: () => {},
+            })),
+        }))
+    ),
+  addEvent: () => {},
 };

@@ -4,6 +4,7 @@ import { OverviewTab } from "./OverviewTab";
 import { LocationTab } from "./LocationTab";
 import { InventoryTab } from "./InventoryTab";
 import { HistoryTab } from "./HistoryTab";
+import { makeInventoryItemList } from "../modules/listFunctions";
 
 export const BMApp = ({ book }) => {
   const [gameState, setGameState] = useState({
@@ -122,9 +123,11 @@ export const BMApp = ({ book }) => {
           path="/inventory"
           element={
             <InventoryTab
-              book={book}
-              gameState={gameState}
-              setGameState={setGameState}
+              inventoryItems={makeInventoryItemList(
+                book,
+                gameState,
+                setGameState
+              )}
             />
           }
         />
