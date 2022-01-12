@@ -1,6 +1,6 @@
 import { BMApp } from "./bm-app/BMApp";
 import maze from "./books/maze.json";
-import "./styles/splashscreen.css"
+import "./index.css"
 import { useState, useEffect } from "react"
 
 // Disable this boolean if you dont want the startup screen (please do this when testing)
@@ -31,6 +31,6 @@ export const App = () => {
     }, 5000);
   });
 
-  if (loading & doStartScreen) return <LoadingMessage />
+  if (loading && doStartScreen) return <LoadingMessage />
   return <BMApp book={maze} />
 }
