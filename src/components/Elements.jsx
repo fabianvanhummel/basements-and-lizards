@@ -10,39 +10,6 @@ export const ElementList = ({ type, elements }) => {
   let elementList = elements.filter(
     (element) => element.reqMet || showBlockedState
   );
-  switch (type) {
-    case "Events":
-      elementList = elementList.map((element, index) => (
-        <li key={index} className="mt-2">
-          <Event {...element} />
-        </li>
-      ));
-      break;
-    case "Paths":
-      elementList = elementList.map((element, index) => (
-        <li key={index} className="mt-2">
-          <Path {...element} />
-        </li>
-      ));
-      break;
-    case "Items":
-      elementList = elementList.map((element, index) => (
-        <li key={index} className="mt-2">
-          <Item {...element} />
-        </li>
-      ));
-      break;
-    case "Npcs":
-      elementList = elementList.map((element, index) => (
-        <li key={index} className="mt-2">
-          <NPC {...element} />
-        </li>
-      ));
-      break;
-    default:
-      // Do Nothing
-      break;
-  }
   return (
     elements && (
       <div className="mt-4">
@@ -61,7 +28,7 @@ export const ElementList = ({ type, elements }) => {
               {type === "Items" && <Item {...element} />}
               {type === "Npcs" && <NPC {...element} />}
             </li>
-          ));
+          ))}
         </ul>
       </div>
     )
