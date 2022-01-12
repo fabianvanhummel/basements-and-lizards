@@ -18,13 +18,11 @@ Primary.args = {
       },
     },
   },
-  stateObject: {
-    gameState: {
-      locationIdState: 1,
-      changeLog: null,
-      happenedEvents: [],
-      inventoryItems: [],
-    },
-    setGameState: () => {},
+  gameState: {
+    locationIdState: 1,
+    changeLog: null,
+    happenedEvents: [],
+    inventoryItems: [],
   },
+  setGameState: () => {},
 };
