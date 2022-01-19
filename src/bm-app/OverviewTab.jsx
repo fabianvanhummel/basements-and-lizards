@@ -48,9 +48,9 @@ export const OverviewTab = ({ book, gameState, gameStateHistory }) => {
         <div className="mx-4 bg-yellow-50 rounded-lg shadow-md mt-4 py-4">
           <div className="font-sans text-3xl">Party</div>
           <div className="w-5/6 mx-auto my-4">
-            {book.characters.map((character) => {
+            {book.characters.map((character, index) => {
               return (
-                <div className="rounded-md border-2 border-orange-200	w-full my-2 grid grid-cols-3 font-bold">
+                <div key={index} className="rounded-md border-2 border-orange-200	w-full my-2 grid grid-cols-3 font-bold">
                   <div className="border-2 border-orange-200 items-center m-auto w-full">
                     <img
                       className="m-auto"
@@ -68,8 +68,8 @@ export const OverviewTab = ({ book, gameState, gameStateHistory }) => {
                   <div className="border-2 border-orange-200">
                     <p className="text-lg">Items:</p>
                       {character.items.length !== 0
-                        ? character.items.map((item) => {
-                            return <p>{item}</p>;
+                        ? character.items.map((item, index) => {
+                            return <p key={index}>{item}</p>;
                           })
                         : "Nothing"}
                   </div>

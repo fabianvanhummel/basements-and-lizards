@@ -30,87 +30,6 @@ export const BMApp = ({ book }) => {
     setGameState(gameStateHistory[gameStateHistory.length - (index + 1)][0])
   }
 
-  // Change location and save it to the gameStateHistory
-  const setLocation = (locationId) => {
-    setGameState({
-      ...gameState,
-      locationIdState: locationId,
-      changeLog: "location-swap",
-    });
-    saveState(gameState);
-  };
-
-  // Add a happened event to the gameState
-  const addEvent = (eventId) => {
-    setGameState({
-      ...gameState,
-      happenedEvents: [...gameState.happenedEvents, eventId],
-      changeLog: "event-happened",
-    });
-    saveState(gameState);
-  };
-
-  // Add an obtained item to the gameState
-  const addItem = (itemId) => {
-    setGameState({
-      ...gameState,
-      inventoryItems: [...gameState.inventoryItems, itemId],
-      changeLog: "item-added",
-    });
-    saveState(gameState);
-  };
-
-  const toggleShowBlockedState = () => {
-    setShowBlockedState(!showBlockedState);
-  };
-
-  const checkRequirements = (requirements = []) => {
-    let reqMet = true;
-    let blocked = false;
-    requirements.forEach((requirement) => {
-      switch (requirement.type) {
-        case "EVENT_DID_HAPPEN":
-          if (!gameState.happenedEvents.includes(requirement.id)) {
-            reqMet = false;
-          }
-          break;
-        case "ITEM_IN_INVENTORY":
-          if (!gameState.inventoryItems.includes(requirement.id)) {
-            reqMet = false;
-          }
-          break;
-        case "EVENT_NOT_HAPPENED":
-          if (gameState.happenedEvents.includes(requirement.id)) {
-            blocked = true;
-          }
-          break;
-        default:
-          // Do Nothing
-          break;
-      }
-    });
-
-    return reqMet && !blocked;
-  };
-
-  const getEvent = (id) => ({
-    id,
-    didHappen: gameState.happenedEvents.includes(id),
-    reqMet: checkRequirements(book.events[id].requirements),
-    addEvent,
-    ...book.events[id],
-  });
-
-  // Check if the location has overrides and if so, checks if any requirements are met.
-  // Recursively checks new location if so, or just returns the value if not.
-  const checkOverride = (locationId) => {
-    if (!book.locations[locationId].override) return locationId;
-    const override = book.locations[locationId].override.find((override) =>
-      checkRequirements(override.requirements)
-    );
-    setGameState(gameStateHistory[gameStateHistory.length - (index + 1)][0]);
-  }
-
   return (
     <div className="fade-in-1s">
       <BrowserRouter>
@@ -174,7 +93,7 @@ export const BMApp = ({ book }) => {
         </nav>
 
         <Routes>
-          <Route path="/" element={<OverviewTab />} />
+          <Route path="/" element={<OverviewTab book={book} gameState={gameState} gameStateHistory={gameStateHistory}/>} />
 
           <Route
             path="/location"
