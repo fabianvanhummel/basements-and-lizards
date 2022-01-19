@@ -6,3 +6,8 @@
   -webkit-animation: fadeIn 1s linear forwards;
   animation: fadeIn 1s linear forwards;
 }
+
+html, 
+body {
+    height: 100%;
+}

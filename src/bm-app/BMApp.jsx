@@ -26,10 +26,8 @@ export const BMApp = ({ book }) => {
 
   // Revert to an older gamestate that has been saved in the gameStateHistory array. Changes both the history (slices off the parts that are reverted) and the current gamestate.
   function travelBackInTime(index) {
-    setGameStateHistory(
-      gameStateHistory.slice(0, gameStateHistory.length - (index + 1))
-    );
-    setGameState(gameStateHistory[gameStateHistory.length - (index + 1)][0]);
+    setGameStateHistory(gameStateHistory.slice(0, gameStateHistory.length - (index+1)))
+    setGameState(gameStateHistory[gameStateHistory.length - (index + 1)][0])
   }
 
   return (
@@ -95,7 +93,7 @@ export const BMApp = ({ book }) => {
         </nav>
 
         <Routes>
-          <Route path="/" element={<OverviewTab />} />
+          <Route path="/" element={<OverviewTab book={book} gameState={gameState} gameStateHistory={gameStateHistory}/>} />
 
           <Route
             path="/location"
