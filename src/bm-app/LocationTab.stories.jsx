@@ -6,7 +6,23 @@ export default {
   component: LocationTab,
 };
 
-const Template = (args) => <LocationTab />;
+const Template = (args) => <LocationTab {...args} />;
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  toggleShowBlockedState: null,
+  book: {
+    locations: {
+      1: {
+        name: null,
+      },
+    },
+  },
+  gameState: {
+    locationIdState: 1,
+    changeLog: null,
+    happenedEvents: [],
+    inventoryItems: [],
+  },
+  setGameState: () => {},
+};
