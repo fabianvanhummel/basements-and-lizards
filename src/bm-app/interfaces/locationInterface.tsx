@@ -1,6 +1,6 @@
 export interface locationInterface {
   name: string;
-  description: "This is a default description of room number 1";
+  description: string;
   paths: pathsInterface[];    
   override: overrideInterface[];
   events: string[];
