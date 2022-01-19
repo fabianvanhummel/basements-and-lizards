@@ -568,6 +568,7 @@
   },
   "characters": [
 		{
+      "id": 1,
       "image": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Mr._Krabs.svg/1200px-Mr._Krabs.svg.png",
 			"name": "Arnoud Krabbius",
 			"race": "Half-Orc",
@@ -581,6 +582,7 @@
       ]
 		},
 		{
+      "id": 2,
       "image": "http://pngimg.com/uploads/donut/donut_PNG93.png",
 			"name": "Joey Feed'r",
 			"race": "Human",
@@ -593,6 +595,7 @@
       ]
 		},
 		{
+      "id": 3,
       "image": "http://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/75f250c2c5c4c55.png",
 			"name": "Spincent",
 			"race": "Arachnid",
