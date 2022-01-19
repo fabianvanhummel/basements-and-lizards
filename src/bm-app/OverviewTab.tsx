@@ -1,6 +1,13 @@
 import React from "react";
+import { gameStateInterface } from "./interfaces/gameState";
+import { characterInterface } from "./interfaces/characterInterface";
+import { locationInterface, requirementsInterface } from "./interfaces/locationInterface";
 
-export const OverviewTab = ({ book, gameState, gameStateHistory }) => {
+export const OverviewTab = (
+  book: any,
+  gameState: gameStateInterface,
+  gameStateHistory: any
+) => {
   return (
     <div className="text-center mt-4 w-4/6 m-auto">
       <div className="font-sans text-3xl">Welcome (back) to </div>
@@ -24,7 +31,8 @@ export const OverviewTab = ({ book, gameState, gameStateHistory }) => {
               <div className="font-bold">
                 {gameStateHistory.length !== 0
                   ? gameStateHistory.filter(
-                      (state) => state[0].changeLog === "location-swap"
+                      (state: gameStateInterface[]) =>
+                        state[0].changeLog === "location-swap"
                     ).length
                   : 1}
               </div>
@@ -38,7 +46,8 @@ export const OverviewTab = ({ book, gameState, gameStateHistory }) => {
               <div className="font-bold">
                 {gameStateHistory.length !== 0
                   ? gameStateHistory.filter(
-                      (state) => state[0].changeLog === "item-added"
+                      (state: gameStateInterface[]) =>
+                        state[0].changeLog === "item-added"
                     ).length
                   : 1}
               </div>
@@ -48,34 +57,42 @@ export const OverviewTab = ({ book, gameState, gameStateHistory }) => {
         <div className="mx-4 bg-yellow-50 rounded-lg shadow-md mt-4 py-4">
           <div className="font-sans text-3xl">Party</div>
           <div className="w-5/6 mx-auto my-4">
-            {book.characters.map((character, index) => {
-              return (
-                <div key={index} className="rounded-md border-2 border-orange-200	w-full my-2 grid grid-cols-3 font-bold">
-                  <div className="border-2 border-orange-200 items-center m-auto w-full">
-                    <img
-                      className="m-auto"
-                      src={character.image}
-                      width="100"
-                      height="120"
-                      alt=""
-                    ></img>
-                  </div>
-                  <div className="border-2 border-orange-200" key={character.id}>
-                    <p className="text-lg">{character.name}</p>
-                    <p> {character.race}</p>
-                    <p>'{character.title}'</p>
-                  </div>
-                  <div className="border-2 border-orange-200">
-                    <p className="text-lg">Items:</p>
+            {book.characters.map(
+              (character: characterInterface, index: number) => {
+                return (
+                  <div
+                    key={index}
+                    className="rounded-md border-2 border-orange-200	w-full my-2 grid grid-cols-3 font-bold"
+                  >
+                    <div className="border-2 border-orange-200 items-center m-auto w-full">
+                      <img
+                        className="m-auto"
+                        src={character.image}
+                        width="100"
+                        height="120"
+                        alt=""
+                      ></img>
+                    </div>
+                    <div
+                      className="border-2 border-orange-200"
+                      key={character.id}
+                    >
+                      <p className="text-lg">{character.name}</p>
+                      <p> {character.race}</p>
+                      <p>'{character.title}'</p>
+                    </div>
+                    <div className="border-2 border-orange-200">
+                      <p className="text-lg">Items:</p>
                       {character.items.length !== 0
-                        ? character.items.map((item, index) => {
+                        ? character.items.map((item: string, index: number) => {
                             return <p key={index}>{item}</p>;
                           })
                         : "Nothing"}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              }
+            )}
           </div>
         </div>
         <div className="mx-4 bg-green-50 rounded-lg shadow-md mt-4 py-4">
@@ -92,9 +109,12 @@ export const OverviewTab = ({ book, gameState, gameStateHistory }) => {
               <div className="font-bold">
                 {gameStateHistory.length !== 0
                   ? gameStateHistory
-                      .filter((state) => state[0].changeLog === "location-swap")
+                      .filter(
+                        (state: gameStateInterface[]) =>
+                          state[0].changeLog === "location-swap"
+                      )
                       .map(
-                        (state) =>
+                        (state: gameStateInterface[]) =>
                           book.locations[state[0].locationIdState].name + ", "
                       )
                   : "None"}
@@ -105,12 +125,10 @@ export const OverviewTab = ({ book, gameState, gameStateHistory }) => {
               <div className="font-bold">
                 {
                   // Here we slice off the 3 most recently happened events to show in the overview tab. The choice for 3 is arbitrary and was made by the developer himself when programming this part. The same goes for items.
-                  gameState.length !== 0
-                    ? gameState.happenedEvents.length !== 0
-                      ? gameState.happenedEvents
-                          .slice(0, 3)
-                          .map((event) => event + ", ")
-                      : "None"
+                  gameState.happenedEvents.length !== 0
+                    ? gameState.happenedEvents
+                        .slice(0, 3)
+                        .map((event) => event + ", ")
                     : "None"
                 }
               </div>
@@ -118,13 +136,11 @@ export const OverviewTab = ({ book, gameState, gameStateHistory }) => {
             <div className="font-sans text-xl mt-4">
               Latest item pickups:
               <div className="font-bold">
-                {gameState.length !== 0
-                  ? gameState.inventoryItems.length !== 0
+                {gameState.inventoryItems.length !== 0
                     ? gameState.inventoryItems
                         .slice(0, 3)
                         .map((item) => item + ", ")
-                    : "None"
-                  : "None"}
+                    : "None"}
               </div>
             </div>
           </div>
@@ -139,8 +155,8 @@ export const OverviewTab = ({ book, gameState, gameStateHistory }) => {
             <p className="mt-4">Event happens on location:</p>
             <p className="text-lg font-bold">
               {Object.values(book.locations)
-                .filter((location) => location.hasOwnProperty("events"))
-                .map((location) =>
+                .filter((location: locationInterface) => location.hasOwnProperty("events"))
+                .map((location: locationInterface) =>
                   location.events.indexOf(book.finalEvent) !== -1
                     ? location.name
                     : ""
@@ -149,7 +165,7 @@ export const OverviewTab = ({ book, gameState, gameStateHistory }) => {
             <p className="mt-4">Event has requirement(s):</p>
             <p className="text-lg font-bold">
               {book.events[book.finalEvent].requirements.map(
-                (requirement) => requirement.id
+                (requirement: requirementsInterface) => requirement.id
               )}
             </p>
           </div>
