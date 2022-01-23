@@ -5,7 +5,7 @@ export const checkRequirements = (gameState, requirements = []) => {
   requirements.forEach((requirement) => {
     switch (requirement.type) {
       case "EVENT_DID_HAPPEN":
-        if (!gameState.happenedEvents.includes(requirement.id)) {
+        if (!gameState.pastEvents.includes(requirement.id)) {
           reqMet = false;
         }
         break;
@@ -15,7 +15,7 @@ export const checkRequirements = (gameState, requirements = []) => {
         }
         break;
       case "EVENT_NOT_HAPPENED":
-        if (gameState.happenedEvents.includes(requirement.id)) {
+        if (gameState.pastEvents.includes(requirement.id)) {
           blocked = true;
         }
         break;

@@ -8,7 +8,7 @@ export const Item = ({
   name,
   description,
   events,
-  addItem,
+  handleAction,
 }) => (
   <div className="max-w-2xl px-8 py-4 mx-auto bg-yellow-50 rounded-lg shadow-md dark:bg-gray-800">
     <ElementHeader title={name} tag="Item" color="yellow" />
@@ -23,9 +23,7 @@ export const Item = ({
     ) : (
       <DefaultButton
         children={"Pick up " + name}
-        onClick={() => {
-          addItem(id);
-        }}
+        onClick={() => handleAction({ type: "TAKE_ITEM", item: id })}
         disabled={!reqMet}
       />
     )}

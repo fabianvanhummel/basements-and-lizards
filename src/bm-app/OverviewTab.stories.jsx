@@ -14,19 +14,8 @@ export const Primary = Template.bind({});
 Primary.args = {
   book: maze,
   gameState: {
-    locationIdState: maze["initialLocation"],
-    changeLog: "location-swap",
-    happenedEvents: ['event1', 'event2', 'event3'],
+    location: maze["initialLocation"],
+    pastEvents: ['event1', 'event2', 'event3'],
     inventoryItems: ['item1', 'item2', 'item3'],
   },
-  gameStateHistory: Array(1)
-    .fill()
-    .map(() => [
-      {
-        locationIdState: maze["initialLocation"],
-        changeLog: "location-swap",
-        happenedEvents: Faker.commerce.productName(),
-        inventoryItems: Faker.commerce.productName(),
-      },
-    ]),
 };

@@ -9,21 +9,6 @@ export default {
 
 const Template = (args) => <ElementList {...args} />;
 
-export const PrimaryEvents = Template.bind({});
-PrimaryEvents.args = {
-  type: "Events",
-  elements: Array(5)
-    .fill()
-    .map(() => ({
-      name: Faker.lorem.word(),
-      description: Faker.lorem.words(),
-      didHappen: Faker.datatype.boolean(),
-      message: Faker.lorem.sentences(),
-      reqMet: Faker.datatype.boolean(),
-      addEvent: () => {},
-    })),
-};
-
 export const PrimaryItems = Template.bind({});
 PrimaryItems.args = {
   type: "Items",
@@ -66,7 +51,6 @@ PrimaryPaths.args = {
       toLocationId: Faker.lorem.word(),
       name: Faker.address.city(),
       description: Faker.lorem.sentences(),
-      reqMet: Faker.datatype.boolean(),
       setLocation: () => {},
     })),
 };

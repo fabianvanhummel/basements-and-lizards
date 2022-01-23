@@ -1,5 +1,5 @@
 import { DefaultButton } from "../components/Buttons";
-import { ElementList, ElementHeader } from "../components/Elements";
+import { ElementHeader } from "../components/Elements";
 
 export const Path = ({
   reqMet,
@@ -7,7 +7,7 @@ export const Path = ({
   name,
   description,
   events,
-  setLocation,
+  handleAction
 }) => {
   return (
     <div className="max-w-2xl px-8 py-4 mx-auto bg-pink-50 rounded-lg shadow-md dark:bg-gray-800">
@@ -17,13 +17,11 @@ export const Path = ({
 
       <DefaultButton
         children={"Follow this path to " + toLocationId}
-        onClick={() => {
-          setLocation(toLocationId);
-        }}
+        onClick={() => handleAction({ type: "TAKE_PATH", path: { name, description, toLocationId, events } })}
         disabled={!reqMet}
       />
 
-      {events && <ElementList type="Events" elements={events} />}
+      {/* {events && <ElementList type="Events" elements={events} />} */}
     </div>
   );
 };

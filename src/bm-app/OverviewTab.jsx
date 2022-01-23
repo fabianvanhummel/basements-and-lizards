@@ -1,6 +1,6 @@
 import React from "react";
 
-export const OverviewTab = ({ book, gameState, gameStateHistory }) => {
+export const OverviewTab = ({ book, gameState }) => {
   return (
     <div className="text-center mt-4 w-4/6 m-auto">
       <div className="font-sans text-3xl">Welcome (back) to </div>
@@ -20,13 +20,9 @@ export const OverviewTab = ({ book, gameState, gameStateHistory }) => {
               <div className="font-bold">Way too short</div>
             </div>
             <div className="font-sans text-xl mt-4">
-              Locations visited:
+              Current Location
               <div className="font-bold">
-                {gameStateHistory.length !== 0
-                  ? gameStateHistory.filter(
-                      (state) => state[0].changeLog === "location-swap"
-                    ).length
-                  : 1}
+                {book.locations[gameState.location].name}
               </div>
             </div>
             <div className="font-sans text-xl mt-4">
@@ -35,13 +31,7 @@ export const OverviewTab = ({ book, gameState, gameStateHistory }) => {
             </div>
             <div className="font-sans text-xl mt-4">
               Items picked up:
-              <div className="font-bold">
-                {gameStateHistory.length !== 0
-                  ? gameStateHistory.filter(
-                      (state) => state[0].changeLog === "item-added"
-                    ).length
-                  : 1}
-              </div>
+              <div className="font-bold">{gameState.inventoryItems.length}</div>
             </div>
           </div>
         </div>
@@ -50,7 +40,10 @@ export const OverviewTab = ({ book, gameState, gameStateHistory }) => {
           <div className="w-5/6 mx-auto my-4">
             {book.characters.map((character, index) => {
               return (
-                <div key={index} className="rounded-md border-2 border-orange-200	w-full my-2 grid grid-cols-3 font-bold">
+                <div
+                  key={index}
+                  className="rounded-md border-2 border-orange-200	w-full my-2 grid grid-cols-3 font-bold"
+                >
                   <div className="border-2 border-orange-200 items-center m-auto w-full">
                     <img
                       className="m-auto"
@@ -60,18 +53,21 @@ export const OverviewTab = ({ book, gameState, gameStateHistory }) => {
                       alt=""
                     ></img>
                   </div>
-                  <div className="border-2 border-orange-200" key={character.id}>
+                  <div
+                    className="border-2 border-orange-200"
+                    key={character.id}
+                  >
                     <p className="text-lg">{character.name}</p>
                     <p> {character.race}</p>
                     <p>'{character.title}'</p>
                   </div>
                   <div className="border-2 border-orange-200">
                     <p className="text-lg">Items:</p>
-                      {character.items.length !== 0
-                        ? character.items.map((item, index) => {
-                            return <p key={index}>{item}</p>;
-                          })
-                        : "Nothing"}
+                    {character.items.length !== 0
+                      ? character.items.map((item, index) => {
+                          return <p key={index}>{item}</p>;
+                        })
+                      : "Nothing"}
                   </div>
                 </div>
               );
@@ -84,20 +80,13 @@ export const OverviewTab = ({ book, gameState, gameStateHistory }) => {
             <div className="font-sans text-xl mt-4">
               Current location:
               <div className="font-bold">
-                {book.locations[gameState.locationIdState].name}
+                {book.locations[gameState.location].name}
               </div>
             </div>
             <div className="font-sans text-xl mt-4">
-              Latest locations:
+              Latest actions:
               <div className="font-bold">
-                {gameStateHistory.length !== 0
-                  ? gameStateHistory
-                      .filter((state) => state[0].changeLog === "location-swap")
-                      .map(
-                        (state) =>
-                          book.locations[state[0].locationIdState].name + ", "
-                      )
-                  : "None"}
+                TODO: use history to show latest action
               </div>
             </div>
             <div className="font-sans text-xl mt-4">
@@ -105,12 +94,10 @@ export const OverviewTab = ({ book, gameState, gameStateHistory }) => {
               <div className="font-bold">
                 {
                   // Here we slice off the 3 most recently happened events to show in the overview tab. The choice for 3 is arbitrary and was made by the developer himself when programming this part. The same goes for items.
-                  gameState.length !== 0
-                    ? gameState.happenedEvents.length !== 0
-                      ? gameState.happenedEvents
-                          .slice(0, 3)
-                          .map((event) => event + ", ")
-                      : "None"
+                  gameState.pastEvents.length !== 0
+                    ? gameState.pastEvents
+                        .slice(0, 3)
+                        .map((event) => event + ", ")
                     : "None"
                 }
               </div>

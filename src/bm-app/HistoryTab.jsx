@@ -1,15 +1,14 @@
-export const HistoryTab = ({ gameStateHistory, travelBackInTime, book }) => {
-  // Create historyArray that can dynamically be filled from the current gamestatehistory
+export const HistoryTab = ({ book, history, handleAction }) => {
+  // Create historyArray that can dynamically be filled from the current history
   var historyArray = [];
 
-  // Function to deduce the location history from the gameStateHistory
+  // Function to deduce the location history from the history
   function deduceLocationHistory() {
     var historyNames = [];
-    for (const key in gameStateHistory) {
+    for (const key in history) {
       historyNames.push({
-        locationName:
-          book.locations[gameStateHistory[key][0].locationIdState].name,
-        actionPerformed: gameStateHistory[key][0].changeLog,
+        locationName: book.locations[history[key][0].location].name,
+        actionPerformed: history[key][0].changeLog,
       });
     }
     return historyNames;
@@ -22,8 +21,8 @@ export const HistoryTab = ({ gameStateHistory, travelBackInTime, book }) => {
     "item-added": "yellow",
   };
 
-  // Deduce locations and changes from gameStateHistory to be used in mapping. Also everse array so the newest entry appears on top of the page
-  historyArray = deduceLocationHistory(gameStateHistory).reverse();
+  // Deduce locations and changes from history to be used in mapping. Also everse array so the newest entry appears on top of the page
+  historyArray = deduceLocationHistory(history).reverse();
 
   return (
     <div className="mx-auto max-w-xl px-8 py-4 my-10 bg-blue-50 rounded-lg shadow-md dark:bg-gray-800 ">
@@ -59,7 +58,7 @@ export const HistoryTab = ({ gameStateHistory, travelBackInTime, book }) => {
                   if (index === 0) {
                     alert("You are already here.");
                   } else {
-                    travelBackInTime(index);
+                    handleAction({ type: "BACK_IN_TIME", steps: index });
                   }
                 }}
                 className="text-black-600 max-w-sm mx-auto bg-red-100 px-1 rounded-lg shadow-md float-right -my-6"
