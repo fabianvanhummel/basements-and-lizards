@@ -7,7 +7,7 @@ export const Path = ({
   name,
   description,
   events,
-  handleAction
+  handleAction,
 }) => {
   return (
     <div className="max-w-2xl px-8 py-4 mx-auto bg-pink-50 rounded-lg shadow-md dark:bg-gray-800">
@@ -17,7 +17,12 @@ export const Path = ({
 
       <DefaultButton
         children={"Follow this path to " + toLocationId}
-        onClick={() => handleAction({ type: "TAKE_PATH", path: { name, description, toLocationId, events } })}
+        onClick={() =>
+          handleAction({
+            type: "TAKE_PATH",
+            path: { name, description, toLocationId, events },
+          })
+        }
         disabled={!reqMet}
       />
 

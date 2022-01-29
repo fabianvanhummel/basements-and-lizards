@@ -4,13 +4,14 @@ Epische coole app door bazen
 
 ## Concept
 
-Our app consists of three main parts: the **rules**, the **book** (story), and the **state** of the story. The main difference between these three is where they change. The rules are set throughout the app and tell the players how the game is played and thus don't change between different books. The book contains an actual story with it's own characters, locations, items, etc. Multiple books can be written, like *The Tutorial* and *The Plane of Water*. The state tracks all the changes during a playthrough of a book to maintain what's happened in the book. So there's one rules, there can be multiple books, which each can have multiple states for each time you play.
+Our app consists of three main parts: the **rules**, the **book** (story), and the **state** of the story. The main difference between these three is where they change. The rules are set throughout the app and tell the players how the game is played and thus don't change between different books. The book contains an actual story with it's own characters, locations, items, etc. Multiple books can be written, like _The Tutorial_ and _The Plane of Water_. The state tracks all the changes during a playthrough of a book to maintain what's happened in the book. So there's one rules, there can be multiple books, which each can have multiple states for each time you play.
 
 ### Rules
 
-The rules tell the players how *Basements & Lizards* is played. It explains how the book interacts with the state and does this through actions. For example, the `move to [direction]` action changes the `location` state to the `direction` that's chosen by the BM. This requires a direction from the book.
+The rules tell the players how _Basements & Lizards_ is played. It explains how the book interacts with the state and does this through actions. For example, the `move to [direction]` action changes the `location` state to the `direction` that's chosen by the BM. This requires a direction from the book.
 
 Actions:
+
 - `move to [direction]`: changes `location` state to `direction`
 
 ### Books
@@ -42,6 +43,7 @@ The idea is to make story writing available for everyone, which is why we use a 
 Whenever the players perform a certain action on a book component, this will be stored in the state. For example, if the party `move to [direction]`, the location state will change to the location the party moves towards. Or when a player picks up an item, this should be represented in his inventory state.
 
 States:
+
 - location: string
 
 ---
@@ -61,6 +63,7 @@ Weekly meetings follow this agenda: [B&L Meeting Agenda](https://docs.google.com
 ### Brief overview
 
 Requirements are documented using Notes and Issues. Tasks are tracked using Issues and Pull Requests.
+
 - Notes:
   - Are used to document requirements
   - Are discussed during meetings
@@ -78,6 +81,7 @@ Requirements are documented using Notes and Issues. Tasks are tracked using Issu
 ### Github methods
 
 We use Github Projects to monitor our work. The project board contains the following columns:
+
 - Notes: Any items in this column are considered new input for the next meeting
 - Backlog: The entire collection with known tasks
 - To Do: Tasks that are to be done before the next meeting
@@ -85,6 +89,7 @@ We use Github Projects to monitor our work. The project board contains the follo
 - Done: Completed tasks, these will be archived during the next meeting
 
 Certain automation rules apply to the project board:
+
 - New Issues go to "Backlog"
 - New Pull Requests go to "To Do"
 - Reopened Issues and Pull Requests go to "In progress"
@@ -92,6 +97,7 @@ Certain automation rules apply to the project board:
 - Merged or closed Pull Requests go to "Done"
 
 Further things to consider:
+
 - Projects
   - Any new requirements that are established can be added to the "Notes" column.
   - Any work that needs to be done is described and tracked using Issues. These Issues are connected to a project and can therefore be tracked using the project board.

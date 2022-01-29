@@ -15,7 +15,7 @@ Primary.args = {
   book: maze,
   gameState: {
     location: maze["initialLocation"],
-    pastEvents: ['event1', 'event2', 'event3'],
-    inventoryItems: ['item1', 'item2', 'item3'],
+    pastEvents: ["event1", "event2", "event3"],
+    inventoryItems: ["item1", "item2", "item3"],
   },
 };

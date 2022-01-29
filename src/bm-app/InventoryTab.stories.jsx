@@ -35,7 +35,7 @@ Primary.args = {
               message: Faker.lorem.sentences(),
               addEvent: () => {},
             })),
-        }))
+        })),
     ),
   addEvent: () => {},
 };

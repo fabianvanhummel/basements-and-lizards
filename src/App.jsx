@@ -1,7 +1,7 @@
 import { BMApp } from "./bm-app/BMApp";
 import maze from "./books/maze.json";
-import "./index.css"
-import { useState, useEffect } from "react"
+import "./index.css";
+import { useState, useEffect } from "react";
 
 // Disable this boolean if you dont want the startup screen (please do this when testing)
 const doStartScreen = true;
@@ -23,7 +23,7 @@ function LoadingMessage() {
 
 export const App = () => {
   // Use states to determine if page is still loading
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     // Arbitrary 5 second loading time.. can be changes to dynamically listen to an API/server call or whatever
     setTimeout(() => {
@@ -31,6 +31,6 @@ export const App = () => {
     }, 5000);
   });
 
-  if (loading && doStartScreen) return <LoadingMessage />
-  return <BMApp book={maze} />
-}
+  if (loading && doStartScreen) return <LoadingMessage />;
+  return <BMApp book={maze} />;
+};
