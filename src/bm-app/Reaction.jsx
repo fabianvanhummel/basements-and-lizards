@@ -1,4 +1,4 @@
-export const colorMap = {
+const colorMap = {
   EVENT_HAPPENS: "blue",
   FOLLOW_PATH: "purple",
   ARRIVE_AT_LOCATION: "green",
