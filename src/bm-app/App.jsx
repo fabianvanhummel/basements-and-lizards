@@ -18,7 +18,7 @@ export const App = ({ book }) => {
 
   // history stores the gameState and changeLog after each action
   // this can be used to go back in time or help with showing what happened
-  const [history, setHistory] = useState([{ changeLog, gameState }]);
+  const [history, setHistory] = useState([]);
 
   const handleAction = (action) => {
     // Maps the action to the right function.
@@ -27,29 +27,19 @@ export const App = ({ book }) => {
     let reactions;
     switch (action.type) {
       case "TAKE_ITEM":
-        reactions = handleTakeItem(
-          action.item,
-          book,
-          gameState,
-          setGameState
-        );
+        reactions = handleTakeItem(action.item, book, gameState, setGameState);
         setChangeLog({ action, reactions });
         setHistory([...history, { gameState, changeLog }]);
         break;
       case "TAKE_PATH":
-        reactions = handleTakePath(
-          action.path,
-          book,
-          gameState,
-          setGameState
-        );
+        reactions = handleTakePath(action.path, book, gameState, setGameState);
         setChangeLog({ action, reactions });
         setHistory([...history, { gameState, changeLog }]);
         break;
       case "BACK_IN_TIME":
         setHistory(history.slice(0, history.length - (action.steps + 1)));
-        setGameState(history(history.length - 1).gameState);
-        setChangeLog(history(history.length - 1).changeLog);
+        setGameState(history[1].gameState);
+        setChangeLog(history[1].changeLog);
         break;
       default:
         break;

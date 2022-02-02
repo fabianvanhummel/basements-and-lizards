@@ -1,3 +1,8 @@
+const colorMap = {
+  TAKE_PATH: "purple",
+  TAKE_ITEM: "yellow",
+};
+
 export const HistoryTab = ({ book, history, handleAction }) => {
   // Create historyArray that can dynamically be filled from the current history
   var historyArray = [];
@@ -7,19 +12,14 @@ export const HistoryTab = ({ book, history, handleAction }) => {
     var historyNames = [];
     for (const key in history) {
       historyNames.push({
-        locationName: book.locations[history[key][0].location].name,
-        actionPerformed: history[key][0].changeLog,
+        locationName: book.locations[history[key].gameState.location].name,
+        actionPerformed: history[key].changeLog.action.type
+          ? history[key].changeLog.action.type
+          : "TAKE_PATH",
       });
     }
     return historyNames;
   }
-
-  // Color the types of changes that can occur in the BM App. Currently blue for events, yellow for items and green for locations - subject to change
-  const colorMap = {
-    "location-swap": "green",
-    "event-happened": "blue",
-    "item-added": "yellow",
-  };
 
   // Deduce locations and changes from history to be used in mapping. Also everse array so the newest entry appears on top of the page
   historyArray = deduceLocationHistory(history).reverse();
@@ -51,15 +51,11 @@ export const HistoryTab = ({ book, history, handleAction }) => {
                 </div>
               </div>
               <div className="text-center">
-                {index === 0 ? "Current" : index}: {name.locationName}
+                {index === 0 ? "Latest" : index}: {name.locationName}
               </div>
               <button
                 onClick={() => {
-                  if (index === 0) {
-                    alert("You are already here.");
-                  } else {
-                    handleAction({ type: "BACK_IN_TIME", steps: index });
-                  }
+                  handleAction({ type: "BACK_IN_TIME", steps: index });
                 }}
                 className="text-black-600 max-w-sm mx-auto bg-red-100 px-1 rounded-lg shadow-md float-right -my-6"
               >
