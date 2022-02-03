@@ -1,4 +1,4 @@
-import { BMApp } from "./bm-app/BMApp";
+import { App } from "./bm-app/App";
 import maze from "./books/maze.json";
 import "./index.css"
 import { useState, useEffect } from "react"
@@ -21,7 +21,7 @@ function LoadingMessage() {
   );
 }
 
-export const App = () => {
+export const MainApp = () => {
   // Use states to determine if page is still loading
   const [loading, setLoading] = useState(true)
   useEffect(() => {
@@ -32,5 +32,5 @@ export const App = () => {
   });
 
   if (loading && doStartScreen) return <LoadingMessage />
-  return <BMApp book={maze} />
+  return <App book={maze} />
 }
