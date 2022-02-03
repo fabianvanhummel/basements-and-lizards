@@ -4,7 +4,7 @@ import "./index.css";
 import { useState, useEffect } from "react";
 
 // Disable this boolean if you dont want the startup screen (please do this when testing)
-const doStartScreen = true;
+const doStartScreen = false;
 
 // Note: this component is meant to control rendering of different apps. Since we only have one app now, it's still very basic.
 
