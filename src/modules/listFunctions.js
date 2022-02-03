@@ -28,7 +28,7 @@ export const makeInventoryItemList = (book, gameState) => {
 const checkOverride = (book, gameState, locationId) => {
   if (!book.locations[locationId].override) return locationId;
   const override = book.locations[locationId].override.find((override) =>
-    checkRequirements(gameState, override.requirements)
+    checkRequirements(gameState, override.requirements),
   );
   if (override) return checkOverride(book, gameState, override.byLocationId);
   return locationId;

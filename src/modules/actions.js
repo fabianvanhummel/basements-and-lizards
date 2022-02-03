@@ -3,7 +3,7 @@ import { checkRequirements } from "./requirements";
 export const handleTakeItem = (itemId, book, gameState, setGameState) => {
   const reactions = [];
 
-  const item = book.items[itemId]
+  const item = book.items[itemId];
 
   reactions.push({
     type: "PICK_UP_ITEM",
@@ -15,7 +15,7 @@ export const handleTakeItem = (itemId, book, gameState, setGameState) => {
     inventoryItems: [...gameState.inventoryItems, itemId],
   });
 
-  return reactions
+  return reactions;
 };
 
 export const handleTakePath = (path, book, gameState, setGameState) => {
@@ -35,8 +35,7 @@ export const handleTakePath = (path, book, gameState, setGameState) => {
 
       const event = book.events[eventId];
 
-      if (event.requirements && !checkRequirements(event.requirements))
-        return;
+      if (event.requirements && !checkRequirements(event.requirements)) return;
 
       pastEvents.push(eventId);
 
@@ -58,8 +57,7 @@ export const handleTakePath = (path, book, gameState, setGameState) => {
 
       const event = book.events[eventId];
 
-      if (event.requirements && !checkRequirements(event.requirements))
-        return;
+      if (event.requirements && !checkRequirements(event.requirements)) return;
 
       pastEvents.push(eventId);
 
@@ -72,5 +70,5 @@ export const handleTakePath = (path, book, gameState, setGameState) => {
     pastEvents,
   });
 
-  return reactions
+  return reactions;
 };

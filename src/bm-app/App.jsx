@@ -27,22 +27,12 @@ export const App = ({ book }) => {
     let reactions;
     switch (action.type) {
       case "TAKE_ITEM":
-        reactions = handleTakeItem(
-          action.item,
-          book,
-          gameState,
-          setGameState
-        );
+        reactions = handleTakeItem(action.item, book, gameState, setGameState);
         setChangeLog({ action, reactions });
         setHistory([...history, { gameState, changeLog }]);
         break;
       case "TAKE_PATH":
-        reactions = handleTakePath(
-          action.path,
-          book,
-          gameState,
-          setGameState
-        );
+        reactions = handleTakePath(action.path, book, gameState, setGameState);
         setChangeLog({ action, reactions });
         setHistory([...history, { gameState, changeLog }]);
         break;
