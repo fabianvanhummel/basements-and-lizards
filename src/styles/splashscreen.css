@@ -1,5 +1,5 @@
 .dlimage {
-  background-image: url('../images/d&l.jpg')  
+  background-image: url("../images/d&l.jpg");
 }
 
 .fade-in-out-5s {
@@ -8,23 +8,43 @@
 }
 
 .background-gradient {
-  background: linear-gradient(#88A28E, #587175);
+  background: linear-gradient(#88a28e, #587175);
 }
 
 @-webkit-keyframes fadeInOut {
-  0%,100% {opacity: 0;}
-  30%, 80% {opacity: 1;}
+  0%,
+  100% {
+    opacity: 0;
+  }
+  30%,
+  80% {
+    opacity: 1;
+  }
 }
 @keyframes fadeInOut {
-  0%,100% {opacity: 0;}
-  30%, 80% {opacity: 1;}
+  0%,
+  100% {
+    opacity: 0;
+  }
+  30%,
+  80% {
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 @keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
-} 
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

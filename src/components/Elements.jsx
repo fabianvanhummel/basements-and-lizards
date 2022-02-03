@@ -7,7 +7,7 @@ import { ButtonToggleBlocked } from "./Buttons";
 export const ElementList = ({ type, elements, handleAction }) => {
   const [showBlockedState, setShowBlockedState] = useState(false);
   let elementList = elements.filter(
-    (element) => element.reqMet || showBlockedState
+    (element) => element.reqMet || showBlockedState,
   );
   return (
     elements && (
@@ -22,9 +22,15 @@ export const ElementList = ({ type, elements, handleAction }) => {
         <ul>
           {elementList.map((element, index) => (
             <li key={index} className="mt-2">
-              {type === "Paths" && <Path {...element} handleAction={handleAction} />}
-              {type === "Items" && <Item {...element} handleAction={handleAction} />}
-              {type === "Npcs" && <NPC {...element} handleAction={handleAction} />}
+              {type === "Paths" && (
+                <Path {...element} handleAction={handleAction} />
+              )}
+              {type === "Items" && (
+                <Item {...element} handleAction={handleAction} />
+              )}
+              {type === "Npcs" && (
+                <NPC {...element} handleAction={handleAction} />
+              )}
             </li>
           ))}
         </ul>
