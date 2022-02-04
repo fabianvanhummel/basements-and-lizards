@@ -21,19 +21,24 @@ const doEvents = (eventIds, book, gameState) => {
   return { reactions, newEventIds };
 };
 
-export const handleTakeItem = (itemId, book, gameState, setGameState) => {
+export const handleTakeItem = (item, book, gameState, setGameState) => {
   const reactions = [];
-
-  const item = book.items[itemId];
+  const pastEvents = [...gameState.pastEvents];
+  let eventResponse;
 
   reactions.push({
     type: "PICK_UP_ITEM",
     message: `You picked up ${item.name}`,
   });
 
+  eventResponse = doEvents(item.events, book, gameState);
+  reactions.push(...eventResponse.reactions);
+  pastEvents.push(...eventResponse.newEventIds);
+
   setGameState({
     ...gameState,
-    inventoryItems: [...gameState.inventoryItems, itemId],
+    inventoryItems: [...gameState.inventoryItems, item.id],
+    pastEvents,
   });
 
   return reactions;
@@ -51,7 +56,7 @@ export const handleTakePath = (path, book, gameState, setGameState) => {
   });
 
   // Handle the events that happen on the path.
-  eventResponse = doEvents(path.events, book, gameState, setGameState);
+  eventResponse = doEvents(path.events, book, gameState);
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
 
@@ -64,7 +69,7 @@ export const handleTakePath = (path, book, gameState, setGameState) => {
   });
 
   // Handle the events that happen at the new location.
-  eventResponse = doEvents(location.events, book, gameState, setGameState);
+  eventResponse = doEvents(location.events, book, gameState);
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
 
