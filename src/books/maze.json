@@ -12,7 +12,8 @@
           "toLocationId": "2",
           "name": "Big door",
           "description": "Very BIG door",
-          "requirements": []
+          "requirements": [],
+          "events": ["dummy-path-event"]
         },
         {
           "toLocationId": "portal-chamber",
@@ -432,6 +433,10 @@
     }
   },
   "events": {
+    "dummy-path-event": {
+      "name": "Dummy Path Event",
+      "message": "Ik doe niks!"
+    },
     "test-override-event": {
       "name": "Room 1 changed",
       "description": "Because you entered this room, the description of room 1 changed."
@@ -567,42 +572,35 @@
     }
   },
   "characters": [
-		{
+    {
       "id": 1,
       "image": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Mr._Krabs.svg/1200px-Mr._Krabs.svg.png",
-			"name": "Arnoud Krabbius",
-			"race": "Half-Orc",
-			"title": "The Barbarian",
-			"description": "Arnoud is a big, muscular half-orc. He loves fighting, using his gigantic two handed broad axe. Although he is an impressive combatant, he is easily tricked when facing witty enemies.",
-			"backstory":  "Arnoud grew up in Arnhem, where 'Messentrekken' was a common move on the streets. This way he learned to always be ready for a fight.",
-      "items": [
-        "Broadaxe",
-        "Chainmail",
-        ""
-      ]
-		},
-		{
+      "name": "Arnoud Krabbius",
+      "race": "Half-Orc",
+      "title": "The Barbarian",
+      "description": "Arnoud is a big, muscular half-orc. He loves fighting, using his gigantic two handed broad axe. Although he is an impressive combatant, he is easily tricked when facing witty enemies.",
+      "backstory": "Arnoud grew up in Arnhem, where 'Messentrekken' was a common move on the streets. This way he learned to always be ready for a fight.",
+      "items": ["Broadaxe", "Chainmail", ""]
+    },
+    {
       "id": 2,
       "image": "http://pngimg.com/uploads/donut/donut_PNG93.png",
-			"name": "Joey Feed'r",
-			"race": "Human",
-			"title": "Longshot Lackey",
-			"description": "He can throw a frikadel like no other.",
-			"backstory": "Joey has always enjoyed food, and prefers to have breakfast that isn't particulary healthy. This passion for food gave him exceptional abilities when preparing future meals. He can throw any fast food with great power and accuracy.",
-      "items": [
-        "Donut",
-        "Ninja sword"
-      ]
-		},
-		{
+      "name": "Joey Feed'r",
+      "race": "Human",
+      "title": "Longshot Lackey",
+      "description": "He can throw a frikadel like no other.",
+      "backstory": "Joey has always enjoyed food, and prefers to have breakfast that isn't particulary healthy. This passion for food gave him exceptional abilities when preparing future meals. He can throw any fast food with great power and accuracy.",
+      "items": ["Donut", "Ninja sword"]
+    },
+    {
       "id": 3,
       "image": "http://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/75f250c2c5c4c55.png",
-			"name": "Spincent",
-			"race": "Arachnid",
-			"title": "The Scary Spider",
-			"description": "Big, Hairy, nasty.",
-			"backstory": "After an unfortunate event Spincent grew extra legs, at first this seemed like a disadvantage, but soon he evolved. This turned him into a spider who has the size and strength of a human.",
+      "name": "Spincent",
+      "race": "Arachnid",
+      "title": "The Scary Spider",
+      "description": "Big, Hairy, nasty.",
+      "backstory": "After an unfortunate event Spincent grew extra legs, at first this seemed like a disadvantage, but soon he evolved. This turned him into a spider who has the size and strength of a human.",
       "items": []
-		}
-	]
+    }
+  ]
 }

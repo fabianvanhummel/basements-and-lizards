@@ -43,6 +43,7 @@ const makeLocationPathList = (book, gameState, locationId) => {
         toLocationId: path.toLocationId,
         name: path.name,
         description: path.description,
+        events: path.events,
       };
     })
   );
