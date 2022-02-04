@@ -35,8 +35,6 @@ export const InventoryItem = ({ name, description, events }) => (
     <ElementHeader title={name} tag="Item" color="yellow" />
 
     <p className="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
-
-    {events && <ElementList type="Events" elements={events} />}
   </div>
 );
 
