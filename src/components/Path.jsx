@@ -25,8 +25,6 @@ export const Path = ({
         }
         disabled={!reqMet}
       />
-
-      {/* {events && <ElementList type="Events" elements={events} />} */}
     </div>
   );
 };

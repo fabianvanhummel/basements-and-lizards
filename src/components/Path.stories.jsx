@@ -15,7 +15,7 @@ Primary.args = {
   toLocationId: Faker.lorem.word(),
   name: Faker.address.city(),
   description: Faker.lorem.sentences(),
-  setLocation: () => {},
+  handleAction: () => {},
 };
 
 export const Unavailable = Template.bind({});
@@ -24,5 +24,5 @@ Unavailable.args = {
   toLocationId: Faker.lorem.word(),
   name: Faker.address.city(),
   description: Faker.lorem.sentences(),
-  setLocation: () => {},
+  handleAction: () => {},
 };
