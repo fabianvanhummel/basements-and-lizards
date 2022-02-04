@@ -1,5 +1,26 @@
 import { checkRequirements } from "./requirements";
 
+const doEvents = (eventIds, book, gameState) => {
+  const reactions = [];
+  const newEventIds = [];
+
+  // Handle inputted events
+  eventIds &&
+    eventIds.forEach((eventId) => {
+      if (gameState.pastEvents.includes(eventId)) return;
+
+      const event = book.events[eventId];
+
+      if (event.requirements && !checkRequirements(event.requirements)) return;
+
+      newEventIds.push(eventId);
+      reactions.push({ type: "EVENT_HAPPENS", message: event.message });
+    });
+
+  // Return reactions array
+  return { reactions, newEventIds };
+};
+
 export const handleTakeItem = (itemId, book, gameState, setGameState) => {
   const reactions = [];
 
@@ -21,6 +42,7 @@ export const handleTakeItem = (itemId, book, gameState, setGameState) => {
 export const handleTakePath = (path, book, gameState, setGameState) => {
   const reactions = [];
   const pastEvents = [...gameState.pastEvents];
+  let eventResponse;
 
   // The party follows the path that was chosen.
   reactions.push({
@@ -29,18 +51,9 @@ export const handleTakePath = (path, book, gameState, setGameState) => {
   });
 
   // Handle the events that happen on the path.
-  path.events &&
-    path.events.forEach((eventId) => {
-      if (gameState.pastEvents.includes(eventId)) return;
-
-      const event = book.events[eventId];
-
-      if (event.requirements && !checkRequirements(event.requirements)) return;
-
-      pastEvents.push(eventId);
-
-      reactions.push({ type: "EVENT_HAPPENS", message: event.message });
-    });
+  eventResponse = doEvents(path.events, book, gameState, setGameState);
+  reactions.push(...eventResponse.reactions);
+  pastEvents.push(...eventResponse.newEventIds);
 
   const location = book.locations[path.toLocationId];
 
@@ -51,18 +64,9 @@ export const handleTakePath = (path, book, gameState, setGameState) => {
   });
 
   // Handle the events that happen at the new location.
-  location.events &&
-    location.events.forEach((eventId) => {
-      if (gameState.pastEvents.includes(eventId)) return;
-
-      const event = book.events[eventId];
-
-      if (event.requirements && !checkRequirements(event.requirements)) return;
-
-      pastEvents.push(eventId);
-
-      reactions.push({ type: "EVENT_HAPPENS", message: event.message });
-    });
+  eventResponse = doEvents(location.events, book, gameState, setGameState);
+  reactions.push(...eventResponse.reactions);
+  pastEvents.push(...eventResponse.newEventIds);
 
   setGameState({
     ...gameState,
