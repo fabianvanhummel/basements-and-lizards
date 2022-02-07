@@ -2,6 +2,16 @@ import { checkRequirements } from "./requirements";
 
 // EXPORTS
 
+// NPC
+export const getNpc = (book, gameState) => {
+  let npcId = gameState.npc;
+  return {
+    name: book.npcs[npcId].name,
+    description: book.npcs[npcId].description,
+    options: makeNpcTalkOptionsList(book, gameState, npcId),
+  };
+};
+
 // Location
 export const getLocation = (book, gameState) => {
   let locationId = checkOverride(book, gameState, gameState.location);
@@ -21,6 +31,22 @@ export const makeInventoryItemList = (book, gameState) => {
     gameState.inventoryItems.map((itemId) => ({
       ...book.items[itemId],
     }))
+  );
+};
+
+// HELPER FUNCTIONS
+
+// NPC
+const makeNpcTalkOptionsList = (book, gameState, npcId) => {
+  return (
+    book.npcs[npcId].options &&
+    book.npcs[npcId].options.map((option) => {
+      return {
+        reqMet: true, //checkRequirements(gameState, option.requirements),
+        text: option.text,
+        response: option.response,
+      };
+    })
   );
 };
 
@@ -69,6 +95,7 @@ const makeLocationNpcList = (book, gameState, locationId) => {
     book.locations[locationId].npcs &&
     book.locations[locationId].npcs.map((npc) => ({
       ...book.npcs[npc.id],
+      id: npc.id,
       reqMet: checkRequirements(gameState, npc.requirements),
     }))
   );

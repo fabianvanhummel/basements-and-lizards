@@ -11,7 +11,6 @@ const Template = (args) => <NpcTalk {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  reqMet: true,
   name: Faker.name.findName(),
   description: Faker.lorem.sentences(),
   options: [

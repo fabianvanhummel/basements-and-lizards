@@ -1,7 +1,7 @@
 import { DefaultButton } from "./Buttons";
 import { ElementHeader } from "./Elements";
 
-export const Npc = ({ reqMet, name, description, handleAction }) => {
+export const Npc = ({ id, reqMet, name, description, handleAction }) => {
   return (
     <div className="max-w-2xl px-8 py-4 mx-auto bg-purple-50 rounded-lg shadow-md dark:bg-gray-800">
       <ElementHeader title={name} tag="NPC" color="purple" />
@@ -13,7 +13,7 @@ export const Npc = ({ reqMet, name, description, handleAction }) => {
         onClick={() => {
           handleAction({
             type: "START_NPC",
-            npc: { name, description },
+            npc: id,
           });
         }}
         disabled={!reqMet}

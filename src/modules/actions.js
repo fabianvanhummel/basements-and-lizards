@@ -82,10 +82,16 @@ export const handleTakePath = (path, book, gameState, setGameState) => {
   return reactions;
 };
 
-export const handleStartNpc = (npc, book, gameState, setGameState) => {
+export const handleStartNpc = (npcId, book, gameState, setGameState) => {
   const reactions = [];
   const pastEvents = [...gameState.pastEvents];
   //let eventResponse;
+
+  console.log("npcId: ", npcId);
+
+  const npc = book.npcs[npcId];
+
+  console.log("npc: ", npc);
 
   reactions.push({
     type: "NPC_INTERACTION",
@@ -100,7 +106,7 @@ export const handleStartNpc = (npc, book, gameState, setGameState) => {
 
   setGameState({
     ...gameState,
-    npc: npc,
+    npc: npcId,
   });
 
   return reactions;

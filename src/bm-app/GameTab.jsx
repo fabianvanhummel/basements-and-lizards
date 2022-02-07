@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Reaction } from "./Reaction";
-import { getLocation } from "../modules/listFunctions";
+import { getLocation, getNpc } from "../modules/listFunctions";
 import { Location } from "../components/Location";
-import { Npc } from "../components/Npc";
+import { NpcTalk } from "./NpcTalk";
 
 export const GameTab = ({ book, gameState, changeLog, handleAction }) => {
   // Stores latest reaction in state, so they can be dismissed
@@ -29,7 +29,7 @@ export const GameTab = ({ book, gameState, changeLog, handleAction }) => {
       )}
 
       {gameState.npc ? (
-        <Npc {...gameState.npc} handleAction={handleAction} />
+        <NpcTalk {...getNpc(book, gameState)} handleAction={handleAction} />
       ) : (
         <Location
           {...getLocation(book, gameState)}
