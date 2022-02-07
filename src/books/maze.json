@@ -319,16 +319,24 @@
           "response": "You are in a maze. I know that this maze has at least 7 rooms. Some pathways are easily accesable, other are more difficult to enter. If you manage to reach room 7 you might find an exit."
         },
         {
-          "text": "Is this coin useful?",
-          "response": "Maybe",
+          "text": "Is this ring useful?",
+          "response": "No.",
           "requirements": [
-            { "type": "ITEM_IN_INVENTORY", "id": "random-shiny-coin" }
+            { "type": "ITEM_IN_INVENTORY", "id": "random-crappy-ring" }
           ]
         },
         {
           "text": "Do something cool!",
           "response": "Okay.",
-          "events": ["make-it-rain"]
+          "events": ["make-it-rain"],
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "make-it-rain" }
+          ]
+        },
+        {
+          "text": "Give me something plz",
+          "response": "Mkay.",
+          "items": ["random-crappy-ring"]
         }
       ],
       "conversation": {

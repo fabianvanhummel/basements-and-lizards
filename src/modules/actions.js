@@ -103,6 +103,7 @@ export const handleStartNpc = (npcId, book, gameState, setGameState) => {
 export const handleTalkNpc = (option, book, gameState, setGameState) => {
   const reactions = [];
   const pastEvents = [...gameState.pastEvents];
+  const inventoryItems = [...gameState.inventoryItems];
   let eventResponse;
 
   reactions.push({
@@ -115,8 +116,20 @@ export const handleTalkNpc = (option, book, gameState, setGameState) => {
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
 
+  // Handle potential items.
+  option.items &&
+    option.items.map((itemId) => {
+      const item = book.items[itemId];
+      reactions.push({
+        type: "PICK_UP_ITEM",
+        message: `You picked up ${item.name}`,
+      });
+      inventoryItems.push(itemId);
+    });
+
   setGameState({
     ...gameState,
+    inventoryItems,
     pastEvents,
   });
 
