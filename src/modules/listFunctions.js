@@ -65,13 +65,6 @@ const makeLocationItemList = (book, gameState, locationId) => {
 };
 
 const makeLocationNpcList = (book, gameState, locationId) => {
-  book.locations[locationId].npcs &&
-    console.log(
-      "npcId: ",
-      book.locations[locationId].npcs[0].id,
-      "npcReq: ",
-      book.locations[locationId].npcs[0].requirements,
-    );
   return (
     book.locations[locationId].npcs &&
     book.locations[locationId].npcs.map((npc) => ({
