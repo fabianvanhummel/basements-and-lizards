@@ -5,7 +5,6 @@ import { checkRequirements } from "./requirements";
 // Location
 export const getLocation = (book, gameState) => {
   let locationId = checkOverride(book, gameState, gameState.location);
-  console.log("items: ", makeLocationItemList(book, gameState, locationId));
   return {
     name: book.locations[locationId].name,
     description: book.locations[locationId].description,
