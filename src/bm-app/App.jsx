@@ -5,6 +5,7 @@ import {
   handleTakePath,
   handleStartNpc,
   handleEndNpc,
+  handleTalkNpc,
 } from "../modules/actions";
 
 export const App = ({ book }) => {
@@ -44,6 +45,11 @@ export const App = ({ book }) => {
         break;
       case "START_NPC":
         reactions = handleStartNpc(action.npcId, book, gameState, setGameState);
+        setChangeLog({ action, reactions });
+        setHistory([...history, { gameState, changeLog }]);
+        break;
+      case "TALK_NPC":
+        reactions = handleTalkNpc(action.option, book, gameState, setGameState);
         setChangeLog({ action, reactions });
         setHistory([...history, { gameState, changeLog }]);
         break;

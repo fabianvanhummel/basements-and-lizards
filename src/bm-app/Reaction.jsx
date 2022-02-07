@@ -4,6 +4,7 @@ const colorMap = {
   ARRIVE_AT_LOCATION: "green",
   PICK_UP_ITEM: "yellow",
   NPC_INTERACTION: "purple",
+  NPC_RESPONSE: "purple",
 };
 
 const titleMap = {
@@ -11,6 +12,8 @@ const titleMap = {
   FOLLOW_PATH: "You follow a path",
   ARRIVE_AT_LOCATION: "You arrive at a location",
   PICK_UP_ITEM: "You picked up an item",
+  NPC_INTERACTION: "You interacted with an NPC",
+  NPC_RESPONSE: "The NPC Responded",
 };
 
 export const Reaction = ({ type, dismiss, ...props }) => (

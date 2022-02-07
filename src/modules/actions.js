@@ -95,7 +95,7 @@ export const handleStartNpc = (npcId, book, gameState, setGameState) => {
 
   reactions.push({
     type: "NPC_INTERACTION",
-    message: `You approach ${npc.name}`,
+    message: `You approached ${npc.name}`,
   });
 
   /*
@@ -112,12 +112,29 @@ export const handleStartNpc = (npcId, book, gameState, setGameState) => {
   return reactions;
 };
 
+export const handleTalkNpc = (option, book, gameState, setGameState) => {
+  const reactions = [];
+
+  reactions.push({
+    type: "NPC_RESPONSE",
+    message: `${option.response}`,
+  });
+
+  /*
+  setGameState({
+    ...gameState,
+  });
+  */
+
+  return reactions;
+};
+
 export const handleEndNpc = (npc, gameState, setGameState) => {
   const reactions = [];
 
   reactions.push({
     type: "NPC_INTERACTION",
-    message: `You stop talking with ${npc.name}`,
+    message: `You stopped talking with ${npc.name}`,
   });
 
   setGameState({
