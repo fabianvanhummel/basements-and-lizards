@@ -77,7 +77,7 @@ export const NPC = ({
           children={"Approach " + name}
           onClick={() => {
             handleAction({
-              type: "TALK_NPC",
+              type: "START_NPC",
               npc: { name, description },
             });
             setConversationStarted(!conversationStarted);

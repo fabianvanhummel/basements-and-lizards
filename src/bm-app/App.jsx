@@ -3,13 +3,14 @@ import { Router } from "./Router";
 import {
   handleTakeItem,
   handleTakePath,
-  handleTalkNpc,
+  handleStartNpc,
 } from "../modules/actions";
 
 export const App = ({ book }) => {
   // gameState holds all information as a result of all previous actions
   const [gameState, setGameState] = useState({
     location: book["initialLocation"],
+    npc: undefined,
     pastEvents: [],
     inventoryItems: [],
   });
@@ -40,8 +41,8 @@ export const App = ({ book }) => {
         setChangeLog({ action, reactions });
         setHistory([...history, { gameState, changeLog }]);
         break;
-      case "TALK_NPC":
-        reactions = handleTalkNpc(action.npc, book, gameState, setGameState);
+      case "START_NPC":
+        reactions = handleStartNpc(action.npc, book, gameState, setGameState);
         setChangeLog({ action, reactions });
         setHistory([...history, { gameState, changeLog }]);
         break;
