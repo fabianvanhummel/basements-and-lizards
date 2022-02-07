@@ -1,6 +1,6 @@
 const colorMap = {
   EVENT_HAPPENS: "blue",
-  FOLLOW_PATH: "purple",
+  FOLLOW_PATH: "pink",
   ARRIVE_AT_LOCATION: "green",
   PICK_UP_ITEM: "yellow",
   NPC_INTERACTION: "purple",

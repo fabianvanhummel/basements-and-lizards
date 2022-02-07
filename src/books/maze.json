@@ -324,6 +324,11 @@
           "requirements": [
             { "type": "ITEM_IN_INVENTORY", "id": "random-shiny-coin" }
           ]
+        },
+        {
+          "text": "Do something cool!",
+          "response": "Okay.",
+          "events": ["make-it-rain"]
         }
       ],
       "conversation": {

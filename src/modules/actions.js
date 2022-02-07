@@ -84,25 +84,13 @@ export const handleTakePath = (path, book, gameState, setGameState) => {
 
 export const handleStartNpc = (npcId, book, gameState, setGameState) => {
   const reactions = [];
-  const pastEvents = [...gameState.pastEvents];
-  //let eventResponse;
-
-  console.log("npcId: ", npcId);
 
   const npc = book.npcs[npcId];
-
-  console.log("npc: ", npc);
 
   reactions.push({
     type: "NPC_INTERACTION",
     message: `You approached ${npc.name}`,
   });
-
-  /*
-  eventResponse = doEvents(item.events, book, gameState);
-  reactions.push(...eventResponse.reactions);
-  pastEvents.push(...eventResponse.newEventIds);
-  */
 
   setGameState({
     ...gameState,
@@ -114,17 +102,23 @@ export const handleStartNpc = (npcId, book, gameState, setGameState) => {
 
 export const handleTalkNpc = (option, book, gameState, setGameState) => {
   const reactions = [];
+  const pastEvents = [...gameState.pastEvents];
+  let eventResponse;
 
   reactions.push({
     type: "NPC_RESPONSE",
     message: `${option.response}`,
   });
 
-  /*
+  // Handle the events.
+  eventResponse = doEvents(option.events, book, gameState);
+  reactions.push(...eventResponse.reactions);
+  pastEvents.push(...eventResponse.newEventIds);
+
   setGameState({
     ...gameState,
+    pastEvents,
   });
-  */
 
   return reactions;
 };

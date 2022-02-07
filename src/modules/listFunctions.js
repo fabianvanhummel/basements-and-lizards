@@ -45,6 +45,7 @@ const makeNpcTalkOptionsList = (book, gameState, npcId) => {
         reqMet: checkRequirements(gameState, option.requirements),
         text: option.text,
         response: option.response,
+        events: option.events,
       };
     })
   );
