@@ -3,6 +3,7 @@ const colorMap = {
   FOLLOW_PATH: "purple",
   ARRIVE_AT_LOCATION: "green",
   PICK_UP_ITEM: "yellow",
+  TALK_TO_NPC: "purple",
 };
 
 const titleMap = {

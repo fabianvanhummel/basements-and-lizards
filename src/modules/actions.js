@@ -81,3 +81,30 @@ export const handleTakePath = (path, book, gameState, setGameState) => {
 
   return reactions;
 };
+
+export const handleTalkNpc = (npc, book, gameState, setGameState) => {
+  const reactions = [];
+  const pastEvents = [...gameState.pastEvents];
+  //let eventResponse;
+
+  reactions.push({
+    type: "TALK_TO_NPC",
+    message: `You talk with ${npc.name}`,
+  });
+
+  /*
+  eventResponse = doEvents(item.events, book, gameState);
+  reactions.push(...eventResponse.reactions);
+  pastEvents.push(...eventResponse.newEventIds);
+  */
+
+  /*
+  setGameState({
+    ...gameState,
+    inventoryItems: [...gameState.inventoryItems, item.id],
+    pastEvents,
+  });
+  */
+
+  return reactions;
+};

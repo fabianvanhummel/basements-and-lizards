@@ -9,6 +9,7 @@ export const NPC = ({
   conversation,
   addItem,
   addEvent,
+  handleAction,
 }) => {
   const [conversationStarted, setConversationStarted] = useState(false);
   const [conversationId, setConversationId] = useState("initial");
@@ -75,6 +76,10 @@ export const NPC = ({
         <DefaultButton
           children={"Approach " + name}
           onClick={() => {
+            handleAction({
+              type: "TALK_NPC",
+              npc: { name, description },
+            });
             setConversationStarted(!conversationStarted);
           }}
           disabled={!reqMet}

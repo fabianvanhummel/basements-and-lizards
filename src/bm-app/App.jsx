@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { Router } from "./Router";
-import { handleTakeItem, handleTakePath } from "../modules/actions";
+import {
+  handleTakeItem,
+  handleTakePath,
+  handleTalkNpc,
+} from "../modules/actions";
 
 export const App = ({ book }) => {
   // gameState holds all information as a result of all previous actions
@@ -33,6 +37,11 @@ export const App = ({ book }) => {
         break;
       case "TAKE_PATH":
         reactions = handleTakePath(action.path, book, gameState, setGameState);
+        setChangeLog({ action, reactions });
+        setHistory([...history, { gameState, changeLog }]);
+        break;
+      case "TALK_NPC":
+        reactions = handleTalkNpc(action.npc, book, gameState, setGameState);
         setChangeLog({ action, reactions });
         setHistory([...history, { gameState, changeLog }]);
         break;
