@@ -121,8 +121,8 @@ export const handleTalkNpc = (option, book, gameState) => {
     option.items.map((itemId) => {
       const item = book.items[itemId];
       reactions.push({
-        type: "PICK_UP_ITEM",
-        message: `You picked up ${item.name}`,
+        type: "GET_ITEM_NPC",
+        message: `You received ${item.name}`,
       });
       inventoryItems.push(itemId);
     });
