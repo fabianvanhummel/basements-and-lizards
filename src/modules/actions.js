@@ -111,3 +111,19 @@ export const handleStartNpc = (npcId, book, gameState, setGameState) => {
 
   return reactions;
 };
+
+export const handleEndNpc = (npc, gameState, setGameState) => {
+  const reactions = [];
+
+  reactions.push({
+    type: "NPC_INTERACTION",
+    message: `You stop talking with ${npc.name}`,
+  });
+
+  setGameState({
+    ...gameState,
+    npc: undefined,
+  });
+
+  return reactions;
+};

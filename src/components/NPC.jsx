@@ -13,7 +13,7 @@ export const Npc = ({ id, reqMet, name, description, handleAction }) => {
         onClick={() => {
           handleAction({
             type: "START_NPC",
-            npc: id,
+            npcId: id,
           });
         }}
         disabled={!reqMet}
