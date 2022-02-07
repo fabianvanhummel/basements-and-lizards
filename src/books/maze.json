@@ -62,8 +62,7 @@
           "name": "Back",
           "description": "Go back to room 1"
         }
-      ],
-      "npcs": ["tour-guide"]
+      ]
     },
     "2": {
       "name": "Room number 2",
@@ -107,7 +106,7 @@
       "items": [
         {
           "id": "old-metal-key",
-          "events": ["open-old-wooden-door-4"]
+          "events": ["open-old-wooden-door-4", "block-npc-test"]
         },
         {
           "id": "new-metal-key"
@@ -116,6 +115,14 @@
           "id": "random-shiny-coin",
           "requirements": [
             { "type": "ITEM_IN_INVENTORY", "id": "new-metal-key" }
+          ]
+        }
+      ],
+      "npcs": [
+        {
+          "id": "tour-guide",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "block-npc-test" }
           ]
         }
       ]
@@ -432,6 +439,10 @@
     }
   },
   "events": {
+    "block-npc-test": {
+      "name": "NPC unblock",
+      "message": "NPC is nu zichtbaar"
+    },
     "dummy-path-event": {
       "name": "Dummy Path Event",
       "message": "Ik doe niks!"
