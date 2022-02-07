@@ -316,7 +316,14 @@
       "options": [
         {
           "text": "Where do I go?",
-          "response": "Sure, you are in a maze. I know that this maze has at least 7 rooms. Some pathways are easily accesable, other are more difficult to enter. If you manage to reach room 7 you might find an exit."
+          "response": "You are in a maze. I know that this maze has at least 7 rooms. Some pathways are easily accesable, other are more difficult to enter. If you manage to reach room 7 you might find an exit."
+        },
+        {
+          "text": "Is this coin useful?",
+          "response": "Maybe",
+          "requirements": [
+            { "type": "ITEM_IN_INVENTORY", "id": "random-shiny-coin" }
+          ]
         }
       ],
       "conversation": {

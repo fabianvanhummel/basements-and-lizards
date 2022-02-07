@@ -10,7 +10,7 @@ export const NpcTalk = ({ name, description, options, handleAction }) => {
       <div>
         {options && (
           <ElementList
-            type="NpcTalkOptions"
+            type="Options"
             elements={options}
             handleAction={handleAction}
           />

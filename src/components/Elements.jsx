@@ -31,7 +31,7 @@ export const ElementList = ({ type, elements, handleAction }) => {
               {type === "Npcs" && (
                 <Npc {...element} handleAction={handleAction} />
               )}
-              {type === "NpcTalkOptions" && (
+              {type === "Options" && (
                 <DefaultButton
                   children={element.text}
                   onClick={() => {

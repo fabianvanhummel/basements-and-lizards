@@ -42,7 +42,7 @@ const makeNpcTalkOptionsList = (book, gameState, npcId) => {
     book.npcs[npcId].options &&
     book.npcs[npcId].options.map((option) => {
       return {
-        reqMet: true, //checkRequirements(gameState, option.requirements),
+        reqMet: checkRequirements(gameState, option.requirements),
         text: option.text,
         response: option.response,
       };
