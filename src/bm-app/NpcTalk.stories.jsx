@@ -18,26 +18,29 @@ Primary.args = {
     {
       text: Faker.lorem.words(),
       response: Faker.lorem.sentence(),
+      reqMet: true,
     },
     {
       text: Faker.lorem.words(),
       response: Faker.lorem.sentence(),
       events: ["1"],
+      reqMet: true,
     },
     {
       text: Faker.lorem.words(),
       response: Faker.lorem.sentence(),
       items: ["2"],
+      reqMet: true,
     },
     {
       text: Faker.lorem.words(),
       response: Faker.lorem.sentence(),
-      requirements: [{ type: "EVENT_DID_HAPPEN", id: "1" }],
+      reqMet: false,
     },
     {
       text: Faker.lorem.words(),
       response: Faker.lorem.sentence(),
-      requirements: [{ type: "ITEM_IN_INVENTORY", id: "2" }],
+      reqMet: false,
     },
   ],
   handleAction: () => {},

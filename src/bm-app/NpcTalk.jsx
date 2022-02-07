@@ -1,5 +1,5 @@
 import { DefaultButton } from "../components/Buttons";
-import { ElementHeader } from "../components/Elements";
+import { ElementList, ElementHeader } from "../components/Elements";
 
 export const NpcTalk = ({ name, description, options, handleAction }) => {
   return (
@@ -8,23 +8,13 @@ export const NpcTalk = ({ name, description, options, handleAction }) => {
 
       <p className="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
       <div>
-        {
-          <ul>
-            {options.map((option, index) => (
-              <li key={index} className="mt-2">
-                <DefaultButton
-                  children={option.text}
-                  onClick={() => {
-                    handleAction({
-                      type: "TALK_NPC",
-                      option: option,
-                    });
-                  }}
-                />
-              </li>
-            ))}
-          </ul>
-        }
+        {options && (
+          <ElementList
+            type="NpcTalkOptions"
+            elements={options}
+            handleAction={handleAction}
+          />
+        )}
         <div className="text-right">
           <DefaultButton
             children={"End conversation"}
