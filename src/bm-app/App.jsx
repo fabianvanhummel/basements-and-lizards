@@ -31,32 +31,28 @@ export const App = ({ book }) => {
     // Maps the action to the right function.
     // This way, we only have to pass one prop to handle all changes.
 
-    let reactions;
+    const applyAction = (response) => {
+      const reactions = response.reactions;
+      setGameState(response.newGameState);
+      setChangeLog({ action, reactions });
+      setHistory([...history, { gameState, changeLog }]);
+    };
+
     switch (action.type) {
       case "TAKE_ITEM":
-        reactions = handleTakeItem(action.item, book, gameState, setGameState);
-        setChangeLog({ action, reactions });
-        setHistory([...history, { gameState, changeLog }]);
+        applyAction(handleTakeItem(action.item, book, gameState));
         break;
       case "TAKE_PATH":
-        reactions = handleTakePath(action.path, book, gameState, setGameState);
-        setChangeLog({ action, reactions });
-        setHistory([...history, { gameState, changeLog }]);
+        applyAction(handleTakePath(action.path, book, gameState));
         break;
       case "START_NPC":
-        reactions = handleStartNpc(action.npcId, book, gameState, setGameState);
-        setChangeLog({ action, reactions });
-        setHistory([...history, { gameState, changeLog }]);
+        applyAction(handleStartNpc(action.npcId, book, gameState));
         break;
       case "TALK_NPC":
-        reactions = handleTalkNpc(action.option, book, gameState, setGameState);
-        setChangeLog({ action, reactions });
-        setHistory([...history, { gameState, changeLog }]);
+        applyAction(handleTalkNpc(action.option, book, gameState));
         break;
       case "END_NPC":
-        reactions = handleEndNpc(action.npc, gameState, setGameState);
-        setChangeLog({ action, reactions });
-        setHistory([...history, { gameState, changeLog }]);
+        applyAction(handleEndNpc(action.npc, gameState));
         break;
       case "BACK_IN_TIME":
         setHistory(history.slice(0, history.length - (action.steps + 1)));

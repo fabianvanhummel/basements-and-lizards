@@ -21,7 +21,7 @@ const doEvents = (eventIds, book, gameState) => {
   return { reactions, newEventIds };
 };
 
-export const handleTakeItem = (item, book, gameState, setGameState) => {
+export const handleTakeItem = (item, book, gameState) => {
   const reactions = [];
   const pastEvents = [...gameState.pastEvents];
   let eventResponse;
@@ -35,16 +35,16 @@ export const handleTakeItem = (item, book, gameState, setGameState) => {
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
 
-  setGameState({
+  const newGameState = {
     ...gameState,
     inventoryItems: [...gameState.inventoryItems, item.id],
     pastEvents,
-  });
+  };
 
-  return reactions;
+  return { reactions, newGameState };
 };
 
-export const handleTakePath = (path, book, gameState, setGameState) => {
+export const handleTakePath = (path, book, gameState) => {
   const reactions = [];
   const pastEvents = [...gameState.pastEvents];
   let eventResponse;
@@ -73,16 +73,16 @@ export const handleTakePath = (path, book, gameState, setGameState) => {
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
 
-  setGameState({
+  const newGameState = {
     ...gameState,
     location: path.toLocationId,
     pastEvents,
-  });
+  };
 
-  return reactions;
+  return { reactions, newGameState };
 };
 
-export const handleStartNpc = (npcId, book, gameState, setGameState) => {
+export const handleStartNpc = (npcId, book, gameState) => {
   const reactions = [];
 
   const npc = book.npcs[npcId];
@@ -92,15 +92,15 @@ export const handleStartNpc = (npcId, book, gameState, setGameState) => {
     message: `You approached ${npc.name}`,
   });
 
-  setGameState({
+  const newGameState = {
     ...gameState,
     npc: npcId,
-  });
+  };
 
-  return reactions;
+  return { reactions, newGameState };
 };
 
-export const handleTalkNpc = (option, book, gameState, setGameState) => {
+export const handleTalkNpc = (option, book, gameState) => {
   const reactions = [];
   const pastEvents = [...gameState.pastEvents];
   const inventoryItems = [...gameState.inventoryItems];
@@ -127,16 +127,16 @@ export const handleTalkNpc = (option, book, gameState, setGameState) => {
       inventoryItems.push(itemId);
     });
 
-  setGameState({
+  const newGameState = {
     ...gameState,
     inventoryItems,
     pastEvents,
-  });
+  };
 
-  return reactions;
+  return { reactions, newGameState };
 };
 
-export const handleEndNpc = (npc, gameState, setGameState) => {
+export const handleEndNpc = (npc, gameState) => {
   const reactions = [];
 
   reactions.push({
@@ -144,10 +144,10 @@ export const handleEndNpc = (npc, gameState, setGameState) => {
     message: `You stopped talking with ${npc.name}`,
   });
 
-  setGameState({
+  const newGameState = {
     ...gameState,
     npc: undefined,
-  });
+  };
 
-  return reactions;
+  return { reactions, newGameState };
 };
