@@ -1,192 +1,19 @@
 import React from "react";
 import Faker from "faker";
-import { NPC } from "./NPC";
+import { Npc } from "./Npc";
 
 export default {
-  title: "Components/NPC",
-  component: NPC,
+  title: "Components/Npc",
+  component: Npc,
 };
 
-const Template = (args) => <NPC {...args} />;
+const Template = (args) => <Npc {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
   reqMet: true,
   name: Faker.name.findName(),
   description: Faker.lorem.sentences(),
-  conversation: {
-    initial: {
-      npcLine: Faker.lorem.sentence(),
-      responses: [
-        {
-          text: Faker.lorem.sentence(),
-          consequences: [
-            {
-              type: "CONVERSATION",
-              id: 1,
-            },
-          ],
-        },
-      ],
-    },
-    1: {
-      npcLine: Faker.lorem.sentence(),
-      responses: [
-        {
-          text: Faker.lorem.sentence(),
-          consequences: [
-            {
-              type: "CONVERSATION",
-              id: 2,
-            },
-          ],
-        },
-        {
-          text: "Bye!",
-          consequences: [
-            {
-              type: "CONVERSATION",
-              id: "end-conversation",
-            },
-          ],
-        },
-      ],
-    },
-    2: {
-      npcLine: Faker.lorem.sentence(),
-      responses: [
-        {
-          text: Faker.lorem.sentence(),
-          consequences: [
-            {
-              type: "CONVERSATION",
-              id: 1,
-            },
-          ],
-        },
-        {
-          text: "Bye!",
-          consequences: [
-            {
-              type: "CONVERSATION",
-              id: "end-conversation",
-            },
-          ],
-        },
-      ],
-    },
-    "end-conversation": {
-      npcLine: "Ok, Bye!",
-    },
-  },
-};
-
-export const GivesItem = Template.bind({});
-GivesItem.args = {
-  reqMet: true,
-  name: Faker.name.findName(),
-  description: Faker.lorem.sentences(),
-  addItem: () => {},
-  conversation: {
-    initial: {
-      npcLine: Faker.lorem.sentence(),
-      responses: [
-        {
-          text: "Item plz?",
-          consequences: [
-            {
-              type: "CONVERSATION",
-              id: "item-offered",
-            },
-          ],
-        },
-        {
-          text: "Bye!",
-          consequences: [
-            {
-              type: "CONVERSATION",
-              id: "end-conversation",
-            },
-          ],
-        },
-      ],
-    },
-    "item-offered": {
-      npcLine: "Sure, want this Crappy item?",
-      responses: [
-        {
-          text: "Yes, thank you!",
-          consequences: [
-            {
-              type: "GET-ITEM",
-              id: "crappy-item",
-            },
-            {
-              type: "CONVERSATION",
-              id: "initial",
-            },
-          ],
-        },
-      ],
-    },
-    "end-conversation": {
-      npcLine: "Ok, Bye!",
-    },
-  },
-};
-
-export const CallsEvent = Template.bind({});
-CallsEvent.args = {
-  reqMet: true,
-  name: Faker.name.findName(),
-  description: Faker.lorem.sentences(),
-  addEvent: () => {},
-  conversation: {
-    initial: {
-      npcLine: Faker.lorem.sentence(),
-      responses: [
-        {
-          text: "Event plz?",
-          consequences: [
-            {
-              type: "CONVERSATION",
-              id: "event-offered",
-            },
-          ],
-        },
-        {
-          text: "Bye!",
-          consequences: [
-            {
-              type: "CONVERSATION",
-              id: "end-conversation",
-            },
-          ],
-        },
-      ],
-    },
-    "event-offered": {
-      npcLine: "Are you sure u want me to perform an event?",
-      responses: [
-        {
-          text: "Yes, go for it!",
-          consequences: [
-            {
-              type: "EXECUTE-EVENT",
-              id: "dummy-event",
-            },
-            {
-              type: "CONVERSATION",
-              id: "initial",
-            },
-          ],
-        },
-      ],
-    },
-    "end-conversation": {
-      npcLine: "Ok, Bye!",
-    },
-  },
 };
 
 export const Unavailable = Template.bind({});

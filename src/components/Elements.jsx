@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Path } from "./Path";
 import { Item } from "./Item";
-import { NPC } from "./NPC";
+import { Npc } from "./Npc";
 import { ButtonToggleBlocked } from "./Buttons";
 
 export const ElementList = ({ type, elements, handleAction }) => {
@@ -29,7 +29,7 @@ export const ElementList = ({ type, elements, handleAction }) => {
                 <Item {...element} handleAction={handleAction} />
               )}
               {type === "Npcs" && (
-                <NPC {...element} handleAction={handleAction} />
+                <Npc {...element} handleAction={handleAction} />
               )}
             </li>
           ))}
