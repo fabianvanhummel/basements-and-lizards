@@ -130,13 +130,13 @@ export const OverviewTab = ({ book, gameState }) => {
                 .map((location) =>
                   location.events.indexOf(book.finalEvent) !== -1
                     ? location.name
-                    : ""
+                    : "",
                 )}
             </p>
             <p className="mt-4">Event has requirement(s):</p>
             <p className="text-lg font-bold">
               {book.events[book.finalEvent].requirements.map(
-                (requirement) => requirement.id
+                (requirement) => requirement.id,
               )}
             </p>
           </div>

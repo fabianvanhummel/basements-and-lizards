@@ -14,9 +14,17 @@ export const Location = ({
 
       <p className="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
 
-      {items && <ElementList type="Items" elements={items} handleAction={handleAction} />}
+      {items && (
+        <ElementList
+          type="Items"
+          elements={items}
+          handleAction={handleAction}
+        />
+      )}
 
-      {npcs && <ElementList type="Npcs" elements={npcs} handleAction={handleAction} />}
+      {npcs && (
+        <ElementList type="Npcs" elements={npcs} handleAction={handleAction} />
+      )}
 
       {paths && (
         <ElementList
