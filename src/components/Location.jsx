@@ -1,4 +1,5 @@
 import { ElementList, ElementHeader } from "../components/Elements";
+import parse from "html-react-parser";
 
 export const Location = ({
   name,
@@ -12,7 +13,9 @@ export const Location = ({
     <div className="max-w-2xl px-8 py-4 mx-auto bg-green-50 rounded-lg shadow-md dark:bg-gray-800">
       <ElementHeader title={name} tag="Location" color="green" />
 
-      <p className="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
+      <p className="mt-2 text-gray-600 dark:text-gray-300">
+        {parse(description)}
+      </p>
 
       {items && (
         <ElementList
