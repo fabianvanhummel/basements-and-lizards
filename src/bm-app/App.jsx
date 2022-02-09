@@ -18,7 +18,7 @@ export const App = ({ book }) => {
 
   // history stores the gameState and changeLog after each action
   // this can be used to go back in time or help with showing what happened
-  const [history, setHistory] = useState([{ changeLog, gameState }]);
+  const [history, setHistory] = useState([]);
 
   const handleAction = (action) => {
     // Maps the action to the right function.
@@ -38,8 +38,8 @@ export const App = ({ book }) => {
         break;
       case "BACK_IN_TIME":
         setHistory(history.slice(0, history.length - (action.steps + 1)));
-        setGameState(history(history.length - 1).gameState);
-        setChangeLog(history(history.length - 1).changeLog);
+        setGameState(history[history.length - (action.steps + 1)].gameState);
+        setChangeLog(history[history.length - (action.steps + 1)].changeLog);
         break;
       default:
         break;
