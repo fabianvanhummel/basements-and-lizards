@@ -38,8 +38,8 @@ export const App = ({ book }) => {
         break;
       case "BACK_IN_TIME":
         setHistory(history.slice(0, history.length - (action.steps + 1)));
-        setGameState(history[1].gameState);
-        setChangeLog(history[1].changeLog);
+        setGameState(history[history.length - (action.steps + 1)].gameState);
+        setChangeLog(history[history.length - (action.steps + 1)].changeLog);
         break;
       default:
         break;
