@@ -13,9 +13,7 @@ export const HistoryTab = ({ book, history, handleAction }) => {
     for (const key in history) {
       historyNames.push({
         locationName: book.locations[history[key].gameState.location].name,
-        actionPerformed: history[key].changeLog.action.type
-          ? history[key].changeLog.action.type
-          : "TAKE_PATH",
+        actionPerformed: history[key].changeLog.action.type || "TAKE_PATH",
       });
     }
     return historyNames;
