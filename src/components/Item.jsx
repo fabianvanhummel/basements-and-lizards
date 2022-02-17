@@ -15,18 +15,16 @@ export const Item = ({
 
     <p className="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
 
-    {
-      <DefaultButton
-        children={"Pick up " + name}
-        onClick={() =>
-          handleAction({
-            type: "TAKE_ITEM",
-            item: { id, name, description, events },
-          })
-        }
-        disabled={!reqMet}
-      />
-    }
+    <DefaultButton
+      children={"Pick up " + name}
+      onClick={() =>
+        handleAction({
+          type: "TAKE_ITEM",
+          item: { id, name, description, events },
+        })
+      }
+      disabled={!reqMet}
+    />
   </div>
 );
 
