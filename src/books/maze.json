@@ -348,7 +348,29 @@
     },
     "dummy-path-event": {
       "name": "Dummy Path Event",
-      "message": "Ik doe niks!"
+      "message": "Ik doe niks!",
+      "override": [
+        {
+          "byEventId": "dummy-path-event2",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "dummy-path-event" }
+          ]
+        },
+        {
+          "byEventId": "dummy-path-event3",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "dummy-path-event2" }
+          ]
+        }
+      ]
+    },
+    "dummy-path-event2": {
+      "name": "Dummy Path Event 2",
+      "message": "Ik doe ook niks!"
+    },
+    "dummy-path-event3": {
+      "name": "Dummy Path Event 3",
+      "message": "De laatste niks doener!"
     },
     "test-override-event": {
       "name": "Room 1 changed",

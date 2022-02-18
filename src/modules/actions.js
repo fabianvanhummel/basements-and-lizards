@@ -1,4 +1,5 @@
 import { checkRequirements } from "./requirements";
+import { checkEventOverride } from "./overrides";
 
 const doEvents = (eventIds, book, gameState) => {
   const reactions = [];
@@ -6,7 +7,9 @@ const doEvents = (eventIds, book, gameState) => {
 
   // Handle inputted events
   eventIds &&
-    eventIds.forEach((eventId) => {
+    eventIds.forEach((eventIdInit) => {
+      const eventId = checkEventOverride(book, gameState, eventIdInit);
+
       if (gameState.pastEvents.includes(eventId)) return;
 
       const event = book.events[eventId];

@@ -1,4 +1,5 @@
 import { checkRequirements } from "./requirements";
+import { checkLocationOverride } from "./overrides";
 
 // EXPORTS
 
@@ -14,7 +15,7 @@ export const getNpc = (book, gameState) => {
 
 // Location
 export const getLocation = (book, gameState) => {
-  let locationId = checkOverride(book, gameState, gameState.location);
+  let locationId = checkLocationOverride(book, gameState, gameState.location);
   return {
     name: book.locations[locationId].name,
     description: book.locations[locationId].description,
@@ -53,14 +54,6 @@ const makeNpcTalkOptionsList = (book, gameState, npcId) => {
 };
 
 // Location
-const checkOverride = (book, gameState, locationId) => {
-  if (!book.locations[locationId].override) return locationId;
-  const override = book.locations[locationId].override.find((override) =>
-    checkRequirements(gameState, override.requirements),
-  );
-  if (override) return checkOverride(book, gameState, override.byLocationId);
-  return locationId;
-};
 
 const makeLocationPathList = (book, gameState, locationId) => {
   return (
