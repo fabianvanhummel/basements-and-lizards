@@ -15,7 +15,7 @@ Primary.args = {
   reqMet: true,
   name: Faker.commerce.productName(),
   description: Faker.commerce.productDescription(),
-  addItem: () => {},
+  handleAction: () => {},
 };
 
 export const isPresentPrimary = Template.bind({});
@@ -32,8 +32,7 @@ isPresentPrimary.args = {
       didHappen: Faker.datatype.boolean(),
       message: Faker.lorem.sentences(),
     })),
-  addItem: () => {},
-  addEvent: () => {},
+  handleAction: () => {},
 };
 
 export const isPresentEmpty = Template.bind({});
@@ -42,7 +41,7 @@ isPresentEmpty.args = {
   reqMet: true,
   name: Faker.commerce.productName(),
   description: Faker.commerce.productDescription(),
-  addItem: () => {},
+  handleAction: () => {},
 };
 
 export const Unavailable = Template.bind({});
@@ -51,5 +50,5 @@ Unavailable.args = {
   reqMet: false,
   name: Faker.commerce.productName(),
   description: Faker.commerce.productDescription(),
-  addItem: () => {},
+  handleAction: () => {},
 };

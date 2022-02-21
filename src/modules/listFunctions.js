@@ -43,6 +43,7 @@ const makeLocationPathList = (book, gameState, locationId) => {
         toLocationId: path.toLocationId,
         name: path.name,
         description: path.description,
+        events: path.events,
       };
     })
   );
@@ -51,12 +52,15 @@ const makeLocationPathList = (book, gameState, locationId) => {
 const makeLocationItemList = (book, gameState, locationId) => {
   return (
     book.locations[locationId].items &&
-    book.locations[locationId].items.map((item) => ({
-      ...book.items[item.id],
-      id: item.id,
-      isPresent: !gameState.inventoryItems.includes(item.id),
-      reqMet: checkRequirements(gameState, item.requirements),
-    }))
+    book.locations[locationId].items
+      .map((item) => ({
+        ...book.items[item.id],
+        id: item.id,
+        isPresent: !gameState.inventoryItems.includes(item.id),
+        reqMet: checkRequirements(gameState, item.requirements),
+        events: item.events,
+      }))
+      .filter((item) => item.isPresent)
   );
 };
 

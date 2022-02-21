@@ -15,18 +15,16 @@ export const Item = ({
 
     <p className="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
 
-    {!isPresent ? (
-      <div>
-        this item was looted
-        {events && <ElementList type="Events" elements={events} />}
-      </div>
-    ) : (
-      <DefaultButton
-        children={"Pick up " + name}
-        onClick={() => handleAction({ type: "TAKE_ITEM", item: id })}
-        disabled={!reqMet}
-      />
-    )}
+    <DefaultButton
+      children={"Pick up " + name}
+      onClick={() =>
+        handleAction({
+          type: "TAKE_ITEM",
+          item: { id, name, description, events },
+        })
+      }
+      disabled={!reqMet}
+    />
   </div>
 );
 
@@ -35,8 +33,6 @@ export const InventoryItem = ({ name, description, events }) => (
     <ElementHeader title={name} tag="Item" color="yellow" />
 
     <p className="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
-
-    {events && <ElementList type="Events" elements={events} />}
   </div>
 );
 
