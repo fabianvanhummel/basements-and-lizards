@@ -1,5 +1,4 @@
 import "./Toggle.css";
-import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCheck } from "@fortawesome/free-solid-svg-icons/faCheck";
@@ -9,17 +8,16 @@ const icons = [faCheck, faXmark];
 
 library.add(...icons);
 
-export const Toggle = ({}) => {
-  const [toggled, setToggled] = useState(false);
-
+export const Toggle = ({ toggled, toggle }) => {
   return (
     <div>
-      <input type="checkbox" id="switch" className="checkbox" />
-      <label
-        for="switch"
-        className="toggle"
-        onClick={() => setToggled(!toggled)}
-      >
+      <input
+        type="checkbox"
+        id="switch"
+        className="checkbox"
+        checked={toggled}
+      />
+      <label for="switch" className="toggle" onClick={() => toggle(!toggled)}>
         <div className="w-10/12 m-auto flex items-center justify-between ">
           <FontAwesomeIcon
             className={toggled ? "opacity-100" : "opacity-0"}

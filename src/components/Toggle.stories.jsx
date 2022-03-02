@@ -9,5 +9,5 @@ const ToggleTemplate = (args) => <Toggle {...args} />;
 
 export const TogglePrimary = ToggleTemplate.bind({});
 TogglePrimary.args = {
-  isToggled: false,
+  toggledArg: true,
 };
