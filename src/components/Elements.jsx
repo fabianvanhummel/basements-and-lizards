@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Path } from "./Path";
 import { Item } from "./Item";
-import { NPC } from "./NPC";
-import { ButtonToggleBlocked } from "./Buttons";
+import { Npc } from "./Npc";
+import { DefaultButton, ButtonToggleBlocked } from "./Buttons";
 
 export const ElementList = ({ type, elements, handleAction }) => {
   const [showBlockedState, setShowBlockedState] = useState(false);
@@ -29,7 +29,20 @@ export const ElementList = ({ type, elements, handleAction }) => {
                 <Item {...element} handleAction={handleAction} />
               )}
               {type === "Npcs" && (
-                <NPC {...element} handleAction={handleAction} />
+                <Npc {...element} handleAction={handleAction} />
+              )}
+              {type === "Options" && (
+                <DefaultButton
+                  onClick={() => {
+                    handleAction({
+                      type: "TALK_NPC",
+                      option: element,
+                    });
+                  }}
+                  disabled={!element.reqMet}
+                >
+                  {element.text}
+                </DefaultButton>
               )}
             </li>
           ))}

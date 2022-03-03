@@ -21,7 +21,7 @@ const doEvents = (eventIds, book, gameState) => {
   return { reactions, newEventIds };
 };
 
-export const handleTakeItem = (item, book, gameState, setGameState) => {
+export const handleTakeItem = (item, book, gameState) => {
   const reactions = [];
   const pastEvents = [...gameState.pastEvents];
   let eventResponse;
@@ -35,16 +35,16 @@ export const handleTakeItem = (item, book, gameState, setGameState) => {
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
 
-  setGameState({
+  const newGameState = {
     ...gameState,
     inventoryItems: [...gameState.inventoryItems, item.id],
     pastEvents,
-  });
+  };
 
-  return reactions;
+  return { reactions, newGameState };
 };
 
-export const handleTakePath = (path, book, gameState, setGameState) => {
+export const handleTakePath = (path, book, gameState) => {
   const reactions = [];
   const pastEvents = [...gameState.pastEvents];
   let eventResponse;
@@ -73,11 +73,81 @@ export const handleTakePath = (path, book, gameState, setGameState) => {
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
 
-  setGameState({
+  const newGameState = {
     ...gameState,
     location: path.toLocationId,
     pastEvents,
+  };
+
+  return { reactions, newGameState };
+};
+
+export const handleStartNpc = (npcId, book, gameState) => {
+  const reactions = [];
+
+  const npc = book.npcs[npcId];
+
+  reactions.push({
+    type: "NPC_INTERACTION",
+    message: `You approached ${npc.name}`,
   });
 
-  return reactions;
+  const newGameState = {
+    ...gameState,
+    npc: npcId,
+  };
+
+  return { reactions, newGameState };
+};
+
+export const handleTalkNpc = (option, book, gameState) => {
+  const reactions = [];
+  const pastEvents = [...gameState.pastEvents];
+  const inventoryItems = [...gameState.inventoryItems];
+  let eventResponse;
+
+  reactions.push({
+    type: "NPC_RESPONSE",
+    message: `${option.response}`,
+  });
+
+  // Handle the events.
+  eventResponse = doEvents(option.events, book, gameState);
+  reactions.push(...eventResponse.reactions);
+  pastEvents.push(...eventResponse.newEventIds);
+
+  // Handle potential items.
+  option.items &&
+    option.items.map((itemId) => {
+      const item = book.items[itemId];
+      reactions.push({
+        type: "GET_ITEM_NPC",
+        message: `You received ${item.name}`,
+      });
+      inventoryItems.push(itemId);
+    });
+
+  const newGameState = {
+    ...gameState,
+    inventoryItems,
+    pastEvents,
+  };
+
+  return { reactions, newGameState };
+};
+
+export const handleEndNpc = (npc, gameState) => {
+  const reactions = [];
+
+  reactions.push({
+    type: "NPC_INTERACTION",
+    message: `You stopped talking with ${npc.name}`,
+  });
+
+  const newGameState = {
+    ...gameState,
+    npc: null,
+  };
+
+  return { reactions, newGameState };
 };

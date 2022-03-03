@@ -62,8 +62,7 @@
           "name": "Back",
           "description": "Go back to room 1"
         }
-      ],
-      "npcs": ["tour-guide"]
+      ]
     },
     "2": {
       "name": "Room number 2",
@@ -107,7 +106,7 @@
       "items": [
         {
           "id": "old-metal-key",
-          "events": ["open-old-wooden-door-4"]
+          "events": ["open-old-wooden-door-4", "block-npc-test"]
         },
         {
           "id": "new-metal-key"
@@ -116,6 +115,14 @@
           "id": "random-shiny-coin",
           "requirements": [
             { "type": "ITEM_IN_INVENTORY", "id": "new-metal-key" }
+          ]
+        }
+      ],
+      "npcs": [
+        {
+          "id": "tour-guide",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "block-npc-test" }
           ]
         }
       ]
@@ -306,132 +313,39 @@
     "tour-guide": {
       "name": "Tour Guide",
       "description": "This guy seems he might know the way around town, and the maze",
-      "conversation": {
-        "initial": {
-          "npcLine": "Hello friend!",
-          "responses": [
-            {
-              "text": "Can you tell me where the exit is please?",
-              "consequences": [
-                {
-                  "type": "CONVERSATION",
-                  "id": "describe-maze"
-                }
-              ]
-            },
-            {
-              "text": "Gimme an item plz!",
-              "consequences": [
-                {
-                  "type": "CONVERSATION",
-                  "id": "asked-item"
-                }
-              ]
-            },
-            {
-              "text": "Make it rain!",
-              "consequences": [
-                {
-                  "type": "CONVERSATION",
-                  "id": "asked-event"
-                }
-              ]
-            },
-            {
-              "text": "Sorry, no time, bye!",
-              "consequences": [
-                {
-                  "type": "CONVERSATION",
-                  "id": "end-conversation"
-                }
-              ]
-            }
+      "options": [
+        {
+          "text": "Where do I go?",
+          "response": "You are in a maze. I know that this maze has at least 7 rooms. Some pathways are easily accesable, other are more difficult to enter. If you manage to reach room 7 you might find an exit."
+        },
+        {
+          "text": "Is this ring useful?",
+          "response": "No.",
+          "requirements": [
+            { "type": "ITEM_IN_INVENTORY", "id": "random-crappy-ring" }
           ]
         },
-        "asked-item": {
-          "npcLine": "Sure, you can have this ring.",
-          "responses": [
-            {
-              "text": "Thanks!",
-              "consequences": [
-                {
-                  "type": "CONVERSATION",
-                  "id": "initial"
-                },
-                {
-                  "type": "GET-ITEM",
-                  "id": "random-crappy-ring"
-                }
-              ]
-            },
-            {
-              "text": "No thanks!",
-              "consequences": [
-                {
-                  "type": "CONVERSATION",
-                  "id": "initial"
-                }
-              ]
-            },
-            {
-              "text": "Bye!",
-              "consequences": [
-                {
-                  "type": "CONVERSATION",
-                  "id": "end-conversation"
-                }
-              ]
-            }
+        {
+          "text": "Do something cool!",
+          "response": "Okay.",
+          "events": ["make-it-rain"],
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "make-it-rain" }
           ]
         },
-        "asked-event": {
-          "npcLine": "Okay, here you go!",
-          "responses": [
-            {
-              "text": "Thanks",
-              "consequences": [
-                {
-                  "type": "CONVERSATION",
-                  "id": "initial"
-                },
-                {
-                  "type": "EXECUTE-EVENT",
-                  "id": "make-it-rain"
-                }
-              ]
-            },
-            {
-              "text": "Bye!",
-              "consequences": [
-                {
-                  "type": "CONVERSATION",
-                  "id": "end-conversation"
-                }
-              ]
-            }
-          ]
-        },
-        "describe-maze": {
-          "npcLine": "Sure, you are in a maze. I know that this maze has at least 7 rooms. Some pathways are easily accesable, other are more difficult to enter. If you manage to reach room 7 you might find an exit.",
-          "responses": [
-            {
-              "text": "Thanks, I'll be on my way!",
-              "consequences": [
-                {
-                  "type": "CONVERSATION",
-                  "id": "end-conversation"
-                }
-              ]
-            }
-          ]
-        },
-        "end-conversation": {
-          "npcLine": "Bye, be safe!"
+        {
+          "text": "Give me something plz",
+          "response": "Mkay.",
+          "items": ["random-crappy-ring"]
         }
-      }
+      ]
     }
   },
   "events": {
+    "block-npc-test": {
+      "name": "NPC unblock",
+      "message": "NPC is nu zichtbaar"
+    },
     "dummy-path-event": {
       "name": "Dummy Path Event",
       "message": "Ik doe niks!"

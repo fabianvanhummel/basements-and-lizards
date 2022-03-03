@@ -1,11 +1,18 @@
 import { useState } from "react";
 import { Router } from "./Router";
-import { handleTakeItem, handleTakePath } from "../modules/actions";
+import {
+  handleTakeItem,
+  handleTakePath,
+  handleStartNpc,
+  handleEndNpc,
+  handleTalkNpc,
+} from "../modules/actions";
 
 export const App = ({ book }) => {
   // gameState holds all information as a result of all previous actions
   const [gameState, setGameState] = useState({
     location: book["initialLocation"],
+    npc: null,
     pastEvents: [],
     inventoryItems: [],
   });
@@ -24,17 +31,28 @@ export const App = ({ book }) => {
     // Maps the action to the right function.
     // This way, we only have to pass one prop to handle all changes.
 
-    let reactions;
+    const applyAction = (response) => {
+      const reactions = response.reactions;
+      setGameState(response.newGameState);
+      setChangeLog({ action, reactions });
+      setHistory([...history, { gameState, changeLog }]);
+    };
+
     switch (action.type) {
       case "TAKE_ITEM":
-        reactions = handleTakeItem(action.item, book, gameState, setGameState);
-        setChangeLog({ action, reactions });
-        setHistory([...history, { gameState, changeLog }]);
+        applyAction(handleTakeItem(action.item, book, gameState));
         break;
       case "TAKE_PATH":
-        reactions = handleTakePath(action.path, book, gameState, setGameState);
-        setChangeLog({ action, reactions });
-        setHistory([...history, { gameState, changeLog }]);
+        applyAction(handleTakePath(action.path, book, gameState));
+        break;
+      case "START_NPC":
+        applyAction(handleStartNpc(action.npcId, book, gameState));
+        break;
+      case "TALK_NPC":
+        applyAction(handleTalkNpc(action.option, book, gameState));
+        break;
+      case "END_NPC":
+        applyAction(handleEndNpc(action.npc, gameState));
         break;
       case "BACK_IN_TIME":
         setHistory(history.slice(0, history.length - (action.steps + 1)));
