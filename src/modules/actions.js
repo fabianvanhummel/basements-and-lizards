@@ -146,7 +146,7 @@ export const handleEndNpc = (npc, gameState) => {
 
   const newGameState = {
     ...gameState,
-    npc: undefined,
+    npc: null,
   };
 
   return { reactions, newGameState };

@@ -17,14 +17,15 @@ export const NpcTalk = ({ name, description, options, handleAction }) => {
         )}
         <div className="text-right">
           <DefaultButton
-            children={"End conversation"}
             onClick={() => {
               handleAction({
                 type: "END_NPC",
                 npc: { name, description },
               });
             }}
-          />
+          >
+            End conversation
+          </DefaultButton>
         </div>
       </div>
     </div>

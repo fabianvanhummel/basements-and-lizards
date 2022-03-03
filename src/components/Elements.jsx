@@ -33,7 +33,6 @@ export const ElementList = ({ type, elements, handleAction }) => {
               )}
               {type === "Options" && (
                 <DefaultButton
-                  children={element.text}
                   onClick={() => {
                     handleAction({
                       type: "TALK_NPC",
@@ -41,7 +40,9 @@ export const ElementList = ({ type, elements, handleAction }) => {
                     });
                   }}
                   disabled={!element.reqMet}
-                />
+                >
+                  {element.text}
+                </DefaultButton>
               )}
             </li>
           ))}

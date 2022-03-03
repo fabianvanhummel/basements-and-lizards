@@ -12,7 +12,7 @@ export const App = ({ book }) => {
   // gameState holds all information as a result of all previous actions
   const [gameState, setGameState] = useState({
     location: book["initialLocation"],
-    npc: undefined,
+    npc: null,
     pastEvents: [],
     inventoryItems: [],
   });
