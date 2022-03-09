@@ -6,7 +6,7 @@
   "locations": {
     "1": {
       "name": "Room number 1",
-      "description": "<div className='text-green-600'>This is a default description of room number 1</div>",
+      "description": "This is a default description of room number 1",
       "paths": [
         {
           "toLocationId": "2",
@@ -225,7 +225,10 @@
             { "type": "EVENT_DID_HAPPEN", "id": "open-location-7-2" }
           ]
         }
-      ]
+      ],
+      "combat": {
+        "id": "1"
+      }
     },
     "7": {
       "name": "Room number 7",
@@ -477,6 +480,12 @@
       "requirements": [
         { "type": "ITEM_IN_INVENTORY", "id": "random-shiny-coin" }
       ]
+    }
+  },
+  "combats": {
+      "1": {
+        "title": "Goblin ambush",
+        "description": "A party of goblins ambushes you from the dark corners of the room. There are two goblin assassins and one goblin chief who charge at you while the chief yells 'gib me all da treasure!!'."
     }
   },
   "characters": [

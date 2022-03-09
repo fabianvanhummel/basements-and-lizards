@@ -151,3 +151,40 @@ export const handleEndNpc = (npc, gameState) => {
 
   return { reactions, newGameState };
 };
+
+export const handleStartCombat = (combatId, book, gameState, changeLog, setFrozenReactions) => {
+  const reactions = [];
+
+  const combat = book.combats[combatId];
+
+  reactions.push({
+    type: "COMBAT",
+    message: `You enter combat named: ${combat.title}`,
+  });
+
+  const newGameState = {
+    ...gameState,
+    combatId: combatId
+  };
+
+  const frozenReactions = changeLog.reactions
+  setFrozenReactions(frozenReactions);
+
+  return { reactions, newGameState };
+};
+
+export const handleEndCombat = (combatId, combatTitle, gameState, frozenReactions) => {
+  const reactions = frozenReactions || [];
+  reactions.push({
+    type: "COMBAT",
+    message: `You resolved combat named: ${combatTitle}`,
+  });
+
+  const newGameState = {
+    ...gameState,
+    combatId: null,
+    pastCombats: combatId
+  };
+
+  return { reactions, newGameState };
+};

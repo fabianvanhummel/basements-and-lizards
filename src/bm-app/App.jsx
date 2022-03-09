@@ -6,6 +6,8 @@ import {
   handleStartNpc,
   handleEndNpc,
   handleTalkNpc,
+  handleStartCombat,
+  handleEndCombat,
 } from "../modules/actions";
 
 export const App = ({ book }) => {
@@ -15,13 +17,18 @@ export const App = ({ book }) => {
     npc: null,
     pastEvents: [],
     inventoryItems: [],
+    pastCombats: [],
   });
 
   // changeLog tracks the changes that are made as a result of the last action
   const [changeLog, setChangeLog] = useState({
     action: {},
     reactions: [],
+    frozenReactions: [],
   });
+
+  // frozenReactions holds reactions that are held until certain events are resolved, like combat
+  const [frozenReactions, setFrozenReactions] = useState([]);
 
   // history stores the gameState and changeLog after each action
   // this can be used to go back in time or help with showing what happened
@@ -53,6 +60,27 @@ export const App = ({ book }) => {
         break;
       case "END_NPC":
         applyAction(handleEndNpc(action.npc, gameState));
+        break;
+      case "START_COMBAT":
+        applyAction(
+          handleStartCombat(
+            action.combatId,
+            book,
+            gameState,
+            changeLog,
+            setFrozenReactions,
+          ),
+        );
+        break;
+      case "END_COMBAT":
+        applyAction(
+          handleEndCombat(
+            action.combatId,
+            action.combatTitle,
+            gameState,
+            frozenReactions,
+          ),
+        );
         break;
       case "BACK_IN_TIME":
         setHistory(history.slice(0, history.length - (action.steps + 1)));
