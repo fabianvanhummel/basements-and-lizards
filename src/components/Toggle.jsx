@@ -16,8 +16,9 @@ export const Toggle = ({ toggled, toggle }) => {
         id="switch"
         className="checkbox"
         checked={toggled}
+        onChange={() => toggle(!toggled)}
       />
-      <label for="switch" className="toggle" onClick={() => toggle(!toggled)}>
+      <label for="switch" className="toggle">
         <div className="w-10/12 m-auto flex items-center justify-between ">
           <FontAwesomeIcon
             className={toggled ? "opacity-100" : "opacity-0"}
