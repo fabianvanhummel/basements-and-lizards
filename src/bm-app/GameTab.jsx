@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Reaction } from "./Reaction";
 import { getLocation } from "../modules/listFunctions";
 import Location from "../components/Location";
-import { Toggle } from "../components/Toggle";
 
 export const GameTab = ({ book, gameState, changeLog, handleAction }) => {
   // Stores latest reaction in state, so they can be dismissed
   const [reactions, setReactions] = useState(changeLog.reactions);
   // When a new action is done, reset the reactions
   useEffect(() => setReactions(changeLog.reactions), [changeLog]);
-  const [toggled, toggle] = useState(true);
 
   return (
     <div>
@@ -30,7 +28,6 @@ export const GameTab = ({ book, gameState, changeLog, handleAction }) => {
       )}
 
       <Location {...getLocation(book, gameState)} handleAction={handleAction} />
-      <Toggle toggled={toggled} toggle={toggle} />
     </div>
   );
 };
