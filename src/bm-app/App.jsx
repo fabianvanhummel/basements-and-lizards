@@ -24,7 +24,6 @@ export const App = ({ book }) => {
   const [changeLog, setChangeLog] = useState({
     action: {},
     reactions: [],
-    frozenReactions: [],
   });
 
   // frozenReactions holds reactions that are held until certain events are resolved, like combat
