@@ -6,7 +6,7 @@
   "locations": {
     "1": {
       "name": "Room number 1",
-      "description": "<div className='text-green-600'>This is a default description of room number 1</div>",
+      "description": "This is a default description of room number 1",
       "paths": [
         {
           "toLocationId": "2",
