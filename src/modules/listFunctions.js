@@ -1,11 +1,15 @@
 import { checkRequirements } from "./requirements";
-import { checkLocationOverride, checkItemOverride } from "./overrides";
+import {
+  checkLocationOverride,
+  checkItemOverride,
+  checkNpcOverride,
+} from "./overrides";
 
 // EXPORTS
 
 // NPC
 export const getNpc = (book, gameState) => {
-  let npcId = gameState.npc;
+  let npcId = checkNpcOverride(book, gameState, gameState.npc);
   return {
     name: book.npcs[npcId].name,
     description: book.npcs[npcId].description,
@@ -94,10 +98,13 @@ const makeLocationItemList = (book, gameState, locationId) => {
 const makeLocationNpcList = (book, gameState, locationId) => {
   return (
     book.locations[locationId].npcs &&
-    book.locations[locationId].npcs.map((npc) => ({
-      ...book.npcs[npc.id],
-      id: npc.id,
-      reqMet: checkRequirements(gameState, npc.requirements),
-    }))
+    book.locations[locationId].npcs.map((npc) => {
+      let npcId = checkNpcOverride(book, gameState, npc.id);
+      return {
+        ...book.npcs[npcId],
+        id: npc.id,
+        reqMet: checkRequirements(gameState, npc.requirements),
+      };
+    })
   );
 };

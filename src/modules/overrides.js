@@ -32,3 +32,12 @@ export const checkItemOverride = (book, gameState, itemId) => {
   if (override) return checkItemOverride(book, gameState, override.byItemId);
   return itemId;
 };
+
+export const checkNpcOverride = (book, gameState, npcId) => {
+  if (!book.npcs[npcId].override) return npcId;
+  const override = book.npcs[npcId].override.find((override) =>
+    checkRequirements(gameState, override.requirements),
+  );
+  if (override) return checkNpcOverride(book, gameState, override.byNpcId);
+  return npcId;
+};

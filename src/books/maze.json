@@ -362,6 +362,44 @@
           "response": "Mkay.",
           "items": ["random-crappy-ring"]
         }
+      ],
+      "override": [
+        {
+          "byNpcId": "tour-guide2",
+          "requirements": [
+            { "type": "ITEM_IN_INVENTORY", "id": "new-metal-key" }
+          ]
+        }
+      ]
+    },
+    "tour-guide2": {
+      "name": "Henk",
+      "description": "This guy seems he might know the way around town, and the maze. Furthermore, his name is Henk.",
+      "options": [
+        {
+          "text": "Where do I go?",
+          "response": "You are in a maze. I know that this maze has at least 7 rooms. Some pathways are easily accesable, other are more difficult to enter. If you manage to reach room 7 you might find an exit."
+        },
+        {
+          "text": "Is this ring useful?",
+          "response": "No.",
+          "requirements": [
+            { "type": "ITEM_IN_INVENTORY", "id": "random-crappy-ring" }
+          ]
+        },
+        {
+          "text": "Do something cool!",
+          "response": "Okay.",
+          "events": ["make-it-rain"],
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "make-it-rain" }
+          ]
+        },
+        {
+          "text": "Give me something plz",
+          "response": "Mkay.",
+          "items": ["random-crappy-ring"]
+        }
       ]
     }
   },
