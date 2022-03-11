@@ -290,11 +290,35 @@
   "items": {
     "old-metal-key": {
       "name": "Old Metal Key",
-      "description": "This key can be used to open the old wooden door"
+      "description": "This key can be used to open the old wooden door",
+      "override": [
+        {
+          "byItemId": "old-metal-key2",
+          "requirements": [
+            { "type": "ITEM_IN_INVENTORY", "id": "old-metal-key" }
+          ]
+        }
+      ]
+    },
+    "old-metal-key2": {
+      "name": "Old Metal Key",
+      "description": "This key can be used to open the old wooden door, and is old btw."
     },
     "new-metal-key": {
       "name": "New Metal Key",
-      "description": "Having this key opens the new wooden door"
+      "description": "Having this key opens the new wooden door",
+      "override": [
+        {
+          "byItemId": "new-metal-key2",
+          "requirements": [
+            { "type": "ITEM_IN_INVENTORY", "id": "old-metal-key" }
+          ]
+        }
+      ]
+    },
+    "new-metal-key2": {
+      "name": "New Metal Key",
+      "description": "Having this key opens the new wooden door, it looks very new to you!"
     },
     "black-mouth-mask": {
       "name": "Black Mouth Mask",

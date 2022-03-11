@@ -23,3 +23,12 @@ export const checkEventOverride = (book, gameState, eventId) => {
   if (override) return checkEventOverride(book, gameState, override.byEventId);
   return eventId;
 };
+
+export const checkItemOverride = (book, gameState, itemId) => {
+  if (!book.items[itemId].override) return itemId;
+  const override = book.items[itemId].override.find((override) =>
+    checkRequirements(gameState, override.requirements),
+  );
+  if (override) return checkItemOverride(book, gameState, override.byItemId);
+  return itemId;
+};
