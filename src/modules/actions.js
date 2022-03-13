@@ -33,7 +33,7 @@ const doEvents = (eventIds, book, gameState) => {
 
 export const handleTakeItem = (item, book, gameState) => {
   const reactions = [];
-  const pastEvents = [...gameState.pastEvents];
+  let pastEvents = [...gameState.pastEvents];
   let eventResponse;
 
   reactions.push({
@@ -44,6 +44,10 @@ export const handleTakeItem = (item, book, gameState) => {
   eventResponse = doEvents(item.events, book, gameState);
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
+  // https://stackoverflow.com/questions/1187518
+  pastEvents = pastEvents.filter(
+    (x) => !eventResponse.revertEventIds.includes(x),
+  );
 
   const newGameState = {
     ...gameState,
@@ -56,7 +60,7 @@ export const handleTakeItem = (item, book, gameState) => {
 
 export const handleTakePath = (path, book, gameState) => {
   const reactions = [];
-  const pastEvents = [...gameState.pastEvents];
+  let pastEvents = [...gameState.pastEvents];
   let eventResponse;
 
   // The party follows the path that was chosen.
@@ -69,6 +73,10 @@ export const handleTakePath = (path, book, gameState) => {
   eventResponse = doEvents(path.events, book, gameState);
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
+  // https://stackoverflow.com/questions/1187518
+  pastEvents = pastEvents.filter(
+    (x) => !eventResponse.revertEventIds.includes(x),
+  );
 
   const location = book.locations[path.toLocationId];
 
@@ -82,6 +90,10 @@ export const handleTakePath = (path, book, gameState) => {
   eventResponse = doEvents(location.events, book, gameState);
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
+  // https://stackoverflow.com/questions/1187518
+  pastEvents = pastEvents.filter(
+    (x) => !eventResponse.revertEventIds.includes(x),
+  );
 
   const newGameState = {
     ...gameState,
@@ -112,7 +124,7 @@ export const handleStartNpc = (npcId, book, gameState) => {
 
 export const handleTalkNpc = (option, book, gameState) => {
   const reactions = [];
-  const pastEvents = [...gameState.pastEvents];
+  let pastEvents = [...gameState.pastEvents];
   const inventoryItems = [...gameState.inventoryItems];
   let eventResponse;
 
@@ -125,6 +137,10 @@ export const handleTalkNpc = (option, book, gameState) => {
   eventResponse = doEvents(option.events, book, gameState);
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
+  // https://stackoverflow.com/questions/1187518
+  pastEvents = pastEvents.filter(
+    (x) => !eventResponse.revertEventIds.includes(x),
+  );
 
   // Handle potential items.
   option.items &&
