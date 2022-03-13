@@ -3,6 +3,7 @@ import { checkRequirements } from "./requirements";
 const doEvents = (eventIds, book, gameState) => {
   const reactions = [];
   const newEventIds = [];
+  const revertEventIds = [];
 
   // Handle inputted events
   eventIds &&
@@ -14,11 +15,16 @@ const doEvents = (eventIds, book, gameState) => {
       if (event.requirements && !checkRequirements(event.requirements)) return;
 
       newEventIds.push(eventId);
+
+      if (event.revertEvents) {
+        revertEventIds.push(...event.revertEvents);
+      }
+
       reactions.push({ type: "EVENT_HAPPENS", message: event.message });
     });
 
   // Return reactions array
-  return { reactions, newEventIds };
+  return { reactions, newEventIds, revertEventIds };
 };
 
 export const handleTakeItem = (item, book, gameState) => {
