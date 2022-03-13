@@ -352,11 +352,11 @@
     },
     "test-override-event": {
       "name": "Room 1 changed",
-      "description": "Because you entered this room, the description of room 1 changed."
+      "message": "Because you entered this room, the description of room 1 changed."
     },
     "portal-puzzel-step-1": {
       "name": "Step 1",
-      "description": "You are send back to the middle of the room, but the yellow portal station, something starts to glow."
+      "message": "You are send back to the middle of the room, but the yellow portal station, something starts to glow."
     },
     "portal-puzzel-step-1-fail": {
       "name": "Step 1",
@@ -364,14 +364,14 @@
         { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-1" }
       ],
       "revertEvents": ["portal-puzzel-step-1-fail"],
-      "description": "Nothing interesting happened."
+      "message": "Nothing interesting happened."
     },
     "portal-puzzel-step-2": {
       "name": "Step 2",
       "requirements": [
         { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-1" }
       ],
-      "description": "Send back again, but the glow starts to increase in size and brightness."
+      "message": "Send back again, but the glow starts to increase in size and brightness."
     },
     "portal-puzzel-step-2-fail": {
       "name": "Step 2",
@@ -380,14 +380,14 @@
         { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-2" }
       ],
       "revertEvents": ["portal-puzzel-step-1", "portal-puzzel-step-2-fail"],
-      "description": "The glow that was there a second ago disappeared again."
+      "message": "The glow that was there a second ago disappeared again."
     },
     "portal-puzzel-step-3": {
       "name": "Step 3",
       "requirements": [
         { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-2" }
       ],
-      "description": "The glow grows again, it starts to look like a portal, but too small."
+      "message": "The glow grows again, it starts to look like a portal, but too small."
     },
     "portal-puzzel-step-3-fail": {
       "name": "Step 3",
@@ -400,14 +400,14 @@
         "portal-puzzel-step-2",
         "portal-puzzel-step-3-fail"
       ],
-      "description": "The glow that was growing has now disappeared."
+      "message": "The glow that was growing has now disappeared."
     },
     "portal-puzzel-step-4": {
       "name": "Step 4",
       "requirements": [
         { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-3" }
       ],
-      "description": "The portal size increases again, but isn't as large as the other portals yet."
+      "message": "The portal size increases again, but isn't as large as the other portals yet."
     },
     "portal-puzzel-step-4-fail": {
       "name": "Step 4",
@@ -421,14 +421,14 @@
         "portal-puzzel-step-3",
         "portal-puzzel-step-4-fail"
       ],
-      "description": "The small portal grows smaller and then disappears leaving some shiny particles that dim slowly until they're gone."
+      "message": "The small portal grows smaller and then disappears leaving some shiny particles that dim slowly until they're gone."
     },
     "portal-puzzel-step-5": {
       "name": "Step 5",
       "requirements": [
         { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-4" }
       ],
-      "description": "The yellow portal now has a normal size, you can probably use it now."
+      "message": "The yellow portal now has a normal size, you can probably use it now."
     },
     "portal-puzzel-step-5-fail": {
       "name": "Step 5",
@@ -443,7 +443,7 @@
         "portal-puzzel-step-4",
         "portal-puzzel-step-5-fail"
       ],
-      "description": "The portal starts to pulsate faster and faster until it explodes leaving an empty portal station once again."
+      "message": "The portal starts to pulsate faster and faster until it explodes leaving an empty portal station once again."
     },
     "open-location-6": {
       "name": "Unlock room 6",
