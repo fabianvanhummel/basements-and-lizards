@@ -12,7 +12,11 @@ const doEvents = (eventIds, book, gameState) => {
 
       const event = book.events[eventId];
 
-      if (event.requirements && !checkRequirements(event.requirements)) return;
+      if (
+        event.requirements &&
+        !checkRequirements(gameState, event.requirements)
+      )
+        return;
 
       newEventIds.push(eventId);
 
