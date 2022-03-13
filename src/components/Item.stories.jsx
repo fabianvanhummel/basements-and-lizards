@@ -26,3 +26,12 @@ Unavailable.args = {
   description: Faker.commerce.productDescription(),
   handleAction: () => {},
 };
+
+export const MultiLineDescription = Template.bind({});
+MultiLineDescription.args = {
+  isPresent: true,
+  reqMet: false,
+  name: Faker.commerce.productName(),
+  description: Faker.lorem.paragraphs(),
+  handleAction: () => {},
+};
