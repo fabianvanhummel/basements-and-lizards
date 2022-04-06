@@ -15,6 +15,7 @@ export const App = ({ book }) => {
   const [gameState, setGameState] = useState({
     location: book["initialLocation"],
     npc: null,
+    combat: null,
     pastEvents: [],
     inventoryItems: [],
     pastCombats: [],
@@ -25,9 +26,6 @@ export const App = ({ book }) => {
     action: {},
     reactions: [],
   });
-
-  // frozenReactions holds reactions that are held until certain events are resolved, like combat
-  const [frozenReactions, setFrozenReactions] = useState([]);
 
   // history stores the gameState and changeLog after each action
   // this can be used to go back in time or help with showing what happened
@@ -62,23 +60,12 @@ export const App = ({ book }) => {
         break;
       case "START_COMBAT":
         applyAction(
-          handleStartCombat(
-            action.combatId,
-            book,
-            gameState,
-            changeLog,
-            setFrozenReactions,
-          ),
+          handleStartCombat(action.combatId, book, gameState, changeLog),
         );
         break;
       case "END_COMBAT":
         applyAction(
-          handleEndCombat(
-            action.combatId,
-            action.combatTitle,
-            gameState,
-            frozenReactions,
-          ),
+          handleEndCombat(action.combatId, action.combatTitle, gameState),
         );
         break;
       case "BACK_IN_TIME":

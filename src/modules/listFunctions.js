@@ -25,8 +25,8 @@ export const getLocation = (book, gameState) => {
 };
 
 // Combat
-export const getCombat = (book, gameState) => {
-  const combat = checkIfCombatNeedsResolve(book, gameState)
+export const getCombat = (book, toLocationId, gameState) => {
+  const combat = checkIfCombatNeedsResolve(book, toLocationId, gameState)
   return combat 
 };
 
@@ -109,11 +109,11 @@ const makeLocationNpcList = (book, gameState, locationId) => {
   );
 };
 
-const checkIfCombatNeedsResolve = (book, gameState) => {
-  const combat = book.locations[gameState.location].combat
+const checkIfCombatNeedsResolve = (book, toLocationId, gameState) => {
+  const combat = book.locations[toLocationId].combat
   if(combat) {
     if(gameState.pastCombats.indexOf(combat.id)) {
-      return book.combats[combat.id]
+      return {combat: book.combats[combat.id], combatId: combat.id}
     } else {
       return (
         null

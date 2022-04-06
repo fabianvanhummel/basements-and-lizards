@@ -1,4 +1,5 @@
 import { checkRequirements } from "./requirements";
+import { getCombat } from './listFunctions'
 
 const doEvents = (eventIds, book, gameState) => {
   const reactions = [];
@@ -73,12 +74,24 @@ export const handleTakePath = (path, book, gameState) => {
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
 
+  // Check if combat arises at new location.
+  const combat = getCombat(book, path.toLocationId, gameState)
+  if(combat) {
+    reactions.push({
+      type: "COMBAT",
+      message: `You enter combat named: ${combat.combat.title}`,
+    });
+  }
+
+  const gameStateCombat = combat? combat.combatId : null
+
   const newGameState = {
     ...gameState,
     location: path.toLocationId,
     pastEvents,
+    combat: gameStateCombat
   };
-
+  
   return { reactions, newGameState };
 };
 
@@ -152,29 +165,10 @@ export const handleEndNpc = (npc, gameState) => {
   return { reactions, newGameState };
 };
 
-export const handleStartCombat = (combatId, book, gameState, changeLog, setFrozenReactions) => {
+export const handleEndCombat = (combatId, combatTitle, gameState) => {
+
   const reactions = [];
 
-  const combat = book.combats[combatId];
-
-  reactions.push({
-    type: "COMBAT",
-    message: `You enter combat named: ${combat.title}`,
-  });
-
-  const newGameState = {
-    ...gameState,
-    combatId: combatId
-  };
-
-  const frozenReactions = changeLog.reactions
-  setFrozenReactions(frozenReactions);
-
-  return { reactions, newGameState };
-};
-
-export const handleEndCombat = (combatId, combatTitle, gameState, frozenReactions) => {
-  const reactions = frozenReactions || [];
   reactions.push({
     type: "COMBAT",
     message: `You resolved combat named: ${combatTitle}`,
@@ -182,7 +176,7 @@ export const handleEndCombat = (combatId, combatTitle, gameState, frozenReaction
 
   const newGameState = {
     ...gameState,
-    combatId: null,
+    combat: null,
     pastCombats: combatId
   };
 
