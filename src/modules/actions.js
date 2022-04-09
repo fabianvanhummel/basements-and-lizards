@@ -177,7 +177,7 @@ export const handleEndCombat = (combatId, combatTitle, gameState) => {
   const newGameState = {
     ...gameState,
     combat: null,
-    pastCombats: combatId
+    pastCombats: [...gameState.pastCombats, combatId],
   };
 
   return { reactions, newGameState };
