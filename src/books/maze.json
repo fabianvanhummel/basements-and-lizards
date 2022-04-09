@@ -24,6 +24,11 @@
           "toLocationId": "test-override-room",
           "name": "Door to override",
           "description": "Follow this path to test the override"
+        },
+        {
+          "toLocationId": "test-combat-room",
+          "name": "Door to combat",
+          "description": "Follow this path to test combat"
         }
       ],
       "override": [
@@ -34,6 +39,11 @@
           ]
         }
       ]
+    },
+    "test-combat-room": {
+      "name": "Combat Room",
+      "description": "There's a combat is this room, so you'll only see this room after you resolved the combat",
+      "combat": "1"
     },
     "1-override": {
       "name": "Room number 1 (override)",
@@ -226,9 +236,7 @@
           ]
         }
       ],
-      "combat": {
-        "id": "1"
-      }
+      "combat": "1"
     },
     "7": {
       "name": "Room number 7",
