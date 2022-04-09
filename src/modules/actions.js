@@ -1,5 +1,5 @@
 import { checkRequirements } from "./requirements";
-import { getCombat } from './listFunctions'
+import { getCombat } from "./listFunctions";
 
 const doEvents = (eventIds, book, gameState) => {
   const reactions = [];
@@ -75,23 +75,23 @@ export const handleTakePath = (path, book, gameState) => {
   pastEvents.push(...eventResponse.newEventIds);
 
   // Check if combat arises at new location.
-  const combat = getCombat(book, path.toLocationId, gameState)
-  if(combat) {
+  const combat = getCombat(book, path.toLocationId, gameState);
+  if (combat) {
     reactions.push({
       type: "COMBAT",
       message: `You enter combat named: ${combat.combat.title}`,
     });
   }
 
-  const gameStateCombat = combat? combat.combatId : null
+  const gameStateCombat = combat ? combat.combatId : null;
 
   const newGameState = {
     ...gameState,
     location: path.toLocationId,
     pastEvents,
-    combat: gameStateCombat
+    combat: gameStateCombat,
   };
-  
+
   return { reactions, newGameState };
 };
 
@@ -166,7 +166,6 @@ export const handleEndNpc = (npc, gameState) => {
 };
 
 export const handleEndCombat = (combatId, combatTitle, gameState) => {
-
   const reactions = [];
 
   reactions.push({

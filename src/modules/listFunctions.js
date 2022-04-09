@@ -20,14 +20,14 @@ export const getLocation = (book, gameState) => {
     description: book.locations[locationId].description,
     items: makeLocationItemList(book, gameState, locationId),
     npcs: makeLocationNpcList(book, gameState, locationId),
-    paths: makeLocationPathList(book, gameState, locationId)
+    paths: makeLocationPathList(book, gameState, locationId),
   };
 };
 
 // Combat
 export const getCombat = (book, toLocationId, gameState) => {
-  const combat = checkIfCombatNeedsResolve(book, toLocationId, gameState)
-  return combat 
+  const combat = checkIfCombatNeedsResolve(book, toLocationId, gameState);
+  return combat;
 };
 
 // Inventory
@@ -110,17 +110,14 @@ const makeLocationNpcList = (book, gameState, locationId) => {
 };
 
 const checkIfCombatNeedsResolve = (book, toLocationId, gameState) => {
-  const combat = book.locations[toLocationId].combat
-  if(combat) {
-    if(gameState.pastCombats.indexOf(combat.id)) {
-      return {combat: book.combats[combat.id], combatId: combat.id}
+  const combat = book.locations[toLocationId].combat;
+  if (combat) {
+    if (gameState.pastCombats.indexOf(combat.id)) {
+      return { combat: book.combats[combat.id], combatId: combat.id };
     } else {
-      return (
-        null
-      );
+      return null;
     }
   } else {
-    return null
+    return null;
   }
-  
 };
