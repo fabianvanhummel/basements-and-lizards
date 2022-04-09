@@ -30,11 +30,7 @@ export const GameTab = ({ book, gameState, changeLog, handleAction }) => {
       )}
 
       {gameState.combat ? (
-        <Combat
-          id={book.locations[gameState.location].combat.id}
-          {...getCombat(book, gameState.location, gameState).combat}
-          handleAction={handleAction}
-        />
+        <Combat {...getCombat(book, gameState)} handleAction={handleAction} />
       ) : gameState.npc ? (
         <NpcTalk {...getNpc(book, gameState)} handleAction={handleAction} />
       ) : (
