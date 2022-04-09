@@ -24,12 +24,6 @@ export const getLocation = (book, gameState) => {
   };
 };
 
-// Combat
-export const getCombat = (book, toLocationId, gameState) => {
-  const combat = checkIfCombatNeedsResolve(book, toLocationId, gameState);
-  return combat;
-};
-
 // Inventory
 export const makeInventoryItemList = (book, gameState) => {
   return (
@@ -107,17 +101,4 @@ const makeLocationNpcList = (book, gameState, locationId) => {
       reqMet: checkRequirements(gameState, npc.requirements),
     }))
   );
-};
-
-const checkIfCombatNeedsResolve = (book, toLocationId, gameState) => {
-  const combat = book.locations[toLocationId].combat;
-  if (combat) {
-    if (gameState.pastCombats.indexOf(combat.id)) {
-      return { combat: book.combats[combat.id], combatId: combat.id };
-    } else {
-      return null;
-    }
-  } else {
-    return null;
-  }
 };
