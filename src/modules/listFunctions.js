@@ -24,6 +24,15 @@ export const getLocation = (book, gameState) => {
   };
 };
 
+export const checkOverride = (book, gameState, locationId) => {
+  if (!book.locations[locationId].override) return locationId;
+  const override = book.locations[locationId].override.find((override) =>
+    checkRequirements(gameState, override.requirements),
+  );
+  if (override) return checkOverride(book, gameState, override.byLocationId);
+  return locationId;
+};
+
 // Inventory
 export const makeInventoryItemList = (book, gameState) => {
   return (
@@ -53,15 +62,6 @@ const makeNpcTalkOptionsList = (book, gameState, npcId) => {
 };
 
 // Location
-const checkOverride = (book, gameState, locationId) => {
-  if (!book.locations[locationId].override) return locationId;
-  const override = book.locations[locationId].override.find((override) =>
-    checkRequirements(gameState, override.requirements),
-  );
-  if (override) return checkOverride(book, gameState, override.byLocationId);
-  return locationId;
-};
-
 const makeLocationPathList = (book, gameState, locationId) => {
   return (
     book.locations[locationId].paths &&
