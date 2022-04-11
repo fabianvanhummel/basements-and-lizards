@@ -4,6 +4,7 @@ import { checkOverride } from "./listFunctions";
 const doEvents = (eventIds, book, gameState) => {
   const reactions = [];
   const newEventIds = [];
+  const revertEventIds = [];
 
   // Handle inputted events
   eventIds &&
@@ -12,19 +13,28 @@ const doEvents = (eventIds, book, gameState) => {
 
       const event = book.events[eventId];
 
-      if (event.requirements && !checkRequirements(event.requirements)) return;
+      if (
+        event.requirements &&
+        !checkRequirements(gameState, event.requirements)
+      )
+        return;
 
       newEventIds.push(eventId);
+
+      if (event.revertEvents) {
+        revertEventIds.push(...event.revertEvents);
+      }
+
       reactions.push({ type: "EVENT_HAPPENS", message: event.message });
     });
 
   // Return reactions array
-  return { reactions, newEventIds };
+  return { reactions, newEventIds, revertEventIds };
 };
 
 export const handleTakeItem = (item, book, gameState) => {
   const reactions = [];
-  const pastEvents = [...gameState.pastEvents];
+  let pastEvents = [...gameState.pastEvents];
   let eventResponse;
 
   reactions.push({
@@ -35,6 +45,10 @@ export const handleTakeItem = (item, book, gameState) => {
   eventResponse = doEvents(item.events, book, gameState);
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
+  // https://stackoverflow.com/questions/1187518
+  pastEvents = pastEvents.filter(
+    (x) => !eventResponse.revertEventIds.includes(x),
+  );
 
   const newGameState = {
     ...gameState,
@@ -47,7 +61,7 @@ export const handleTakeItem = (item, book, gameState) => {
 
 export const handleTakePath = (path, book, gameState) => {
   const reactions = [];
-  const pastEvents = [...gameState.pastEvents];
+  let pastEvents = [...gameState.pastEvents];
   let eventResponse;
 
   // The party follows the path that was chosen.
@@ -60,6 +74,10 @@ export const handleTakePath = (path, book, gameState) => {
   eventResponse = doEvents(path.events, book, gameState);
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
+  // https://stackoverflow.com/questions/1187518
+  pastEvents = pastEvents.filter(
+    (x) => !eventResponse.revertEventIds.includes(x),
+  );
 
   // Check for overrides on destination
   const locationId = checkOverride(book, gameState, path.toLocationId);
@@ -75,11 +93,26 @@ export const handleTakePath = (path, book, gameState) => {
   eventResponse = doEvents(location.events, book, gameState);
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
+  // https://stackoverflow.com/questions/1187518
+  pastEvents = pastEvents.filter(
+    (x) => !eventResponse.revertEventIds.includes(x),
+  );
+
+  // Check if combat arises at new location.
+  let combat = null;
+  if (location.combat && !gameState.pastCombats.includes(location.combat)) {
+    reactions.push({
+      type: "COMBAT",
+      message: `You enter combat named: ${book.combats[location.combat].title}`,
+    });
+    combat = location.combat;
+  }
 
   const newGameState = {
     ...gameState,
     location: locationId, // This is the overridden locationId
     pastEvents,
+    combat,
   };
 
   return { reactions, newGameState };
@@ -105,7 +138,7 @@ export const handleStartNpc = (npcId, book, gameState) => {
 
 export const handleTalkNpc = (option, book, gameState) => {
   const reactions = [];
-  const pastEvents = [...gameState.pastEvents];
+  let pastEvents = [...gameState.pastEvents];
   const inventoryItems = [...gameState.inventoryItems];
   let eventResponse;
 
@@ -118,6 +151,10 @@ export const handleTalkNpc = (option, book, gameState) => {
   eventResponse = doEvents(option.events, book, gameState);
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
+  // https://stackoverflow.com/questions/1187518
+  pastEvents = pastEvents.filter(
+    (x) => !eventResponse.revertEventIds.includes(x),
+  );
 
   // Handle potential items.
   option.items &&
@@ -150,6 +187,23 @@ export const handleEndNpc = (npc, gameState) => {
   const newGameState = {
     ...gameState,
     npc: null,
+  };
+
+  return { reactions, newGameState };
+};
+
+export const handleEndCombat = (combatId, combatTitle, gameState) => {
+  const reactions = [];
+
+  reactions.push({
+    type: "COMBAT",
+    message: `You resolved combat named: ${combatTitle}`,
+  });
+
+  const newGameState = {
+    ...gameState,
+    combat: null,
+    pastCombats: [...gameState.pastCombats, combatId],
   };
 
   return { reactions, newGameState };

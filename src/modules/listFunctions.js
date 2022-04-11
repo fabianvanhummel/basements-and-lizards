@@ -33,6 +33,9 @@ export const checkOverride = (book, gameState, locationId) => {
   return locationId;
 };
 
+// Combat
+export const getCombat = (book, gameState) => book.combats[gameState.combat];
+
 // Inventory
 export const makeInventoryItemList = (book, gameState) => {
   return (
