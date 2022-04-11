@@ -24,6 +24,11 @@
           "toLocationId": "test-override-room",
           "name": "Door to override",
           "description": "Follow this path to test the override"
+        },
+        {
+          "toLocationId": "test-combat-room",
+          "name": "Door to combat",
+          "description": "Follow this path to test combat"
         }
       ],
       "override": [
@@ -34,6 +39,11 @@
           ]
         }
       ]
+    },
+    "test-combat-room": {
+      "name": "Combat Room",
+      "description": "There's a combat is this room, so you'll only see this room after you resolved the combat",
+      "combat": "1"
     },
     "1-override": {
       "name": "Room number 1 (override)",
@@ -225,7 +235,8 @@
             { "type": "EVENT_DID_HAPPEN", "id": "open-location-7-2" }
           ]
         }
-      ]
+      ],
+      "combat": "1"
     },
     "7": {
       "name": "Room number 7",
@@ -477,6 +488,12 @@
       "requirements": [
         { "type": "ITEM_IN_INVENTORY", "id": "random-shiny-coin" }
       ]
+    }
+  },
+  "combats": {
+      "1": {
+        "title": "Goblin ambush",
+        "description": "A party of goblins ambushes you from the dark corners of the room. There are two goblin assassins and one goblin chief who charge at you while the chief yells 'gib me all da treasure!!'."
     }
   },
   "characters": [

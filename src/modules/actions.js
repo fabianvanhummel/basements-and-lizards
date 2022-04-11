@@ -73,10 +73,21 @@ export const handleTakePath = (path, book, gameState) => {
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
 
+  // Check if combat arises at new location.
+  let combat = null;
+  if (location.combat && !gameState.pastCombats.includes(location.combat)) {
+    reactions.push({
+      type: "COMBAT",
+      message: `You enter combat named: ${book.combats[location.combat].title}`,
+    });
+    combat = location.combat;
+  }
+
   const newGameState = {
     ...gameState,
     location: path.toLocationId,
     pastEvents,
+    combat,
   };
 
   return { reactions, newGameState };
@@ -147,6 +158,23 @@ export const handleEndNpc = (npc, gameState) => {
   const newGameState = {
     ...gameState,
     npc: null,
+  };
+
+  return { reactions, newGameState };
+};
+
+export const handleEndCombat = (combatId, combatTitle, gameState) => {
+  const reactions = [];
+
+  reactions.push({
+    type: "COMBAT",
+    message: `You resolved combat named: ${combatTitle}`,
+  });
+
+  const newGameState = {
+    ...gameState,
+    combat: null,
+    pastCombats: [...gameState.pastCombats, combatId],
   };
 
   return { reactions, newGameState };

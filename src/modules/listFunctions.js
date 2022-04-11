@@ -24,6 +24,9 @@ export const getLocation = (book, gameState) => {
   };
 };
 
+// Combat
+export const getCombat = (book, gameState) => book.combats[gameState.combat];
+
 // Inventory
 export const makeInventoryItemList = (book, gameState) => {
   return (
