@@ -6,6 +6,7 @@ import {
   handleStartNpc,
   handleEndNpc,
   handleTalkNpc,
+  handleEndCombat,
 } from "../modules/actions";
 
 export const App = ({ book }) => {
@@ -13,8 +14,10 @@ export const App = ({ book }) => {
   const [gameState, setGameState] = useState({
     location: book["initialLocation"],
     npc: null,
+    combat: null,
     pastEvents: [],
     inventoryItems: [],
+    pastCombats: [],
   });
 
   // changeLog tracks the changes that are made as a result of the last action
@@ -53,6 +56,11 @@ export const App = ({ book }) => {
         break;
       case "END_NPC":
         applyAction(handleEndNpc(action.npc, gameState));
+        break;
+      case "END_COMBAT":
+        applyAction(
+          handleEndCombat(action.combatId, action.combatTitle, gameState),
+        );
         break;
       case "BACK_IN_TIME":
         setHistory(history.slice(0, history.length - (action.steps + 1)));

@@ -6,6 +6,7 @@ const colorMap = {
   GET_ITEM_NPC: "yellow",
   NPC_INTERACTION: "purple",
   NPC_RESPONSE: "purple",
+  COMBAT: "red",
 };
 
 const titleMap = {
@@ -16,6 +17,7 @@ const titleMap = {
   GET_ITEM_NPC: "You received an item",
   NPC_INTERACTION: "You interacted with an NPC",
   NPC_RESPONSE: "The NPC Responded",
+  COMBAT: "A battle occurred",
 };
 
 export const Reaction = ({ type, dismiss, ...props }) => (
