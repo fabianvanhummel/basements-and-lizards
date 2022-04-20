@@ -496,7 +496,8 @@
   "combats": {
       "1": {
         "title": "Goblin ambush",
-        "description": "A party of goblins ambushes you from the dark corners of the room. There are two goblin assassins and one goblin chief who charge at you while the chief yells 'gib me all da treasure!!'."
+        "description": "A party of goblins ambushes you from the dark corners of the room. There are two goblin assassins and one goblin chief who charge at you while the chief yells 'gib me all da treasure!!'.",
+        "hint": "Goblins are fast, nimble but also quite fragile and scare easily."
     }
   },
   "characters": [
