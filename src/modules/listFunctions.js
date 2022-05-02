@@ -25,9 +25,13 @@ export const getLocation = (book, gameState) => {
 };
 
 // Combat
-export const getCombat = (book, gameState) => ({
-  ...book.combats[gameState.combat],
-});
+export const getCombat = (book, gameState) => {
+  let combatId = gameState.combat;
+  return {
+    ...book.combats[gameState.combat],
+    options: makeCombatOptionsList(book, gameState, combatId),
+  };
+};
 
 // Inventory
 export const makeInventoryItemList = (book, gameState) => {
@@ -46,6 +50,22 @@ const makeNpcTalkOptionsList = (book, gameState, npcId) => {
   return (
     book.npcs[npcId].options &&
     book.npcs[npcId].options.map((option) => {
+      return {
+        reqMet: checkRequirements(gameState, option.requirements),
+        text: option.text,
+        response: option.response,
+        events: option.events,
+        items: option.items,
+      };
+    })
+  );
+};
+
+// Combat
+const makeCombatOptionsList = (book, gameState, combatId) => {
+  return (
+    book.combats[combatId].options &&
+    book.combats[combatId].options.map((option) => {
       return {
         reqMet: checkRequirements(gameState, option.requirements),
         text: option.text,

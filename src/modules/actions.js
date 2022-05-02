@@ -106,7 +106,7 @@ export const handleTakePath = (path, book, gameState) => {
           checkRequirements(gameState, locationCombat.requirements))
       ) {
         reactions.push({
-          type: "COMBAT",
+          type: "COMBAT_START",
           message: `You enter combat named: ${
             book.combats[locationCombat.id].title
           }`,
@@ -201,11 +201,51 @@ export const handleEndNpc = (npc, gameState) => {
   return { reactions, newGameState };
 };
 
+export const handleMoveCombat = (option, book, gameState) => {
+  const reactions = [];
+  let pastEvents = [...gameState.pastEvents];
+  const inventoryItems = [...gameState.inventoryItems];
+  let eventResponse;
+
+  reactions.push({
+    type: "COMBAT_MOVE",
+    message: `${option.response}`,
+  });
+
+  // Handle the events.
+  eventResponse = doEvents(option.events, book, gameState);
+  reactions.push(...eventResponse.reactions);
+  pastEvents.push(...eventResponse.newEventIds);
+  // https://stackoverflow.com/questions/1187518
+  pastEvents = pastEvents.filter(
+    (x) => !eventResponse.revertEventIds.includes(x),
+  );
+
+  // Handle potential items.
+  option.items &&
+    option.items.map((itemId) => {
+      const item = book.items[itemId];
+      reactions.push({
+        type: "GET_ITEM_COMBAT",
+        message: `You received ${item.name}`,
+      });
+      inventoryItems.push(itemId);
+    });
+
+  const newGameState = {
+    ...gameState,
+    inventoryItems,
+    pastEvents,
+  };
+
+  return { reactions, newGameState };
+};
+
 export const handleEndCombat = (combatTitle, gameState) => {
   const reactions = [];
 
   reactions.push({
-    type: "COMBAT",
+    type: "COMBAT_END",
     message: `You left combat named: ${combatTitle}`,
   });
 

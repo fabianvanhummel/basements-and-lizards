@@ -47,7 +47,7 @@
         {
           "id": "1",
           "requirements": [
-            { "type": "EVENT_NOT_HAPPENED", "id": "resolved_combat_1" }
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved-combat-1" }
           ]
         }
       ],
@@ -56,7 +56,6 @@
           "toLocationId": "1",
           "name": "Hallway",
           "description": "To room 1!",
-          "events": ["resolved_combat_1"],
           "requirements": []
         }
       ]
@@ -256,7 +255,7 @@
         {
           "id": "1",
           "requirements": [
-            { "type": "EVENT_NOT_HAPPENED", "id": "resolved_combat_1" }
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved-combat-1" }
           ]
         }
       ]
@@ -338,6 +337,10 @@
       "name": "Shiny Coin",
       "description": "It does nothing, but you are still happy you found it."
     },
+    "random-cool-necklace": {
+      "name": "Cool Necklace",
+      "description": "A cool goblin smelling necklace, nice!"
+    },
     "random-crappy-ring": {
       "name": "Crappy ring",
       "description": "After inspecting this ring, you notice it is completely worthless, you are slightly dissapointed"
@@ -380,7 +383,7 @@
       "name": "NPC unblock",
       "message": "NPC is nu zichtbaar"
     },
-    "resolved_combat_1": {
+    "resolved-combat-1": {
       "name": "Resolved Combat 1",
       "message": "Combat 1 was resolved"
     },
@@ -520,7 +523,33 @@
   "combats": {
     "1": {
       "title": "Goblin ambush",
-      "description": "A party of goblins ambushes you from the dark corners of the room. There are two goblin assassins and one goblin chief who charge at you while the chief yells 'gib me all da treasure!!'."
+      "description": "A party of goblins ambushes you from the dark corners of the room. There are two goblin assassins and one goblin chief who charge at you while the chief yells 'gib me all da treasure!!'.",
+      "options": [
+        {
+          "text": "Attack!",
+          "response": "You go guns blazing and defeat those noobs.",
+          "events": ["resolved-combat-1"],
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved-combat-1" }
+          ]
+        },
+        {
+          "text": "Defend",
+          "response": "The goblins come charging in, you stand your ground and defeat them.",
+          "events": ["resolved-combat-1"],
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved-combat-1" }
+          ]
+        },
+        {
+          "text": "Loot",
+          "response": "You loot the corpses, finding a cool necklace",
+          "items": ["random-cool-necklace"],
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "resolved-combat-1" }
+          ]
+        }
+      ]
     }
   },
   "characters": [

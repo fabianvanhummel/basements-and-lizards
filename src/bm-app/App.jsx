@@ -6,6 +6,7 @@ import {
   handleStartNpc,
   handleEndNpc,
   handleTalkNpc,
+  handleMoveCombat,
   handleEndCombat,
 } from "../modules/actions";
 
@@ -55,6 +56,9 @@ export const App = ({ book }) => {
         break;
       case "END_NPC":
         applyAction(handleEndNpc(action.npc, gameState));
+        break;
+      case "MOVE_COMBAT":
+        applyAction(handleMoveCombat(action.option, book, gameState));
         break;
       case "END_COMBAT":
         applyAction(handleEndCombat(action.combatTitle, gameState));
