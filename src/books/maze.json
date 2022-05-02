@@ -31,6 +31,7 @@
           "description": "Follow this path to test combat"
         }
       ],
+      "hint":"This is the start of the maze. If you end up here, you are probably not doing the right thing. Try going to location 2 first.",
       "override": [
         {
           "byLocationId": "1-override",
@@ -135,7 +136,8 @@
             { "type": "EVENT_DID_HAPPEN", "id": "block-npc-test" }
           ]
         }
-      ]
+      ],
+      "hint":"There is an NPC in this room, but he won't show up without the proper preparations."
     },
     "3": {
       "name": "Room number 3",
@@ -349,7 +351,8 @@
           "response": "Mkay.",
           "items": ["random-crappy-ring"]
         }
-      ]
+      ],
+      "hint":"This NPC can give the party an item or make it rain in the maze. This is required for something I don't really know this story very well."
     }
   },
   "events": {
@@ -493,7 +496,8 @@
   "combats": {
       "1": {
         "title": "Goblin ambush",
-        "description": "A party of goblins ambushes you from the dark corners of the room. There are two goblin assassins and one goblin chief who charge at you while the chief yells 'gib me all da treasure!!'."
+        "description": "A party of goblins ambushes you from the dark corners of the room. There are two goblin assassins and one goblin chief who charge at you while the chief yells 'gib me all da treasure!!'.",
+        "hint": "Goblins are fast, nimble but also quite fragile and scare easily."
     }
   },
   "characters": [

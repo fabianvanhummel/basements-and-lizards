@@ -10,6 +10,7 @@ module.exports = {
         // as shown at this link: https://tailwindcss.com/docs/customizing-colors#color-palette-reference
         violet: colors.violet,
         fuchsia: colors.fuchsia,
+        orange: colors.orange
       },
     },
   },
