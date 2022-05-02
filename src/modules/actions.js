@@ -49,8 +49,20 @@ export const handleTakeItem = (item, book, gameState) => {
     (x) => !eventResponse.revertEventIds.includes(x),
   );
 
+  // Check for a teleport
+  let locationId = gameState.location;
+  if (item.toLocationId) {
+    locationId = item.toLocationId;
+    const location = book.locations[locationId];
+
+    reactions.push({
+      type: "TELEPORTED",
+      message: `You were teleported to ${location.name}`,
+    });
+
   const newGameState = {
     ...gameState,
+    location: locationId,
     inventoryItems: [...gameState.inventoryItems, item.id],
     pastEvents,
   };
