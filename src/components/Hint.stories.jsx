@@ -9,7 +9,7 @@ export default {
 export const HintPrimary = () => {
   return (
     <Hint
-      hintText={Faker.lorem.sentences(5)}
+      hintText={Faker.lorem.sentences(500)}
       modalVisible={true}
       setToggled={() => {}}
       toggle={() => {}}

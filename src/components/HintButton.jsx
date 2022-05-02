@@ -16,12 +16,9 @@ export const HintButton = ({ hintText }) => {
       >
         <img src="https://i.imgur.com/HnKEc18.png" width="80px" />
       </div>
-      <Hint
-        hintText={hintText}
-        modalVisible={toggled}
-        setToggled={setToggled}
-        toggle={toggle}
-      />
+      {toggled && (
+        <Hint hintText={hintText} setToggled={setToggled} toggle={toggle} />
+      )}
     </div>
   );
 };
