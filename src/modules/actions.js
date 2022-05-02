@@ -201,18 +201,17 @@ export const handleEndNpc = (npc, gameState) => {
   return { reactions, newGameState };
 };
 
-export const handleEndCombat = (combatId, combatTitle, gameState) => {
+export const handleEndCombat = (combatTitle, gameState) => {
   const reactions = [];
 
   reactions.push({
     type: "COMBAT",
-    message: `You resolved combat named: ${combatTitle}`,
+    message: `You left combat named: ${combatTitle}`,
   });
 
   const newGameState = {
     ...gameState,
     combat: null,
-    pastCombats: [...gameState.pastCombats, combatId],
   };
 
   return { reactions, newGameState };

@@ -17,7 +17,6 @@ export const App = ({ book }) => {
     combat: null,
     pastEvents: [],
     inventoryItems: [],
-    pastCombats: [],
   });
 
   // changeLog tracks the changes that are made as a result of the last action
@@ -58,9 +57,7 @@ export const App = ({ book }) => {
         applyAction(handleEndNpc(action.npc, gameState));
         break;
       case "END_COMBAT":
-        applyAction(
-          handleEndCombat(action.combatId, action.combatTitle, gameState),
-        );
+        applyAction(handleEndCombat(action.combatTitle, gameState));
         break;
       case "BACK_IN_TIME":
         setHistory(history.slice(0, history.length - (action.steps + 1)));
