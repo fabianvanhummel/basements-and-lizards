@@ -19,6 +19,11 @@ export const checkRequirements = (gameState, requirements = []) => {
           blocked = true;
         }
         break;
+      case "ITEM_NOT_IN_INVENTORY":
+        if (gameState.inventoryItems.includes(requirement.id)) {
+          blocked = true;
+        }
+        break;
       default:
         // Do Nothing
         break;

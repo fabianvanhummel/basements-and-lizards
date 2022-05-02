@@ -546,7 +546,8 @@
           "response": "You loot the corpses, finding a cool necklace",
           "items": ["random-cool-necklace"],
           "requirements": [
-            { "type": "EVENT_DID_HAPPEN", "id": "resolved-combat-1" }
+            { "type": "EVENT_DID_HAPPEN", "id": "resolved-combat-1" },
+            { "type": "ITEM_NOT_IN_INVENTORY", "id": "random-cool-necklace" }
           ]
         }
       ]
