@@ -7,6 +7,7 @@ const colorMap = {
   NPC_INTERACTION: "purple",
   NPC_RESPONSE: "purple",
   COMBAT: "red",
+  TELEPORTED: "blue",
 };
 
 const titleMap = {
@@ -18,6 +19,7 @@ const titleMap = {
   NPC_INTERACTION: "You interacted with an NPC",
   NPC_RESPONSE: "The NPC Responded",
   COMBAT: "A battle occurred",
+  TELEPORTED: "You were teleported",
 };
 
 export const Reaction = ({ type, dismiss, ...props }) => (
