@@ -97,13 +97,25 @@ export const handleTakePath = (path, book, gameState) => {
 
   // Check if combat arises at new location.
   let combat = null;
-  if (location.combat && !gameState.pastCombats.includes(location.combat)) {
-    reactions.push({
-      type: "COMBAT",
-      message: `You enter combat named: ${book.combats[location.combat].title}`,
+
+  location.combat &&
+    location.combat.find((locationCombat) => {
+      if (
+        !locationCombat.requirements ||
+        (locationCombat.requirements &&
+          checkRequirements(gameState, locationCombat.requirements))
+      ) {
+        reactions.push({
+          type: "COMBAT",
+          message: `You enter combat named: ${
+            book.combats[locationCombat.id].title
+          }`,
+        });
+        combat = locationCombat.id;
+        return true;
+      }
+      return false;
     });
-    combat = location.combat;
-  }
 
   const newGameState = {
     ...gameState,

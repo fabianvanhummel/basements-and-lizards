@@ -43,12 +43,20 @@
     "test-combat-room": {
       "name": "Combat Room",
       "description": "There's a combat is this room, so you'll only see this room after you resolved the combat",
-      "combat": "1",
+      "combat": [
+        {
+          "id": "1",
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved_combat_1" }
+          ]
+        }
+      ],
       "paths": [
         {
           "toLocationId": "1",
           "name": "Hallway",
           "description": "To room 1!",
+          "events": ["resolved_combat_1"],
           "requirements": []
         }
       ]
@@ -244,7 +252,14 @@
           ]
         }
       ],
-      "combat": "1"
+      "combat": [
+        {
+          "id": "1",
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved_combat_1" }
+          ]
+        }
+      ]
     },
     "7": {
       "name": "Room number 7",
@@ -364,6 +379,10 @@
     "block-npc-test": {
       "name": "NPC unblock",
       "message": "NPC is nu zichtbaar"
+    },
+    "resolved_combat_1": {
+      "name": "Resolved Combat 1",
+      "message": "Combat 1 was resolved"
     },
     "dummy-path-event": {
       "name": "Dummy Path Event",
