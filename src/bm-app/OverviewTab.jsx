@@ -37,37 +37,34 @@ export const OverviewTab = ({ book, gameState }) => {
         </div>
         <div className="mx-4 bg-yellow-50 rounded-lg shadow-md mt-4 py-4">
           <div className="font-sans text-3xl">Party</div>
-          <div className="w-5/6 mx-auto my-4">
+          <div className="w-5/6 mx-auto my-4 mr-0">
             {book.characters.map((character, index) => {
               return (
                 <div
                   key={index}
-                  className="rounded-md border-2 border-orange-200	w-full my-2 grid grid-cols-3 font-bold"
+                  className="rounded-md w-full my-2 grid grid-flow-col auto-cols-max content-center"
                 >
                   <div className="border-2 border-orange-200 items-center m-auto w-full">
                     <img
                       className="m-auto"
                       src={character.image}
-                      width="100"
-                      height="120"
+                      width="108"
+                      height="128"
                       alt=""
                     ></img>
                   </div>
                   <div
-                    className="border-2 border-orange-200"
+                    className="border-2 border-orange-200 w-48"
                     key={character.id}
                   >
-                    <p className="text-lg">{character.name}</p>
+                    <p className="text-lg ">{character.name}</p>
                     <p> {character.race}</p>
                     <p>'{character.title}'</p>
                   </div>
-                  <div className="border-2 border-orange-200">
-                    <p className="text-lg">Items:</p>
-                    {character.items.length !== 0
-                      ? character.items.map((item, index) => {
-                          return <p key={index}>{item}</p>;
-                        })
-                      : "Nothing"}
+                  <div className="border-2 border-orange-200 max-h-28 overflow-auto w-96">
+                    {character.description
+                      ? character.description
+                      : "A dark and mysterious past."}
                   </div>
                 </div>
               );
