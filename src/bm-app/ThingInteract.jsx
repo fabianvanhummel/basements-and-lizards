@@ -20,7 +20,7 @@ export const ThingInteract = ({ name, description, options, handleAction }) => {
             onClick={() => {
               handleAction({
                 type: "END_THING",
-                npc: { name, description },
+                thing: { name, description },
               });
             }}
           >
