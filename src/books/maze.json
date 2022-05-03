@@ -446,7 +446,7 @@
         },
         {
           "text": "Pick up rock",
-          "response": "You picked up the rock.",
+          "response": "You pick up the rock.",
           "items": ["thing-rock"],
           "requirements": [
             { "type": "EVENT_DID_HAPPEN", "id": "poke-2" },
