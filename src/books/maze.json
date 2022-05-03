@@ -16,6 +16,11 @@
           "events": ["dummy-path-event"]
         },
         {
+          "toLocationId": "test-thing-room",
+          "name": "Door to thing",
+          "description": "Follow this path to test the thing"
+        },
+        {
           "toLocationId": "portal-chamber",
           "name": "Blue portal",
           "description": "A large blue portal"
