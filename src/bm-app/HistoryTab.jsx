@@ -4,6 +4,9 @@ const colorMap = {
   START_NPC: "blue",
   TALK_NPC: "blue",
   END_NPC: "blue",
+  START_THING: "cyan",
+  INTERACT_THING: "cyan",
+  END_THING: "cyan",
   MOVE_COMBAT: "red",
   END_COMBAT: "red",
 };
