@@ -16,6 +16,7 @@ export const App = ({ book }) => {
     location: book["initialLocation"],
     npc: null,
     combat: null,
+    thing: null,
     pastEvents: [],
     inventoryItems: [],
   });
