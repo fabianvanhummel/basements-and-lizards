@@ -65,7 +65,7 @@
       ],
       "things": [
         {
-          "id": "thing-test",
+          "id": "test-thing",
           "requirements": [
             { "type": "EVENT_DID_HAPPEN", "id": "thing-activate-event" }
           ]
