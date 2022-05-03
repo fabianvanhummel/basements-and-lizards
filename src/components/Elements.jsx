@@ -44,6 +44,19 @@ export const ElementList = ({ type, elements, handleAction }) => {
                   {element.text}
                 </DefaultButton>
               )}
+              {type === "CombatOptions" && (
+                <DefaultButton
+                  onClick={() => {
+                    handleAction({
+                      type: "MOVE_COMBAT",
+                      option: element,
+                    });
+                  }}
+                  disabled={!element.reqMet}
+                >
+                  {element.text}
+                </DefaultButton>
+              )}
             </li>
           ))}
         </ul>

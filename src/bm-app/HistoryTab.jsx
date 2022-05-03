@@ -1,9 +1,11 @@
 const colorMap = {
   TAKE_PATH: "purple",
   TAKE_ITEM: "yellow",
-  END_COMBAT: "red",
   START_NPC: "blue",
+  TALK_NPC: "blue",
   END_NPC: "blue",
+  MOVE_COMBAT: "red",
+  END_COMBAT: "red",
 };
 
 export const HistoryTab = ({ book, history, handleAction }) => {

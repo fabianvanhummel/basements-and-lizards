@@ -31,7 +31,7 @@
           "description": "Follow this path to test combat"
         }
       ],
-      "hint":"This is the start of the maze. If you end up here, you are probably not doing the right thing. Try going to location 2 first.",
+      "hint": "This is the start of the maze. If you end up here, you are probably not doing the right thing. Try going to location 2 first.",
       "override": [
         {
           "byLocationId": "1-override",
@@ -44,7 +44,22 @@
     "test-combat-room": {
       "name": "Combat Room",
       "description": "There's a combat is this room, so you'll only see this room after you resolved the combat",
-      "combat": "1"
+      "combat": [
+        {
+          "id": "1",
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved-combat-1" }
+          ]
+        }
+      ],
+      "paths": [
+        {
+          "toLocationId": "1",
+          "name": "Hallway",
+          "description": "To room 1!",
+          "requirements": []
+        }
+      ]
     },
     "1-override": {
       "name": "Room number 1 (override)",
@@ -137,7 +152,7 @@
           ]
         }
       ],
-      "hint":"There is an NPC in this room, but he won't show up without the proper preparations."
+      "hint": "There is an NPC in this room, but he won't show up without the proper preparations."
     },
     "3": {
       "name": "Room number 3",
@@ -238,7 +253,14 @@
           ]
         }
       ],
-      "combat": "1"
+      "combat": [
+        {
+          "id": "1",
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved-combat-1" }
+          ]
+        }
+      ]
     },
     "7": {
       "name": "Room number 7",
@@ -317,6 +339,10 @@
       "name": "Shiny Coin",
       "description": "It does nothing, but you are still happy you found it."
     },
+    "random-cool-necklace": {
+      "name": "Cool Necklace",
+      "description": "A cool goblin smelling necklace, nice!"
+    },
     "random-crappy-ring": {
       "name": "Crappy ring",
       "description": "After inspecting this ring, you notice it is completely worthless, you are slightly dissapointed"
@@ -352,13 +378,17 @@
           "items": ["random-crappy-ring"]
         }
       ],
-      "hint":"This NPC can give the party an item or make it rain in the maze. This is required for something I don't really know this story very well."
+      "hint": "This NPC can give the party an item or make it rain in the maze. This is required for something I don't really know this story very well."
     }
   },
   "events": {
     "block-npc-test": {
       "name": "NPC unblock",
       "message": "NPC is nu zichtbaar"
+    },
+    "resolved-combat-1": {
+      "name": "Resolved Combat 1",
+      "message": "Combat 1 was resolved"
     },
     "dummy-path-event": {
       "name": "Dummy Path Event",
@@ -494,10 +524,37 @@
     }
   },
   "combats": {
-      "1": {
-        "title": "Goblin ambush",
-        "description": "A party of goblins ambushes you from the dark corners of the room. There are two goblin assassins and one goblin chief who charge at you while the chief yells 'gib me all da treasure!!'.",
-        "hint": "Goblins are fast, nimble but also quite fragile and scare easily."
+    "1": {
+      "title": "Goblin ambush",
+      "description": "A party of goblins ambushes you from the dark corners of the room. There are two goblin assassins and one goblin chief who charge at you while the chief yells 'gib me all da treasure!!'.",
+      "hint": "Goblins are fast, nimble but also quite fragile and scare easily.",
+      "options": [
+        {
+          "text": "Attack!",
+          "response": "You go guns blazing and defeat those noobs.",
+          "events": ["resolved-combat-1"],
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved-combat-1" }
+          ]
+        },
+        {
+          "text": "Defend",
+          "response": "The goblins come charging in, you stand your ground and defeat them.",
+          "events": ["resolved-combat-1"],
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved-combat-1" }
+          ]
+        },
+        {
+          "text": "Loot",
+          "response": "You loot the corpses, finding a cool necklace",
+          "items": ["random-cool-necklace"],
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "resolved-combat-1" },
+            { "type": "ITEM_NOT_IN_INVENTORY", "id": "random-cool-necklace" }
+          ]
+        }
+      ]
     }
   },
   "characters": [
