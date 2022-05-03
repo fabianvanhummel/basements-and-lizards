@@ -57,6 +57,19 @@ export const ElementList = ({ type, elements, handleAction }) => {
                   {element.text}
                 </DefaultButton>
               )}
+              {type === "ThingOptions" && (
+                <DefaultButton
+                  onClick={() => {
+                    handleAction({
+                      type: "INTERACT_THING",
+                      option: element,
+                    });
+                  }}
+                  disabled={!element.reqMet}
+                >
+                  {element.text}
+                </DefaultButton>
+              )}
             </li>
           ))}
         </ul>
