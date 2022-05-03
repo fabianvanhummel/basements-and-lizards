@@ -3,6 +3,8 @@ import { Reaction } from "./Reaction";
 import { getLocation, getNpc, getCombat } from "../modules/listFunctions";
 import { Location } from "../components/Location";
 import { NpcTalk } from "./NpcTalk";
+import { checkForHints } from "../modules/hintFunctions";
+import { HintButton } from "../components/HintButton";
 import { Combat } from "./Combat";
 
 export const GameTab = ({ book, gameState, changeLog, handleAction }) => {
@@ -10,9 +12,13 @@ export const GameTab = ({ book, gameState, changeLog, handleAction }) => {
   const [reactions, setReactions] = useState(changeLog.reactions);
   // When a new action is done, reset the reactions
   useEffect(() => setReactions(changeLog.reactions), [changeLog]);
+  // Check for available hints
+  const hint = checkForHints(book, gameState);
 
   return (
     <div>
+      {hint && <HintButton hintText={hint} />}
+
       {reactions && (
         <ul className="mb-5">
           {reactions.map((reaction, i) => (

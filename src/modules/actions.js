@@ -1,4 +1,5 @@
 import { checkRequirements } from "./requirements";
+import { checkOverride } from "./listFunctions";
 
 const doEvents = (eventIds, book, gameState) => {
   const reactions = [];
@@ -78,7 +79,9 @@ export const handleTakePath = (path, book, gameState) => {
     (x) => !eventResponse.revertEventIds.includes(x),
   );
 
-  const location = book.locations[path.toLocationId];
+  // Check for overrides on destination
+  const locationId = checkOverride(book, gameState, path.toLocationId);
+  const location = book.locations[locationId];
 
   // The party arrives at the location.
   reactions.push({
@@ -119,7 +122,7 @@ export const handleTakePath = (path, book, gameState) => {
 
   const newGameState = {
     ...gameState,
-    location: path.toLocationId,
+    location: locationId, // This is the overridden locationId
     pastEvents,
     combat,
   };

@@ -31,6 +31,7 @@
           "description": "Follow this path to test combat"
         }
       ],
+      "hint": "This is the start of the maze. If you end up here, you are probably not doing the right thing. Try going to location 2 first.",
       "override": [
         {
           "byLocationId": "1-override",
@@ -150,7 +151,8 @@
             { "type": "EVENT_DID_HAPPEN", "id": "block-npc-test" }
           ]
         }
-      ]
+      ],
+      "hint": "There is an NPC in this room, but he won't show up without the proper preparations."
     },
     "3": {
       "name": "Room number 3",
@@ -375,7 +377,8 @@
           "response": "Mkay.",
           "items": ["random-crappy-ring"]
         }
-      ]
+      ],
+      "hint": "This NPC can give the party an item or make it rain in the maze. This is required for something I don't really know this story very well."
     }
   },
   "events": {
@@ -524,6 +527,7 @@
     "1": {
       "title": "Goblin ambush",
       "description": "A party of goblins ambushes you from the dark corners of the room. There are two goblin assassins and one goblin chief who charge at you while the chief yells 'gib me all da treasure!!'.",
+      "hint": "Goblins are fast, nimble but also quite fragile and scare easily.",
       "options": [
         {
           "text": "Attack!",
@@ -561,8 +565,7 @@
       "race": "Half-Orc",
       "title": "The Barbarian",
       "description": "Arnoud is a big, muscular half-orc. He loves fighting, using his gigantic two handed broad axe. Although he is an impressive combatant, he is easily tricked when facing witty enemies.",
-      "backstory": "Arnoud grew up in Arnhem, where 'Messentrekken' was a common move on the streets. This way he learned to always be ready for a fight.",
-      "items": ["Broadaxe", "Chainmail", ""]
+      "backstory": "Arnoud grew up in Arnhem, where 'Messentrekken' was a common move on the streets. This way he learned to always be ready for a fight."
     },
     {
       "id": 2,
@@ -571,8 +574,7 @@
       "race": "Human",
       "title": "Longshot Lackey",
       "description": "He can throw a frikadel like no other.",
-      "backstory": "Joey has always enjoyed food, and prefers to have breakfast that isn't particulary healthy. This passion for food gave him exceptional abilities when preparing future meals. He can throw any fast food with great power and accuracy.",
-      "items": ["Donut", "Ninja sword"]
+      "backstory": "Joey has always enjoyed food, and prefers to have breakfast that isn't particulary healthy. This passion for food gave him exceptional abilities when preparing future meals. He can throw any fast food with great power and accuracy."
     },
     {
       "id": 3,
@@ -581,8 +583,7 @@
       "race": "Arachnid",
       "title": "The Scary Spider",
       "description": "Big, Hairy, nasty.",
-      "backstory": "After an unfortunate event Spincent grew extra legs, at first this seemed like a disadvantage, but soon he evolved. This turned him into a spider who has the size and strength of a human.",
-      "items": []
+      "backstory": "After an unfortunate event Spincent grew extra legs, at first this seemed like a disadvantage, but soon he evolved. This turned him into a spider who has the size and strength of a human."
     }
   ]
 }
