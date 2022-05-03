@@ -5,6 +5,7 @@ export const Location = ({
   description,
   items,
   npcs,
+  things,
   paths,
   handleAction,
 }) => {
@@ -27,6 +28,14 @@ export const Location = ({
 
       {npcs && (
         <ElementList type="Npcs" elements={npcs} handleAction={handleAction} />
+      )}
+
+      {things && (
+        <ElementList
+          type="Things"
+          elements={things}
+          handleAction={handleAction}
+        />
       )}
 
       {paths && (
