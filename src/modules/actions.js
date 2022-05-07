@@ -219,8 +219,21 @@ export const handleTalkNpc = (option, book, gameState) => {
       inventoryItems.push(itemId);
     });
 
+  // Check for a teleport
+  const teleported = !!option.toLocationId;
+  if (teleported) {
+    const location = book.locations[option.toLocationId];
+
+    reactions.push({
+      type: "TELEPORTED",
+      message: `You were teleported to ${location.name}`,
+    });
+  }
+
   const newGameState = {
     ...gameState,
+    location: teleported ? option.toLocationId : gameState.location,
+    npc: teleported ? null : gameState.npc,
     inventoryItems,
     pastEvents,
   };
