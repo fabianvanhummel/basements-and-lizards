@@ -9,6 +9,16 @@ const colorMap = {
   END_COMBAT: "red",
 };
 
+const textMap = {
+  START_STORY: "You started your story in",
+  TAKE_PATH: "You took a path to",
+  TAKE_ITEM: "You took an item in",
+  START_NPC: "You started talking to an NPC in",
+  TALK_NPC: "You said something to an NPC in",
+  END_NPC: "You ended your conversation with an NPC in",
+  MOVE_COMBAT: "You made a move in an combat in",
+  END_COMBAT: "You ended combat in",
+};
 
 export const HistoryTab = ({ history, handleAction }) => {
   const reversedHistory = history.slice().reverse();
