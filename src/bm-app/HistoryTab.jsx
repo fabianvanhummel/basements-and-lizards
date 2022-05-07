@@ -27,7 +27,7 @@ export const HistoryTab = ({ history, handleAction }) => {
     <div className="mx-auto max-w-xl px-8 py-4 my-10 bg-blue-50 rounded-lg shadow-md dark:bg-gray-800 ">
       <div className="flex items-start justify-between">
         <p className="text-gray-600 dark:text-gray-300 bold font-sans text-lg">
-          The past 10 paths are:
+          The last actions you did were:
         </p>
         <div className="ml-2 px-3 py-1 text-sm font-bold text-gray-100 bg-blue-600 rounded">
           History
@@ -38,27 +38,24 @@ export const HistoryTab = ({ history, handleAction }) => {
           {reversedHistory.map(({ gameState, changeLog }, index) => (
             <div
               key={index}
-              className="max-w-lg my-2 px-4 py-2 bg-green-50 shadow-md"
+              className="flex justify-between mt-2 px-4 py-2 bg-green-50 shadow-md"
             >
-              <div className="float-left px-2 text-black-100 absolute">
+              <div className="px-2 text-black-100">
                 <div
                   className={`bg-${
                     colorMap[changeLog.action.type]
-                  }-300 rounded-lg px-1 py-1 -my-1`}
+                  }-300 rounded-lg px-3 py-1`}
                 >
                   {textMap[changeLog.action.type] +
                     " location " +
                     gameState.location}
                 </div>
               </div>
-              <div className="text-center">
-                {index === 0 ? "Latest" : index}: {name.locationName}
-              </div>
               <button
                 onClick={() => {
                   handleAction({ type: "BACK_IN_TIME", steps: index });
                 }}
-                className="text-black-600 max-w-sm mx-auto bg-red-100 px-1 rounded-lg shadow-md float-right -my-6"
+                className="text-black-600 bg-red-100 px-3 py-1 rounded-lg shadow-md"
               >
                 Back to here
               </button>
