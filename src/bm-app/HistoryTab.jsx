@@ -9,24 +9,9 @@ const colorMap = {
   END_COMBAT: "red",
 };
 
-export const HistoryTab = ({ book, history, handleAction }) => {
-  // Create historyArray that can dynamically be filled from the current history
-  var historyArray = [];
 
-  // Function to deduce the location history from the history
-  function deduceLocationHistory() {
-    var historyNames = [];
-    for (const key in history) {
-      historyNames.push({
-        locationName: book.locations[history[key].gameState.location].name,
-        actionPerformed: history[key].changeLog.action.type || "TAKE_PATH",
-      });
-    }
-    return historyNames;
-  }
-
-  // Deduce locations and changes from history to be used in mapping. Also everse array so the newest entry appears on top of the page
-  historyArray = deduceLocationHistory(history).reverse();
+export const HistoryTab = ({ history, handleAction }) => {
+  const reversedHistory = history.slice().reverse();
 
   return (
     <div className="mx-auto max-w-xl px-8 py-4 my-10 bg-blue-50 rounded-lg shadow-md dark:bg-gray-800 ">
@@ -40,7 +25,7 @@ export const HistoryTab = ({ book, history, handleAction }) => {
       </div>
       <div>
         <div className="text-gray-600 dark:text-gray-300 bold font-sans text-base">
-          {historyArray.map((name, index) => (
+          {reversedHistory.map(({ gameState, changeLog }, index) => (
             <div
               key={index}
               className="max-w-lg my-2 px-4 py-2 bg-green-50 shadow-md"
@@ -48,10 +33,12 @@ export const HistoryTab = ({ book, history, handleAction }) => {
               <div className="float-left px-2 text-black-100 absolute">
                 <div
                   className={`bg-${
-                    colorMap[name.actionPerformed]
+                    colorMap[changeLog.action.type]
                   }-300 rounded-lg px-1 py-1 -my-1`}
                 >
-                  {name.actionPerformed}
+                  {textMap[changeLog.action.type] +
+                    " location " +
+                    gameState.location}
                 </div>
               </div>
               <div className="text-center">
