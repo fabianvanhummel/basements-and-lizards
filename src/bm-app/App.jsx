@@ -22,7 +22,7 @@ export const App = ({ book }) => {
 
   // changeLog tracks the changes that are made as a result of the last action
   const [changeLog, setChangeLog] = useState({
-    action: {},
+    action: { type: "START_STORY" },
     reactions: [],
   });
 

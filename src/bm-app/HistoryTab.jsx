@@ -1,4 +1,5 @@
 const colorMap = {
+  START_STORY: "purple",
   TAKE_PATH: "purple",
   TAKE_ITEM: "yellow",
   START_NPC: "blue",
