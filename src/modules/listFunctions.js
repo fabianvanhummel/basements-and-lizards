@@ -12,6 +12,16 @@ export const getNpc = (book, gameState) => {
   };
 };
 
+// Thing
+export const getThing = (book, gameState) => {
+  let thingId = gameState.thing;
+  return {
+    name: book.things[thingId].name,
+    description: book.things[thingId].description,
+    options: makeThingInteractOptionsList(book, gameState, thingId),
+  };
+};
+
 // Location
 export const getLocation = (book, gameState) => {
   let locationId = checkOverride(book, gameState, gameState.location);
@@ -20,6 +30,7 @@ export const getLocation = (book, gameState) => {
     description: book.locations[locationId].description,
     items: makeLocationItemList(book, gameState, locationId),
     npcs: makeLocationNpcList(book, gameState, locationId),
+    things: makeLocationThingList(book, gameState, locationId),
     paths: makeLocationPathList(book, gameState, locationId),
   };
 };
@@ -59,6 +70,23 @@ const makeNpcTalkOptionsList = (book, gameState, npcId) => {
   return (
     book.npcs[npcId].options &&
     book.npcs[npcId].options.map((option) => {
+      return {
+        reqMet: checkRequirements(gameState, option.requirements),
+        text: option.text,
+        response: option.response,
+        events: option.events,
+        items: option.items,
+        toLocationId: option.toLocationId,
+      };
+    })
+  );
+};
+
+// Things
+const makeThingInteractOptionsList = (book, gameState, thingId) => {
+  return (
+    book.things[thingId].options &&
+    book.things[thingId].options.map((option) => {
       return {
         reqMet: checkRequirements(gameState, option.requirements),
         text: option.text,
@@ -109,6 +137,7 @@ const makeLocationItemList = (book, gameState, locationId) => {
       .map((item) => ({
         ...book.items[item.id],
         id: item.id,
+        toLocationId: item.toLocationId,
         isPresent: !gameState.inventoryItems.includes(item.id),
         reqMet: checkRequirements(gameState, item.requirements),
         events: item.events,
@@ -124,6 +153,17 @@ const makeLocationNpcList = (book, gameState, locationId) => {
       ...book.npcs[npc.id],
       id: npc.id,
       reqMet: checkRequirements(gameState, npc.requirements),
+    }))
+  );
+};
+
+const makeLocationThingList = (book, gameState, locationId) => {
+  return (
+    book.locations[locationId].things &&
+    book.locations[locationId].things.map((thing) => ({
+      ...book.things[thing.id],
+      id: thing.id,
+      reqMet: checkRequirements(gameState, thing.requirements),
     }))
   );
 };

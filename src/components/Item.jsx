@@ -7,6 +7,7 @@ export const Item = ({
   name,
   description,
   events,
+  toLocationId,
   handleAction,
 }) => (
   <div className="max-w-2xl px-8 py-4 mx-auto bg-yellow-50 rounded-lg shadow-md dark:bg-gray-800">
@@ -21,7 +22,7 @@ export const Item = ({
       onClick={() =>
         handleAction({
           type: "TAKE_ITEM",
-          item: { id, name, description, events },
+          item: { id, name, description, events, toLocationId },
         })
       }
       disabled={!reqMet}

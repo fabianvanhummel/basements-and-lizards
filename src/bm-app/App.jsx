@@ -6,6 +6,9 @@ import {
   handleStartNpc,
   handleEndNpc,
   handleTalkNpc,
+  handleStartThing,
+  handleEndThing,
+  handleInteractThing,
   handleMoveCombat,
   handleEndCombat,
 } from "../modules/actions";
@@ -16,6 +19,7 @@ export const App = ({ book }) => {
     location: book["initialLocation"],
     npc: null,
     combat: null,
+    thing: null,
     pastEvents: [],
     inventoryItems: [],
   });
@@ -59,6 +63,15 @@ export const App = ({ book }) => {
         break;
       case "END_NPC":
         applyAction(handleEndNpc(action.npc, gameState));
+        break;
+      case "START_THING":
+        applyAction(handleStartThing(action.thingId, book, gameState));
+        break;
+      case "INTERACT_THING":
+        applyAction(handleInteractThing(action.option, book, gameState));
+        break;
+      case "END_THING":
+        applyAction(handleEndThing(action.thing, gameState));
         break;
       case "MOVE_COMBAT":
         applyAction(handleMoveCombat(action.option, book, gameState));
