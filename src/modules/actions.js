@@ -25,7 +25,8 @@ const doEvents = (eventIds, book, gameState) => {
         revertEventIds.push(...event.revertEvents);
       }
 
-      reactions.push({ type: "EVENT_HAPPENS", message: event.message });
+      event.message &&
+        reactions.push({ type: "EVENT_HAPPENS", message: event.message });
     });
 
   // Return reactions array
