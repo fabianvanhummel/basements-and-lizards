@@ -16,6 +16,12 @@
           "events": ["dummy-path-event"]
         },
         {
+          "toLocationId": "2",
+          "name": "Test silent Event",
+          "description": "This path triggers an event that shouldn't show itself",
+          "events": ["test-silent-event"]
+        },
+        {
           "toLocationId": "test-thing-room",
           "name": "Door to thing",
           "description": "Follow this path to test the thing"
@@ -461,6 +467,9 @@
     "block-npc-test": {
       "name": "NPC unblock",
       "message": "NPC is nu zichtbaar"
+    },
+    "test-silent-event": {
+      "name": "Silent event test!"
     },
     "poke-1": {
       "name": "Poke1",
