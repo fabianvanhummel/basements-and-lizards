@@ -136,6 +136,7 @@ const makeLocationItemList = (book, gameState, locationId) => {
       .map((item) => ({
         ...book.items[item.id],
         id: item.id,
+        toLocationId: item.toLocationId,
         isPresent: !gameState.inventoryItems.includes(item.id),
         reqMet: checkRequirements(gameState, item.requirements),
         events: item.events,

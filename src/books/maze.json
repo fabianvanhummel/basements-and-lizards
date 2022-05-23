@@ -36,6 +36,12 @@
           "description": "Follow this path to test combat"
         }
       ],
+      "items": [
+        {
+          "id": "teleport-test-item",
+          "toLocationId": "7"
+        }
+      ],
       "hint": "This is the start of the maze. If you end up here, you are probably not doing the right thing. Try going to location 2 first.",
       "override": [
         {
@@ -385,6 +391,10 @@
     "random-crappy-ring": {
       "name": "Crappy ring",
       "description": "After inspecting this ring, you notice it is completely worthless, you are slightly dissapointed"
+    },
+    "teleport-test-item": {
+      "name": "Teleport test item",
+      "description": "If you pick-up this item, you'll be teleported"
     }
   },
   "npcs": {

@@ -50,8 +50,48 @@ export const handleTakeItem = (item, book, gameState) => {
     (x) => !eventResponse.revertEventIds.includes(x),
   );
 
+  // Check for a teleport
+  let locationId = gameState.location;
+  if (item.toLocationId) {
+    locationId = item.toLocationId;
+    const location = book.locations[locationId];
+
+    reactions.push({
+      type: "TELEPORTED",
+      message: `You were teleported to ${location.name}`,
+    });
+
+    // The party arrives at the location.
+    reactions.push({
+      type: "ARRIVE_AT_LOCATION",
+      message: `You arrive at ${location.name}`,
+    });
+
+    // Handle the events that happen at the new location.
+    eventResponse = doEvents(location.events, book, gameState);
+    reactions.push(...eventResponse.reactions);
+    pastEvents.push(...eventResponse.newEventIds);
+    // https://stackoverflow.com/questions/1187518
+    pastEvents = pastEvents.filter(
+      (x) => !eventResponse.revertEventIds.includes(x),
+    );
+
+    // Check if combat arises at new location.
+    let combat = null;
+    if (location.combat && !gameState.pastCombats.includes(location.combat)) {
+      reactions.push({
+        type: "COMBAT",
+        message: `You enter combat named: ${
+          book.combats[location.combat].title
+        }`,
+      });
+      combat = location.combat;
+    }
+  }
+
   const newGameState = {
     ...gameState,
+    location: locationId,
     inventoryItems: [...gameState.inventoryItems, item.id],
     pastEvents,
   };
