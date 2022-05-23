@@ -43,6 +43,7 @@
         }
       ],
       "hint": "This is the start of the maze. If you end up here, you are probably not doing the right thing. Try going to location 2 first.",
+      "npcs": [{ "id": "test-teleport-npc" }],
       "override": [
         {
           "byLocationId": "1-override",
@@ -428,6 +429,17 @@
         }
       ],
       "hint": "This NPC can give the party an item or make it rain in the maze. This is required for something I don't really know this story very well."
+    },
+    "test-teleport-npc": {
+      "name": "Test Teleport NPC",
+      "description": "This sorceress seems capable of some interesting magic.",
+      "options": [
+        {
+          "text": "Can you teleport me to 5?",
+          "response": "Of course.",
+          "toLocationId": "5"
+        }
+      ]
     }
   },
   "things": {

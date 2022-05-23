@@ -76,6 +76,7 @@ const makeNpcTalkOptionsList = (book, gameState, npcId) => {
         response: option.response,
         events: option.events,
         items: option.items,
+        toLocationId: option.toLocationId,
       };
     })
   );
