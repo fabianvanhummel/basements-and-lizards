@@ -16,6 +16,11 @@
           "events": ["dummy-path-event"]
         },
         {
+          "toLocationId": "test-thing-room",
+          "name": "Door to thing",
+          "description": "Follow this path to test the thing"
+        },
+        {
           "toLocationId": "portal-chamber",
           "name": "Blue portal",
           "description": "A large blue portal"
@@ -43,6 +48,32 @@
           "byLocationId": "1-override",
           "requirements": [
             { "type": "EVENT_DID_HAPPEN", "id": "test-override-event" }
+          ]
+        }
+      ]
+    },
+    "test-thing-room": {
+      "name": "Thing Room",
+      "description": "There's a thing is this room",
+      "paths": [
+        {
+          "toLocationId": "1",
+          "name": "Passage",
+          "description": "To room 1!",
+          "requirements": []
+        }
+      ],
+      "items": [
+        {
+          "id": "thing-activate-item",
+          "events": ["thing-activate-event"]
+        }
+      ],
+      "things": [
+        {
+          "id": "test-thing",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "thing-activate-event" }
           ]
         }
       ]
@@ -333,6 +364,14 @@
       "name": "Old Metal Key",
       "description": "This key can be used to open the old wooden door"
     },
+    "thing-activate-item": {
+      "name": "Thing activate item",
+      "description": "Picking this item up activated thing"
+    },
+    "thing-rock": {
+      "name": "Thing rock",
+      "description": "A rock that was formed from a thing"
+    },
     "new-metal-key": {
       "name": "New Metal Key",
       "description": "Having this key opens the new wooden door"
@@ -391,10 +430,59 @@
       "hint": "This NPC can give the party an item or make it rain in the maze. This is required for something I don't really know this story very well."
     }
   },
+  "things": {
+    "test-thing": {
+      "name": "Test Thing",
+      "description": "This thing does things",
+      "options": [
+        {
+          "text": "Smell it",
+          "response": "It doesn't smell like anything"
+        },
+        {
+          "text": "Poke it",
+          "response": "It feels very cold",
+          "events": ["poke-1"],
+          "requirements": [{ "type": "EVENT_NOT_HAPPENED", "id": "poke-1" }]
+        },
+        {
+          "text": "Poke it again",
+          "response": "The thing starts to glow and turns into a rock",
+          "events": ["poke-2"],
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "poke-1" },
+            { "type": "EVENT_NOT_HAPPENED", "id": "poke-2" }
+          ]
+        },
+        {
+          "text": "Pick up rock",
+          "response": "You pick up the rock.",
+          "items": ["thing-rock"],
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "poke-2" },
+            { "type": "ITEM_NOT_IN_INVENTORY", "id": "thing-rock" }
+          ]
+        }
+      ],
+      "hint": "This Thing can be touched, it doesn't really like it though."
+    }
+  },
   "events": {
     "block-npc-test": {
       "name": "NPC unblock",
       "message": "NPC is nu zichtbaar"
+    },
+    "poke-1": {
+      "name": "Poke1",
+      "message": "Something feels off"
+    },
+    "poke-2": {
+      "name": "Poke2",
+      "message": "A rock was formed!"
+    },
+    "thing-activate-event": {
+      "name": "Thing unblock",
+      "message": "Thing is nu zichtbaar"
     },
     "resolved-combat-1": {
       "name": "Resolved Combat 1",

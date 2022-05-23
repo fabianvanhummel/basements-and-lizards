@@ -299,3 +299,77 @@ export const handleEndCombat = (combatTitle, gameState) => {
 
   return { reactions, newGameState };
 };
+
+export const handleStartThing = (thingId, book, gameState) => {
+  const reactions = [];
+
+  const thing = book.things[thingId];
+
+  reactions.push({
+    type: "THING_INTERACTION",
+    message: `You started interacting with ${thing.name}`,
+  });
+
+  const newGameState = {
+    ...gameState,
+    thing: thingId,
+  };
+
+  return { reactions, newGameState };
+};
+
+export const handleInteractThing = (option, book, gameState) => {
+  const reactions = [];
+  let pastEvents = [...gameState.pastEvents];
+  const inventoryItems = [...gameState.inventoryItems];
+  let eventResponse;
+
+  reactions.push({
+    type: "THING_INTERACTION",
+    message: `${option.response}`,
+  });
+
+  // Handle the events.
+  eventResponse = doEvents(option.events, book, gameState);
+  reactions.push(...eventResponse.reactions);
+  pastEvents.push(...eventResponse.newEventIds);
+  // https://stackoverflow.com/questions/1187518
+  pastEvents = pastEvents.filter(
+    (x) => !eventResponse.revertEventIds.includes(x),
+  );
+
+  // Handle potential items.
+  option.items &&
+    option.items.map((itemId) => {
+      const item = book.items[itemId];
+      reactions.push({
+        type: "GET_ITEM_THING",
+        message: `You received ${item.name}`,
+      });
+      inventoryItems.push(itemId);
+    });
+
+  const newGameState = {
+    ...gameState,
+    inventoryItems,
+    pastEvents,
+  };
+
+  return { reactions, newGameState };
+};
+
+export const handleEndThing = (thing, gameState) => {
+  const reactions = [];
+
+  reactions.push({
+    type: "THING_INTERACTION",
+    message: `You stopped interacting with ${thing.name}`,
+  });
+
+  const newGameState = {
+    ...gameState,
+    thing: null,
+  };
+
+  return { reactions, newGameState };
+};
