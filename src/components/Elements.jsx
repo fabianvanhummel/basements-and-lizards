@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Path } from "./Path";
 import { Item } from "./Item";
 import { Npc } from "./Npc";
+import { Thing } from "./Thing";
 import { DefaultButton, ButtonToggleBlocked } from "./Buttons";
 
 export const ElementList = ({ type, elements, handleAction }) => {
@@ -31,6 +32,9 @@ export const ElementList = ({ type, elements, handleAction }) => {
               {type === "Npcs" && (
                 <Npc {...element} handleAction={handleAction} />
               )}
+              {type === "Things" && (
+                <Thing {...element} handleAction={handleAction} />
+              )}
               {type === "Options" && (
                 <DefaultButton
                   onClick={() => {
@@ -49,6 +53,19 @@ export const ElementList = ({ type, elements, handleAction }) => {
                   onClick={() => {
                     handleAction({
                       type: "MOVE_COMBAT",
+                      option: element,
+                    });
+                  }}
+                  disabled={!element.reqMet}
+                >
+                  {element.text}
+                </DefaultButton>
+              )}
+              {type === "ThingOptions" && (
+                <DefaultButton
+                  onClick={() => {
+                    handleAction({
+                      type: "INTERACT_THING",
                       option: element,
                     });
                   }}

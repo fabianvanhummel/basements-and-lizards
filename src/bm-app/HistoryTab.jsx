@@ -1,9 +1,12 @@
 const colorMap = {
-  TAKE_PATH: "purple",
+  TAKE_PATH: "pink",
   TAKE_ITEM: "yellow",
-  START_NPC: "blue",
-  TALK_NPC: "blue",
-  END_NPC: "blue",
+  START_NPC: "purple",
+  TALK_NPC: "purple",
+  END_NPC: "purple",
+  START_THING: "cyan",
+  INTERACT_THING: "cyan",
+  END_THING: "cyan",
   MOVE_COMBAT: "red",
   END_COMBAT: "red",
 };

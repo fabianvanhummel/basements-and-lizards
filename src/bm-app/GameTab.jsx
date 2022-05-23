@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Reaction } from "./Reaction";
-import { getLocation, getNpc, getCombat } from "../modules/listFunctions";
+import {
+  getLocation,
+  getNpc,
+  getThing,
+  getCombat,
+} from "../modules/listFunctions";
 import { Location } from "../components/Location";
 import { NpcTalk } from "./NpcTalk";
+import { ThingInteract } from "./ThingInteract";
 import { checkForHints } from "../modules/hintFunctions";
 import { HintButton } from "../components/HintButton";
 import { Combat } from "./Combat";
@@ -39,6 +45,11 @@ export const GameTab = ({ book, gameState, changeLog, handleAction }) => {
         <Combat {...getCombat(book, gameState)} handleAction={handleAction} />
       ) : gameState.npc ? (
         <NpcTalk {...getNpc(book, gameState)} handleAction={handleAction} />
+      ) : gameState.thing ? (
+        <ThingInteract
+          {...getThing(book, gameState)}
+          handleAction={handleAction}
+        />
       ) : (
         <Location
           {...getLocation(book, gameState)}
