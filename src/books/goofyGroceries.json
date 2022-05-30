@@ -1,0 +1,611 @@
+{
+  "name": "Goofy Groceries",
+  "description": "A group of friends has been travelling through Ireland for several days now. They've had a blast so far. Days were spent sightseeing or enjoying nature. Nights were filled with drinking, games and bars. No one has seen actual vegetables in a while, because dinner has consisted of burgers, fries and pizza. Tonight the group has decided to eat healthy for a change, part of the group is sent to the supermarket to do groceries. You are burdened with this great responsibility, good luck!",
+  "initialLocation": "parking-lot",
+  "finalEvent": "game-end",
+  "locations": {
+    "parking-lot": {
+      "name": "Parking Lot",
+      "description": "description",
+      "paths": [
+        {
+          "toLocationId": "entrance",
+          "name": "Entrance",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "entrance": {
+      "name": "Entrance",
+      "description": "description",
+      "paths": [
+        {
+          "toLocationId": "main-aisle-1",
+          "name": "Main Aisle 1",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "fruits",
+          "name": "Fruits",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "fruits": {
+      "name": "Fruits",
+      "description": "description",
+      "paths": [
+        {
+          "toLocationId": "entrance",
+          "name": "Entrance",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "main-aisle-1",
+          "name": "Main Aisle 1",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "vegetables",
+          "name": "Vegetables",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "vegetables": {
+      "name": "Vegetables",
+      "description": "description",
+      "paths": [
+        {
+          "toLocationId": "fruits",
+          "name": "Fruits",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "main-aisle-1",
+          "name": "Main Aisle 1",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "bakery",
+          "name": "Bakery",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "bakery": {
+      "name": "Bakery",
+      "description": "description",
+      "paths": [
+        {
+          "toLocationId": "vegetables",
+          "name": "Vegetables",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "main-aisle-1",
+          "name": "Main Aisle 1",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "stockroom-entrance",
+          "name": "Stockroom Entrance",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "main-aisle-1": {
+      "name": "name",
+      "description": "description",
+      "paths": [
+        {
+          "toLocationId": "entrance",
+          "name": "Entrance",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "main-aisle-4",
+          "name": "Main Aisle 4",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "fruits",
+          "name": "Fruits",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "vegetables",
+          "name": "Vegetables",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "bakery",
+          "name": "Bakery",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "stockroom-entrance",
+          "name": "Stockroom Entrance",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "meats",
+          "name": "Meats",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "main-aisle-2",
+          "name": "Main Aisle 2",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "dry-goods-condiments",
+          "name": "Dry Goods & Condiments",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "meats": {
+      "name": "Meats",
+      "description": "description",
+      "paths": [
+        {
+          "toLocationId": "main-aisle-1",
+          "name": "Main Aisle 1",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "main-aisle-2",
+          "name": "Main Aisle 2",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "main-aisle-3",
+          "name": "Main Aisle 3",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "main-aisle-2": {
+      "name": "Main Aisle 2",
+      "description": "description",
+      "paths": [
+        {
+          "toLocationId": "main-aisle-1",
+          "name": "Main Aisle 1",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "meats",
+          "name": "Meats",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "dry-goods-condiments",
+          "name": "Dry Goods & Condiments",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "bakery-spices",
+          "name": "Bakery & Spices",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "canned-packaged-foods",
+          "name": "Canned & Packaged Foods",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "chips-snacks",
+          "name": "Chips & Snacks",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "coffee-cereal-breakfast",
+          "name": "Coffee & Cereal & Breakfast",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "main-aisle-3",
+          "name": "Main Aisle 3",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "dairy-eggs": {
+      "name": "Dairy & Eggs",
+      "description": "description",
+      "paths": [
+        {
+          "toLocaticonId": "main-aisle-3",
+          "name": "Main Aisle 3",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "wine-beer",
+          "name": "Wine & Beer",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "wine-beer": {
+      "name": "Wine & Beer",
+      "description": "description",
+      "paths": [
+        {
+          "toLocaticonId": "dairy-eggs",
+          "name": "Dairy & Eggs",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "main-aisle-3",
+          "name": "Main Aisle 3",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "soda-juices",
+          "name": "Soda & Juices",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "soda-juices": {
+      "name": "Soda & Juices",
+      "description": "description",
+      "paths": [
+        {
+          "toLocaticonId": "wine-beer",
+          "name": "Wine & Beer",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "main-aisle-3",
+          "name": "Main Aisle 3",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "frozen-foods",
+          "name": "Frozen Foods",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "frozen-foods": {
+      "name": "Frozen Foods",
+      "description": "description",
+      "paths": [
+        {
+          "toLocaticonId": "soda-juices",
+          "name": "Soda & Juices",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "main-aisle-3",
+          "name": "Main Aisle 3",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "register",
+          "name": "Register",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "main-aisle-3": {
+      "name": "Main Aisle 3",
+      "description": "description",
+      "paths": [
+        {
+          "toLocaticonId": "meats",
+          "name": "Meats",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "main-aisle-2",
+          "name": "Main Aisle 2",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "coffee-cereal-breakfast",
+          "name": "Coffee & Cereal & Breakfast",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "dairy-eggs",
+          "name": "Dairy & Eggs",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "wine-beer",
+          "name": "Wine & Beer",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "soda-juices",
+          "name": "Soda & Juices",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "frozen-foods",
+          "name": "Frozen Foods",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "main-aisle-4",
+          "name": "Main Aisle 4",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "coffee-cereal-breakfast": {
+      "name": "Coffee & Cereal & Breakfast",
+      "description": "description",
+      "paths": [
+        {
+          "toLocaticonId": "main-aisle-2",
+          "name": "Main Aisle 2",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "main-aisle-3",
+          "name": "Main Aisle 3",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "chips-snacks",
+          "name": "Chips & Snacks",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "main-aisle-4",
+          "name": "Main Aisle 4",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "chips-snacks": {
+      "name": "Chips & Snacks",
+      "description": "description",
+      "paths": [
+        {
+          "toLocaticonId": "main-aisle-2",
+          "name": "Main Aisle 2",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "coffee-cereal-breakfast",
+          "name": "Coffee & Cereal & Breakfast",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "canned-packaged-foods",
+          "name": "Canned & Packaged Foods",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "main-aisle-4",
+          "name": "Main Aisle 4",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "canned-packaged-foods": {
+      "name": "Canned & Packaged Foods",
+      "description": "description",
+      "paths": [
+        {
+          "toLocaticonId": "main-aisle-2",
+          "name": "Main Aisle 2",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "chips-snacks",
+          "name": "Chips & Snacks",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "bakery-spices",
+          "name": "Bakery & Spices",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "main-aisle-4",
+          "name": "Main Aisle 4",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "bakery-spices": {
+      "name": "Bakery & Spices",
+      "description": "description",
+      "paths": [
+        {
+          "toLocaticonId": "main-aisle-2",
+          "name": "Main Aisle 2",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "canned-packaged-foods",
+          "name": "Canned & Packaged Foods",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "dry-goods-condiments",
+          "name": "Dry Goods & Condiments",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "main-aisle-4",
+          "name": "Main Aisle 4",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "dry-goods-condiments": {
+      "name": "Dry Goods & Condiments",
+      "description": "description",
+      "paths": [
+        {
+          "toLocaticonId": "main-aisle-1",
+          "name": "Main Aisle 1",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "main-aisle-2",
+          "name": "Main Aisle 2",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "bakery-spices",
+          "name": "Bakery & Spices",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "main-aisle-4",
+          "name": "Main Aisle 4",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "main-aisle-4": {
+      "name": "name",
+      "description": "description",
+      "paths": [
+        {
+          "toLocationId": "main-aisle-1",
+          "name": "Main Aisle 1",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "dry-goods-condiments",
+          "name": "Dry Goods & Condiments",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "bakery-spices",
+          "name": "Bakery & Spices",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "canned-packaged-foods",
+          "name": "Canned & Packaged Foods",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "chips-snacks",
+          "name": "Chips & Snacks",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "coffee-cereal-breakfast",
+          "name": "Coffee & Cereal & Breakfast",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "main-aisle-3",
+          "name": "Main Aisle 3",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "register",
+          "name": "Register",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "register": {
+      "name": "Register",
+      "description": "description",
+      "paths": [
+        {
+          "toLocationId": "frozen-foods",
+          "name": "Frozen Foods",
+          "description": "pathDescription"
+        },
+        {
+          "toLocaticonId": "main-aisle-4",
+          "name": "Main Aisle 4",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "exit",
+          "name": "Exit",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "exit": {
+      "name": "Exit",
+      "description": "description",
+      "paths": [
+        {
+          "toLocationId": "register",
+          "name": "Register",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "parking-lot",
+          "name": "Parking Lot",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "stockroom-entrance": {
+      "name": "Stockroom Entrance",
+      "description": "description",
+      "paths": [
+        {
+          "toLocationId": "bakery",
+          "name": "Bakery",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "main-aisle-1",
+          "name": "Main Aisle 1",
+          "description": "pathDescription"
+        },
+        {
+          "toLocationId": "stockroom",
+          "name": "Stockroom",
+          "description": "pathDescription"
+        }
+      ]
+    },
+    "stockroom": {
+      "name": "Stockroom",
+      "description": "description",
+      "paths": [
+        {
+          "toLocationId": "stockroom-entrance",
+          "name": "Stockroom Entrance",
+          "description": "pathDescription"
+        }
+      ]
+    }
+  },
+  "items": {
+    "1": {}
+  },
+  "npcs": {
+    "1": {}
+  },
+  "things": {
+    "1": {}
+  },
+  "events": {
+    "game-end": {}
+  },
+  "combats": {
+    "1": {}
+  },
+  "characters": [
+    {
+      "id": 1,
+      "image": "",
+      "race": "race",
+      "title": "title",
+      "name": "name",
+      "description": "description"
+    }
+  ]
+}
