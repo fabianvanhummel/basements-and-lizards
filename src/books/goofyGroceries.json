@@ -1,23 +1,70 @@
 {
   "name": "Goofy Groceries",
   "description": "A group of friends has been travelling through Ireland for several days now. They've had a blast so far. Days were spent sightseeing or enjoying nature. Nights were filled with drinking, games and bars. No one has seen actual vegetables in a while, because dinner has consisted of burgers, fries and pizza. Tonight the group has decided to eat healthy for a change, part of the group is sent to the supermarket to do groceries. You are burdened with this great responsibility, good luck!",
-  "initialLocation": "parking-lot",
+  "initialLocation": "parking-lot-init",
   "finalEvent": "game-end",
   "locations": {
+    "parking-lot-init": {
+      "name": "Parking Lot",
+      "description": "You arrived at the parking lot of the Goofy Groceries market, time to get food!",
+      "paths": [
+        {
+          "toLocationId": "entrance",
+          "name": "Entrance",
+          "description": "pathDescription",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "had-start-phonecall"
+            }
+          ],
+          "events": [
+            "go-to-entrance-init",
+            "mobile-phone-battery-dies",
+            "max-inventory-1",
+            "has-inventory-space"
+          ]
+        }
+      ],
+      "npcs": [
+        {
+          "id": "friend-start-phonecall",
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "had-start-phonecall"
+            }
+          ]
+        }
+      ],
+      "override": [
+        {
+          "byLocationId": "parking-lot",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "go-to-entrance-init"
+            }
+          ]
+        }
+      ],
+      "hint": "This is the starting point of this story. Check the home tab for more information and background. Have fun!"
+    },
     "parking-lot": {
       "name": "Parking Lot",
-      "description": "description",
+      "description": "This is the parking lot of Goofy Groceries, a great supermarket!",
       "paths": [
         {
           "toLocationId": "entrance",
           "name": "Entrance",
           "description": "pathDescription"
         }
-      ]
+      ],
+      "hint": "This is the starting area of this story. Check the home tab for more information and background. Have fun!"
     },
     "entrance": {
       "name": "Entrance",
-      "description": "description",
+      "description": "You are at the entrance of goofy groceries",
       "paths": [
         {
           "toLocationId": "main-aisle-1",
@@ -28,6 +75,17 @@
           "toLocationId": "fruits",
           "name": "Fruits",
           "description": "pathDescription"
+        }
+      ],
+      "things": [
+        {
+          "id": "entrance-recipe-stand"
+        },
+        {
+          "id": "entrance-shopping-basket"
+        },
+        {
+          "id": "entrance-shopping-cart"
         }
       ]
     },
@@ -50,6 +108,11 @@
           "name": "Vegetables",
           "description": "pathDescription"
         }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand"
+        }
       ]
     },
     "vegetables": {
@@ -70,6 +133,14 @@
           "toLocationId": "bakery",
           "name": "Bakery",
           "description": "pathDescription"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand"
+        },
+        {
+          "id": "vegetable-shelve1"
         }
       ]
     },
@@ -584,16 +655,455 @@
     }
   },
   "items": {
-    "1": {}
+    "RECIPE-skip-entrance-recipe-stand": {
+      "name": "Made-up recipe",
+      "description": "You came up with this recipe, to avoid having to look at the recipe stand. The ingredients are: Cheese, Spinach, Pasta, Bacon and Herb cheese"
+    },
+    "RECIPE-entrance-recipe-stand-nachos": {
+      "name": "Nacho recipe",
+      "description": "You took this recipe from the recipe stand. The ingredients are: Nachos, Cheese, Crème fraîche, Guacamole, Bell pepper, Tomatoes and Minced meat"
+    },
+    "RECIPE-entrance-recipe-stand-wraps": {
+      "name": "Wraps recipe",
+      "description": "You took this recipe from the recipe stand. The ingredients are: Wraps, Chicken, Cheese, Bell pepper, Lettuce, Crème fraîche and Corn"
+    }
   },
   "npcs": {
-    "1": {}
+    "friend-start-phonecall": {
+      "name": "Patrick",
+      "description": "You are being called by your friend, Patrick",
+      "options": [
+        {
+          "text": "Hey Patrick, what's up?",
+          "response": "Hey, nice to see you have your phone on for a change! We just realized that we have no clue how to make anything. Make sure to pick up some recipes at Goofy's!",
+          "events": ["had-start-phonecall"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "had-start-phonecall"
+            }
+          ]
+        },
+        {
+          "text": "Anything else?",
+          "response": "No, just hurry, we're getting hungry!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "had-start-phonecall"
+            }
+          ]
+        },
+        {
+          "text": "Is this the crusty crab?",
+          "response": "NO, THIS IS PATRICK!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "had-start-phonecall"
+            }
+          ]
+        }
+      ]
+    }
   },
   "things": {
-    "1": {}
+    "entrance-recipe-stand": {
+      "name": "Recipe Stand",
+      "description": "This is a small stand with some recipes of the week.",
+      "options": [
+        {
+          "text": "Browse for recipes",
+          "response": "You inspect the recipes in the stand, a few interesting recipes catch your eye",
+          "events": ["browse-entrance-recipe-stand"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "browse-entrance-recipe-stand"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "skip-entrance-recipe-stand"
+            }
+          ]
+        },
+        {
+          "text": "You hate stands, to avoid having to look at it, you quickly think of a recipe yourself",
+          "response": "The stand is a bit insulted",
+          "events": ["skip-entrance-recipe-stand"],
+          "items": ["RECIPE-skip-entrance-recipe-stand"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "browse-entrance-recipe-stand"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "skip-entrance-recipe-stand"
+            }
+          ]
+        },
+        {
+          "text": "Recipe for Nachos",
+          "response": "You take the recipe for nachos from the stand.",
+          "items": ["RECIPE-entrance-recipe-stand-nachos"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "browse-entrance-recipe-stand"
+            },
+            {
+              "type": "ITEM_NOT_IN_INVENTORY",
+              "id": "RECIPE-entrance-recipe-stand-nachos"
+            }
+          ]
+        },
+        {
+          "text": "Recipe for Wraps",
+          "response": "You take the recipe for wraps from the stand.",
+          "items": ["RECIPE-entrance-recipe-stand-wraps"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "browse-entrance-recipe-stand"
+            },
+            {
+              "type": "ITEM_NOT_IN_INVENTORY",
+              "id": "RECIPE-entrance-recipe-stand-wraps"
+            }
+          ]
+        }
+      ]
+    },
+    "entrance-shopping-basket": {
+      "name": "Stack of shopping baskets",
+      "description": "A stack of shopping baskets",
+      "options": [
+        {
+          "text": "Take a basket",
+          "response": "You take a shopping basket",
+          "events": ["has-one-basket", "max-inventory-3", "max-inventory-6"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "has-one-basket"
+            }
+          ]
+        },
+        {
+          "text": "Take a basket",
+          "response": "You take another shopping basket",
+          "events": ["has-two-basket", "max-inventory-3", "max-inventory-6"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "has-one-basket"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "has-two-basket"
+            }
+          ]
+        },
+        {
+          "text": "Put back basket",
+          "response": "You put back a shopping basket",
+          "events": [
+            "put-back-basket1",
+            "put-back-basket2",
+            "max-inventory-1",
+            "max-inventory-3",
+            "max-inventory-6"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "has-one-basket"
+            }
+          ]
+        }
+      ]
+    },
+    "entrance-shopping-cart": {},
+    "inspect-products-on-hand": {
+      "name": "Products",
+      "description": "These are the products you are currently carrying along.",
+      "options": [
+        {
+          "text": "Bell pepper",
+          "response": "Wow, what a pretty bell pepper!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-bell-pepper"
+            }
+          ]
+        },
+        {
+          "text": "Spinach",
+          "response": "Wow, nice spinach!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-spinach"
+            }
+          ]
+        }
+      ]
+    },
+    "vegetable-shelve1": {
+      "name": "Vegetable Shelve",
+      "description": "A shelve filled with vegetables",
+      "options": [
+        {
+          "text": "Take bell pepper",
+          "response": "You took a bell pepper from the shelve.",
+          "events": [
+            "PRODUCT-bell-pepper",
+            "product-holding-counter-1",
+            "product-holding-counter-2",
+            "max-inventory-1-check",
+            "max-inventory-3-check",
+            "max-inventory-6-check"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-bell-pepper"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "has-inventory-space"
+            }
+          ]
+        },
+        {
+          "text": "Return bell pepper",
+          "response": "You put the bell pepper back in the shelve.",
+          "events": [
+            "return-bell-pepper",
+            "product-holding-counter-1",
+            "product-holding-counter-2",
+            "has-inventory-space",
+            "max-inventory-1-check",
+            "max-inventory-3-check",
+            "max-inventory-6-check"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-bell-pepper"
+            }
+          ]
+        },
+        {
+          "text": "Take spinach",
+          "response": "You took some spinach from the shelve.",
+          "events": [
+            "PRODUCT-spinach",
+            "product-holding-counter-1",
+            "product-holding-counter-2",
+            "max-inventory-1-check",
+            "max-inventory-3-check",
+            "max-inventory-6-check"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-spinach"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "has-inventory-space"
+            }
+          ]
+        },
+        {
+          "text": "Return spinach",
+          "response": "You put the spinach back in the shelve.",
+          "events": [
+            "return-spinach",
+            "product-holding-counter-1",
+            "product-holding-counter-2",
+            "has-inventory-space",
+            "max-inventory-1-check",
+            "max-inventory-3-check",
+            "max-inventory-6-check"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-spinach"
+            }
+          ]
+        }
+      ]
+    }
   },
   "events": {
-    "game-end": {}
+    "game-end": {},
+    "PRODUCT-bell-pepper": {},
+    "return-bell-pepper": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-bell-pepper"
+        }
+      ],
+      "revertEvents": ["PRODUCT-bell-pepper"]
+    },
+    "PRODUCT-spinach": {},
+    "return-spinach": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-spinach"
+        }
+      ],
+      "revertEvents": ["PRODUCT-spinach"]
+    },
+    "had-start-phonecall": {},
+    "go-to-entrance-init": {},
+    "mobile-phone-battery-dies": {
+      "name": "Mobile Phone Battery Died",
+      "message": "The battery of your mobile phone just ran out, guess that means no more calls from Patrick"
+    },
+    "has-inventory-space": {
+      "name": "There is inventory space available"
+    },
+    "max-inventory-1-check": {
+      "name": "Product inventory is full with 1 product",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "max-inventory-1"
+        },
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "product-holding-counter-1"
+        }
+      ],
+      "revertEvents": ["has-inventory-space", "max-inventory-1-check"]
+    },
+    "max-inventory-3-check": {
+      "name": "Product inventory is full with 3 product",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "max-inventory-3"
+        },
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "product-holding-counter-3"
+        }
+      ],
+      "revertEvents": ["has-inventory-space", "max-inventory-3-check"]
+    },
+    "max-inventory-6-check": {
+      "name": "Product inventory is full with 6 product",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "max-inventory-6"
+        },
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "product-holding-counter-6"
+        }
+      ],
+      "revertEvents": ["has-inventory-space", "max-inventory-6-check"]
+    },
+    "max-inventory-1": {
+      "name": "Max inventory changed to 1",
+      "requirements": [
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "has-one-basket"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "has-two-basket"
+        }
+      ],
+      "revertEvents": ["max-inventory-3", "max-inventory-6"]
+    },
+    "max-inventory-3": {
+      "name": "Max inventory changed to 3",
+      "message": "You can now carry 3 products",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "has-one-basket"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "has-two-basket"
+        }
+      ],
+      "revertEvents": ["max-inventory-1", "max-inventory-6"]
+    },
+    "max-inventory-6": {
+      "name": "Max inventory changed to 6",
+      "message": "You can now carry 6 products",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "has-two-basket"
+        }
+      ],
+      "revertEvents": ["max-inventory-1", "max-inventory-3"]
+    },
+    "has-one-basket": {},
+    "has-two-basket": {},
+    "put-back-basket1": {
+      "name": "Put back basket 1",
+      "message": "You better have a plan to carry products without this basket!",
+      "requirements": [
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "has-two-basket"
+        }
+      ],
+      "revertEvents": ["has-one-basket", "put-back-basket1"]
+    },
+    "put-back-basket2": {
+      "name": "Put back basket 2",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "has-two-basket"
+        }
+      ],
+      "revertEvents": ["has-two-basket", "put-back-basket2"]
+    },
+    "product-holding-counter-1": {
+      "name": "Holding products: 1+"
+    },
+    "product-holding-counter-2": {
+      "name": "Holding products: 2+",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "product-holding-counter-1"
+        }
+      ]
+    },
+    "product-return-counter-1": {
+      "name": "Holding products: 1+",
+      "requirements": [
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "product-holding-counter-2"
+        }
+      ],
+      "revertEvents": ["product-holding-counter-1", "product-return-counter-1"]
+    },
+    "product-return-counter-2": {
+      "name": "Holding products: 2+",
+      "revertEvents": ["product-holding-counter-2", "product-return-counter-2"]
+    },
+    "browse-entrance-recipe-stand": {},
+    "skip-entrance-recipe-stand": {}
   },
   "combats": {
     "1": {}
