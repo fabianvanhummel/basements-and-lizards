@@ -12,26 +12,61 @@
           "toLocationId": "2",
           "name": "Prison door",
           "description": "The prison door, with a lock that appears to be opened with a key.",
-          "requirements": ["prison-door-key"],
-          "events": ["open-prison-door"]
+          "requirements": [            
+            { "type": "ITEM_IN_INVENTORY", "id": "prison-door-key" }
+          ],
+          "events": ["prison-door-open"]
         }
       ],
-      "items": [
-        {
-          "id": "teleport-test-item",
-          "toLocationId": "7"
-        }
-      ],
-      "hint": "This is the start of the maze. If you end up here, you are probably not doing the right thing. Try going to location 2 first.",
-      "npcs": [{ "id": "test-teleport-npc" }],
+      "hint": "There must be something in this room you can investigate.",
       "override": [
         {
           "byLocationId": "1-override",
           "requirements": [
-            { "type": "EVENT_DID_HAPPEN", "id": "test-override-event" }
+            { "type": "EVENT_DID_HAPPEN", "id": "prison-door-open" }
           ]
         }
       ]
+    },
+    "1-override": {
+      "name": "Starting chamber",
+      "description": "This is where you started. It is a simple square prison room with an opened door.",
+      "paths": [
+        {
+          "toLocationId": "2",
+          "name": "Prison door",
+          "description": "The prison door, now opened."
+        }
+      ],
+      "override": [
+        {
+          "byLocationId": "1-override-override",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "escape-sequence" }
+          ]
+        }
+      ]
+    },
+    "1-override-override": {
+      "name": "Starting chamber",
+      "description": "The starting room, once again! Find the exit!",
+      "paths": [
+        {
+          "toLocationId": "1338", // lose room
+          "name": "Suspicious vine",
+          "description": "A vine hanging a bit lower than the others."
+        },
+        {
+          "toLocationId": "1337", // win room, somewhere a hint that you need to go below the starting room
+          "name": "Cracked floor brick",
+          "description": "One of the floor bricks has cracks on it and can probably be broken with some force."
+        },
+        {
+          "toLocationId": "1338",
+          "name": "Mossy patch on the wall",
+          "description": "There is a mossy patch on the wall. Maybe a push will open up a way?"
+        }
+      ],
     },
     "test-thing-room": {
       "name": "Thing Room",
@@ -76,23 +111,6 @@
           "name": "Hallway",
           "description": "To room 1!",
           "requirements": []
-        }
-      ]
-    },
-    "1-override": {
-      "name": "Room number 1 (override)",
-      "description": "This is a overridden description of room number 1",
-      "paths": [
-        {
-          "toLocationId": "2",
-          "name": "Big door",
-          "description": "Very BIG door",
-          "requirements": []
-        },
-        {
-          "toLocationId": "portal-chamber",
-          "name": "Blue portal",
-          "description": "A large blue portal"
         }
       ]
     },
