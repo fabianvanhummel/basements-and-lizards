@@ -1,6 +1,6 @@
 import React from "react";
 import { App } from "./App";
-import maze from "../books/maze.json";
+import maze from "../books/lizardBasement.json";
 
 export default {
   title: "BM App/App",

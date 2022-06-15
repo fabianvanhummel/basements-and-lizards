@@ -26,6 +26,15 @@
             { "type": "EVENT_DID_HAPPEN", "id": "prison-door-open" }
           ]
         }
+      ],
+      "things": [
+        {
+          "id": "prison-cell-1-door"
+        },
+        {
+          "id": "loose-brick",
+          "requirements": [{"type": "EVENT_DID_HAPPEN", "id": "cell-door-1-examined"}]       
+        }
       ]
     },
     "1-override": {
@@ -52,12 +61,12 @@
       "description": "The starting room, once again! Find the exit!",
       "paths": [
         {
-          "toLocationId": "1338", // lose room
+          "toLocationId": "1338", 
           "name": "Suspicious vine",
           "description": "A vine hanging a bit lower than the others."
         },
         {
-          "toLocationId": "1337", // win room, somewhere a hint that you need to go below the starting room
+          "toLocationId": "1337", 
           "name": "Cracked floor brick",
           "description": "One of the floor bricks has cracks on it and can probably be broken with some force."
         },
@@ -65,32 +74,6 @@
           "toLocationId": "1338",
           "name": "Mossy patch on the wall",
           "description": "There is a mossy patch on the wall. Maybe a push will open up a way?"
-        }
-      ],
-    },
-    "test-thing-room": {
-      "name": "Thing Room",
-      "description": "There's a thing is this room",
-      "paths": [
-        {
-          "toLocationId": "1",
-          "name": "Passage",
-          "description": "To room 1!",
-          "requirements": []
-        }
-      ],
-      "items": [
-        {
-          "id": "thing-activate-item",
-          "events": ["thing-activate-event"]
-        }
-      ],
-      "things": [
-        {
-          "id": "test-thing",
-          "requirements": [
-            { "type": "EVENT_DID_HAPPEN", "id": "thing-activate-event" }
-          ]
         }
       ]
     },
@@ -114,90 +97,53 @@
         }
       ]
     },
-    "test-override-room": {
-      "name": "Test override room",
-      "description": "The event on this room should trigger a change in description in room 1.",
-      "events": ["test-override-event"],
-      "paths": [
-        {
-          "toLocationId": "1",
-          "name": "Back",
-          "description": "Go back to room 1"
-        }
-      ]
-    },
     "2": {
-      "name": "Room number 2",
-      "description": "This is a description of room number 2",
-      "paths": [
+      "name": "Hallway",
+      "description": "A long hallway with a couple of closed prison cell doors and the (opened) one you started this adventure in. On the far side to the left you can see a stairway leading up to a closed wooden door with a window in it.",
+      "things": [
         {
-          "toLocationId": "1",
-          "name": "Big door",
-          "description": "Very BIG door"
+          "id": "prison-cell-1"
+        },                 
+        {
+          "id": "prison-cell-2"
         },
         {
-          "toLocationId": "4",
-          "name": "Old wooden door",
-          "description": "This door seems like it has seen better days",
-          "requirements": [
-            { "type": "EVENT_DID_HAPPEN", "id": "open-old-wooden-door-4" }
-          ]
-        },
-        {
-          "toLocationId": "4",
-          "name": "New wooden door",
-          "description": "This door seems newer than it's neighbour",
-          "requirements": [
-            { "type": "ITEM_IN_INVENTORY", "id": "new-metal-key" }
-          ]
-        },
-        {
-          "toLocationId": "4",
-          "name": "Hallway",
-          "description": "A narrow hallway, infested with snake eating spiders"
-        },
-        {
-          "toLocationId": "4",
-          "name": "Ventilation shaft",
-          "description": "It looks very dusty",
-          "requirements": [
-            { "type": "ITEM_IN_INVENTORY", "id": "black-mouth-mask" }
-          ]
-        }
-      ],
-      "items": [
-        {
-          "id": "old-metal-key",
-          "events": ["open-old-wooden-door-4", "block-npc-test"]
-        },
-        {
-          "id": "new-metal-key"
-        },
-        {
-          "id": "random-shiny-coin",
-          "requirements": [
-            { "type": "ITEM_IN_INVENTORY", "id": "new-metal-key" }
-          ]
-        }
+          "id": "prison-cell-3"
+        }        
       ],
       "npcs": [
         {
-          "id": "tour-guide",
-          "requirements": [
-            { "type": "EVENT_DID_HAPPEN", "id": "block-npc-test" }
-          ]
+          "id": "story-explanation"
+        }
+      ],
+      "paths": [
+        {
+          "toLocationId": "1",
+          "name": "The room you started in",
+          "description": "This is the room where your adventure started."
         }
       ],
       "hint": "There is an NPC in this room, but he won't show up without the proper preparations."
-    },
-  }
+    }
+  },
   "items": {
-    "old-metal-key": {
-      "name": "Old Metal Key",
-      "description": "This key can be used to open the old wooden door"
-    },
+    "prison-door-key": {
+      "name": "Prison door key",
+      "description": "This key looks like it might open the prison cell door."
+    }
   },
   "npcs": {
+    "story-explanation": {
+      "name": "Piece of paper in the hallway",
+      "description": "A piece of parchment lying on the ground. I wonder what's on it?",
+      "options": [
+        {
+          "text": "Read the text",
+          "response": "Looks like you're awake. Guess the sleeping pills I slipped in your drinks last night were a little too strong, hehehe.. It doesn't matter though. All you need to know is that you have been seen mutilating Schultenbrau beer on multiple occasions. My boss doesn't appreciate that, you see. That's why you are here - to repent. If you do, you can leave with your lives. If you do not, you will perish in my dungeon."
+        }
+      ],
+      "hint": "This piece of parchment gives backstory to the situation."
+    },
     "tour-guide": {
       "name": "Tour Guide",
       "description": "This guy seems he might know the way around town, and the maze",
@@ -231,40 +177,58 @@
     }
   },
   "things": {
-    "test-thing": {
-      "name": "Test Thing",
-      "description": "This thing does things",
+    "loose-brick": {
+      "name": "Loose brick",
+      "description": "A brick hangs out from the wall.",
       "options": [
         {
-          "text": "Smell it",
-          "response": "It doesn't smell like anything"
+          "text": "Examine",
+          "response": "It looks like there's something behind it.",
+          "events": ["brick-examined"],
+          "requirements": [{ "type": "EVENT_NOT_HAPPENED", "id": "brick-pulled" }]
         },
         {
-          "text": "Poke it",
-          "response": "It feels very cold",
-          "events": ["poke-1"],
-          "requirements": [{ "type": "EVENT_NOT_HAPPENED", "id": "poke-1" }]
+          "text": "Pull the brick",
+          "response": "The brick falls on the ground, revealing a key in the crevice left behind.",
+          "events": ["brick-pulled"],
+          "requirements": [{ "type": "EVENT_NOT_HAPPENED", "id": "brick-pulled" }, {"type": "EVENT_DID_HAPPEN", "id": "brick-examined"}]
         },
         {
-          "text": "Poke it again",
-          "response": "The thing starts to glow and turns into a rock",
-          "events": ["poke-2"],
+          "text": "Take key",
+          "response": "You pick up a key from behind the brick.",
+          "items": ["prison-door-key"],
           "requirements": [
-            { "type": "EVENT_DID_HAPPEN", "id": "poke-1" },
-            { "type": "EVENT_NOT_HAPPENED", "id": "poke-2" }
-          ]
-        },
-        {
-          "text": "Pick up rock",
-          "response": "You pick up the rock.",
-          "items": ["thing-rock"],
-          "requirements": [
-            { "type": "EVENT_DID_HAPPEN", "id": "poke-2" },
-            { "type": "ITEM_NOT_IN_INVENTORY", "id": "thing-rock" }
+            { "type": "EVENT_DID_HAPPEN", "id": "brick-pulled" },
+            { "type": "ITEM_NOT_IN_INVENTORY", "id": "prison-door-key" }
           ]
         }
       ],
       "hint": "This Thing can be touched, it doesn't really like it though."
+    },
+    "prison-cell-1-door": {
+      "name": "Cell 1 door",
+      "description": "The door looks slightly rickety and it has a lock on it.",
+      "options": [{
+        "text": "Examine lock",
+        "response": "The lock is locked, in fine condition and requires a key. Maybe the key is somewhere around?",
+        "events": ["cell-door-1-examined"]
+      }]
+    },
+    "prison-cell-1": {
+      "name": "Prison cell 1",
+      "description": "The first prison cell in the hallway. It is located directly in front of the cell you came from. The door is closed."
+    },
+    "prison-cell-2": {
+      "name": "Prison cell 2",
+      "description": "The second prison cell is located to the right of the first prison cell. The door is closed."
+    },
+    "prison-cell-3": {
+      "name": "Prison cell 3",
+      "description": "The third prison cell is located directly next to the cell you started in. The door is closed."          
+    },
+    "prison-cell-4": {
+      "name": "Prison cell 4 (starting point)",
+      "description": "The prison cell you started at. The door is open."
     }
   },
   "events": {
@@ -279,6 +243,18 @@
       "requirements": [
         { "type": "ITEM_IN_INVENTORY", "id": "random-shiny-coin" }
       ]
+    },
+    "cell-door-1-examined": {
+      "name": "You examine the lock."
+    },
+    "prison-door-open": {
+      "name": "The prison door opens."
+    },
+    "brick-examined": {
+      "name": "You examine the brick."
+    },
+    "brick-pulled": {
+      "name": "You pull the brick out of the wall."
     }
   },
   "combats": {
