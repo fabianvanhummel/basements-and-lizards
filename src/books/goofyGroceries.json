@@ -18,12 +18,7 @@
               "id": "had-start-phonecall"
             }
           ],
-          "events": [
-            "go-to-entrance-init",
-            "mobile-phone-battery-dies",
-            "max-inventory-1",
-            "has-inventory-space"
-          ]
+          "events": ["go-to-entrance-init", "mobile-phone-battery-dies"]
         }
       ],
       "npcs": [
@@ -82,10 +77,18 @@
           "id": "entrance-recipe-stand"
         },
         {
-          "id": "entrance-shopping-basket"
-        },
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
+      ],
+      "items": [
         {
-          "id": "entrance-shopping-cart"
+          "id": "shopping-basket"
         }
       ]
     },
@@ -111,7 +114,16 @@
       ],
       "things": [
         {
-          "id": "inspect-products-on-hand"
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        },
+        {
+          "id": "fruit-shelve1"
         }
       ]
     },
@@ -137,7 +149,13 @@
       ],
       "things": [
         {
-          "id": "inspect-products-on-hand"
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
         },
         {
           "id": "vegetable-shelve1"
@@ -162,6 +180,17 @@
           "toLocationId": "stockroom-entrance",
           "name": "Stockroom Entrance",
           "description": "pathDescription"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
         }
       ]
     },
@@ -214,6 +243,17 @@
           "name": "Dry Goods & Condiments",
           "description": "pathDescription"
         }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
       ]
     },
     "meats": {
@@ -234,6 +274,17 @@
           "toLocationId": "main-aisle-3",
           "name": "Main Aisle 3",
           "description": "pathDescription"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
         }
       ]
     },
@@ -281,6 +332,17 @@
           "name": "Main Aisle 3",
           "description": "pathDescription"
         }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
       ]
     },
     "dairy-eggs": {
@@ -296,6 +358,17 @@
           "toLocaticonId": "wine-beer",
           "name": "Wine & Beer",
           "description": "pathDescription"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
         }
       ]
     },
@@ -318,6 +391,17 @@
           "name": "Soda & Juices",
           "description": "pathDescription"
         }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
       ]
     },
     "soda-juices": {
@@ -339,6 +423,17 @@
           "name": "Frozen Foods",
           "description": "pathDescription"
         }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
       ]
     },
     "frozen-foods": {
@@ -359,6 +454,17 @@
           "toLocaticonId": "register",
           "name": "Register",
           "description": "pathDescription"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
         }
       ]
     },
@@ -406,6 +512,17 @@
           "name": "Main Aisle 4",
           "description": "pathDescription"
         }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
       ]
     },
     "coffee-cereal-breakfast": {
@@ -431,6 +548,17 @@
           "toLocaticonId": "main-aisle-4",
           "name": "Main Aisle 4",
           "description": "pathDescription"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
         }
       ]
     },
@@ -458,6 +586,17 @@
           "name": "Main Aisle 4",
           "description": "pathDescription"
         }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
       ]
     },
     "canned-packaged-foods": {
@@ -483,6 +622,17 @@
           "toLocaticonId": "main-aisle-4",
           "name": "Main Aisle 4",
           "description": "pathDescription"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
         }
       ]
     },
@@ -510,6 +660,17 @@
           "name": "Main Aisle 4",
           "description": "pathDescription"
         }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
       ]
     },
     "dry-goods-condiments": {
@@ -535,6 +696,17 @@
           "toLocaticonId": "main-aisle-4",
           "name": "Main Aisle 4",
           "description": "pathDescription"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
         }
       ]
     },
@@ -582,6 +754,17 @@
           "name": "Register",
           "description": "pathDescription"
         }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
       ]
     },
     "register": {
@@ -603,6 +786,17 @@
           "name": "Exit",
           "description": "pathDescription"
         }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
       ]
     },
     "exit": {
@@ -618,6 +812,17 @@
           "toLocationId": "parking-lot",
           "name": "Parking Lot",
           "description": "pathDescription"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
         }
       ]
     },
@@ -640,6 +845,17 @@
           "name": "Stockroom",
           "description": "pathDescription"
         }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
       ]
     },
     "stockroom": {
@@ -651,10 +867,25 @@
           "name": "Stockroom Entrance",
           "description": "pathDescription"
         }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
       ]
     }
   },
   "items": {
+    "shopping-basket": {
+      "name": "Shopping Basket",
+      "description": "This fancy shopping basket is pink with pretty ribbons. It contains the products you are currently holding. After picking it up you can inspect it's contents throughout the store, neat!"
+    },
     "RECIPE-skip-entrance-recipe-stand": {
       "name": "Made-up recipe",
       "description": "You came up with this recipe, to avoid having to look at the recipe stand. The ingredients are: Cheese, Spinach, Pasta, Bacon and Herb cheese"
@@ -775,58 +1006,8 @@
         }
       ]
     },
-    "entrance-shopping-basket": {
-      "name": "Stack of shopping baskets",
-      "description": "A stack of shopping baskets",
-      "options": [
-        {
-          "text": "Take a basket",
-          "response": "You take a shopping basket",
-          "events": ["has-one-basket", "max-inventory-3", "max-inventory-6"],
-          "requirements": [
-            {
-              "type": "EVENT_NOT_HAPPENED",
-              "id": "has-one-basket"
-            }
-          ]
-        },
-        {
-          "text": "Take a basket",
-          "response": "You take another shopping basket",
-          "events": ["has-two-basket", "max-inventory-3", "max-inventory-6"],
-          "requirements": [
-            {
-              "type": "EVENT_DID_HAPPEN",
-              "id": "has-one-basket"
-            },
-            {
-              "type": "EVENT_NOT_HAPPENED",
-              "id": "has-two-basket"
-            }
-          ]
-        },
-        {
-          "text": "Put back basket",
-          "response": "You put back a shopping basket",
-          "events": [
-            "put-back-basket1",
-            "put-back-basket2",
-            "max-inventory-1",
-            "max-inventory-3",
-            "max-inventory-6"
-          ],
-          "requirements": [
-            {
-              "type": "EVENT_DID_HAPPEN",
-              "id": "has-one-basket"
-            }
-          ]
-        }
-      ]
-    },
-    "entrance-shopping-cart": {},
     "inspect-products-on-hand": {
-      "name": "Products",
+      "name": "Shopping basket",
       "description": "These are the products you are currently carrying along.",
       "options": [
         {
@@ -848,6 +1029,26 @@
               "id": "PRODUCT-spinach"
             }
           ]
+        },
+        {
+          "text": "Lettuce",
+          "response": "Hmm, lettuce!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-lettuce"
+            }
+          ]
+        },
+        {
+          "text": "Tomato",
+          "response": "It's red, it's a tomato!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-tomato"
+            }
+          ]
         }
       ]
     },
@@ -858,37 +1059,18 @@
         {
           "text": "Take bell pepper",
           "response": "You took a bell pepper from the shelve.",
-          "events": [
-            "PRODUCT-bell-pepper",
-            "product-holding-counter-1",
-            "product-holding-counter-2",
-            "max-inventory-1-check",
-            "max-inventory-3-check",
-            "max-inventory-6-check"
-          ],
+          "events": ["PRODUCT-bell-pepper"],
           "requirements": [
             {
               "type": "EVENT_NOT_HAPPENED",
               "id": "PRODUCT-bell-pepper"
-            },
-            {
-              "type": "EVENT_DID_HAPPEN",
-              "id": "has-inventory-space"
             }
           ]
         },
         {
           "text": "Return bell pepper",
           "response": "You put the bell pepper back in the shelve.",
-          "events": [
-            "return-bell-pepper",
-            "product-holding-counter-1",
-            "product-holding-counter-2",
-            "has-inventory-space",
-            "max-inventory-1-check",
-            "max-inventory-3-check",
-            "max-inventory-6-check"
-          ],
+          "events": ["return-bell-pepper"],
           "requirements": [
             {
               "type": "EVENT_DID_HAPPEN",
@@ -899,41 +1081,72 @@
         {
           "text": "Take spinach",
           "response": "You took some spinach from the shelve.",
-          "events": [
-            "PRODUCT-spinach",
-            "product-holding-counter-1",
-            "product-holding-counter-2",
-            "max-inventory-1-check",
-            "max-inventory-3-check",
-            "max-inventory-6-check"
-          ],
+          "events": ["PRODUCT-spinach"],
           "requirements": [
             {
               "type": "EVENT_NOT_HAPPENED",
               "id": "PRODUCT-spinach"
-            },
-            {
-              "type": "EVENT_DID_HAPPEN",
-              "id": "has-inventory-space"
             }
           ]
         },
         {
           "text": "Return spinach",
           "response": "You put the spinach back in the shelve.",
-          "events": [
-            "return-spinach",
-            "product-holding-counter-1",
-            "product-holding-counter-2",
-            "has-inventory-space",
-            "max-inventory-1-check",
-            "max-inventory-3-check",
-            "max-inventory-6-check"
-          ],
+          "events": ["return-spinach"],
           "requirements": [
             {
               "type": "EVENT_DID_HAPPEN",
               "id": "PRODUCT-spinach"
+            }
+          ]
+        },
+        {
+          "text": "Take lettuce",
+          "response": "You took some lettuce from the shelve.",
+          "events": ["PRODUCT-lettuce"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-lettuce"
+            }
+          ]
+        },
+        {
+          "text": "Return lettuce",
+          "response": "You put the lettuce back in the shelve.",
+          "events": ["return-lettuce"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-lettuce"
+            }
+          ]
+        }
+      ]
+    },
+    "fruit-shelve1": {
+      "name": "Fruit Shelve",
+      "description": "A shelve filled with fruits",
+      "options": [
+        {
+          "text": "Take tomato",
+          "response": "Is this really a fruit? You took it anyway.",
+          "events": ["PRODUCT-tomato"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-tomato"
+            }
+          ]
+        },
+        {
+          "text": "Return bell pepper",
+          "response": "You put the bell pepper back in the shelve.",
+          "events": ["return-tomato"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-tomato"
             }
           ]
         }
@@ -962,145 +1175,31 @@
       ],
       "revertEvents": ["PRODUCT-spinach"]
     },
+    "PRODUCT-lettuce": {},
+    "return-lettuce": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-lettuce"
+        }
+      ],
+      "revertEvents": ["PRODUCT-lettuce"]
+    },
+    "PRODUCT-tomato": {},
+    "return-tomato": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-tomato"
+        }
+      ],
+      "revertEvents": ["PRODUCT-tomato"]
+    },
     "had-start-phonecall": {},
     "go-to-entrance-init": {},
     "mobile-phone-battery-dies": {
       "name": "Mobile Phone Battery Died",
       "message": "The battery of your mobile phone just ran out, guess that means no more calls from Patrick"
-    },
-    "has-inventory-space": {
-      "name": "There is inventory space available"
-    },
-    "max-inventory-1-check": {
-      "name": "Product inventory is full with 1 product",
-      "requirements": [
-        {
-          "type": "EVENT_DID_HAPPEN",
-          "id": "max-inventory-1"
-        },
-        {
-          "type": "EVENT_DID_HAPPEN",
-          "id": "product-holding-counter-1"
-        }
-      ],
-      "revertEvents": ["has-inventory-space", "max-inventory-1-check"]
-    },
-    "max-inventory-3-check": {
-      "name": "Product inventory is full with 3 product",
-      "requirements": [
-        {
-          "type": "EVENT_DID_HAPPEN",
-          "id": "max-inventory-3"
-        },
-        {
-          "type": "EVENT_DID_HAPPEN",
-          "id": "product-holding-counter-3"
-        }
-      ],
-      "revertEvents": ["has-inventory-space", "max-inventory-3-check"]
-    },
-    "max-inventory-6-check": {
-      "name": "Product inventory is full with 6 product",
-      "requirements": [
-        {
-          "type": "EVENT_DID_HAPPEN",
-          "id": "max-inventory-6"
-        },
-        {
-          "type": "EVENT_DID_HAPPEN",
-          "id": "product-holding-counter-6"
-        }
-      ],
-      "revertEvents": ["has-inventory-space", "max-inventory-6-check"]
-    },
-    "max-inventory-1": {
-      "name": "Max inventory changed to 1",
-      "requirements": [
-        {
-          "type": "EVENT_NOT_HAPPENED",
-          "id": "has-one-basket"
-        },
-        {
-          "type": "EVENT_NOT_HAPPENED",
-          "id": "has-two-basket"
-        }
-      ],
-      "revertEvents": ["max-inventory-3", "max-inventory-6"]
-    },
-    "max-inventory-3": {
-      "name": "Max inventory changed to 3",
-      "message": "You can now carry 3 products",
-      "requirements": [
-        {
-          "type": "EVENT_DID_HAPPEN",
-          "id": "has-one-basket"
-        },
-        {
-          "type": "EVENT_NOT_HAPPENED",
-          "id": "has-two-basket"
-        }
-      ],
-      "revertEvents": ["max-inventory-1", "max-inventory-6"]
-    },
-    "max-inventory-6": {
-      "name": "Max inventory changed to 6",
-      "message": "You can now carry 6 products",
-      "requirements": [
-        {
-          "type": "EVENT_DID_HAPPEN",
-          "id": "has-two-basket"
-        }
-      ],
-      "revertEvents": ["max-inventory-1", "max-inventory-3"]
-    },
-    "has-one-basket": {},
-    "has-two-basket": {},
-    "put-back-basket1": {
-      "name": "Put back basket 1",
-      "message": "You better have a plan to carry products without this basket!",
-      "requirements": [
-        {
-          "type": "EVENT_NOT_HAPPENED",
-          "id": "has-two-basket"
-        }
-      ],
-      "revertEvents": ["has-one-basket", "put-back-basket1"]
-    },
-    "put-back-basket2": {
-      "name": "Put back basket 2",
-      "requirements": [
-        {
-          "type": "EVENT_DID_HAPPEN",
-          "id": "has-two-basket"
-        }
-      ],
-      "revertEvents": ["has-two-basket", "put-back-basket2"]
-    },
-    "product-holding-counter-1": {
-      "name": "Holding products: 1+"
-    },
-    "product-holding-counter-2": {
-      "name": "Holding products: 2+",
-      "requirements": [
-        {
-          "type": "EVENT_DID_HAPPEN",
-          "id": "product-holding-counter-1"
-        }
-      ]
-    },
-    "product-return-counter-1": {
-      "name": "Holding products: 1+",
-      "requirements": [
-        {
-          "type": "EVENT_NOT_HAPPENED",
-          "id": "product-holding-counter-2"
-        }
-      ],
-      "revertEvents": ["product-holding-counter-1", "product-return-counter-1"]
-    },
-    "product-return-counter-2": {
-      "name": "Holding products: 2+",
-      "revertEvents": ["product-holding-counter-2", "product-return-counter-2"]
     },
     "browse-entrance-recipe-stand": {},
     "skip-entrance-recipe-stand": {}
