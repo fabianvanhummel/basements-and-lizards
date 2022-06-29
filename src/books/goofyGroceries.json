@@ -1067,6 +1067,116 @@
               "id": "PRODUCT-tomato"
             }
           ]
+        },
+        {
+          "text": "Cheese",
+          "response": "Cheesy.",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-cheese"
+            }
+          ]
+        },
+        {
+          "text": "Pasta",
+          "response": "Pasta.",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-pasta"
+            }
+          ]
+        },
+        {
+          "text": "Bacon",
+          "response": "Yummy, bacon!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-bacon"
+            }
+          ]
+        },
+        {
+          "text": "Herb cheese",
+          "response": "Herb cheese.",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-herb-cheese"
+            }
+          ]
+        },
+        {
+          "text": "Nachos",
+          "response": "A bag filled with nachos.",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-nachos"
+            }
+          ]
+        },
+        {
+          "text": "Crème fraîche",
+          "response": "Best ingredient ever!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-creme-fraiche"
+            }
+          ]
+        },
+        {
+          "text": "Guacamole",
+          "response": "Guacamole, not self-made",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-guacamole"
+            }
+          ]
+        },
+        {
+          "text": "Minced meat",
+          "response": "Meat, which is minced",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-minced-meat"
+            }
+          ]
+        },
+        {
+          "text": "Wraps",
+          "response": "A package with wraps",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-wraps"
+            }
+          ]
+        },
+        {
+          "text": "Chicken",
+          "response": "Chicken",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-chicken"
+            }
+          ]
+        },
+        {
+          "text": "Corn",
+          "response": "A can with corn",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-corn"
+            }
+          ]
         }
       ]
     },
