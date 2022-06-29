@@ -1812,7 +1812,7 @@
       ]
     },
     "inspect-products-on-hand": {
-      "name": "Shopping basket",
+      "name": "Shopping Cart",
       "description": "These are the products you are currently carrying along.",
       "options": [
         {
