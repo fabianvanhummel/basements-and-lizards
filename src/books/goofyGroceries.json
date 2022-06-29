@@ -306,6 +306,21 @@
         {
           "id": "meat-shelve1"
         }
+      ],
+      "combat": [
+        {
+          "id": "angry-meat-lover",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "started-angry-meat-lover"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "resolved-angry-meat-lover"
+            }
+          ]
+        }
       ]
     },
     "main-aisle-2": {
@@ -2216,12 +2231,32 @@
         },
         {
           "text": "Take minced meat",
+          "response": "You grab the minced meat, but..",
+          "events": ["started-angry-meat-lover"],
+          "toLocationId": "meats",
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-minced-meat"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "started-angry-meat-lover"
+            }
+          ]
+        },
+        {
+          "text": "Take minced meat",
           "response": "You took the minced-meat.",
           "events": ["PRODUCT-minced-meat"],
           "requirements": [
             {
               "type": "EVENT_NOT_HAPPENED",
               "id": "PRODUCT-minced-meat"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "angry-meat-lover-win"
             }
           ]
         },
@@ -2987,6 +3022,12 @@
     "asked-old-lady-coin-2": {},
     "threaten-old-lady-coin": {},
     "threaten-old-lady-coin-2": {},
+    "started-angry-meat-lover": {},
+    "ask-angry-meat-lover-1": {},
+    "resolved-angry-meat-lover": {},
+    "angry-meat-lover-win": {
+      "message": "You safely add the minced meat to your products"
+    },
     "go-to-entrance-init": {},
     "mobile-phone-battery-dies": {
       "name": "Mobile Phone Battery Died",
@@ -2996,7 +3037,42 @@
     "skip-entrance-recipe-stand": {}
   },
   "combats": {
-    "1": {}
+    "angry-meat-lover": {
+      "title": "Minced meat maniac",
+      "description": "A big angry-looking man grabs at the same piece of minced meat as you do, which is in fact the last package.",
+      "options": [
+        {
+          "text": "Ask politely if you can have the meat.",
+          "response": "The man screams no, grabs a little bit stronger and seems very agitated",
+          "events": ["ask-angry-meat-lover-1"],
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved-angry-meat-lover" },
+            { "type": "EVENT_NOT_HAPPENED", "id": "ask-angry-meat-lover-1" }
+          ]
+        },
+        {
+          "text": "Ask again, you really want this meat",
+          "response": "The angry man grabs the meat from your hands, shoves you away, and quicky walks away.",
+          "events": ["resolved-angry-meat-lover"],
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "ask-angry-meat-lover-1" },
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved-angry-meat-lover" }
+          ]
+        },
+        {
+          "text": "Quickly slam the man down, the meat is yours!",
+          "response": "The man falls over from your punch, the meat is yours!",
+          "events": [
+            "resolved-angry-meat-lover",
+            "PRODUCT-minced-meat",
+            "angry-meat-lover-win"
+          ],
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved-angry-meat-lover" }
+          ]
+        }
+      ]
+    }
   },
   "characters": [
     {
