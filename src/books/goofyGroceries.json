@@ -321,17 +321,17 @@
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "chips-snacks",
+          "toLocationId": "chips-snacks",
           "name": "Chips & Snacks",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "coffee-cereal-breakfast",
+          "toLocationId": "coffee-cereal-breakfast",
           "name": "Coffee & Cereal & Breakfast",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "main-aisle-3",
+          "toLocationId": "main-aisle-3",
           "name": "Main Aisle 3",
           "description": "pathDescription"
         }
@@ -353,12 +353,12 @@
       "description": "description",
       "paths": [
         {
-          "toLocaticonId": "main-aisle-3",
+          "toLocationId": "main-aisle-3",
           "name": "Main Aisle 3",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "wine-beer",
+          "toLocationId": "wine-beer",
           "name": "Wine & Beer",
           "description": "pathDescription"
         }
@@ -383,17 +383,17 @@
       "description": "description",
       "paths": [
         {
-          "toLocaticonId": "dairy-eggs",
+          "toLocationId": "dairy-eggs",
           "name": "Dairy & Eggs",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "main-aisle-3",
+          "toLocationId": "main-aisle-3",
           "name": "Main Aisle 3",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "soda-juices",
+          "toLocationId": "soda-juices",
           "name": "Soda & Juices",
           "description": "pathDescription"
         }
@@ -415,17 +415,17 @@
       "description": "description",
       "paths": [
         {
-          "toLocaticonId": "wine-beer",
+          "toLocationId": "wine-beer",
           "name": "Wine & Beer",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "main-aisle-3",
+          "toLocationId": "main-aisle-3",
           "name": "Main Aisle 3",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "frozen-foods",
+          "toLocationId": "frozen-foods",
           "name": "Frozen Foods",
           "description": "pathDescription"
         }
@@ -447,17 +447,17 @@
       "description": "description",
       "paths": [
         {
-          "toLocaticonId": "soda-juices",
+          "toLocationId": "soda-juices",
           "name": "Soda & Juices",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "main-aisle-3",
+          "toLocationId": "main-aisle-3",
           "name": "Main Aisle 3",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "register",
+          "toLocationId": "register",
           "name": "Register",
           "description": "pathDescription"
         }
@@ -479,42 +479,42 @@
       "description": "description3",
       "paths": [
         {
-          "toLocaticonId": "meats",
+          "toLocationId": "meats",
           "name": "Meats",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "main-aisle-2",
+          "toLocationId": "main-aisle-2",
           "name": "Main Aisle 2",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "coffee-cereal-breakfast",
+          "toLocationId": "coffee-cereal-breakfast",
           "name": "Coffee & Cereal & Breakfast",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "dairy-eggs",
+          "toLocationId": "dairy-eggs",
           "name": "Dairy & Eggs",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "wine-beer",
+          "toLocationId": "wine-beer",
           "name": "Wine & Beer",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "soda-juices",
+          "toLocationId": "soda-juices",
           "name": "Soda & Juices",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "frozen-foods",
+          "toLocationId": "frozen-foods",
           "name": "Frozen Foods",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "main-aisle-4",
+          "toLocationId": "main-aisle-4",
           "name": "Main Aisle 4",
           "description": "pathDescription"
         }
@@ -536,22 +536,22 @@
       "description": "description",
       "paths": [
         {
-          "toLocaticonId": "main-aisle-2",
+          "toLocationId": "main-aisle-2",
           "name": "Main Aisle 2",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "main-aisle-3",
+          "toLocationId": "main-aisle-3",
           "name": "Main Aisle 3",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "chips-snacks",
+          "toLocationId": "chips-snacks",
           "name": "Chips & Snacks",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "main-aisle-4",
+          "toLocationId": "main-aisle-4",
           "name": "Main Aisle 4",
           "description": "pathDescription"
         }
@@ -573,22 +573,22 @@
       "description": "description",
       "paths": [
         {
-          "toLocaticonId": "main-aisle-2",
+          "toLocationId": "main-aisle-2",
           "name": "Main Aisle 2",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "coffee-cereal-breakfast",
+          "toLocationId": "coffee-cereal-breakfast",
           "name": "Coffee & Cereal & Breakfast",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "canned-packaged-foods",
+          "toLocationId": "canned-packaged-foods",
           "name": "Canned & Packaged Foods",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "main-aisle-4",
+          "toLocationId": "main-aisle-4",
           "name": "Main Aisle 4",
           "description": "pathDescription"
         }
@@ -613,22 +613,22 @@
       "description": "description",
       "paths": [
         {
-          "toLocaticonId": "main-aisle-2",
+          "toLocationId": "main-aisle-2",
           "name": "Main Aisle 2",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "chips-snacks",
+          "toLocationId": "chips-snacks",
           "name": "Chips & Snacks",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "bakery-spices",
+          "toLocationId": "bakery-spices",
           "name": "Bakery & Spices",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "main-aisle-4",
+          "toLocationId": "main-aisle-4",
           "name": "Main Aisle 4",
           "description": "pathDescription"
         }
@@ -656,22 +656,22 @@
       "description": "description",
       "paths": [
         {
-          "toLocaticonId": "main-aisle-2",
+          "toLocationId": "main-aisle-2",
           "name": "Main Aisle 2",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "canned-packaged-foods",
+          "toLocationId": "canned-packaged-foods",
           "name": "Canned & Packaged Foods",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "dry-goods-condiments",
+          "toLocationId": "dry-goods-condiments",
           "name": "Dry Goods & Condiments",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "main-aisle-4",
+          "toLocationId": "main-aisle-4",
           "name": "Main Aisle 4",
           "description": "pathDescription"
         }
@@ -693,22 +693,22 @@
       "description": "description",
       "paths": [
         {
-          "toLocaticonId": "main-aisle-1",
+          "toLocationId": "main-aisle-1",
           "name": "Main Aisle 1",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "main-aisle-2",
+          "toLocationId": "main-aisle-2",
           "name": "Main Aisle 2",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "bakery-spices",
+          "toLocationId": "bakery-spices",
           "name": "Bakery & Spices",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "main-aisle-4",
+          "toLocationId": "main-aisle-4",
           "name": "Main Aisle 4",
           "description": "pathDescription"
         }
@@ -753,22 +753,22 @@
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "chips-snacks",
+          "toLocationId": "chips-snacks",
           "name": "Chips & Snacks",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "coffee-cereal-breakfast",
+          "toLocationId": "coffee-cereal-breakfast",
           "name": "Coffee & Cereal & Breakfast",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "main-aisle-3",
+          "toLocationId": "main-aisle-3",
           "name": "Main Aisle 3",
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "register",
+          "toLocationId": "register",
           "name": "Register",
           "description": "pathDescription"
         }
@@ -795,7 +795,7 @@
           "description": "pathDescription"
         },
         {
-          "toLocaticonId": "main-aisle-4",
+          "toLocationId": "main-aisle-4",
           "name": "Main Aisle 4",
           "description": "pathDescription"
         },
