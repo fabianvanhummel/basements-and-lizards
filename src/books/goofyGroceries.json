@@ -954,7 +954,24 @@
     "RECIPE-entrance-recipe-stand-wraps": {
       "name": "Wraps recipe",
       "description": "You took this recipe from the recipe stand. The ingredients are: Wraps, Chicken, Cheese, Bell pepper, Lettuce, Crème fraîche and Corn"
-    }
+    },
+    "BOUGHT-bell-pepper": {
+      "name": "Bell pepper"
+    },
+    "BOUGHT-spinach": { "name": "Spinach" },
+    "BOUGHT-lettuce": { "name": "Lettuce" },
+    "BOUGHT-tomato": { "name": "Tomato" },
+    "BOUGHT-cheese": { "name": "Cheese" },
+    "BOUGHT-pasta": { "name": "Pasta" },
+    "BOUGHT-bacon": { "name": "Bacon" },
+    "BOUGHT-herb-cheese": { "name": "Herb cheese" },
+    "BOUGHT-nachos": { "name": "Nachos" },
+    "BOUGHT-creme-fraiche": { "name": "Crème fraîche" },
+    "BOUGHT-guacamole": { "name": "Guacamole" },
+    "BOUGHT-minced-meat": { "name": "Minced meat" },
+    "BOUGHT-wraps": { "name": "Wraps" },
+    "BOUGHT-chicken": { "name": "Chicken" },
+    "BOUGHT-corn": { "name": "Corn" }
   },
   "npcs": {
     "friend-start-phonecall": {
