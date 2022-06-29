@@ -844,7 +844,8 @@
               "id": "shopping-basket"
             }
           ]
-        }
+        },
+        { "id": "register-1" }
       ]
     },
     "exit": {
@@ -1058,6 +1059,417 @@
               "type": "ITEM_NOT_IN_INVENTORY",
               "id": "RECIPE-entrance-recipe-stand-wraps"
             }
+          ]
+        }
+      ]
+    },
+    "register-1": {
+      "name": "Register",
+      "description": "Here you can pay for your products, with coins. After an item is bought, it is added to your inventory.",
+      "options": [
+        {
+          "text": "Buy bell pepper",
+          "response": "You bought the bell pepper",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-bell-pepper"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-bell-pepper"],
+          "events": [
+            "return-bell-pepper",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy spinach",
+          "response": "You bought the spinach",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-spinach"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-spinach"],
+          "events": [
+            "return-spinach",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy lettuce",
+          "response": "You bought the lettuce",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-lettuce"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-lettuce"],
+          "events": [
+            "return-lettuce",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy tomato",
+          "response": "You bought the tomato",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-tomato"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-tomato"],
+          "events": [
+            "return-tomato",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy cheese",
+          "response": "You bought the cheese",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-cheese"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-cheese"],
+          "events": [
+            "return-cheese",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy pasta",
+          "response": "You bought the pasta",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-pasta"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-pasta"],
+          "events": [
+            "return-pasta",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy bacon",
+          "response": "You bought the bacon",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-bacon"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-bacon"],
+          "events": [
+            "return-bacon",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy herb cheese",
+          "response": "You bought the herb cheese",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-herb-cheese"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-herb-cheese"],
+          "events": [
+            "return-herb-cheese",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy nachos",
+          "response": "You bought the nachos",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-nachos"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-nachos"],
+          "events": [
+            "return-nachos",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy crème fraîche",
+          "response": "You bought the crème fraîche",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-creme-fraiche"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-creme-fraiche"],
+          "events": [
+            "return-creme-fraiche",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy guacamole",
+          "response": "You bought the guacamole",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-guacamole"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-guacamole"],
+          "events": [
+            "return-guacamole",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy minced meat",
+          "response": "You bought the minced meat",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-minced-meat"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-minced-meat"],
+          "events": [
+            "return-minced-meat",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy wraps",
+          "response": "You bought the wraps",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-wraps"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-wraps"],
+          "events": [
+            "return-wraps",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy chicken",
+          "response": "You bought the chicken",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-chicken"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-chicken"],
+          "events": [
+            "return-chicken",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy corn",
+          "response": "You bought the corn",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-corn"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-corn"],
+          "events": [
+            "return-corn",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
           ]
         }
       ]
@@ -1906,6 +2318,128 @@
           "id": "coin-8"
         }
       ]
+    },
+    "pay-1": {
+      "message": "You are now out of coins!",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-1"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-2"
+        }
+      ],
+      "revertEvents": ["coin-1", "pay-1"]
+    },
+    "pay-2": {
+      "message": "You have 1 coin left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-2"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-3"
+        }
+      ],
+      "revertEvents": ["coin-2", "pay-2"]
+    },
+    "pay-3": {
+      "message": "You have 2 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-3"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-4"
+        }
+      ],
+      "revertEvents": ["coin-3", "pay-3"]
+    },
+    "pay-4": {
+      "message": "You have 3 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-4"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-5"
+        }
+      ],
+      "revertEvents": ["coin-4", "pay-4"]
+    },
+    "pay-5": {
+      "message": "You have 4 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-5"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-6"
+        }
+      ],
+      "revertEvents": ["coin-5", "pay-5"]
+    },
+    "pay-6": {
+      "message": "You have 5 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-6"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-7"
+        }
+      ],
+      "revertEvents": ["coin-6", "pay-6"]
+    },
+    "pay-7": {
+      "message": "You have 6 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-7"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-8"
+        }
+      ],
+      "revertEvents": ["coin-7", "pay-7"]
+    },
+    "pay-8": {
+      "message": "You have 7 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-8"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-9"
+        }
+      ],
+      "revertEvents": ["coin-8", "pay-8"]
+    },
+    "pay-9": {
+      "message": "You have 8 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-9"
+        }
+      ],
+      "revertEvents": ["coin-9", "pay-9"]
     },
     "empty-coke-bottle": {
       "requirements": [
