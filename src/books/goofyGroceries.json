@@ -285,12 +285,15 @@
               "id": "shopping-basket"
             }
           ]
+        },
+        {
+          "id": "meat-shelve1"
         }
       ]
     },
     "main-aisle-2": {
       "name": "Main Aisle 2",
-      "description": "description",
+      "description": "description2",
       "paths": [
         {
           "toLocationId": "main-aisle-1",
@@ -369,6 +372,9 @@
               "id": "shopping-basket"
             }
           ]
+        },
+        {
+          "id": "dairy-shelve1"
         }
       ]
     },
@@ -470,7 +476,7 @@
     },
     "main-aisle-3": {
       "name": "Main Aisle 3",
-      "description": "description",
+      "description": "description3",
       "paths": [
         {
           "toLocaticonId": "meats",
@@ -596,6 +602,9 @@
               "id": "shopping-basket"
             }
           ]
+        },
+        {
+          "id": "chips-shelve1"
         }
       ]
     },
@@ -633,6 +642,12 @@
               "id": "shopping-basket"
             }
           ]
+        },
+        {
+          "id": "canned-shelve1"
+        },
+        {
+          "id": "packaged-shelve1"
         }
       ]
     },
@@ -707,6 +722,9 @@
               "id": "shopping-basket"
             }
           ]
+        },
+        {
+          "id": "condiments-shelve1"
         }
       ]
     },
@@ -1151,6 +1169,284 @@
           ]
         }
       ]
+    },
+    "meat-shelve1": {
+      "name": "Meat Shelve",
+      "description": "A shelve filled with meats",
+      "options": [
+        {
+          "text": "Take chicken",
+          "response": "This definitely came before the egg.",
+          "events": ["PRODUCT-chicken"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-chicken"
+            }
+          ]
+        },
+        {
+          "text": "Return chicken",
+          "response": "You put the chicken back in the shelve.",
+          "events": ["return-chicken"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-chicken"
+            }
+          ]
+        },
+        {
+          "text": "Take bacon",
+          "response": "Yumm, bacon.",
+          "events": ["PRODUCT-bacon"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-bacon"
+            }
+          ]
+        },
+        {
+          "text": "Return bacon",
+          "response": "You put the bacon back in the shelve.",
+          "events": ["return-bacon"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-bacon"
+            }
+          ]
+        },
+        {
+          "text": "Take minced meat",
+          "response": "You took the minced-meat.",
+          "events": ["PRODUCT-minced-meat"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-minced-meat"
+            }
+          ]
+        },
+        {
+          "text": "Return minced meat",
+          "response": "You put the minced meat back in the shelve.",
+          "events": ["return-minced-meat"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-minced-meat"
+            }
+          ]
+        }
+      ]
+    },
+    "dairy-shelve1": {
+      "name": "Dairy Shelve",
+      "description": "A shelve filled with dairy",
+      "options": [
+        {
+          "text": "Take cheese",
+          "response": "Very cheesy.",
+          "events": ["PRODUCT-cheese"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-cheese"
+            }
+          ]
+        },
+        {
+          "text": "Return cheese",
+          "response": "You put the cheese back in the shelve.",
+          "events": ["return-cheese"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-cheese"
+            }
+          ]
+        },
+        {
+          "text": "Take herb cheese",
+          "response": "You took the herb cheese",
+          "events": ["PRODUCT-herb-cheese"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-herb-cheese"
+            }
+          ]
+        },
+        {
+          "text": "Return herb cheese",
+          "response": "You put the herb cheese back in the shelve.",
+          "events": ["return-herb-cheese"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-herb-cheese"
+            }
+          ]
+        },
+        {
+          "text": "Take crème fraîche",
+          "response": "Can't go wrong with this",
+          "events": ["PRODUCT-creme-fraiche"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-creme-fraiche"
+            }
+          ]
+        },
+        {
+          "text": "Return crème fraîche",
+          "response": "You put the crème fraîche back in the shelve, sounds like a mistake to be honest.",
+          "events": ["return-creme-fraiche"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-creme-fraiche"
+            }
+          ]
+        }
+      ]
+    },
+    "chips-shelve1": {
+      "name": "Chips Shelve",
+      "description": "A shelve filled with chips, nice.",
+      "options": [
+        {
+          "text": "Take nachos",
+          "response": "You carefully take the nachos, don't wanna break these.",
+          "events": ["PRODUCT-nachos"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-nachos"
+            }
+          ]
+        },
+        {
+          "text": "Return nachos",
+          "response": "You put the nachos back in the shelve.",
+          "events": ["return-nachos"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-nachos"
+            }
+          ]
+        }
+      ]
+    },
+    "canned-shelve1": {
+      "name": "Canned foods Shelve",
+      "description": "A shelve filled with canned foods.",
+      "options": [
+        {
+          "text": "Take corn",
+          "response": "You take a can of corn.",
+          "events": ["PRODUCT-corn"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-corn"
+            }
+          ]
+        },
+        {
+          "text": "Return corn",
+          "response": "You put the corn back in the shelve.",
+          "events": ["return-corn"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-corn"
+            }
+          ]
+        }
+      ]
+    },
+    "packaged-shelve1": {
+      "name": "Packaged foods Shelve",
+      "description": "A shelve filled with packaged foods.",
+      "options": [
+        {
+          "text": "Take wraps",
+          "response": "You take some wraps",
+          "events": ["PRODUCT-wraps"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-wraps"
+            }
+          ]
+        },
+        {
+          "text": "Return wraps",
+          "response": "You put the wraps back in the shelve.",
+          "events": ["return-wraps"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-wraps"
+            }
+          ]
+        },
+        {
+          "text": "Take pasta",
+          "response": "You take some pasta",
+          "events": ["PRODUCT-pasta"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-pasta"
+            }
+          ]
+        },
+        {
+          "text": "Return pasta",
+          "response": "You put the pasta back in the shelve.",
+          "events": ["return-pasta"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-pasta"
+            }
+          ]
+        }
+      ]
+    },
+    "condiments-shelve1": {
+      "name": "Condiments Shelve",
+      "description": "A shelve filled with condiments.",
+      "options": [
+        {
+          "text": "Take guacemole",
+          "response": "You take guacemole.",
+          "events": ["PRODUCT-guacemole"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-guacemole"
+            }
+          ]
+        },
+        {
+          "text": "Return guacemole",
+          "response": "You put the guacemole back in the shelve.",
+          "events": ["return-guacemole"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-guacemole"
+            }
+          ]
+        }
+      ]
     }
   },
   "events": {
@@ -1194,6 +1490,116 @@
         }
       ],
       "revertEvents": ["PRODUCT-tomato"]
+    },
+    "PRODUCT-cheese": {},
+    "return-cheese": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-cheese"
+        }
+      ],
+      "revertEvents": ["PRODUCT-cheese"]
+    },
+    "PRODUCT-pasta": {},
+    "return-pasta": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-pasta"
+        }
+      ],
+      "revertEvents": ["PRODUCT-pasta"]
+    },
+    "PRODUCT-bacon": {},
+    "return-bacon": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-bacon"
+        }
+      ],
+      "revertEvents": ["PRODUCT-bacon"]
+    },
+    "PRODUCT-herb-cheese": {},
+    "return-herb-cheese": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-herb-cheese"
+        }
+      ],
+      "revertEvents": ["PRODUCT-herb-cheese"]
+    },
+    "PRODUCT-nachos": {},
+    "return-nachos": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-nachos"
+        }
+      ],
+      "revertEvents": ["PRODUCT-nachos"]
+    },
+    "PRODUCT-creme-fraiche": {},
+    "return-creme-fraiche": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-creme-fraiche"
+        }
+      ],
+      "revertEvents": ["PRODUCT-creme-fraiche"]
+    },
+    "PRODUCT-guacamole": {},
+    "return-guacamole": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-guacamole"
+        }
+      ],
+      "revertEvents": ["PRODUCT-guacamole"]
+    },
+    "PRODUCT-minced-meat": {},
+    "return-minced-meat": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-minced-meat"
+        }
+      ],
+      "revertEvents": ["PRODUCT-minced-meat"]
+    },
+    "PRODUCT-wraps": {},
+    "return-wraps": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-wraps"
+        }
+      ],
+      "revertEvents": ["PRODUCT-wraps"]
+    },
+    "PRODUCT-chicken": {},
+    "return-chicken": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-chicken"
+        }
+      ],
+      "revertEvents": ["PRODUCT-chicken"]
+    },
+    "PRODUCT-corn": {},
+    "return-corn": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-corn"
+        }
+      ],
+      "revertEvents": ["PRODUCT-corn"]
     },
     "had-start-phonecall": {},
     "go-to-entrance-init": {},
