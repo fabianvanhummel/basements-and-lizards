@@ -93,6 +93,7 @@ const makeThingInteractOptionsList = (book, gameState, thingId) => {
         response: option.response,
         events: option.events,
         items: option.items,
+        toLocationId: option.toLocationId
       };
     })
   );
