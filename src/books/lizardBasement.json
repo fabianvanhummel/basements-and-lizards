@@ -1,7 +1,7 @@
 {
   "name": "The Lizard Basement",
   "description": "Abducted to a strange, underground location. Can you escape the Lizard Basement?",
-  "initialLocation": "2",
+  "initialLocation": "1",
   "finalEvent": "game-win",
   "locations": {
     "1": {
@@ -863,7 +863,7 @@
         },
         {
           "text": "Turn the screens on",
-          "response": "The screens stop showin static and suddenly show vivid images of the things apparently going on in the dungeon. One screen shows an interrogation chamber with another mutant lizard dressed up as a torturer having his way with a poor prisoner. Another screen shows a big pot of Schultenbrau being produced by the monstrous lizardmen, a third screen shows the hallway that is behind the wooden door of the prison (including the sleeping guard) while a fourth screen shows an empty cell which you recognize as the one you woke up in. You are obviously being actively monitored throughout the whole ordeal.. but why? And what the hell is happening in this place? You only know one thing: you want to get out, and make sure that what happened to you will not happen to anyone again.",
+          "response": "The screens stop showing static and suddenly show vivid images of the things apparently going on in the dungeon. One screen shows an interrogation chamber with another mutant lizard dressed up as a torturer having his way with a poor prisoner. Another screen shows a big pot of Schultenbrau being produced by the monstrous lizardmen, a third screen shows the hallway that is behind the wooden door of the prison (including the sleeping guard) while a fourth screen shows an empty cell which you recognize as the one you woke up in. You are obviously being actively monitored throughout the whole ordeal.. but why? And what the hell is happening in this place? You only know one thing: you want to get out, and make sure that what happened to you will not happen to anyone again.",
           "requirements": [
             { "type": "EVENT_DID_HAPPEN", "id": "left-panel-step-2" },
             { "type": "EVENT_DID_HAPPEN", "id": "middle-panel" },
