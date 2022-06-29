@@ -425,6 +425,11 @@
             }
           ]
         }
+      ],
+      "npcs": [
+        {
+          "id": "old-lady-1"
+        }
       ]
     },
     "soda-juices": {
@@ -984,6 +989,181 @@
     "BOUGHT-corn": { "name": "Corn" }
   },
   "npcs": {
+    "old-lady-1": {
+      "name": "Old Lady",
+      "description": "This old lady looks like she really likes her wine",
+      "options": [
+        {
+          "text": "Hello ma'am",
+          "response": "Well hello dear",
+          "events": ["start-talk-old-lady-1"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "start-talk-old-lady-1"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "threaten-old-lady-coin"
+            }
+          ]
+        },
+        {
+          "text": "Can I have some coins please?",
+          "response": "alright, since you asked so nicely.",
+          "events": [
+            "asked-old-lady-coin",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "start-talk-old-lady-1"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "threaten-old-lady-coin"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "asked-old-lady-coin"
+            }
+          ]
+        },
+        {
+          "text": "Can I have more coins please?",
+          "response": "Pff, well alright, but this is your final coin!",
+          "events": [
+            "asked-old-lady-coin-2",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "start-talk-old-lady-1"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "asked-old-lady-coin"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "threaten-old-lady-coin"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "asked-old-lady-coin-2"
+            }
+          ]
+        },
+        {
+          "text": "Hand over your coins!",
+          "response": "Okay okay, but please don't hurt me!",
+          "events": [
+            "threaten-old-lady-coin",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "threaten-old-lady-coin"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "asked-old-lady-coin-2"
+            }
+          ]
+        },
+        {
+          "text": "Hand over your coins!",
+          "response": "I just gave you everything I have, please, don't hurt me! :(",
+          "events": ["threaten-old-lady-coin"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "threaten-old-lady-coin"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "asked-old-lady-coin-2"
+            }
+          ]
+        },
+        {
+          "text": "Hand over more coins!",
+          "response": "Okay okay, this is all I have, just, please don't hurt me..",
+          "events": [
+            "threaten-old-lady-coin-2",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "threaten-old-lady-coin"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "asked-old-lady-coin"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "threaten-old-lady-coin-2"
+            }
+          ]
+        },
+        {
+          "text": "Hand over more coins!",
+          "response": "I already gave you everything I have. Just, please don't hurt me..",
+          "events": ["threaten-old-lady-coin-2"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "threaten-old-lady-coin"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "asked-old-lady-coin"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "threaten-old-lady-coin-2"
+            }
+          ]
+        }
+      ]
+    },
     "friend-start-phonecall": {
       "name": "Patrick",
       "description": "You are being called by your friend, Patrick",
@@ -2396,8 +2576,9 @@
     "purse-coin-pickup": {
       "message": "You check the contents of the purse, it contained a coin! You put the coin in your wallet."
     },
-    "coin-1": {},
+    "coin-1": { "message": "You now have 1 coin" },
     "coin-2": {
+      "message": "You now have 2 coins",
       "requirements": [
         {
           "type": "EVENT_DID_HAPPEN",
@@ -2406,6 +2587,7 @@
       ]
     },
     "coin-3": {
+      "message": "You now have 3 coins, what a charm",
       "requirements": [
         {
           "type": "EVENT_DID_HAPPEN",
@@ -2414,6 +2596,7 @@
       ]
     },
     "coin-4": {
+      "message": "You now have 4 coins",
       "requirements": [
         {
           "type": "EVENT_DID_HAPPEN",
@@ -2422,6 +2605,7 @@
       ]
     },
     "coin-5": {
+      "message": "You now have 5 coins",
       "requirements": [
         {
           "type": "EVENT_DID_HAPPEN",
@@ -2430,6 +2614,7 @@
       ]
     },
     "coin-6": {
+      "message": "You now have 6 coins, your purse is getting heavy!",
       "requirements": [
         {
           "type": "EVENT_DID_HAPPEN",
@@ -2438,6 +2623,7 @@
       ]
     },
     "coin-7": {
+      "message": "You now have 7 coins",
       "requirements": [
         {
           "type": "EVENT_DID_HAPPEN",
@@ -2446,6 +2632,7 @@
       ]
     },
     "coin-8": {
+      "message": "You now have 8 coins",
       "requirements": [
         {
           "type": "EVENT_DID_HAPPEN",
@@ -2454,6 +2641,7 @@
       ]
     },
     "coin-9": {
+      "message": "You now have 9 coins, hype!",
       "requirements": [
         {
           "type": "EVENT_DID_HAPPEN",
@@ -2794,6 +2982,11 @@
       "revertEvents": ["PRODUCT-corn", "return-corn"]
     },
     "had-start-phonecall": {},
+    "start-talk-old-lady-1": {},
+    "asked-old-lady-coin": {},
+    "asked-old-lady-coin-2": {},
+    "threaten-old-lady-coin": {},
+    "threaten-old-lady-coin-2": {},
     "go-to-entrance-init": {},
     "mobile-phone-battery-dies": {
       "name": "Mobile Phone Battery Died",
