@@ -88,7 +88,19 @@
       ],
       "items": [
         {
-          "id": "shopping-basket"
+          "id": "shopping-basket",
+          "events": [
+            "shopping-cart-coin-pickup",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9"
+          ]
         }
       ]
     },
@@ -195,8 +207,8 @@
       ]
     },
     "main-aisle-1": {
-      "name": "name",
-      "description": "description",
+      "name": "Main Aisle 1",
+      "description": "A big aisle connecting to a lot of different aisles. A sign hanging from the ceiling reads: 'Now: All products, 1 coin'",
       "paths": [
         {
           "toLocationId": "entrance",
@@ -293,7 +305,7 @@
     },
     "main-aisle-2": {
       "name": "Main Aisle 2",
-      "description": "description2",
+      "description": "A big aisle connecting to a lot of different aisles. A sign hanging from the ceiling reads: 'Now: All products, 1 coin'",
       "paths": [
         {
           "toLocationId": "main-aisle-1",
@@ -439,7 +451,8 @@
               "id": "shopping-basket"
             }
           ]
-        }
+        },
+        { "id": "soda-shelve1" }
       ]
     },
     "frozen-foods": {
@@ -476,7 +489,7 @@
     },
     "main-aisle-3": {
       "name": "Main Aisle 3",
-      "description": "description3",
+      "description": "A big aisle connecting to a lot of different aisles. A sign hanging from the ceiling reads: 'Now: All products, 1 coin'",
       "paths": [
         {
           "toLocationId": "meats",
@@ -676,6 +689,23 @@
           "description": "pathDescription"
         }
       ],
+      "items": [
+        {
+          "id": "purse-1",
+          "events": [
+            "purse-coin-pickup",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9"
+          ]
+        }
+      ],
       "things": [
         {
           "id": "inspect-products-on-hand",
@@ -730,7 +760,7 @@
     },
     "main-aisle-4": {
       "name": "name",
-      "description": "description",
+      "description": "A big aisle connecting to a lot of different aisles. A sign hanging from the ceiling reads: 'Now: All products, 1 coin'",
       "paths": [
         {
           "toLocationId": "main-aisle-1",
@@ -787,7 +817,7 @@
     },
     "register": {
       "name": "Register",
-      "description": "description",
+      "description": "A sign at the register reads: 'Now: All products, 1 coin'",
       "paths": [
         {
           "toLocationId": "frozen-foods",
@@ -873,6 +903,9 @@
               "id": "shopping-basket"
             }
           ]
+        },
+        {
+          "id": "bottle-machine"
         }
       ]
     },
@@ -895,14 +928,19 @@
               "id": "shopping-basket"
             }
           ]
-        }
+        },
+        { "id": "stockroom-sink" }
       ]
     }
   },
   "items": {
     "shopping-basket": {
-      "name": "Shopping Basket",
-      "description": "This fancy shopping basket is pink with pretty ribbons. It contains the products you are currently holding. After picking it up you can inspect it's contents throughout the store, neat!"
+      "name": "Shopping Cart",
+      "description": "This fancy shopping cart is pink with pretty ribbons. It contains the products you are currently holding. When bringing it along you can inspect it's contents throughout the store, neat!"
+    },
+    "purse-1": {
+      "name": "Purse",
+      "description": "You found this purse on the ground, it has always been empty. At least, that's what you'll say when anyone asks!"
     },
     "RECIPE-skip-entrance-recipe-stand": {
       "name": "Made-up recipe",
@@ -1028,6 +1066,36 @@
       "name": "Shopping basket",
       "description": "These are the products you are currently carrying along.",
       "options": [
+        {
+          "text": "Coke bottle",
+          "response": "A bottle, filled with coke!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-coke-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Fanta bottle",
+          "response": "A bottle, filled with fanta!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-fanta-bottle"
+            }
+          ]
+        },
+        {
+          "text": "7up bottle",
+          "response": "A bottle, filled with 7up!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-7up-bottle"
+            }
+          ]
+        },
         {
           "text": "Bell pepper",
           "response": "Wow, what a pretty bell pepper!",
@@ -1175,6 +1243,90 @@
             {
               "type": "EVENT_DID_HAPPEN",
               "id": "PRODUCT-corn"
+            }
+          ]
+        }
+      ]
+    },
+    "bottle-machine": {
+      "name": "Empty bottle machine",
+      "description": "Empty bottles can be handed in here for coins. Hmmm...",
+      "options": [
+        {
+          "text": "Hand in empty coke bottle",
+          "response": "You hand in the empty coke bottle and gain a coin!",
+          "events": [
+            "handed-in-coke-bottle",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "handed-in-coke-bottle"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "empty-coke-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Hand in empty fanta bottle",
+          "response": "You hand in the empty fanta bottle and gain a coin!",
+          "events": [
+            "handed-in-fanta-bottle",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "handed-in-fanta-bottle"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "empty-fanta-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Hand in empty 7up bottle",
+          "response": "You hand in the empty 7up bottle and gain a coin!",
+          "events": [
+            "handed-in-7up-bottle",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "handed-in-7up-bottle"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "empty-7up-bottle"
             }
           ]
         }
@@ -1480,6 +1632,90 @@
         }
       ]
     },
+    "soda-shelve1": {
+      "name": "Soda Shelve",
+      "description": "A shelve filled with sodas.",
+      "options": [
+        {
+          "text": "Take coke bottle",
+          "response": "You take a coke bottle.",
+          "events": ["PRODUCT-coke-bottle"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-coke-bottle"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "empty-coke-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Return coke bottle",
+          "response": "You put the coke bottle back in the shelve.",
+          "events": ["return-coke-bottle"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-coke-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Take fanta bottle",
+          "response": "You take a fanta bottle.",
+          "events": ["PRODUCT-fanta-bottle"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-fanta-bottle"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "empty-fanta-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Return fanta bottle",
+          "response": "You put the fanta bottle back in the shelve.",
+          "events": ["return-fanta-bottle"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-fanta-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Take 7up bottle",
+          "response": "You take a 7up bottle.",
+          "events": ["PRODUCT-7up-bottle"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-7up-bottle"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "empty-7up-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Return 7up bottle",
+          "response": "You put the 7up bottle back in the shelve.",
+          "events": ["return-7up-bottle"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-7up-bottle"
+            }
+          ]
+        }
+      ]
+    },
     "packaged-shelve1": {
       "name": "Packaged foods Shelve",
       "description": "A shelve filled with packaged foods.",
@@ -1530,6 +1766,45 @@
         }
       ]
     },
+    "stockroom-sink": {
+      "name": "Stockroom sink",
+      "description": "A sink, where no one can see you...",
+      "options": [
+        {
+          "text": "Empty coke bottle",
+          "response": "You sneakily empty the coke bottle.",
+          "events": ["empty-coke-bottle"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-coke-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Empty fanta bottle",
+          "response": "You sneakily empty the fanta bottle.",
+          "events": ["empty-fanta-bottle"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-fanta-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Empty 7up bottle",
+          "response": "You sneakily empty the 7up bottle.",
+          "events": ["empty-7up-bottle"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-7up-bottle"
+            }
+          ]
+        }
+      ]
+    },
     "condiments-shelve1": {
       "name": "Condiments Shelve",
       "description": "A shelve filled with condiments.",
@@ -1561,6 +1836,137 @@
   },
   "events": {
     "game-end": {},
+    "shopping-cart-coin-pickup": {
+      "message": "You check your pockets for coins. Your backpocket contains one! When trying to insert it into the cart you notice it already has a coin in it. Lucky! You decide to put the coin you found in your wallet"
+    },
+    "purse-coin-pickup": {
+      "message": "You check the contents of the purse, it contained a coin! You put the coin in your wallet."
+    },
+    "coin-1": {},
+    "coin-2": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-1"
+        }
+      ]
+    },
+    "coin-3": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-2"
+        }
+      ]
+    },
+    "coin-4": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-3"
+        }
+      ]
+    },
+    "coin-5": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-4"
+        }
+      ]
+    },
+    "coin-6": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-5"
+        }
+      ]
+    },
+    "coin-7": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-6"
+        }
+      ]
+    },
+    "coin-8": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-7"
+        }
+      ]
+    },
+    "coin-9": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-8"
+        }
+      ]
+    },
+    "empty-coke-bottle": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-coke-bottle"
+        }
+      ],
+      "revertEvents": ["PRODUCT-coke-bottle"]
+    },
+    "handed-in-coke-bottle": {},
+    "empty-fanta-bottle": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-fanta-bottle"
+        }
+      ],
+      "revertEvents": ["PRODUCT-fanta-bottle"]
+    },
+    "handed-in-fanta-bottle": {},
+    "empty-7up-bottle": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-7up-bottle"
+        }
+      ],
+      "revertEvents": ["PRODUCT-7up-bottle"]
+    },
+    "handed-in-7up-bottle": {},
+    "PRODUCT-coke-bottle": {},
+    "return-coke-bottle": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-coke-bottle"
+        }
+      ],
+      "revertEvents": ["PRODUCT-coke-bottle"]
+    },
+    "PRODUCT-fanta-bottle": {},
+    "return-fanta-bottle": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-fanta-bottle"
+        }
+      ],
+      "revertEvents": ["PRODUCT-fanta-bottle"]
+    },
+    "PRODUCT-7up-bottle": {},
+    "return-7up-bottle": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-7up-bottle"
+        }
+      ],
+      "revertEvents": ["PRODUCT-7up-bottle"]
+    },
     "PRODUCT-bell-pepper": {},
     "return-bell-pepper": {
       "requirements": [
