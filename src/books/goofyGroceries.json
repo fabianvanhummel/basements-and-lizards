@@ -53,6 +53,11 @@
           "toLocationId": "entrance",
           "name": "Entrance",
           "description": "pathDescription"
+        },
+        {
+          "toLocationId": "home",
+          "name": "Home",
+          "description": "Use the car to drive home"
         }
       ],
       "hint": "This is the starting area of this story. Check the home tab for more information and background. Have fun!"
@@ -932,6 +937,11 @@
         },
         { "id": "stockroom-sink" }
       ]
+    },
+    "home": {
+      "name": "Home",
+      "description": "This is the vacation home you booked for tonight.",
+      "things": [{ "id": "kitchen" }]
     }
   },
   "items": {
@@ -1013,6 +1023,121 @@
     }
   },
   "things": {
+    "kitchen": {
+      "name": "Kitchen",
+      "description": "Time to put your groceries to the test! Decide what you will make tonight. Well, if you have a recipe with the required products ofcourse!",
+      "options": [
+        {
+          "text": "Nachos",
+          "response": "You made delicious nachos, everyone is very happy!",
+          "events": ["game-end"],
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "RECIPE-entrance-recipe-stand-nachos"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-nachos"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-cheese"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-creme-fraiche"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-guacamole"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-bell-pepper"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-tomato"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-minced-meat"
+            }
+          ]
+        },
+        {
+          "text": "Wraps",
+          "response": "You made wraps, everyone is quite happy!",
+          "events": ["game-end"],
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "RECIPE-entrance-recipe-stand-wraps"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-wraps"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-chicken"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-cheese"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-bell-pepper"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-lettuce"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-creme-fraiche"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-corn"
+            }
+          ]
+        },
+        {
+          "text": "Pasta Spinach",
+          "response": "You made pasta with spinach, some people are surprisingly happy, some aren't...",
+          "events": ["game-end"],
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "RECIPE-skip-entrance-recipe-stand"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-cheese"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-spinach"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-pasta"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-bacon"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-herb-cheese"
+            }
+          ]
+        }
+      ]
+    },
     "entrance-recipe-stand": {
       "name": "Recipe Stand",
       "description": "This is a small stand with some recipes of the week.",
@@ -2264,7 +2389,7 @@
     }
   },
   "events": {
-    "game-end": {},
+    "game-end": { "message": "Gratz, you finished the game!" },
     "shopping-cart-coin-pickup": {
       "message": "You check your pockets for coins. Your backpocket contains one! When trying to insert it into the cart you notice it already has a coin in it. Lucky! You decide to put the coin you found in your wallet"
     },
