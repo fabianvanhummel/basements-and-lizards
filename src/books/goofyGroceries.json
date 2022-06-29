@@ -1832,8 +1832,8 @@
           ]
         },
         {
-          "text": "Return bell pepper",
-          "response": "You put the bell pepper back in the shelve.",
+          "text": "Return tomato",
+          "response": "You put the tomato back in the shelve.",
           "events": ["return-tomato"],
           "requirements": [
             {
@@ -2479,7 +2479,7 @@
           "id": "PRODUCT-coke-bottle"
         }
       ],
-      "revertEvents": ["PRODUCT-coke-bottle"]
+      "revertEvents": ["PRODUCT-coke-bottle", "return-coke-bottle"]
     },
     "PRODUCT-fanta-bottle": {},
     "return-fanta-bottle": {
@@ -2489,7 +2489,7 @@
           "id": "PRODUCT-fanta-bottle"
         }
       ],
-      "revertEvents": ["PRODUCT-fanta-bottle"]
+      "revertEvents": ["PRODUCT-fanta-bottle", "return-fanta-bottle"]
     },
     "PRODUCT-7up-bottle": {},
     "return-7up-bottle": {
@@ -2499,7 +2499,7 @@
           "id": "PRODUCT-7up-bottle"
         }
       ],
-      "revertEvents": ["PRODUCT-7up-bottle"]
+      "revertEvents": ["PRODUCT-7up-bottle", "return-7up-bottle"]
     },
     "PRODUCT-bell-pepper": {},
     "return-bell-pepper": {
@@ -2509,7 +2509,7 @@
           "id": "PRODUCT-bell-pepper"
         }
       ],
-      "revertEvents": ["PRODUCT-bell-pepper"]
+      "revertEvents": ["PRODUCT-bell-pepper", "return-bell-pepper"]
     },
     "PRODUCT-spinach": {},
     "return-spinach": {
@@ -2519,7 +2519,7 @@
           "id": "PRODUCT-spinach"
         }
       ],
-      "revertEvents": ["PRODUCT-spinach"]
+      "revertEvents": ["PRODUCT-spinach", "return-spinach"]
     },
     "PRODUCT-lettuce": {},
     "return-lettuce": {
@@ -2529,7 +2529,7 @@
           "id": "PRODUCT-lettuce"
         }
       ],
-      "revertEvents": ["PRODUCT-lettuce"]
+      "revertEvents": ["PRODUCT-lettuce", "return-lettuce"]
     },
     "PRODUCT-tomato": {},
     "return-tomato": {
@@ -2539,7 +2539,7 @@
           "id": "PRODUCT-tomato"
         }
       ],
-      "revertEvents": ["PRODUCT-tomato"]
+      "revertEvents": ["PRODUCT-tomato", "return-tomato"]
     },
     "PRODUCT-cheese": {},
     "return-cheese": {
@@ -2549,7 +2549,7 @@
           "id": "PRODUCT-cheese"
         }
       ],
-      "revertEvents": ["PRODUCT-cheese"]
+      "revertEvents": ["PRODUCT-cheese", "return-cheese"]
     },
     "PRODUCT-pasta": {},
     "return-pasta": {
@@ -2559,7 +2559,7 @@
           "id": "PRODUCT-pasta"
         }
       ],
-      "revertEvents": ["PRODUCT-pasta"]
+      "revertEvents": ["PRODUCT-pasta", "return-pasta"]
     },
     "PRODUCT-bacon": {},
     "return-bacon": {
@@ -2569,7 +2569,7 @@
           "id": "PRODUCT-bacon"
         }
       ],
-      "revertEvents": ["PRODUCT-bacon"]
+      "revertEvents": ["PRODUCT-bacon", "return-bacon"]
     },
     "PRODUCT-herb-cheese": {},
     "return-herb-cheese": {
@@ -2579,7 +2579,7 @@
           "id": "PRODUCT-herb-cheese"
         }
       ],
-      "revertEvents": ["PRODUCT-herb-cheese"]
+      "revertEvents": ["PRODUCT-herb-cheese", "return-herb-cheese"]
     },
     "PRODUCT-nachos": {},
     "return-nachos": {
@@ -2589,7 +2589,7 @@
           "id": "PRODUCT-nachos"
         }
       ],
-      "revertEvents": ["PRODUCT-nachos"]
+      "revertEvents": ["PRODUCT-nachos", "return-nachos"]
     },
     "PRODUCT-creme-fraiche": {},
     "return-creme-fraiche": {
@@ -2599,7 +2599,7 @@
           "id": "PRODUCT-creme-fraiche"
         }
       ],
-      "revertEvents": ["PRODUCT-creme-fraiche"]
+      "revertEvents": ["PRODUCT-creme-fraiche", "return-creme-fraiche"]
     },
     "PRODUCT-guacamole": {},
     "return-guacamole": {
@@ -2609,7 +2609,7 @@
           "id": "PRODUCT-guacamole"
         }
       ],
-      "revertEvents": ["PRODUCT-guacamole"]
+      "revertEvents": ["PRODUCT-guacamole", "return-guacamole"]
     },
     "PRODUCT-minced-meat": {},
     "return-minced-meat": {
@@ -2619,7 +2619,7 @@
           "id": "PRODUCT-minced-meat"
         }
       ],
-      "revertEvents": ["PRODUCT-minced-meat"]
+      "revertEvents": ["PRODUCT-minced-meat", "return-minced-meat"]
     },
     "PRODUCT-wraps": {},
     "return-wraps": {
@@ -2629,7 +2629,7 @@
           "id": "PRODUCT-wraps"
         }
       ],
-      "revertEvents": ["PRODUCT-wraps"]
+      "revertEvents": ["PRODUCT-wraps", "return-wraps"]
     },
     "PRODUCT-chicken": {},
     "return-chicken": {
@@ -2639,7 +2639,7 @@
           "id": "PRODUCT-chicken"
         }
       ],
-      "revertEvents": ["PRODUCT-chicken"]
+      "revertEvents": ["PRODUCT-chicken", "return-chicken"]
     },
     "PRODUCT-corn": {},
     "return-corn": {
@@ -2649,7 +2649,7 @@
           "id": "PRODUCT-corn"
         }
       ],
-      "revertEvents": ["PRODUCT-corn"]
+      "revertEvents": ["PRODUCT-corn", "return-corn"]
     },
     "had-start-phonecall": {},
     "go-to-entrance-init": {},
