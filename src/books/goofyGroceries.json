@@ -1225,8 +1225,12 @@
         {
           "text": "Nachos",
           "response": "You made delicious nachos, everyone is very happy!",
-          "events": ["game-end"],
+          "events": ["end-nachos", "game-end"],
           "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "end-nachos"
+            },
             {
               "type": "ITEM_IN_INVENTORY",
               "id": "RECIPE-entrance-recipe-stand-nachos"
@@ -1264,8 +1268,12 @@
         {
           "text": "Wraps",
           "response": "You made wraps, everyone is quite happy!",
-          "events": ["game-end"],
+          "events": ["end-wraps", "game-end"],
           "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "end-wraps"
+            },
             {
               "type": "ITEM_IN_INVENTORY",
               "id": "RECIPE-entrance-recipe-stand-wraps"
@@ -1303,8 +1311,12 @@
         {
           "text": "Pasta Spinach",
           "response": "You made pasta with spinach, some people are surprisingly happy, some aren't...",
-          "events": ["game-end"],
+          "events": ["end-pasta-spinach", "game-end"],
           "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "end-pasta-spinach"
+            },
             {
               "type": "ITEM_IN_INVENTORY",
               "id": "RECIPE-skip-entrance-recipe-stand"
@@ -2605,6 +2617,9 @@
   },
   "events": {
     "game-end": { "message": "Gratz, you finished the game!" },
+    "end-nachos": {},
+    "end-wraps": {},
+    "end-pasta-spinach": {},
     "shopping-cart-coin-pickup": {
       "message": "You check your pockets for coins. Your backpocket contains one! When trying to insert it into the cart you notice it already has a coin in it. Lucky! You decide to put the coin you found in your wallet"
     },
