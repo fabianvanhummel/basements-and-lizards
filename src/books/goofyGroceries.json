@@ -60,6 +60,17 @@
           "description": "Use the car to drive home"
         }
       ],
+      "things": [
+        {
+          "id": "parking-lot-coin",
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "parking-lot-coin-grabbed"
+            }
+          ]
+        }
+      ],
       "hint": "This is the starting area of this story. Check the home tab for more information and background. Have fun!"
     },
     "entrance": {
@@ -104,7 +115,13 @@
             "coin-6",
             "coin-7",
             "coin-8",
-            "coin-9"
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
           ]
         }
       ]
@@ -615,6 +632,15 @@
               "id": "shopping-basket"
             }
           ]
+        },
+        {
+          "id": "coffee-aisle-coin",
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "coffee-aisle-coin-grabbed"
+            }
+          ]
         }
       ]
     },
@@ -739,7 +765,13 @@
             "coin-6",
             "coin-7",
             "coin-8",
-            "coin-9"
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
           ]
         }
       ],
@@ -1071,7 +1103,13 @@
             "coin-6",
             "coin-7",
             "coin-8",
-            "coin-9"
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
           ],
           "requirements": [
             {
@@ -1101,7 +1139,13 @@
             "coin-6",
             "coin-7",
             "coin-8",
-            "coin-9"
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
           ],
           "requirements": [
             {
@@ -1135,7 +1179,13 @@
             "coin-6",
             "coin-7",
             "coin-8",
-            "coin-9"
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
           ],
           "requirements": [
             {
@@ -1176,7 +1226,13 @@
             "coin-6",
             "coin-7",
             "coin-8",
-            "coin-9"
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
           ],
           "requirements": [
             {
@@ -1253,6 +1309,74 @@
     }
   },
   "things": {
+    "parking-lot-coin": {
+      "name": "A coin",
+      "description": "There is a coin lying on the ground in the parking lot.",
+      "options": [
+        {
+          "text": "Take coin",
+          "response": "You picked up the coin.",
+          "events": [
+            "parking-lot-coin-grabbed",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "parking-lot-coin-grabbed"
+            }
+          ]
+        }
+      ]
+    },
+    "coffee-aisle-coin": {
+      "name": "A coin",
+      "description": "There is a coin lying on the ground.",
+      "options": [
+        {
+          "text": "Take coin",
+          "response": "You picked up the coin.",
+          "events": [
+            "coffee-aisle-coin-grabbed",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "coffee-aisle-coin-grabbed"
+            }
+          ]
+        }
+      ]
+    },
     "kitchen": {
       "name": "Kitchen",
       "description": "Time to put your groceries to the test! Decide what you will make tonight. Well, if you have a recipe with the required products ofcourse!",
@@ -1723,7 +1847,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -1750,7 +1880,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -1777,7 +1913,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -1804,7 +1946,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -1831,7 +1979,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -1858,7 +2012,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -1885,7 +2045,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -1912,7 +2078,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -1939,7 +2111,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -1966,7 +2144,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -1993,7 +2177,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -2020,7 +2210,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -2047,7 +2243,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -2074,7 +2276,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -2101,7 +2309,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -2128,7 +2342,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -2155,7 +2375,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -2182,7 +2408,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -2209,7 +2441,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         },
         {
@@ -2236,7 +2474,13 @@
             "pay-6",
             "pay-7",
             "pay-8",
-            "pay-9"
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
           ]
         }
       ]
@@ -2444,7 +2688,13 @@
             "coin-6",
             "coin-7",
             "coin-8",
-            "coin-9"
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
           ],
           "requirements": [
             {
@@ -2470,7 +2720,13 @@
             "coin-6",
             "coin-7",
             "coin-8",
-            "coin-9"
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
           ],
           "requirements": [
             {
@@ -2496,7 +2752,13 @@
             "coin-6",
             "coin-7",
             "coin-8",
-            "coin-9"
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
           ],
           "requirements": [
             {
@@ -3181,6 +3443,12 @@
     "purse-coin-pickup": {
       "message": "You check the contents of the purse, it contained a coin! You put the coin in your wallet."
     },
+    "parking-lot-coin-grabbed": {
+      "message": "You put the coin in your wallet."
+    },
+    "coffee-aisle-coin-grabbed": {
+      "message": "You put the coin in your wallet."
+    },
     "coin-1": { "message": "You now have 1 coin" },
     "coin-2": {
       "message": "You now have 2 coins",
@@ -3251,6 +3519,60 @@
         {
           "type": "EVENT_DID_HAPPEN",
           "id": "coin-8"
+        }
+      ]
+    },
+    "coin-10": {
+      "message": "You now have 10 coins, wow!",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-9"
+        }
+      ]
+    },
+    "coin-11": {
+      "message": "You now have 11 coins, damn!",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-10"
+        }
+      ]
+    },
+    "coin-12": {
+      "message": "You now have 12 coins, jeez!",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-11"
+        }
+      ]
+    },
+    "coin-13": {
+      "message": "You now have 13 coins, hopefully this won't bring bad luck!",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-12"
+        }
+      ]
+    },
+    "coin-14": {
+      "message": "You now have 14 coins.",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-13"
+        }
+      ]
+    },
+    "coin-15": {
+      "message": "You now have 15 coins, epic!",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-14"
         }
       ]
     },
@@ -3372,9 +3694,93 @@
         {
           "type": "EVENT_DID_HAPPEN",
           "id": "coin-9"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-10"
         }
       ],
       "revertEvents": ["coin-9", "pay-9"]
+    },
+    "pay-10": {
+      "message": "You have 9 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-10"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-11"
+        }
+      ],
+      "revertEvents": ["coin-10", "pay-10"]
+    },
+    "pay-11": {
+      "message": "You have 10 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-11"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-12"
+        }
+      ],
+      "revertEvents": ["coin-11", "pay-11"]
+    },
+    "pay-12": {
+      "message": "You have 11 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-12"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-13"
+        }
+      ],
+      "revertEvents": ["coin-12", "pay-12"]
+    },
+    "pay-13": {
+      "message": "You have 12 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-13"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-14"
+        }
+      ],
+      "revertEvents": ["coin-13", "pay-13"]
+    },
+    "pay-14": {
+      "message": "You have 13 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-14"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-15"
+        }
+      ],
+      "revertEvents": ["coin-14", "pay-14"]
+    },
+    "pay-15": {
+      "message": "You have 14 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-15"
+        }
+      ],
+      "revertEvents": ["coin-15", "pay-15"]
     },
     "empty-coke-bottle": {
       "requirements": [
