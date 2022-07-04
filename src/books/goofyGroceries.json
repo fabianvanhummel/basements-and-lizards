@@ -176,6 +176,9 @@
         },
         {
           "id": "vegetable-shelve1"
+        },
+        {
+          "id": "vegetable-shelve2"
         }
       ]
     },
@@ -208,6 +211,9 @@
               "id": "shopping-basket"
             }
           ]
+        },
+        {
+          "id": "bakery-shelve1"
         }
       ]
     },
@@ -305,6 +311,9 @@
         },
         {
           "id": "meat-shelve1"
+        },
+        {
+          "id": "meat-shelve2"
         },
         {
           "id": "meat-recipe-stand"
@@ -780,6 +789,9 @@
               "id": "shopping-basket"
             }
           ]
+        },
+        {
+          "id": "dry-goods-shelve1"
         },
         {
           "id": "condiments-shelve1"
@@ -2526,6 +2538,34 @@
           ]
         },
         {
+          "text": "Take onion",
+          "response": "You took some onion from the shelve.",
+          "events": ["PRODUCT-onion"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-onion"
+            }
+          ]
+        },
+        {
+          "text": "Return onion",
+          "response": "You put the onion back in the shelve.",
+          "events": ["return-onion"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-onion"
+            }
+          ]
+        }
+      ]
+    },
+    "vegetable-shelve2": {
+      "name": "Vegetable Shelve",
+      "description": "A cooled shelve filled with vegetables",
+      "options": [
+        {
           "text": "Take spinach",
           "response": "You took some spinach from the shelve.",
           "events": ["PRODUCT-spinach"],
@@ -2566,6 +2606,34 @@
             {
               "type": "EVENT_DID_HAPPEN",
               "id": "PRODUCT-lettuce"
+            }
+          ]
+        }
+      ]
+    },
+    "bakery_shelve1": {
+      "name": "Bakery Shelve",
+      "description": "Bread everywhere",
+      "options": [
+        {
+          "text": "Take buns",
+          "response": "You took some buns.",
+          "events": ["PRODUCT-buns"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-buns"
+            }
+          ]
+        },
+        {
+          "text": "Return buns",
+          "response": "You put the buns back.",
+          "events": ["return-buns"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-buns"
             }
           ]
         }
@@ -2686,6 +2754,56 @@
             {
               "type": "EVENT_DID_HAPPEN",
               "id": "PRODUCT-minced-meat"
+            }
+          ]
+        }
+      ]
+    },
+    "meat-shelve2": {
+      "name": "BBQ Meat Shelve",
+      "description": "A shelve filled with BBQ meats",
+      "options": [
+        {
+          "text": "Take hamburgers",
+          "response": "Tasty.",
+          "events": ["PRODUCT-hamburgers"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-hamburgers"
+            }
+          ]
+        },
+        {
+          "text": "Return hamburgers",
+          "response": "You put the hamburgers back in the shelve.",
+          "events": ["return-hamburgers"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-hamburgers"
+            }
+          ]
+        },
+        {
+          "text": "Take spareribs",
+          "response": "Yumm, spareribs.",
+          "events": ["PRODUCT-spareribs"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-spareribs"
+            }
+          ]
+        },
+        {
+          "text": "Return spareribs",
+          "response": "You put the spareribs back in the shelve.",
+          "events": ["return-spareribs"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-spareribs"
             }
           ]
         }
@@ -2987,6 +3105,34 @@
             {
               "type": "EVENT_DID_HAPPEN",
               "id": "PRODUCT-7up-bottle"
+            }
+          ]
+        }
+      ]
+    },
+    "dry-goods-shelve1": {
+      "name": "Dry goods shelve",
+      "description": "A shelve filled with dry goods.",
+      "options": [
+        {
+          "text": "Take BBQ",
+          "response": "You take a throwaway BBQ kit.",
+          "events": ["PRODUCT-bbq"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-bbq"
+            }
+          ]
+        },
+        {
+          "text": "Return bbq",
+          "response": "You put the throwaway BBQ kit back in the shelve.",
+          "events": ["return-bbq"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-bbq"
             }
           ]
         }
