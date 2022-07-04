@@ -2651,11 +2651,61 @@
         },
         {
           "text": "Chicken",
-          "response": "Chicken",
+          "response": "Puk puk pukaaak",
           "requirements": [
             {
               "type": "EVENT_DID_HAPPEN",
               "id": "PRODUCT-chicken"
+            }
+          ]
+        },
+        {
+          "text": "Hamburgers",
+          "response": "Hamburgers",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-hamburgers"
+            }
+          ]
+        },
+        {
+          "text": "Onions",
+          "response": "Careful, ninja's might try to steal these.",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-onion"
+            }
+          ]
+        },
+        {
+          "text": "Buns",
+          "response": "I like big Buns",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-buns"
+            }
+          ]
+        },
+        {
+          "text": "Spareribs",
+          "response": "Spareribs",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-spareribs"
+            }
+          ]
+        },
+        {
+          "text": "throwaway BBQ kit",
+          "response": "throwaway BBQ kit",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-bbq"
             }
           ]
         },
