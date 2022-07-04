@@ -294,7 +294,8 @@
             }
           ]
         }
-      ]
+      ],
+      "npcs": [{ "id": "store-clerk1" }]
     },
     "meats": {
       "name": "Meats",
@@ -407,7 +408,8 @@
             }
           ]
         }
-      ]
+      ],
+      "npcs": [{ "id": "store-clerk1" }]
     },
     "dairy-eggs": {
       "name": "Dairy & Eggs",
@@ -596,7 +598,8 @@
             }
           ]
         }
-      ]
+      ],
+      "npcs": [{ "id": "store-clerk1" }]
     },
     "coffee-cereal-breakfast": {
       "name": "Coffee & Cereal & Breakfast",
@@ -885,7 +888,8 @@
             }
           ]
         }
-      ]
+      ],
+      "npcs": [{ "id": "store-clerk1" }]
     },
     "register": {
       "name": "Register",
@@ -1267,6 +1271,124 @@
               "id": "threaten-old-lady-coin-2"
             }
           ]
+        },
+        {
+          "text": "Say sorry",
+          "response": ":'(",
+          "events": ["said-sorry-old-lady1"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "threaten-old-lady-coin"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "said-sorry-old-lady1"
+            }
+          ]
+        }
+      ]
+    },
+    "store-clerk1": {
+      "name": "Store Clerk",
+      "description": "A store clerk, if you have any questions, this could be the right place to ask them.",
+      "options": [
+        {
+          "text": "The cheese shelve was empty, do you still have any?",
+          "response": "Piss off you old lady hater.",
+          "events": [],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "found-no-cheese"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "threaten-old-lady-coin"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "said-sorry-old-lady1"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "store-clerk-cheese-filled"
+            }
+          ]
+        },
+        {
+          "text": "The cheese shelve was empty, do you still have any?",
+          "response": "I will take a quick look in the stockroom, but only because you said sorry to that poor old lady.. If I find any I'll refill the shelve.",
+          "events": ["store-clerk-cheese-filled"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "found-no-cheese"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "threaten-old-lady-coin"
+            },
+            {
+              "type": "EVENT_DID_HAPPEND",
+              "id": "said-sorry-old-lady1"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "store-clerk-cheese-filled"
+            }
+          ]
+        },
+        {
+          "text": "The cheese shelve was empty, do you still have any?",
+          "response": "I'll take a look in the stockroom, if we have any I'll make sure to fill the shelve. Make sure to take a look there in a bit!",
+          "events": ["store-clerk-cheese-filled"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "found-no-cheese"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "store-clerk-cheese-filled"
+            }
+          ]
+        },
+        {
+          "text": "I Found this purse..",
+          "response": "Wow, how nice of you to show me, here is a coin!",
+          "events": [
+            "store-clerk-purse-coin",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
+          ],
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "purse-1"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "store-clerk-purse-coin"
+            }
+          ]
+        },
+        {
+          "text": "Hello",
+          "response": "Hello, welcome to Goofy Groceries!"
         }
       ]
     },
@@ -3127,12 +3249,31 @@
       "options": [
         {
           "text": "Take cheese",
+          "response": "The shelve is empty, there is no cheese.. :(",
+          "events": ["found-no-cheese"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-cheese"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "store-clerk-cheese-filled"
+            }
+          ]
+        },
+        {
+          "text": "Take cheese",
           "response": "Very cheesy.",
           "events": ["PRODUCT-cheese"],
           "requirements": [
             {
               "type": "EVENT_NOT_HAPPENED",
               "id": "PRODUCT-cheese"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "store-clerk-cheese-filled"
             }
           ]
         },
@@ -3487,18 +3628,45 @@
     "end-bbq-deluxe": {},
     "end-bbq-simple": {},
     "bbq-failure1": {},
+    "found-no-cheese": {},
+    "store-clerk-cheese-filled": {},
     "shopping-cart-coin-pickup": {
       "message": "You check your pockets for coins. Your backpocket contains one! When trying to insert it into the cart you notice it already has a coin in it. Lucky! You decide to put the coin you found in your wallet"
     },
     "purse-coin-pickup": {
       "message": "You check the contents of the purse, it contained a coin! You put the coin in your wallet."
     },
+    "store-clerk-purse-coin": {},
     "parking-lot-coin-grabbed": {
       "message": "You put the coin in your wallet."
     },
     "coffee-aisle-coin-grabbed": {
       "message": "You put the coin in your wallet."
     },
+    "had-start-phonecall": {},
+    "start-talk-old-lady-1": {},
+    "asked-old-lady-coin": {},
+    "asked-old-lady-coin-2": {},
+    "threaten-old-lady-coin": {},
+    "threaten-old-lady-coin-2": {
+      "revertEvents": ["said-sorry-old-lady1"]
+    },
+    "said-sorry-old-lady1": {},
+    "started-angry-meat-lover": {},
+    "ask-angry-meat-lover-1": {},
+    "resolved-angry-meat-lover": {},
+    "angry-meat-lover-win": {
+      "message": "You safely add the minced meat to your products"
+    },
+    "go-to-entrance-init": {},
+    "mobile-phone-battery-dies": {
+      "name": "Mobile Phone Battery Died",
+      "message": "The battery of your mobile phone just ran out, guess that means no more calls from Patrick"
+    },
+    "browse-meat-recipe-stand": {},
+    "skip-meat-recipe-stand": {},
+    "browse-entrance-recipe-stand": {},
+    "skip-entrance-recipe-stand": {},
     "coin-1": { "message": "You now have 1 coin" },
     "coin-2": {
       "message": "You now have 2 coins",
@@ -4091,28 +4259,7 @@
         }
       ],
       "revertEvents": ["PRODUCT-bbq", "return-bbq"]
-    },
-    "had-start-phonecall": {},
-    "start-talk-old-lady-1": {},
-    "asked-old-lady-coin": {},
-    "asked-old-lady-coin-2": {},
-    "threaten-old-lady-coin": {},
-    "threaten-old-lady-coin-2": {},
-    "started-angry-meat-lover": {},
-    "ask-angry-meat-lover-1": {},
-    "resolved-angry-meat-lover": {},
-    "angry-meat-lover-win": {
-      "message": "You safely add the minced meat to your products"
-    },
-    "go-to-entrance-init": {},
-    "mobile-phone-battery-dies": {
-      "name": "Mobile Phone Battery Died",
-      "message": "The battery of your mobile phone just ran out, guess that means no more calls from Patrick"
-    },
-    "browse-meat-recipe-stand": {},
-    "skip-meat-recipe-stand": {},
-    "browse-entrance-recipe-stand": {},
-    "skip-entrance-recipe-stand": {}
+    }
   },
   "combats": {
     "angry-meat-lover": {
