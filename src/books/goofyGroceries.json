@@ -305,6 +305,9 @@
         },
         {
           "id": "meat-shelve1"
+        },
+        {
+          "id": "meat-recipe-stand"
         }
       ],
       "combat": [
@@ -961,6 +964,13 @@
     "home": {
       "name": "Home",
       "description": "This is the vacation home you booked for tonight.",
+      "paths": [
+        {
+          "toLocationId": "parking-lot",
+          "name": "Goofy Groceries",
+          "description": "Use the car to drive to the Goofy Groceries market, again.."
+        }
+      ],
       "things": [{ "id": "kitchen" }]
     }
   },
@@ -985,6 +995,14 @@
       "name": "Wraps recipe",
       "description": "You took this recipe from the recipe stand. The ingredients are: Wraps, Chicken, Cheese, Bell pepper, Lettuce, Crème fraîche and Corn"
     },
+    "RECIPE-skip-meat-recipe-stand": {
+      "name": "Improvised BBQ recipe",
+      "description": "You made up this BBQ recipe. The ingredients are: Spareribs, Cheese, Bell pepper, Lettuce, Onions, Hamburgers and Buns"
+    },
+    "RECIPE-meat-recipe-stand-BBQ": {
+      "name": "BBQ Deluxe recipe",
+      "description": "You took this recipe from the meat recipe stand. The ingredients are: Chicken, Spareribs, Sausages, Hamburgers, Bell pepper, Lettuce, Tomatoes and Onions"
+    },
     "BOUGHT-bell-pepper": {
       "name": "Bell pepper"
     },
@@ -1001,6 +1019,11 @@
     "BOUGHT-minced-meat": { "name": "Minced meat" },
     "BOUGHT-wraps": { "name": "Wraps" },
     "BOUGHT-chicken": { "name": "Chicken" },
+    "BOUGHT-hamburgers": { "name": "Hamburgers" },
+    "BOUGHT-onion": { "name": "Onion" },
+    "BOUGHT-buns": { "name": "Buns" },
+    "BOUGHT-spareribs": { "name": "Spareribs" },
+    "BOUGHT-bbq": { "name": "Throwaway BBQ kit" },
     "BOUGHT-corn": { "name": "Corn" }
   },
   "npcs": {
@@ -1309,6 +1332,202 @@
           ]
         },
         {
+          "text": "BBQ Deluxe",
+          "response": "That was a great BBQ. Amazing!",
+          "events": ["end-bbq-deluxe", "game-end"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "end-bbq-deluxe"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "RECIPE-meat-recipe-stand-BBQ"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-spareribs"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-chicken"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-sausages"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-hamburgers"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-lettuce"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-bell-pepper"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-onion"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-tomato"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-bbq"
+            }
+          ]
+        },
+        {
+          "text": "BBQ Deluxe",
+          "response": "You gather all the ingredients outside, only to find you don't have a BBQ here. Dumbass. Everyone laughs at you.",
+          "events": ["bbq-failure1"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "bbq-failure1"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "RECIPE-meat-recipe-stand-BBQ"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-spareribs"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-chicken"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-sausages"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-hamburgers"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-lettuce"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-bell-pepper"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-onion"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-tomato"
+            },
+            {
+              "type": "ITEM_NOT_IN_INVENTORY",
+              "id": "BOUGHT-bbq"
+            }
+          ]
+        },
+        {
+          "text": "Improvised BBQ",
+          "response": "You all ate some fine burgers and ribs, nice!",
+          "events": ["end-bbq-simple", "game-end"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "end-bbq-simple"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "RECIPE-skip-meat-recipe-stand"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-spareribs"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-hamburgers"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-cheese"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-bell-pepper"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-lettuce"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-buns"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-onion"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-bbq"
+            }
+          ]
+        },
+        {
+          "text": "Improvised BBQ",
+          "response": "You gather all the ingredients outside, only to find you don't have a BBQ here. Dumbass. Everyone laughs at you.",
+          "events": ["bbq-failure1"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "bbq-failure1"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "RECIPE-skip-meat-recipe-stand"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-spareribs"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-hamburgers"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-cheese"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-bell-pepper"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-lettuce"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-buns"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-onion"
+            },
+            {
+              "type": "ITEM_NOT_IN_INVENTORY",
+              "id": "BOUGHT-bbq"
+            }
+          ]
+        },
+        {
           "text": "Pasta Spinach",
           "response": "You made pasta with spinach, some people are surprisingly happy, some aren't...",
           "events": ["end-pasta-spinach", "game-end"],
@@ -1340,6 +1559,58 @@
             {
               "type": "ITEM_IN_INVENTORY",
               "id": "BOUGHT-herb-cheese"
+            }
+          ]
+        }
+      ]
+    },
+    "meat-recipe-stand": {
+      "name": "Recipe Stand",
+      "description": "This is a small stand with BBQ ideas.",
+      "options": [
+        {
+          "text": "Browse for recipes",
+          "response": "You inspect the recipes in the stand, a nice BBQ meal catches your eye!",
+          "events": ["browse-meat-recipe-stand"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "browse-meat-recipe-stand"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "skip-meat-recipe-stand"
+            }
+          ]
+        },
+        {
+          "text": "Sniff at the stand, you can come up with BBQ ingredients yourself.",
+          "response": "The stand is a bit insulted",
+          "events": ["skip-meat-recipe-stand"],
+          "items": ["RECIPE-skip-meat-recipe-stand"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "browse-meat-recipe-stand"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "skip-meat-recipe-stand"
+            }
+          ]
+        },
+        {
+          "text": "Recipe for BBQ meal",
+          "response": "You take the BBQ recipe from the stand.",
+          "items": ["RECIPE-meat-recipe-stand-BBQ"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "browse-meat-recipe-stand"
+            },
+            {
+              "type": "ITEM_NOT_IN_INVENTORY",
+              "id": "RECIPE-meat-recipe-stand-BBQ"
             }
           ]
         }
@@ -1783,6 +2054,141 @@
           "items": ["BOUGHT-chicken"],
           "events": [
             "return-chicken",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy hamburgers",
+          "response": "You bought the hamburgers",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-hamburgers"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-hamburgers"],
+          "events": [
+            "return-hamburgers",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy onion",
+          "response": "You bought the onion",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-onion"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-onion"],
+          "events": [
+            "return-onion",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy buns",
+          "response": "You bought the buns",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-buns"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-buns"],
+          "events": [
+            "return-buns",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy spareribs",
+          "response": "You bought the spareribs",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-spareribs"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-spareribs"],
+          "events": [
+            "return-spareribs",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9"
+          ]
+        },
+        {
+          "text": "Buy BBQ",
+          "response": "You bought the throwaway BBQ kit",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-bbq"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-bbq"],
+          "events": [
+            "return-bbq",
             "pay-1",
             "pay-2",
             "pay-3",
@@ -2620,6 +3026,9 @@
     "end-nachos": {},
     "end-wraps": {},
     "end-pasta-spinach": {},
+    "end-bbq-deluxe": {},
+    "end-bbq-simple": {},
+    "bbq-failure1": {},
     "shopping-cart-coin-pickup": {
       "message": "You check your pockets for coins. Your backpocket contains one! When trying to insert it into the cart you notice it already has a coin in it. Lucky! You decide to put the coin you found in your wallet"
     },
@@ -3031,6 +3440,56 @@
       ],
       "revertEvents": ["PRODUCT-corn", "return-corn"]
     },
+    "PRODUCT-hamburgers": {},
+    "return-hamburgers": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-hamburgers"
+        }
+      ],
+      "revertEvents": ["PRODUCT-hamburgers", "return-hamburgers"]
+    },
+    "PRODUCT-buns": {},
+    "return-buns": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-buns"
+        }
+      ],
+      "revertEvents": ["PRODUCT-buns", "return-buns"]
+    },
+    "PRODUCT-spareribs": {},
+    "return-spareribs": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-spareribs"
+        }
+      ],
+      "revertEvents": ["PRODUCT-spareribs", "return-spareribs"]
+    },
+    "PRODUCT-onion": {},
+    "return-onion": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-onion"
+        }
+      ],
+      "revertEvents": ["PRODUCT-onion", "return-onion"]
+    },
+    "PRODUCT-bbq": {},
+    "return-bbq": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-bbq"
+        }
+      ],
+      "revertEvents": ["PRODUCT-bbq", "return-bbq"]
+    },
     "had-start-phonecall": {},
     "start-talk-old-lady-1": {},
     "asked-old-lady-coin": {},
@@ -3048,6 +3507,8 @@
       "name": "Mobile Phone Battery Died",
       "message": "The battery of your mobile phone just ran out, guess that means no more calls from Patrick"
     },
+    "browse-meat-recipe-stand": {},
+    "skip-meat-recipe-stand": {},
     "browse-entrance-recipe-stand": {},
     "skip-entrance-recipe-stand": {}
   },
