@@ -11,7 +11,7 @@
         {
           "toLocationId": "entrance",
           "name": "Entrance",
-          "description": "pathDescription",
+          "description": "Enter Goofy Groceries",
           "requirements": [
             {
               "type": "EVENT_DID_HAPPEN",
@@ -52,7 +52,7 @@
         {
           "toLocationId": "entrance",
           "name": "Entrance",
-          "description": "pathDescription"
+          "description": "Enter Goofy Groceries"
         },
         {
           "toLocationId": "home",
@@ -80,12 +80,12 @@
         {
           "toLocationId": "main-aisle-1",
           "name": "Main Aisle 1",
-          "description": "pathDescription"
+          "description": "This leads to one of the main store aisles"
         },
         {
           "toLocationId": "fruits",
           "name": "Fruits",
-          "description": "pathDescription"
+          "description": "A narrow path which leads to the fruit department"
         }
       ],
       "things": [
@@ -128,22 +128,22 @@
     },
     "fruits": {
       "name": "Fruits",
-      "description": "description",
+      "description": "Fruits department",
       "paths": [
         {
           "toLocationId": "entrance",
           "name": "Entrance",
-          "description": "pathDescription"
+          "description": "Narrow path leading to the store entrance"
         },
         {
           "toLocationId": "main-aisle-1",
           "name": "Main Aisle 1",
-          "description": "pathDescription"
+          "description": "This leads to one of the main store aisles"
         },
         {
           "toLocationId": "vegetables",
           "name": "Vegetables",
-          "description": "pathDescription"
+          "description": "This is the way to tasty vegetables"
         }
       ],
       "things": [
@@ -163,22 +163,22 @@
     },
     "vegetables": {
       "name": "Vegetables",
-      "description": "description",
+      "description": "Nice healthy vegetables can be found here!",
       "paths": [
         {
           "toLocationId": "fruits",
           "name": "Fruits",
-          "description": "pathDescription"
+          "description": "Wow, fruits over there!"
         },
         {
           "toLocationId": "main-aisle-1",
           "name": "Main Aisle 1",
-          "description": "pathDescription"
+          "description": "One of the main aisles"
         },
         {
           "toLocationId": "bakery",
           "name": "Bakery",
-          "description": "pathDescription"
+          "description": "You smell bread, follow the trail"
         }
       ],
       "things": [
@@ -201,22 +201,22 @@
     },
     "bakery": {
       "name": "Bakery",
-      "description": "description",
+      "description": "Fresh bread is what you smell here",
       "paths": [
         {
           "toLocationId": "vegetables",
           "name": "Vegetables",
-          "description": "pathDescription"
+          "description": "Healthy vegetables in sight, go there"
         },
         {
           "toLocationId": "main-aisle-1",
           "name": "Main Aisle 1",
-          "description": "pathDescription"
+          "description": "Big aisle, wow"
         },
         {
           "toLocationId": "stockroom-entrance",
           "name": "Stockroom Entrance",
-          "description": "pathDescription"
+          "description": "You see a big shutter that probably leads to the stockroom, you can walk over to the shutter"
         }
       ],
       "things": [
@@ -241,47 +241,47 @@
         {
           "toLocationId": "entrance",
           "name": "Entrance",
-          "description": "pathDescription"
+          "description": "The store entrance is over here"
         },
         {
           "toLocationId": "main-aisle-4",
           "name": "Main Aisle 4",
-          "description": "pathDescription"
+          "description": "A connection to another main aisle"
         },
         {
           "toLocationId": "fruits",
           "name": "Fruits",
-          "description": "pathDescription"
+          "description": "This leads to the fruits department"
         },
         {
           "toLocationId": "vegetables",
           "name": "Vegetables",
-          "description": "pathDescription"
+          "description": "This leads to healthy vegetables"
         },
         {
           "toLocationId": "bakery",
           "name": "Bakery",
-          "description": "pathDescription"
+          "description": "This leads to freshly baked bread"
         },
         {
           "toLocationId": "stockroom-entrance",
           "name": "Stockroom Entrance",
-          "description": "pathDescription"
+          "description": "You see a big shutter that probably leads to the stockroom, you can walk over to the shutter"
         },
         {
           "toLocationId": "meats",
           "name": "Meats",
-          "description": "pathDescription"
+          "description": "Meat can be found over here"
         },
         {
           "toLocationId": "main-aisle-2",
           "name": "Main Aisle 2",
-          "description": "pathDescription"
+          "description": "A connection to another main aisle"
         },
         {
           "toLocationId": "dry-goods-condiments",
           "name": "Dry Goods & Condiments",
-          "description": "pathDescription"
+          "description": "In this area dry goods and condiments are sold"
         }
       ],
       "things": [
@@ -299,22 +299,22 @@
     },
     "meats": {
       "name": "Meats",
-      "description": "description",
+      "description": "Meat department",
       "paths": [
         {
           "toLocationId": "main-aisle-1",
           "name": "Main Aisle 1",
-          "description": "pathDescription"
+          "description": "Main aisle of the store"
         },
         {
           "toLocationId": "main-aisle-2",
           "name": "Main Aisle 2",
-          "description": "pathDescription"
+          "description": "Main aisle of the store"
         },
         {
           "toLocationId": "main-aisle-3",
           "name": "Main Aisle 3",
-          "description": "pathDescription"
+          "description": "Main aisle of the store"
         }
       ],
       "things": [
@@ -360,42 +360,42 @@
         {
           "toLocationId": "main-aisle-1",
           "name": "Main Aisle 1",
-          "description": "pathDescription"
+          "description": "Main aisle of the store"
         },
         {
           "toLocationId": "meats",
           "name": "Meats",
-          "description": "pathDescription"
+          "description": "Meat department, this way!"
         },
         {
           "toLocationId": "dry-goods-condiments",
           "name": "Dry Goods & Condiments",
-          "description": "pathDescription"
+          "description": "Dry goods and condiments can be found over here"
         },
         {
           "toLocationId": "bakery-spices",
           "name": "Bakery & Spices",
-          "description": "pathDescription"
+          "description": "Baking products and spices are sold in they aisle"
         },
         {
           "toLocationId": "canned-packaged-foods",
           "name": "Canned & Packaged Foods",
-          "description": "pathDescription"
+          "description": "Canned and packaged foods are in this aisle"
         },
         {
           "toLocationId": "chips-snacks",
           "name": "Chips & Snacks",
-          "description": "pathDescription"
+          "description": "Nice, chips and snacks are this way!"
         },
         {
           "toLocationId": "coffee-cereal-breakfast",
           "name": "Coffee & Cereal & Breakfast",
-          "description": "pathDescription"
+          "description": "Coffee! And some other stuff"
         },
         {
           "toLocationId": "main-aisle-3",
           "name": "Main Aisle 3",
-          "description": "pathDescription"
+          "description": "One of those main aisles"
         }
       ],
       "things": [
@@ -413,17 +413,17 @@
     },
     "dairy-eggs": {
       "name": "Dairy & Eggs",
-      "description": "description",
+      "description": "Cow & Chicken: The aftermath",
       "paths": [
         {
           "toLocationId": "main-aisle-3",
           "name": "Main Aisle 3",
-          "description": "pathDescription"
+          "description": "Main aisle"
         },
         {
           "toLocationId": "wine-beer",
           "name": "Wine & Beer",
-          "description": "pathDescription"
+          "description": "*Hic*, yep this way!"
         }
       ],
       "things": [
@@ -443,22 +443,22 @@
     },
     "wine-beer": {
       "name": "Wine & Beer",
-      "description": "description",
+      "description": "Good stuff",
       "paths": [
         {
           "toLocationId": "dairy-eggs",
           "name": "Dairy & Eggs",
-          "description": "pathDescription"
+          "description": "Go here for dairy and eggs"
         },
         {
           "toLocationId": "main-aisle-3",
           "name": "Main Aisle 3",
-          "description": "pathDescription"
+          "description": "Main Aisle"
         },
         {
           "toLocationId": "soda-juices",
           "name": "Soda & Juices",
-          "description": "pathDescription"
+          "description": "Pop them bottles over here"
         }
       ],
       "things": [
@@ -480,22 +480,22 @@
     },
     "soda-juices": {
       "name": "Soda & Juices",
-      "description": "description",
+      "description": "Non-alcoholic beverages!",
       "paths": [
         {
           "toLocationId": "wine-beer",
           "name": "Wine & Beer",
-          "description": "pathDescription"
+          "description": "This is probably the right way to go from here"
         },
         {
           "toLocationId": "main-aisle-3",
           "name": "Main Aisle 3",
-          "description": "pathDescription"
+          "description": "One of the main store aisles"
         },
         {
           "toLocationId": "frozen-foods",
           "name": "Frozen Foods",
-          "description": "pathDescription"
+          "description": "Brrr"
         }
       ],
       "things": [
@@ -513,22 +513,22 @@
     },
     "frozen-foods": {
       "name": "Frozen Foods",
-      "description": "description",
+      "description": "Cold aisle, with cold goodies.",
       "paths": [
         {
           "toLocationId": "soda-juices",
           "name": "Soda & Juices",
-          "description": "pathDescription"
+          "description": "Drinks, non alcoholic, right this way!"
         },
         {
           "toLocationId": "main-aisle-3",
           "name": "Main Aisle 3",
-          "description": "pathDescription"
+          "description": "Main aisle connecting to a lot of aisles"
         },
         {
           "toLocationId": "register",
-          "name": "Register",
-          "description": "pathDescription"
+          "name": "Cash register",
+          "description": "If you want to pay, this is the way"
         }
       ],
       "things": [
@@ -550,42 +550,42 @@
         {
           "toLocationId": "meats",
           "name": "Meats",
-          "description": "pathDescription"
+          "description": "Proteins and stuff"
         },
         {
           "toLocationId": "main-aisle-2",
           "name": "Main Aisle 2",
-          "description": "pathDescription"
+          "description": "Another main aisle"
         },
         {
           "toLocationId": "coffee-cereal-breakfast",
           "name": "Coffee & Cereal & Breakfast",
-          "description": "pathDescription"
+          "description": "This aisle helps when waking up"
         },
         {
           "toLocationId": "dairy-eggs",
           "name": "Dairy & Eggs",
-          "description": "pathDescription"
+          "description": "Cow & Chicken story over here"
         },
         {
           "toLocationId": "wine-beer",
           "name": "Wine & Beer",
-          "description": "pathDescription"
+          "description": "Drunks, this is the path to follow"
         },
         {
           "toLocationId": "soda-juices",
           "name": "Soda & Juices",
-          "description": "pathDescription"
+          "description": "Drinks, this is the path to follow"
         },
         {
           "toLocationId": "frozen-foods",
           "name": "Frozen Foods",
-          "description": "pathDescription"
+          "description": "Cool!"
         },
         {
           "toLocationId": "main-aisle-4",
           "name": "Main Aisle 4",
-          "description": "pathDescription"
+          "description": "Main aisle leading to a lot of different aisles"
         }
       ],
       "things": [
@@ -603,27 +603,27 @@
     },
     "coffee-cereal-breakfast": {
       "name": "Coffee & Cereal & Breakfast",
-      "description": "description",
+      "description": "Yay, stuff that you want when you wake up",
       "paths": [
         {
           "toLocationId": "main-aisle-2",
           "name": "Main Aisle 2",
-          "description": "pathDescription"
+          "description": "Main aisle"
         },
         {
           "toLocationId": "main-aisle-3",
           "name": "Main Aisle 3",
-          "description": "pathDescription"
+          "description": "Main aisle"
         },
         {
           "toLocationId": "chips-snacks",
           "name": "Chips & Snacks",
-          "description": "pathDescription"
+          "description": "Nom nom nom"
         },
         {
           "toLocationId": "main-aisle-4",
           "name": "Main Aisle 4",
-          "description": "pathDescription"
+          "description": "Main aisle"
         }
       ],
       "things": [
@@ -649,27 +649,27 @@
     },
     "chips-snacks": {
       "name": "Chips & Snacks",
-      "description": "description",
+      "description": "Arguably the best aisle in the store, better don't come here when you're hungry",
       "paths": [
         {
           "toLocationId": "main-aisle-2",
           "name": "Main Aisle 2",
-          "description": "pathDescription"
+          "description": "One of the main aisles"
         },
         {
           "toLocationId": "coffee-cereal-breakfast",
           "name": "Coffee & Cereal & Breakfast",
-          "description": "pathDescription"
+          "description": "Coffee, cereal and breakfast can be found here"
         },
         {
           "toLocationId": "canned-packaged-foods",
           "name": "Canned & Packaged Foods",
-          "description": "pathDescription"
+          "description": "Canned and packaged foods are here"
         },
         {
           "toLocationId": "main-aisle-4",
           "name": "Main Aisle 4",
-          "description": "pathDescription"
+          "description": "Big aisle"
         }
       ],
       "things": [
@@ -689,27 +689,27 @@
     },
     "canned-packaged-foods": {
       "name": "Canned & Packaged Foods",
-      "description": "description",
+      "description": "All kinds of foods can be found here, as long as they're canned or packaged",
       "paths": [
         {
           "toLocationId": "main-aisle-2",
           "name": "Main Aisle 2",
-          "description": "pathDescription"
+          "description": "Leads to a main aisle"
         },
         {
           "toLocationId": "chips-snacks",
           "name": "Chips & Snacks",
-          "description": "pathDescription"
+          "description": "Crunch or sweet, this is what you need"
         },
         {
           "toLocationId": "bakery-spices",
           "name": "Bakery & Spices",
-          "description": "pathDescription"
+          "description": "Baking goods and spicy moods"
         },
         {
           "toLocationId": "main-aisle-4",
           "name": "Main Aisle 4",
-          "description": "pathDescription"
+          "description": "Main aisle"
         }
       ],
       "things": [
@@ -732,27 +732,27 @@
     },
     "bakery-spices": {
       "name": "Bakery & Spices",
-      "description": "description",
+      "description": "Spices and baking goods!",
       "paths": [
         {
           "toLocationId": "main-aisle-2",
           "name": "Main Aisle 2",
-          "description": "pathDescription"
+          "description": "A big aisle connecting to several aisles"
         },
         {
           "toLocationId": "canned-packaged-foods",
           "name": "Canned & Packaged Foods",
-          "description": "pathDescription"
+          "description": "All kinds of cans and packages"
         },
         {
           "toLocationId": "dry-goods-condiments",
           "name": "Dry Goods & Condiments",
-          "description": "pathDescription"
+          "description": "Toilet paper in sight!"
         },
         {
           "toLocationId": "main-aisle-4",
           "name": "Main Aisle 4",
-          "description": "pathDescription"
+          "description": "Main aisle"
         }
       ],
       "items": [
@@ -792,27 +792,27 @@
     },
     "dry-goods-condiments": {
       "name": "Dry Goods & Condiments",
-      "description": "description",
+      "description": "Toilet paper and other stuff",
       "paths": [
         {
           "toLocationId": "main-aisle-1",
           "name": "Main Aisle 1",
-          "description": "pathDescription"
+          "description": "One of the main store aisles"
         },
         {
           "toLocationId": "main-aisle-2",
           "name": "Main Aisle 2",
-          "description": "pathDescription"
+          "description": "Big aisles connecting to a lot of aisles"
         },
         {
           "toLocationId": "bakery-spices",
           "name": "Bakery & Spices",
-          "description": "pathDescription"
+          "description": "If you want to bake, this is the path to take!"
         },
         {
           "toLocationId": "main-aisle-4",
           "name": "Main Aisle 4",
-          "description": "pathDescription"
+          "description": "Main aisle"
         }
       ],
       "things": [
@@ -840,42 +840,42 @@
         {
           "toLocationId": "main-aisle-1",
           "name": "Main Aisle 1",
-          "description": "pathDescription"
+          "description": "Another connecting main aisle"
         },
         {
           "toLocationId": "dry-goods-condiments",
           "name": "Dry Goods & Condiments",
-          "description": "pathDescription"
+          "description": "Flavour station in sight"
         },
         {
           "toLocationId": "bakery-spices",
           "name": "Bakery & Spices",
-          "description": "pathDescription"
+          "description": "Baking goods and spices"
         },
         {
           "toLocationId": "canned-packaged-foods",
           "name": "Canned & Packaged Foods",
-          "description": "pathDescription"
+          "description": "Wow, many cans"
         },
         {
           "toLocationId": "chips-snacks",
           "name": "Chips & Snacks",
-          "description": "pathDescription"
+          "description": "Yumm"
         },
         {
           "toLocationId": "coffee-cereal-breakfast",
           "name": "Coffee & Cereal & Breakfast",
-          "description": "pathDescription"
+          "description": "Morning!"
         },
         {
           "toLocationId": "main-aisle-3",
           "name": "Main Aisle 3",
-          "description": "pathDescription"
+          "description": "Main aisle"
         },
         {
           "toLocationId": "register",
           "name": "Register",
-          "description": "pathDescription"
+          "description": "If you want to pay, this is the way"
         }
       ],
       "things": [
@@ -898,17 +898,17 @@
         {
           "toLocationId": "frozen-foods",
           "name": "Frozen Foods",
-          "description": "pathDescription"
+          "description": "Ice cream"
         },
         {
           "toLocationId": "main-aisle-4",
           "name": "Main Aisle 4",
-          "description": "pathDescription"
+          "description": "Main aisle"
         },
         {
           "toLocationId": "register-final",
           "name": "Cash register",
-          "description": "pathDescription"
+          "description": "Want to part with your money, right this way, honey!"
         }
       ],
       "things": [
@@ -930,7 +930,7 @@
         {
           "toLocationId": "exit",
           "name": "Exit",
-          "description": "pathDescription"
+          "description": "This path leads to the store exit"
         }
       ],
       "things": [
@@ -948,17 +948,17 @@
     },
     "exit": {
       "name": "Exit",
-      "description": "description",
+      "description": "Goofy Groceries store exit. A big sign reads: 'have a goofy day!'",
       "paths": [
         {
           "toLocationId": "register-final",
           "name": "Cash register",
-          "description": "pathDescription"
+          "description": "Back to the register, why not?"
         },
         {
           "toLocationId": "parking-lot",
           "name": "Parking Lot",
-          "description": "pathDescription",
+          "description": "Exit the store to the parking lot",
           "events": ["exit-store"]
         }
       ],
@@ -976,22 +976,22 @@
     },
     "stockroom-entrance": {
       "name": "Stockroom Entrance",
-      "description": "description",
+      "description": "You are in front of a big open shutter, behind it is the stockroom",
       "paths": [
         {
           "toLocationId": "bakery",
           "name": "Bakery",
-          "description": "pathDescription"
+          "description": "Back to bread"
         },
         {
           "toLocationId": "main-aisle-1",
           "name": "Main Aisle 1",
-          "description": "pathDescription"
+          "description": "Main store aisle"
         },
         {
           "toLocationId": "stockroom",
           "name": "Stockroom",
-          "description": "pathDescription"
+          "description": "Enter the stockroom"
         }
       ],
       "things": [
@@ -1011,12 +1011,12 @@
     },
     "stockroom": {
       "name": "Stockroom",
-      "description": "description",
+      "description": "You are in the stockroom, carts with products are everywhere",
       "paths": [
         {
           "toLocationId": "stockroom-entrance",
           "name": "Stockroom Entrance",
-          "description": "pathDescription"
+          "description": "Leave the stockroom"
         }
       ],
       "things": [
