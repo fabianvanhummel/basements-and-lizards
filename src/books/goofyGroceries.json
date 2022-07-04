@@ -892,8 +892,8 @@
       "npcs": [{ "id": "store-clerk1" }]
     },
     "register": {
-      "name": "Register",
-      "description": "A sign at the register reads: 'Now: All products, 1 coin'",
+      "name": "Cash register queue",
+      "description": "A sign at the cash register reads: 'Now: All products, 1 coin'",
       "paths": [
         {
           "toLocationId": "frozen-foods",
@@ -905,6 +905,28 @@
           "name": "Main Aisle 4",
           "description": "pathDescription"
         },
+        {
+          "toLocationId": "register-final",
+          "name": "Cash register",
+          "description": "pathDescription"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
+      ]
+    },
+    "register-final": {
+      "name": "Cash register",
+      "description": "A sign at the register reads: 'Now: All products, 1 coin'",
+      "paths": [
         {
           "toLocationId": "exit",
           "name": "Exit",
@@ -929,14 +951,15 @@
       "description": "description",
       "paths": [
         {
-          "toLocationId": "register",
-          "name": "Register",
+          "toLocationId": "register-final",
+          "name": "Cash register",
           "description": "pathDescription"
         },
         {
           "toLocationId": "parking-lot",
           "name": "Parking Lot",
-          "description": "pathDescription"
+          "description": "pathDescription",
+          "events": ["exit-store"]
         }
       ],
       "things": [
@@ -3628,6 +3651,35 @@
     "end-bbq-deluxe": {},
     "end-bbq-simple": {},
     "bbq-failure1": {},
+    "exit-store": {
+      "message": "You exited the store, emptying your shopping cart.",
+      "revertEvents": [
+        "exit-store",
+        "PRODUCT-coke-bottle",
+        "PRODUCT-fanta-bottle",
+        "PRODUCT-7up-bottle",
+        "PRODUCT-bell-pepper",
+        "PRODUCT-spinach",
+        "PRODUCT-lettuce",
+        "PRODUCT-tomato",
+        "PRODUCT-cheese",
+        "PRODUCT-pasta",
+        "PRODUCT-bacon",
+        "PRODUCT-herb-cheese",
+        "PRODUCT-nachos",
+        "PRODUCT-creme-fraiche",
+        "PRODUCT-guacamole",
+        "PRODUCT-minced-meat",
+        "PRODUCT-wraps",
+        "PRODUCT-chicken",
+        "PRODUCT-corn",
+        "PRODUCT-hamburgers",
+        "PRODUCT-buns",
+        "PRODUCT-spareribs",
+        "PRODUCT-onion",
+        "PRODUCT-bbq"
+      ]
+    },
     "found-no-cheese": {},
     "store-clerk-cheese-filled": {},
     "shopping-cart-coin-pickup": {
