@@ -337,6 +337,7 @@
           "id": "meat-recipe-stand"
         }
       ],
+      "events": ["resolved-angry-meat-lover"],
       "combat": [
         {
           "id": "angry-meat-lover",
@@ -3706,7 +3707,14 @@
     "said-sorry-old-lady1": {},
     "started-angry-meat-lover": {},
     "ask-angry-meat-lover-1": {},
-    "resolved-angry-meat-lover": {},
+    "resolved-angry-meat-lover": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "started-angry-meat-lover"
+        }
+      ]
+    },
     "angry-meat-lover-win": {
       "message": "You safely add the minced meat to your products"
     },
