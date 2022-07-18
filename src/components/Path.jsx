@@ -18,7 +18,7 @@ export const Path = ({
       </p>
 
       <DefaultButton
-        children={"Follow this path to " + toLocationId}
+        children={"Follow this path to " + name}
         onClick={() =>
           handleAction({
             type: "TAKE_PATH",

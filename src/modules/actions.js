@@ -437,7 +437,6 @@ export const handleInteractThing = (option, book, gameState) => {
     );
 
     // Check if combat arises at new location.
-
     const newGameState = {
       ...gameState,
       location: teleported ? option.toLocationId : gameState.location,
