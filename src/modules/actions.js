@@ -78,7 +78,6 @@ export const handleTakeItem = (item, book, gameState) => {
     );
 
     // Check if combat arises at new location.
-    let combat = null;
     if (location.combat && !gameState.pastCombats.includes(location.combat)) {
       reactions.push({
         type: "COMBAT",
@@ -86,7 +85,6 @@ export const handleTakeItem = (item, book, gameState) => {
           book.combats[location.combat].title
         }`,
       });
-      combat = location.combat;
     }
   }
 
@@ -211,7 +209,7 @@ export const handleTalkNpc = (option, book, gameState) => {
 
   // Handle potential items.
   option.items &&
-    option.items.map((itemId) => {
+    option.items.forEach((itemId) => {
       const item = book.items[itemId];
       reactions.push({
         type: "GET_ITEM_NPC",
@@ -246,7 +244,6 @@ export const handleTalkNpc = (option, book, gameState) => {
     );
 
     // Check if combat arises at new location.
-    let combat = null;
     if (location.combat && !gameState.pastCombats.includes(location.combat)) {
       reactions.push({
         type: "COMBAT",
@@ -254,7 +251,6 @@ export const handleTalkNpc = (option, book, gameState) => {
           book.combats[location.combat].title
         }`,
       });
-      combat = location.combat;
     }
   }
 
@@ -307,7 +303,7 @@ export const handleMoveCombat = (option, book, gameState) => {
 
   // Handle potential items.
   option.items &&
-    option.items.map((itemId) => {
+    option.items.forEach((itemId) => {
       const item = book.items[itemId];
       reactions.push({
         type: "GET_ITEM_COMBAT",
@@ -381,7 +377,7 @@ export const handleInteractThing = (option, book, gameState) => {
 
   // Handle potential items.
   option.items &&
-    option.items.map((itemId) => {
+    option.items.forEach((itemId) => {
       const item = book.items[itemId];
       reactions.push({
         type: "GET_ITEM_THING",
