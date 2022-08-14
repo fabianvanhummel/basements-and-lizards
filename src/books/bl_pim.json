@@ -1,0 +1,279 @@
+{
+  "name": "Lost Friend",
+  "description": "The main goal of this story is to showcase how Basement & Lizards works and how to play it.",
+  "initialLocation": "game-start",
+  "finalEvent": "final-event",
+  "locations": {
+    "game-start": {
+      "name": "Game Start",
+      "description": "Start of the game.",
+      "paths": [
+        {
+          "toLocationId": "forest-entrance",
+          "description": "Start the game."
+        }
+      ]
+    },
+    "forest-entrance": {
+      "name": "Forest Entrance",
+      "description": "The edge of town where the forest starts.",
+      "events": ["initial-event"],
+      "paths": [
+        {
+          "toLocationId": "town",
+          "description": "The road that goes into town that'll bring al of you to your houses.",
+          "direction": "West"
+        },
+        {
+          "toLocationId": "crossroads-1",
+          "description": "The tackmacked road becomes a gravel road after 10 meters, right where the forest starts and relatively young trees are growing. Further into the distance, you see the gravel road becoming a dirt road and much narrower. Definitely not suitable for cars. Trees are becoming larger and the forest denser.",
+          "direction": "East"
+        }
+      ]
+    },
+    "town": {
+      "name": "Town",
+      "events": ["friend-dies", "final-event"]
+    },
+    "crossroads-1": {
+      "name": "Forest Crossroads",
+      "description": "Within the forest, there's a crossing where two paths meet. There's a lot of tall trees to the east whereas there's more of an open field will smaller plants to the west.",
+      "things": [{ "id": "bin" }],
+      "paths": [
+        {
+          "toLocationId": "forest-entrance",
+          "description": "Back to town."
+        },
+        {
+          "toLocationId": "crossroads-2",
+          "description": "This path is clearly the main one that everybody uses to go to the beach.",
+          "direction": "East"
+        },
+        {
+          "toLocationId": "hill",
+          "description": "There's a smaller path to the north that makes a slight turn to the left and since there's loads of trees it's impossible to see where it leads.",
+          "direction": "North",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "to-top-of-tower" }
+          ]
+        }
+      ],
+      "events": ["arrive-at-crossroads-1"]
+    },
+    "hill": {
+      "name": "Hill",
+      "description": "A small hill where they used to do military training. There's some leftover bullets around the place.",
+      "items": [{ "id": "wounded-friend" }],
+      "paths": [
+        {
+          "toLocationId": "crossroads-1",
+          "description": "Back to the first crossroads."
+        }
+      ]
+    },
+    "crossroads-2": {
+      "paths": [
+        {
+          "toLocationId": "crossroads-1",
+          "description": "Back to the first crossroads"
+        },
+        {
+          "toLocationId": "beach",
+          "description": "In the distance, you can see the lake between the trees.",
+          "direction": "North-east"
+        },
+        {
+          "toLocationId": "ruins-front",
+          "description": "To the south, there's a path that seems to disappear after about 50 meters. It looks like it had been in use in the past but has been abadoned after a tree fell on the path. Noone seemed to be bothered by the blockage as there's no effort made to get past.",
+          "direction": "South"
+        }
+      ]
+    },
+    "beach": {
+      "events": ["arrive-at-beach"],
+      "things": [{ "id": "fire-pit" }],
+      "paths": [
+        {
+          "toLocationId": "crossroads-2",
+          "description": "Back to the second crossroads"
+        }
+      ]
+    },
+    "ruins-front": {
+      "name": "Ruins",
+      "description": "The ruins consist of three parts. The one on the left is completely ruined and only few parts of it are left. The middle part still has some walls standing and some old torches attached to it. The right side of the ruins in still quite intact. It looks like a small outpost of about 15 meter high. The entrance at the bottom has a small roof at the front and another torch below it. You can't see anything inside though.",
+      "items": [
+        { "id": "wet-torch" },
+        { "id": "wet-torch" },
+        { "id": "brick" },
+        { "id": "brick" }
+      ],
+      "things": [{ "id": "attached-torch" }],
+      "paths": [
+        {
+          "toLocationId": "crossroads-2",
+          "description": "Back to the second crossroads"
+        },
+        {
+          "requirements": [{ "type": "ITEM_IN_INVENTORY", "id": "lit-torch" }],
+          "toLocationId": "ruins-inside",
+          "description": "The tower in the ruins has an opening at the bottom. It's impossible to see what's inside as it's pitch-black."
+        },
+        {
+          "requirements": [
+            { "type": "ITEM_NOT_IN_INVENTORY", "id": "lit-torch" }
+          ],
+          "toLocationId": "ruins-inside-dark",
+          "description": "The tower in the ruins has an opening at the bottom. It's impossible to see what's inside as it's pitch-black."
+        }
+      ]
+    },
+    "ruins-inside-dark": {
+      "name": "Inside Ruins",
+      "description": "It's pitch black inside here, nothing to see except the way out.",
+      "paths": [
+        {
+          "toLocationId": "ruins-front",
+          "description": "Back out of the ruins."
+        }
+      ]
+    },
+    "ruins-inside": {
+      "name": "Inside Ruins",
+      "description": "There's not much inside the ruins, except a staircase.",
+      "paths": [
+        {
+          "toLocationId": "ruins-front",
+          "description": "Back out of the ruins."
+        },
+        {
+          "toLocationId": "tower",
+          "description": "The staircase on the far side of the room will probably bring you up the tower. There's not much left of it though."
+        }
+      ]
+    },
+    "tower": {
+      "name": "Tower",
+      "description": "The top of the tower in the ruins.",
+      "events": ["to-top-of-tower"],
+      "paths": [
+        {
+          "toLocationId": "ruins-inside",
+          "description": "Back down the stairs."
+        }
+      ]
+    }
+  },
+  "things": {
+    "fire-pit": {
+      "name": "Fire Pit",
+      "description": "Some poeple had made a fire earlier and didn't make the effort to get rid of the remains. It's still smoldering which is actually quite handy as it gives you some light.",
+      "options": [
+        {
+          "text": "Light torch",
+          "requirements": [
+            { "type": "ITEM_IN_INVENTORY", "id": "soaked-torch" }
+          ],
+          "items": ["lit-torch"],
+          "response": "You light the torch."
+        },
+        {
+          "text": "Dry torch",
+          "requirements": [{ "type": "ITEM_IN_INVENTORY", "id": "wet-torch" }],
+          "items": ["dry-torch"],
+          "response": "You dry the torch."
+        }
+      ]
+    },
+    "bin": {
+      "name": "Bin",
+      "description": "The bin is quite full which generally happens on a sunny day. You recongise the beer bottles that were placed right beside the bin as you had those earlier that day. Someone also left a halfful bottle of whiskey with an empty bottle of coke.",
+      "options": [
+        {
+          "text": "Soak torch",
+          "requirements": [
+            { "type": "ITEM_IN_INVENTORY", "id": "dry-torch" }
+          ],
+          "items": ["soaked-torch"],
+          "response": "You soak the torch in Whiskey."
+        }
+      ]
+    },
+    "attached-torch": {
+      "name": "Torch",
+      "options": [
+        {
+          "text": "Take it",
+          "response": "The torch is stuck to the wall, you can't take it."
+        },
+        {
+          "text": "Break the torch off the wall with the brick",
+          "requirements": [{ "type": "ITEM_IN_INVENTORY", "id": "brick" }],
+          "items": ["dry-torch"],
+          "response": "You smack the brick into the metal that's holding the torch. It changes shape but not yet comes off. You give it another go and this time you hear a cling as the top part where the metal is attached breaks off. One more smack and with another cling the torch comes off the wall."
+        }
+      ]
+    }
+  },
+  "events": {
+    "initial-event": {
+      "message": "You and your friends went to the beach as it was a lovely summer day. You played a bit of volleybal on the beach and in the lake, and each had a couple of beers to stay hydrated. Without a doubt the perfect day. Since you lost track of time and it was getting dark, you made your way back to town through the forest. Once you arrived at the village, you realise one of you is missing. 'He was behind us just there, wasn't he?', 'He went for the bin just as we left, and I saw him coming after us. He should be here really, so let's wait a minute.' After 5 minutes of waiting, you know something's up."
+    },
+    "final-event": {
+      "requirements": [
+        {
+          "type": "ITEM_IN_INVENTORY",
+          "id": "wounded-friend"
+        }
+      ],
+      "message": "You bring home your wounded friend and bring him to one of your friends house who's mother is a nurse. She treats the wound and adds necessary bandages that stop the bleeding. At this point, you know he's safe and in good hands. It'll take some time to recover but you know you've saved your friend's life which is a great relief."
+    },
+    "friend-dies": {
+      "requirements": [
+        {
+          "type": "ITEM_NOT_IN_INVENTORY",
+          "id": "wounded-friend"
+        }
+      ],
+      "message": "You all go to bed and sleep very well. The next day you wake up hearing in the news that your friend didn't return home and that a search has been started. After half a hour you learn your friend's body was found not to far from where you live."
+    },
+    "arrive-at-crossroads-1": {
+      "message": "You know the beach is straight on but you don't know the forest very well apart from that. It's the only clear path their really. You shout your friends name a couple of times but you hear nothing."
+    },
+    "arrive-at-crossroads-2": {
+      "message": "It's getting darker and you hear some soft sounds. It's too dim to know what it is or where it comes from. In the distance slighty to your right, you see some light, but that light is pretty dim as well."
+    },
+    "arrive-at-beach": {
+      "message": "You beach is completely abandoned, but it's clear that people have been there during the day."
+    },
+    "to-top-of-tower": {
+      "message": "You carefully take the shallow steps up which are quite slippery from all moss that's been growing there which got wet. The steps go around the corner and you see that the ones coming up are damaged. Even further up there's a couple of steps missing, but it seems possible to leap accross. You carefully take a step back and jump accross the gap to the higher end. You lose your balance for a second but luckily there's a dent in the wall that you use to get safely accross. After taking a few more steps you end up at the tower which gives you a nice view as it reach just above even the tallest trees.\n\nYou take a look around to see if you see or hear your friend anywhere, but there's nothing really. 'Look over there, there's something moving I think.' one of you points out. Up in the north-west, a bit north of the first crossroads, you see some slight movement in between the trees. You're lucky the moonlight helps you here as you were never able to see this without it."
+    }
+  },
+  "items": {
+    "brick": {
+      "name": "Brick",
+      "description": "Brick that once was part of the ruins. It's dark greenish because of the moss that's been growing on it over the years."
+    },
+    "wet-torch": {
+      "name": "Torch",
+      "description": "An old torch that has been soaked by the rain multiple times. Smells of rotten wood."
+    },
+    "dry-torch": {
+      "name": "Torch",
+      "description": "An old torch with a slight smell or oil."
+    },
+    "soaked-torch": {
+      "name": "Torch",
+      "description": "An old torch that's soaked with Whiskey."
+    },
+    "lit-torch": {
+      "name": "Torch",
+      "description": "A lit torch, with a smell of Whiskey. Delicious."
+    },
+    "wounded-friend": {
+      "name": "Friend",
+      "description": "Your friend that got wounded"
+    }
+  }
+}
