@@ -1,30 +1,30 @@
 import { DefaultButton } from "../components/Buttons";
 import { ElementList, ElementHeader } from "../components/Elements";
 
-export const Combat = ({ title, description, options, handleAction }) => {
+export const ThingInteract = ({ name, description, options, handleAction }) => {
   return (
-    <div className="max-w-2xl px-8 py-4 mx-auto bg-red-50 rounded-lg shadow-md dark:bg-gray-800">
-      <ElementHeader title={title} tag="Combat" color="red" />
+    <div className="max-w-2xl px-8 py-4 mx-auto bg-cyan-50 rounded-lg shadow-md dark:bg-gray-800">
+      <ElementHeader title={name} tag="Thing" color="cyan" />
 
       <p className="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
       <div>
         {options && (
           <ElementList
-            type="CombatOptions"
+            type="ThingOptions"
             elements={options}
             handleAction={handleAction}
           />
         )}
-        <div className="text-center">
+        <div className="text-right">
           <DefaultButton
             onClick={() => {
               handleAction({
-                type: "END_COMBAT",
-                combatTitle: title,
+                type: "END_THING",
+                thing: { name, description },
               });
             }}
           >
-            Leave combat
+            Stop interacting
           </DefaultButton>
         </div>
       </div>
@@ -32,4 +32,4 @@ export const Combat = ({ title, description, options, handleAction }) => {
   );
 };
 
-export default Combat;
+export default ThingInteract;

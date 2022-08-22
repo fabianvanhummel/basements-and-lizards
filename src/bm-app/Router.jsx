@@ -102,13 +102,7 @@ export const Router = ({
 
         <Route
           path="/history"
-          element={
-            <HistoryTab
-              book={book}
-              history={history}
-              handleAction={handleAction}
-            />
-          }
+          element={<HistoryTab history={history} handleAction={handleAction} />}
         />
       </Routes>
     </BrowserRouter>

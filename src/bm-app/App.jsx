@@ -6,6 +6,10 @@ import {
   handleStartNpc,
   handleEndNpc,
   handleTalkNpc,
+  handleStartThing,
+  handleEndThing,
+  handleInteractThing,
+  handleMoveCombat,
   handleEndCombat,
 } from "../modules/actions";
 
@@ -15,20 +19,20 @@ export const App = ({ book }) => {
     location: book["initialLocation"],
     npc: null,
     combat: null,
+    thing: null,
     pastEvents: [],
     inventoryItems: [],
-    pastCombats: [],
   });
 
   // changeLog tracks the changes that are made as a result of the last action
   const [changeLog, setChangeLog] = useState({
-    action: {},
+    action: { type: "START_STORY" },
     reactions: [],
   });
 
   // history stores the gameState and changeLog after each action
   // this can be used to go back in time or help with showing what happened
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState([{ gameState, changeLog }]);
 
   const handleAction = (action) => {
     // Maps the action to the right function.
@@ -38,7 +42,10 @@ export const App = ({ book }) => {
       const reactions = response.reactions;
       setGameState(response.newGameState);
       setChangeLog({ action, reactions });
-      setHistory([...history, { gameState, changeLog }]);
+      setHistory([
+        ...history,
+        { gameState: response.newGameState, changeLog: { action, reactions } },
+      ]);
     };
 
     switch (action.type) {
@@ -57,13 +64,23 @@ export const App = ({ book }) => {
       case "END_NPC":
         applyAction(handleEndNpc(action.npc, gameState));
         break;
+      case "START_THING":
+        applyAction(handleStartThing(action.thingId, book, gameState));
+        break;
+      case "INTERACT_THING":
+        applyAction(handleInteractThing(action.option, book, gameState));
+        break;
+      case "END_THING":
+        applyAction(handleEndThing(action.thing, gameState));
+        break;
+      case "MOVE_COMBAT":
+        applyAction(handleMoveCombat(action.option, book, gameState));
+        break;
       case "END_COMBAT":
-        applyAction(
-          handleEndCombat(action.combatId, action.combatTitle, gameState),
-        );
+        applyAction(handleEndCombat(action.combatTitle, gameState));
         break;
       case "BACK_IN_TIME":
-        setHistory(history.slice(0, history.length - (action.steps + 1)));
+        setHistory(history.slice(0, history.length - action.steps));
         setGameState(history[history.length - (action.steps + 1)].gameState);
         setChangeLog(history[history.length - (action.steps + 1)].changeLog);
         break;

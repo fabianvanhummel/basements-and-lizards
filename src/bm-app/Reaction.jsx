@@ -4,9 +4,15 @@ const colorMap = {
   ARRIVE_AT_LOCATION: "green",
   PICK_UP_ITEM: "yellow",
   GET_ITEM_NPC: "yellow",
+  GET_ITEM_THING: "yellow",
+  GET_ITEM_COMBAT: "yellow",
   NPC_INTERACTION: "purple",
   NPC_RESPONSE: "purple",
-  COMBAT: "red",
+  TELEPORTED: "blue",
+  THING_INTERACTION: "cyan",
+  COMBAT_START: "red",
+  COMBAT_MOVE: "red",
+  COMBAT_END: "red",
 };
 
 const titleMap = {
@@ -15,9 +21,15 @@ const titleMap = {
   ARRIVE_AT_LOCATION: "You arrive at a location",
   PICK_UP_ITEM: "You picked up an item",
   GET_ITEM_NPC: "You received an item",
+  GET_ITEM_THING: "You received an item",
+  GET_ITEM_COMBAT: "You received an item",
   NPC_INTERACTION: "You interacted with an NPC",
   NPC_RESPONSE: "The NPC Responded",
-  COMBAT: "A battle occurred",
+  TELEPORTED: "You were teleported",
+  THING_INTERACTION: "You interacted with a thing",
+  COMBAT_START: "A Battle Started",
+  COMBAT_MOVE: "You acted in combat",
+  COMBAT_END: "A Battle Ended",
 };
 
 export const Reaction = ({ type, dismiss, ...props }) => (

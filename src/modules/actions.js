@@ -1,4 +1,5 @@
 import { checkRequirements } from "./requirements";
+import { checkOverride } from "./listFunctions";
 
 const doEvents = (eventIds, book, gameState) => {
   const reactions = [];
@@ -29,7 +30,8 @@ const doEvents = (eventIds, book, gameState) => {
         alert("You have beaten the story, congratulations! You can continue playing and explore the entire story if you so desire, but the main goal has been achieved. Thank you for playing!")
       }
 
-      reactions.push({ type: "EVENT_HAPPENS", message: event.message });
+      event.message &&
+        reactions.push({ type: "EVENT_HAPPENS", message: event.message });
     });
 
   // Return reactions array
@@ -54,8 +56,48 @@ export const handleTakeItem = (item, book, gameState) => {
     (x) => !eventResponse.revertEventIds.includes(x),
   );
 
+  // Check for a teleport
+  let locationId = gameState.location;
+  if (item.toLocationId) {
+    locationId = item.toLocationId;
+    const location = book.locations[locationId];
+
+    reactions.push({
+      type: "TELEPORTED",
+      message: `You were teleported to ${location.name}`,
+    });
+
+    // The party arrives at the location.
+    reactions.push({
+      type: "ARRIVE_AT_LOCATION",
+      message: `You arrive at ${location.name}`,
+    });
+
+    // Handle the events that happen at the new location.
+    eventResponse = doEvents(location.events, book, gameState);
+    reactions.push(...eventResponse.reactions);
+    pastEvents.push(...eventResponse.newEventIds);
+    // https://stackoverflow.com/questions/1187518
+    pastEvents = pastEvents.filter(
+      (x) => !eventResponse.revertEventIds.includes(x),
+    );
+
+    // Check if combat arises at new location.
+    let combat = null;
+    if (location.combat && !gameState.pastCombats.includes(location.combat)) {
+      reactions.push({
+        type: "COMBAT",
+        message: `You enter combat named: ${
+          book.combats[location.combat].title
+        }`,
+      });
+      combat = location.combat;
+    }
+  }
+
   const newGameState = {
     ...gameState,
+    location: locationId,
     inventoryItems: [...gameState.inventoryItems, item.id],
     pastEvents,
   };
@@ -83,7 +125,9 @@ export const handleTakePath = (path, book, gameState) => {
     (x) => !eventResponse.revertEventIds.includes(x),
   );
 
-  const location = book.locations[path.toLocationId];
+  // Check for overrides on destination
+  const locationId = checkOverride(book, gameState, path.toLocationId);
+  const location = book.locations[locationId];
 
   // The party arrives at the location.
   reactions.push({
@@ -102,17 +146,29 @@ export const handleTakePath = (path, book, gameState) => {
 
   // Check if combat arises at new location.
   let combat = null;
-  if (location.combat && !gameState.pastCombats.includes(location.combat)) {
-    reactions.push({
-      type: "COMBAT",
-      message: `You enter combat named: ${book.combats[location.combat].title}`,
+
+  location.combat &&
+    location.combat.find((locationCombat) => {
+      if (
+        !locationCombat.requirements ||
+        (locationCombat.requirements &&
+          checkRequirements(gameState, locationCombat.requirements))
+      ) {
+        reactions.push({
+          type: "COMBAT_START",
+          message: `You enter combat named: ${
+            book.combats[locationCombat.id].title
+          }`,
+        });
+        combat = locationCombat.id;
+        return true;
+      }
+      return false;
     });
-    combat = location.combat;
-  }
 
   const newGameState = {
     ...gameState,
-    location: path.toLocationId,
+    location: locationId, // This is the overridden locationId
     pastEvents,
     combat,
   };
@@ -169,8 +225,48 @@ export const handleTalkNpc = (option, book, gameState) => {
       inventoryItems.push(itemId);
     });
 
+  // Check for a teleport
+  const teleported = !!option.toLocationId;
+  if (teleported) {
+    const location = book.locations[option.toLocationId];
+
+    reactions.push({
+      type: "TELEPORTED",
+      message: `You were teleported to ${location.name}`,
+    });
+
+    // The party arrives at the location.
+    reactions.push({
+      type: "ARRIVE_AT_LOCATION",
+      message: `You arrive at ${location.name}`,
+    });
+
+    // Handle the events that happen at the new location.
+    eventResponse = doEvents(location.events, book, gameState);
+    reactions.push(...eventResponse.reactions);
+    pastEvents.push(...eventResponse.newEventIds);
+    // https://stackoverflow.com/questions/1187518
+    pastEvents = pastEvents.filter(
+      (x) => !eventResponse.revertEventIds.includes(x),
+    );
+
+    // Check if combat arises at new location.
+    let combat = null;
+    if (location.combat && !gameState.pastCombats.includes(location.combat)) {
+      reactions.push({
+        type: "COMBAT",
+        message: `You enter combat named: ${
+          book.combats[location.combat].title
+        }`,
+      });
+      combat = location.combat;
+    }
+  }
+
   const newGameState = {
     ...gameState,
+    location: teleported ? option.toLocationId : gameState.location,
+    npc: teleported ? null : gameState.npc,
     inventoryItems,
     pastEvents,
   };
@@ -194,18 +290,131 @@ export const handleEndNpc = (npc, gameState) => {
   return { reactions, newGameState };
 };
 
-export const handleEndCombat = (combatId, combatTitle, gameState) => {
+export const handleMoveCombat = (option, book, gameState) => {
+  const reactions = [];
+  let pastEvents = [...gameState.pastEvents];
+  const inventoryItems = [...gameState.inventoryItems];
+  let eventResponse;
+
+  reactions.push({
+    type: "COMBAT_MOVE",
+    message: `${option.response}`,
+  });
+
+  // Handle the events.
+  eventResponse = doEvents(option.events, book, gameState);
+  reactions.push(...eventResponse.reactions);
+  pastEvents.push(...eventResponse.newEventIds);
+  // https://stackoverflow.com/questions/1187518
+  pastEvents = pastEvents.filter(
+    (x) => !eventResponse.revertEventIds.includes(x),
+  );
+
+  // Handle potential items.
+  option.items &&
+    option.items.map((itemId) => {
+      const item = book.items[itemId];
+      reactions.push({
+        type: "GET_ITEM_COMBAT",
+        message: `You received ${item.name}`,
+      });
+      inventoryItems.push(itemId);
+    });
+
+  const newGameState = {
+    ...gameState,
+    inventoryItems,
+    pastEvents,
+  };
+
+  return { reactions, newGameState };
+};
+
+export const handleEndCombat = (combatTitle, gameState) => {
   const reactions = [];
 
   reactions.push({
-    type: "COMBAT",
-    message: `You resolved combat named: ${combatTitle}`,
+    type: "COMBAT_END",
+    message: `You left combat named: ${combatTitle}`,
   });
 
   const newGameState = {
     ...gameState,
     combat: null,
-    pastCombats: [...gameState.pastCombats, combatId],
+  };
+
+  return { reactions, newGameState };
+};
+
+export const handleStartThing = (thingId, book, gameState) => {
+  const reactions = [];
+
+  const thing = book.things[thingId];
+
+  reactions.push({
+    type: "THING_INTERACTION",
+    message: `You started interacting with ${thing.name}`,
+  });
+
+  const newGameState = {
+    ...gameState,
+    thing: thingId,
+  };
+
+  return { reactions, newGameState };
+};
+
+export const handleInteractThing = (option, book, gameState) => {
+  const reactions = [];
+  let pastEvents = [...gameState.pastEvents];
+  const inventoryItems = [...gameState.inventoryItems];
+  let eventResponse;
+
+  reactions.push({
+    type: "THING_INTERACTION",
+    message: `${option.response}`,
+  });
+
+  // Handle the events.
+  eventResponse = doEvents(option.events, book, gameState);
+  reactions.push(...eventResponse.reactions);
+  pastEvents.push(...eventResponse.newEventIds);
+  // https://stackoverflow.com/questions/1187518
+  pastEvents = pastEvents.filter(
+    (x) => !eventResponse.revertEventIds.includes(x),
+  );
+
+  // Handle potential items.
+  option.items &&
+    option.items.map((itemId) => {
+      const item = book.items[itemId];
+      reactions.push({
+        type: "GET_ITEM_THING",
+        message: `You received ${item.name}`,
+      });
+      inventoryItems.push(itemId);
+    });
+
+  const newGameState = {
+    ...gameState,
+    inventoryItems,
+    pastEvents,
+  };
+
+  return { reactions, newGameState };
+};
+
+export const handleEndThing = (thing, gameState) => {
+  const reactions = [];
+
+  reactions.push({
+    type: "THING_INTERACTION",
+    message: `You stopped interacting with ${thing.name}`,
+  });
+
+  const newGameState = {
+    ...gameState,
+    thing: null,
   };
 
   return { reactions, newGameState };
