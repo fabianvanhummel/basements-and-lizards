@@ -22,6 +22,7 @@ export const App = ({ book }) => {
     thing: null,
     pastEvents: [],
     inventoryItems: [],
+    gameFinished: false,
   });
 
   // changeLog tracks the changes that are made as a result of the last action

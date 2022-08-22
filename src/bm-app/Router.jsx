@@ -68,6 +68,14 @@ export const Router = ({
               >
                 History
               </Link>
+              {gameState.gameFinished && (
+                <Link
+                  className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
+                  to="/finish"
+                >
+                  Finish
+                </Link>
+              )}
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { checkRequirements } from "./requirements";
 import { checkOverride } from "./listFunctions";
+import { goToVictoryWindow } from "./gameEndingFunctions"
 
 const doEvents = (eventIds, book, gameState) => {
   const reactions = [];
@@ -27,7 +28,8 @@ const doEvents = (eventIds, book, gameState) => {
 
       // Add a bit more here later
       if(eventId === book.finalEvent) {
-        alert("You have beaten the story, congratulations! You can continue playing and explore the entire story if you so desire, but the main goal has been achieved. Thank you for playing!")
+        gameState.gameFinished = true
+        goToVictoryWindow()
       }
 
       event.message &&
@@ -35,7 +37,7 @@ const doEvents = (eventIds, book, gameState) => {
     });
 
   // Return reactions array
-  return { reactions, newEventIds, revertEventIds };
+  return { reactions, newEventIds, revertEventIds, gameState };
 };
 
 export const handleTakeItem = (item, book, gameState) => {
@@ -49,6 +51,7 @@ export const handleTakeItem = (item, book, gameState) => {
   });
 
   eventResponse = doEvents(item.events, book, gameState);
+  gameState = eventResponse.gameState
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
   // https://stackoverflow.com/questions/1187518
@@ -75,6 +78,7 @@ export const handleTakeItem = (item, book, gameState) => {
 
     // Handle the events that happen at the new location.
     eventResponse = doEvents(location.events, book, gameState);
+    gameState = eventResponse.gameState
     reactions.push(...eventResponse.reactions);
     pastEvents.push(...eventResponse.newEventIds);
     // https://stackoverflow.com/questions/1187518
@@ -118,6 +122,7 @@ export const handleTakePath = (path, book, gameState) => {
 
   // Handle the events that happen on the path.
   eventResponse = doEvents(path.events, book, gameState);
+  gameState = eventResponse.gameState
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
   // https://stackoverflow.com/questions/1187518
@@ -137,6 +142,7 @@ export const handleTakePath = (path, book, gameState) => {
 
   // Handle the events that happen at the new location.
   eventResponse = doEvents(location.events, book, gameState);
+  gameState = eventResponse.gameState
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
   // https://stackoverflow.com/questions/1187518
@@ -207,6 +213,7 @@ export const handleTalkNpc = (option, book, gameState) => {
 
   // Handle the events.
   eventResponse = doEvents(option.events, book, gameState);
+  gameState = eventResponse.gameState
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
   // https://stackoverflow.com/questions/1187518
@@ -242,7 +249,8 @@ export const handleTalkNpc = (option, book, gameState) => {
     });
 
     // Handle the events that happen at the new location.
-    eventResponse = doEvents(location.events, book, gameState);
+    eventResponse = doEvents(location.events, book, gameState);  
+    gameState = eventResponse.gameState
     reactions.push(...eventResponse.reactions);
     pastEvents.push(...eventResponse.newEventIds);
     // https://stackoverflow.com/questions/1187518
@@ -303,6 +311,7 @@ export const handleMoveCombat = (option, book, gameState) => {
 
   // Handle the events.
   eventResponse = doEvents(option.events, book, gameState);
+  gameState = eventResponse.gameState
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
   // https://stackoverflow.com/questions/1187518
@@ -377,6 +386,7 @@ export const handleInteractThing = (option, book, gameState) => {
 
   // Handle the events.
   eventResponse = doEvents(option.events, book, gameState);
+  gameState = eventResponse.gameState
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
   // https://stackoverflow.com/questions/1187518
