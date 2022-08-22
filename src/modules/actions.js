@@ -91,7 +91,6 @@ export const handleTakeItem = (item, book, gameState) => {
           book.combats[location.combat].title
         }`,
       });
-      combat = location.combat;
     }
   }
 
@@ -259,7 +258,6 @@ export const handleTalkNpc = (option, book, gameState) => {
           book.combats[location.combat].title
         }`,
       });
-      combat = location.combat;
     }
   }
 

@@ -2,11 +2,16 @@ import { App } from "./bm-app/App";
 import maze from "./books/maze.json";
 import "./index.css";
 import { useState, useEffect } from "react";
+import { backgroundImages } from "./images/backgrounds.js";
 
 // Disable this boolean if you dont want the startup screen (please do this when testing)
 const doStartScreen = false;
 
 // Note: this component is meant to control rendering of different apps. Since we only have one app now, it's still very basic.
+
+// Set app background for this session
+const backgroundImageUrl =
+  backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
 
 // Determine loading message Div wrapper and make it a function
 function LoadingMessage() {
@@ -32,5 +37,5 @@ export const MainApp = () => {
   });
 
   if (loading && doStartScreen) return <LoadingMessage />;
-  return <App book={maze} />;
+  return <App book={maze} backgroundImageUrl={backgroundImageUrl} />;
 };
