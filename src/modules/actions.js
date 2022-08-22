@@ -25,6 +25,11 @@ const doEvents = (eventIds, book, gameState) => {
         revertEventIds.push(...event.revertEvents);
       }
 
+      // Add a bit more here later
+      if(eventId === book.finalEvent) {
+        alert("You have beaten the story, congratulations! You can continue playing and explore the entire story if you so desire, but the main goal has been achieved. Thank you for playing!")
+      }
+
       event.message &&
         reactions.push({ type: "EVENT_HAPPENS", message: event.message });
     });
