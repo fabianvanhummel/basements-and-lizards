@@ -1,13 +1,14 @@
 import { App } from "./bm-app/App";
-import maze from "./books/lizardBasement.json";
+import { DefaultButton } from "./components/Buttons";
 import "./index.css";
 import { useState, useEffect } from "react";
 import { backgroundImages } from "./images/backgrounds.js";
 
+import pim from "./books/bl_pim.json";
+import maze from "./books/maze.json";
+
 // Disable this boolean if you dont want the startup screen (please do this when testing)
 const doStartScreen = false;
-
-// Note: this component is meant to control rendering of different apps. Since we only have one app now, it's still very basic.
 
 // Set app background for this session
 const backgroundImageUrl =
@@ -26,9 +27,36 @@ function LoadingMessage() {
   );
 }
 
+const bookList = [
+  {
+    name: "Test Maze",
+    book: maze,
+  },
+  {
+    name: "Lost Friend",
+    book: pim,
+  },
+];
+
+const ChooseBook = ({ setBook }) => (
+  <div>
+    <ul className="p-4">
+      {bookList.map((book, index) => (
+        <li key={book.name} className={index === 0 ? "" : "mt-4"}>
+          <DefaultButton onClick={() => setBook(book.book)}>
+            Play {book.name}
+          </DefaultButton>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
 export const MainApp = () => {
   // Use states to determine if page is still loading
   const [loading, setLoading] = useState(true);
+  const [book, setBook] = useState(null);
+
   useEffect(() => {
     // Arbitrary 5 second loading time.. can be changes to dynamically listen to an API/server call or whatever
     setTimeout(() => {
@@ -37,5 +65,6 @@ export const MainApp = () => {
   });
 
   if (loading && doStartScreen) return <LoadingMessage />;
-  return <App book={maze} backgroundImageUrl={backgroundImageUrl} />;
+  if (!book) return <ChooseBook setBook={setBook} />;
+  return <App book={book} backgroundImageUrl={backgroundImageUrl}/>;
 };
