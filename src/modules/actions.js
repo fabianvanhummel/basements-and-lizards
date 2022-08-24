@@ -104,6 +104,7 @@ export const handleTakeItem = (item, book, gameState) => {
         }
         return false;
       });
+    }
   }
 
   const newGameState = {
@@ -281,6 +282,7 @@ export const handleTalkNpc = (option, book, gameState) => {
         }
         return false;
       });
+    }
   }
 
   const newGameState = {
