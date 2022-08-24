@@ -28,7 +28,7 @@ const doEvents = (eventIds, book, gameState) => {
       // Add a bit more here later
       if(eventId === book.finalEvent) {
         gameState.gameFinished = true
-        reactions.push({ type: "GAME_FINISHED", message: 'You finished the game!' });
+        reactions.push({ type: "GAME_FINISHED", message: 'You finish the game!' });
       }
 
       event.message &&
