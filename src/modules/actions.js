@@ -26,8 +26,10 @@ const doEvents = (eventIds, book, gameState) => {
       }
 
       // Add a bit more here later
-      if(eventId === book.finalEvent) {
-        alert("You have beaten the story, congratulations! You can continue playing and explore the entire story if you so desire, but the main goal has been achieved. Thank you for playing!")
+      if (eventId === book.finalEvent) {
+        alert(
+          "You have beaten the story, congratulations! You can continue playing and explore the entire story if you so desire, but the main goal has been achieved. Thank you for playing!",
+        );
       }
 
       event.message &&
@@ -45,7 +47,7 @@ export const handleTakeItem = (item, book, gameState) => {
 
   reactions.push({
     type: "PICK_UP_ITEM",
-    message: `You picked up ${item.name}`,
+    message: `You pick up ${item.name}`,
   });
 
   eventResponse = doEvents(item.events, book, gameState);
@@ -64,7 +66,7 @@ export const handleTakeItem = (item, book, gameState) => {
 
     reactions.push({
       type: "TELEPORTED",
-      message: `You were teleported to ${location.name}`,
+      message: `You are teleported to ${location.name}`,
     });
 
     // The party arrives at the location.
@@ -192,7 +194,7 @@ export const handleStartNpc = (npcId, book, gameState) => {
 
   reactions.push({
     type: "NPC_INTERACTION",
-    message: `You approached ${npc.name}`,
+    message: `You approach ${npc.name}`,
   });
 
   const newGameState = {
@@ -229,7 +231,7 @@ export const handleTalkNpc = (option, book, gameState) => {
       const item = book.items[itemId];
       reactions.push({
         type: "GET_ITEM_NPC",
-        message: `You received ${item.name}`,
+        message: `You receive ${item.name}`,
       });
       inventoryItems.push(itemId);
     });
@@ -241,7 +243,7 @@ export const handleTalkNpc = (option, book, gameState) => {
 
     reactions.push({
       type: "TELEPORTED",
-      message: `You were teleported to ${location.name}`,
+      message: `You are teleported to ${location.name}`,
     });
 
     // The party arrives at the location.
@@ -297,7 +299,7 @@ export const handleEndNpc = (npc, gameState) => {
 
   reactions.push({
     type: "NPC_INTERACTION",
-    message: `You stopped talking with ${npc.name}`,
+    message: `You stop talking with ${npc.name}`,
   });
 
   const newGameState = {
@@ -334,7 +336,7 @@ export const handleMoveCombat = (option, book, gameState) => {
       const item = book.items[itemId];
       reactions.push({
         type: "GET_ITEM_COMBAT",
-        message: `You received ${item.name}`,
+        message: `You receive ${item.name}`,
       });
       inventoryItems.push(itemId);
     });
@@ -353,7 +355,7 @@ export const handleEndCombat = (combatTitle, gameState) => {
 
   reactions.push({
     type: "COMBAT_END",
-    message: `You left combat named: ${combatTitle}`,
+    message: `You leave combat named: ${combatTitle}`,
   });
 
   const newGameState = {
@@ -371,7 +373,7 @@ export const handleStartThing = (thingId, book, gameState) => {
 
   reactions.push({
     type: "THING_INTERACTION",
-    message: `You started interacting with ${thing.name}`,
+    message: `You start interacting with ${thing.name}`,
   });
 
   const newGameState = {
@@ -408,7 +410,7 @@ export const handleInteractThing = (option, book, gameState) => {
       const item = book.items[itemId];
       reactions.push({
         type: "GET_ITEM_THING",
-        message: `You received ${item.name}`,
+        message: `You receive ${item.name}`,
       });
       inventoryItems.push(itemId);
     });
@@ -485,7 +487,7 @@ export const handleEndThing = (thing, gameState) => {
 
   reactions.push({
     type: "THING_INTERACTION",
-    message: `You stopped interacting with ${thing.name}`,
+    message: `You stop interacting with ${thing.name}`,
   });
 
   const newGameState = {
