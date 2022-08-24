@@ -2,12 +2,17 @@ import { App } from "./bm-app/App";
 import { DefaultButton } from "./components/Buttons";
 import "./index.css";
 import { useState, useEffect } from "react";
+import { backgroundImages } from "./images/backgrounds.js";
 
 import pim from "./books/bl_pim.json";
 import maze from "./books/maze.json";
 
 // Disable this boolean if you dont want the startup screen (please do this when testing)
 const doStartScreen = false;
+
+// Set app background for this session
+const backgroundImageUrl =
+  backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
 
 // Determine loading message Div wrapper and make it a function
 function LoadingMessage() {
@@ -60,8 +65,6 @@ export const MainApp = () => {
   });
 
   if (loading && doStartScreen) return <LoadingMessage />;
-
   if (!book) return <ChooseBook setBook={setBook} />;
-
-  return <App book={book} />;
+  return <App book={book} backgroundImageUrl={backgroundImageUrl}/>;
 };

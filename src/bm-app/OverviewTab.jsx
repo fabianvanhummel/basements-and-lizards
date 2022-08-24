@@ -114,31 +114,6 @@ export const OverviewTab = ({ book, gameState }) => {
             </div>
           </div>
         </div>
-
-        <div className="mx-4 bg-violet-50 rounded-lg shadow-md mt-4 py-4 mb-4">
-          <div className="font-sans text-3xl">Wincondition</div>
-          <div>(caution: spoilers)</div>
-          <div className="font-sans text-xl mt-4">
-            <p>Last event is:</p>
-            <p className="text-lg font-bold">{book.finalEvent}</p>
-            <p className="mt-4">Event happens on location:</p>
-            <p className="text-lg font-bold">
-              {Object.values(book.locations)
-                .filter((location) => location.hasOwnProperty("events"))
-                .map((location) =>
-                  location.events.indexOf(book.finalEvent) !== -1
-                    ? location.name
-                    : "",
-                )}
-            </p>
-            <p className="mt-4">Event has requirement(s):</p>
-            <p className="text-lg font-bold">
-              {book.events[book.finalEvent].requirements.map(
-                (requirement) => requirement.id,
-              )}
-            </p>
-          </div>
-        </div>
       </div>
     </div>
   );

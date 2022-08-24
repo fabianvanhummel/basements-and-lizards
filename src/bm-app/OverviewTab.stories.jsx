@@ -1,6 +1,6 @@
 import React from "react";
 import Faker from "faker";
-import maze from "../books/maze.json";
+import maze from "../books/lizardBasement.json";
 import { OverviewTab } from "./OverviewTab";
 
 export default {

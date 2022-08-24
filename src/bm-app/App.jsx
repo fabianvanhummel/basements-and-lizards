@@ -13,7 +13,7 @@ import {
   handleEndCombat,
 } from "../modules/actions";
 
-export const App = ({ book }) => {
+export const App = ({ book, backgroundImageUrl }) => {
   // gameState holds all information as a result of all previous actions
   const [gameState, setGameState] = useState({
     location: book["initialLocation"],
@@ -22,6 +22,7 @@ export const App = ({ book }) => {
     thing: null,
     pastEvents: [],
     inventoryItems: [],
+    gameFinished: false,
   });
 
   // changeLog tracks the changes that are made as a result of the last action
@@ -96,6 +97,7 @@ export const App = ({ book }) => {
       changeLog={changeLog}
       history={history}
       handleAction={handleAction}
+      backgroundImageUrl={backgroundImageUrl}
     />
   );
 };
