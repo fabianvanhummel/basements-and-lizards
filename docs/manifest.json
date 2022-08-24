@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Basements & Lizards",
+  "name": "Basements & Lizards",
+  "homepage": "https://fabianvanhummel.github.io/basements-and-lizards/",
   "icons": [
     {
       "src": "favicon.ico",
