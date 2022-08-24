@@ -1,13 +1,14 @@
 import { App } from "./bm-app/App";
 import { DefaultButton } from "./components/Buttons";
 import "./index.css";
+import "./styles/splashscreen.css";
+import "./styles/background.css";
 import { useState, useEffect } from "react";
 import { backgroundImages } from "./images/backgrounds.js";
 
-import maze from "./books/maze.json";
-import pim from "./books/bl_pim.json"; // Koekje
 import jasper from "./books/goofyGroceries.json";
 import fabby from "./books/lizardBasement.json";
+//import pim from "./books/bl_pim.json"; // Koekje
 
 // Disable this boolean if you dont want the startup screen (please do this when testing)
 const doStartScreen = false;
@@ -29,32 +30,28 @@ function LoadingMessage() {
   );
 }
 
-const bookList = [
-  {
-    name: "Test Maze",
-    book: maze,
-  },
-  {
-    name: "Lost Friend",
-    book: pim,
-  },
-  {
-    name: "Goofy Groceries",
-    book: jasper,
-  },
-  {
-    name: "Lizard Basement",
-    book: fabby,
-  },
-];
+const bookList = [jasper, fabby];
 
 const ChooseBook = ({ setBook }) => (
-  <div>
-    <ul className="p-4">
-      {bookList.map((book, index) => (
-        <li key={book.name} className={index === 0 ? "" : "mt-4"}>
-          <DefaultButton onClick={() => setBook(book.book)}>
-            Play {book.name}
+  <div
+    className="background"
+    style={{
+      backgroundImage: `url(${backgroundImages[0]})`,
+    }}
+  >
+    <ul className="p-4 mx-auto max-w-2xl">
+      <h1 className="text-6xl	italic font-bold text-emerald-700 text-center">
+        Basements & Lizards
+      </h1>
+      {bookList.map((book) => (
+        <li
+          key={book.name}
+          className="mt-6 flex flex-col items-center text-justify	bg-gray-400 rounded-lg p-4"
+        >
+          <h2 className="text-2xl font-semibold">{book.name}</h2>
+          <p>{book.description}</p>
+          <DefaultButton onClick={() => setBook(book)}>
+            Play this story now
           </DefaultButton>
         </li>
       ))}
