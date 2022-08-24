@@ -1,7 +1,7 @@
 {
   "name": "basements-and-lizards",
   "version": "0.1.0",
-  "homepage": "./basements-and-lizards",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.0",
