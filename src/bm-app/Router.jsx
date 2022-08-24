@@ -3,6 +3,7 @@ import { OverviewTab } from "./OverviewTab";
 import { GameTab } from "./GameTab";
 import { InventoryTab } from "./InventoryTab";
 import { HistoryTab } from "./HistoryTab";
+import { FinishTab } from "./FinishTab";
 import { makeInventoryItemList } from "../modules/listFunctions";
 import "../styles/background.css";
 
@@ -50,33 +51,40 @@ export const Router = ({
               </div>
             </div>
 
-            <div className="items-center md:flex">
-              <div className="flex flex-col md:flex-row md:mx-6">
+          <div className="items-center md:flex">
+            <div className="flex flex-col md:flex-row md:mx-6">
+              <Link
+                className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
+                to="/"
+              >
+                Home
+              </Link>
+              <Link
+                className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
+                to="/game"
+              >
+                Game
+              </Link>
+              <Link
+                className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
+                to="/inventory"
+              >
+                Inventory
+              </Link>
+              <Link
+                className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
+                to="/history"
+              >
+                History
+              </Link>
+              {gameState.gameFinished && (
                 <Link
                   className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
-                  to="/"
+                  to="/finish"
                 >
-                  Home
+                  Finish
                 </Link>
-                <Link
-                  className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
-                  to="/game"
-                >
-                  Game
-                </Link>
-                <Link
-                  className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
-                  to="/inventory"
-                >
-                  Inventory
-                </Link>
-                <Link
-                  className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
-                  to="/history"
-                >
-                  History
-                </Link>
-              </div>
+              )}
             </div>
           </div>
         </nav>
@@ -107,15 +115,13 @@ export const Router = ({
               />
             }
           />
+        <Route
+          path="/history"
+          element={<HistoryTab history={history} handleAction={handleAction} />}
+        />
 
-          <Route
-            path="/history"
-            element={
-              <HistoryTab history={history} handleAction={handleAction} />
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-    </div>
-  );
-};
+        <Route path="/finish" element={<FinishTab gameState={gameState} />} />
+      </Routes>
+    </BrowserRouter>
+  </div>
+);
