@@ -1,5 +1,5 @@
 import { App } from "./bm-app/App";
-import maze from "./books/maze.json";
+import maze from "./books/lizardBasement.json";
 import "./index.css";
 import { useState, useEffect } from "react";
 import { backgroundImages } from "./images/backgrounds.js";
