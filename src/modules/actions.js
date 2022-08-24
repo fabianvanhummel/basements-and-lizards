@@ -25,6 +25,11 @@ const doEvents = (eventIds, book, gameState) => {
         revertEventIds.push(...event.revertEvents);
       }
 
+      // Add a bit more here later
+      if(eventId === book.finalEvent) {
+        alert("You have beaten the story, congratulations! You can continue playing and explore the entire story if you so desire, but the main goal has been achieved. Thank you for playing!")
+      }
+
       event.message &&
         reactions.push({ type: "EVENT_HAPPENS", message: event.message });
     });
@@ -93,7 +98,6 @@ export const handleTakeItem = (item, book, gameState) => {
               book.combats[locationCombat.id].title
             }`,
           });
-          combat = locationCombat.id;
           return true;
         }
         return false;
@@ -221,7 +225,7 @@ export const handleTalkNpc = (option, book, gameState) => {
 
   // Handle potential items.
   option.items &&
-    option.items.map((itemId) => {
+    option.items.forEach((itemId) => {
       const item = book.items[itemId];
       reactions.push({
         type: "GET_ITEM_NPC",
@@ -271,7 +275,6 @@ export const handleTalkNpc = (option, book, gameState) => {
               book.combats[locationCombat.id].title
             }`,
           });
-          combat = locationCombat.id;
           return true;
         }
         return false;
@@ -327,7 +330,7 @@ export const handleMoveCombat = (option, book, gameState) => {
 
   // Handle potential items.
   option.items &&
-    option.items.map((itemId) => {
+    option.items.forEach((itemId) => {
       const item = book.items[itemId];
       reactions.push({
         type: "GET_ITEM_COMBAT",
@@ -401,7 +404,7 @@ export const handleInteractThing = (option, book, gameState) => {
 
   // Handle potential items.
   option.items &&
-    option.items.map((itemId) => {
+    option.items.forEach((itemId) => {
       const item = book.items[itemId];
       reactions.push({
         type: "GET_ITEM_THING",
