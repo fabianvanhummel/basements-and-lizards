@@ -83,14 +83,25 @@ export const handleTakeItem = (item, book, gameState) => {
     );
 
     // Check if combat arises at new location.
-    if (location.combat && !gameState.pastCombats.includes(location.combat)) {
-      reactions.push({
-        type: "COMBAT",
-        message: `You enter combat named: ${
-          book.combats[location.combat].title
-        }`,
+    let combat = null;
+
+    location.combat &&
+      location.combat.find((locationCombat) => {
+        if (
+          !locationCombat.requirements ||
+          (locationCombat.requirements &&
+            checkRequirements(gameState, locationCombat.requirements))
+        ) {
+          reactions.push({
+            type: "COMBAT_START",
+            message: `You enter combat named: ${
+              book.combats[locationCombat.id].title
+            }`,
+          });
+          return true;
+        }
+        return false;
       });
-    }
   }
 
   const newGameState = {
@@ -249,14 +260,25 @@ export const handleTalkNpc = (option, book, gameState) => {
     );
 
     // Check if combat arises at new location.
-    if (location.combat && !gameState.pastCombats.includes(location.combat)) {
-      reactions.push({
-        type: "COMBAT",
-        message: `You enter combat named: ${
-          book.combats[location.combat].title
-        }`,
+    let combat = null;
+
+    location.combat &&
+      location.combat.find((locationCombat) => {
+        if (
+          !locationCombat.requirements ||
+          (locationCombat.requirements &&
+            checkRequirements(gameState, locationCombat.requirements))
+        ) {
+          reactions.push({
+            type: "COMBAT_START",
+            message: `You enter combat named: ${
+              book.combats[locationCombat.id].title
+            }`,
+          });
+          return true;
+        }
+        return false;
       });
-    }
   }
 
   const newGameState = {
@@ -391,10 +413,68 @@ export const handleInteractThing = (option, book, gameState) => {
       inventoryItems.push(itemId);
     });
 
+  // Check for a teleport
+  const teleported = !!option.toLocationId;
+  let combat = null; // Potential combat on new location lands here
+  if (teleported) {
+    const location = book.locations[option.toLocationId];
+
+    reactions.push({
+      type: "TELEPORTED",
+      message: `You were teleported to ${location.name}`,
+    });
+
+    // The party arrives at the location.
+    reactions.push({
+      type: "ARRIVE_AT_LOCATION",
+      message: `You arrive at ${location.name}`,
+    });
+
+    // Handle the events that happen at the new location.
+    eventResponse = doEvents(location.events, book, gameState);
+    reactions.push(...eventResponse.reactions);
+    pastEvents.push(...eventResponse.newEventIds);
+    // https://stackoverflow.com/questions/1187518
+    pastEvents = pastEvents.filter(
+      (x) => !eventResponse.revertEventIds.includes(x),
+    );
+
+    // Check if combat arises at new location.
+    const newGameState = {
+      ...gameState,
+      location: teleported ? option.toLocationId : gameState.location,
+      thing: teleported ? null : gameState.thing,
+      inventoryItems,
+      pastEvents,
+    };
+
+    location.combat &&
+      location.combat.find((locationCombat) => {
+        if (
+          !locationCombat.requirements ||
+          (locationCombat.requirements &&
+            checkRequirements(newGameState, locationCombat.requirements))
+        ) {
+          reactions.push({
+            type: "COMBAT_START",
+            message: `You enter combat named: ${
+              book.combats[locationCombat.id].title
+            }`,
+          });
+          combat = locationCombat.id;
+          return true;
+        }
+        return false;
+      });
+  }
+
   const newGameState = {
     ...gameState,
+    location: teleported ? option.toLocationId : gameState.location,
+    thing: teleported ? null : gameState.thing,
     inventoryItems,
     pastEvents,
+    combat: teleported ? combat : gameState.combat,
   };
 
   return { reactions, newGameState };
