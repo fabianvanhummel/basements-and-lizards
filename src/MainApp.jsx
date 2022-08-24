@@ -4,8 +4,10 @@ import "./index.css";
 import { useState, useEffect } from "react";
 import { backgroundImages } from "./images/backgrounds.js";
 
-import pim from "./books/bl_pim.json";
 import maze from "./books/maze.json";
+import pim from "./books/bl_pim.json"; // Koekje
+import jasper from "./books/goofyGroceries.json";
+import fabby from "./books/lizardBasement.json";
 
 // Disable this boolean if you dont want the startup screen (please do this when testing)
 const doStartScreen = false;
@@ -35,6 +37,14 @@ const bookList = [
   {
     name: "Lost Friend",
     book: pim,
+  },
+  {
+    name: "Goofy Groceries",
+    book: jasper,
+  },
+  {
+    name: "Lizard Basement",
+    book: fabby,
   },
 ];
 
@@ -66,5 +76,5 @@ export const MainApp = () => {
 
   if (loading && doStartScreen) return <LoadingMessage />;
   if (!book) return <ChooseBook setBook={setBook} />;
-  return <App book={book} backgroundImageUrl={backgroundImageUrl}/>;
+  return <App book={book} backgroundImageUrl={backgroundImageUrl} />;
 };

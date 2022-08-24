@@ -3620,24 +3620,24 @@
       "description": "A shelve filled with condiments.",
       "options": [
         {
-          "text": "Take guacemole",
-          "response": "You take guacemole.",
-          "events": ["PRODUCT-guacemole"],
+          "text": "Take guacamole",
+          "response": "You take guacamole.",
+          "events": ["PRODUCT-guacamole"],
           "requirements": [
             {
               "type": "EVENT_NOT_HAPPENED",
-              "id": "PRODUCT-guacemole"
+              "id": "PRODUCT-guacamole"
             }
           ]
         },
         {
-          "text": "Return guacemole",
-          "response": "You put the guacemole back in the shelve.",
-          "events": ["return-guacemole"],
+          "text": "Return guacamole",
+          "response": "You put the guacamole back in the shelve.",
+          "events": ["return-guacamole"],
           "requirements": [
             {
               "type": "EVENT_DID_HAPPEN",
-              "id": "PRODUCT-guacemole"
+              "id": "PRODUCT-guacamole"
             }
           ]
         }

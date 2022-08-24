@@ -26,9 +26,12 @@ const doEvents = (eventIds, book, gameState) => {
       }
 
       // Add a bit more here later
-      if(eventId === book.finalEvent) {
-        gameState.gameFinished = true
-        reactions.push({ type: "GAME_FINISHED", message: 'You finish the game!' });
+      if (eventId === book.finalEvent) {
+        gameState.gameFinished = true;
+        reactions.push({
+          type: "GAME_FINISHED",
+          message: "You finish the game!",
+        });
       }
 
       event.message &&
@@ -50,7 +53,7 @@ export const handleTakeItem = (item, book, gameState) => {
   });
 
   eventResponse = doEvents(item.events, book, gameState);
-  gameState = eventResponse.gameState
+  gameState = eventResponse.gameState;
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
   // https://stackoverflow.com/questions/1187518
@@ -77,7 +80,7 @@ export const handleTakeItem = (item, book, gameState) => {
 
     // Handle the events that happen at the new location.
     eventResponse = doEvents(location.events, book, gameState);
-    gameState = eventResponse.gameState
+    gameState = eventResponse.gameState;
     reactions.push(...eventResponse.reactions);
     pastEvents.push(...eventResponse.newEventIds);
     // https://stackoverflow.com/questions/1187518
@@ -86,8 +89,6 @@ export const handleTakeItem = (item, book, gameState) => {
     );
 
     // Check if combat arises at new location.
-    let combat = null;
-
     location.combat &&
       location.combat.find((locationCombat) => {
         if (
@@ -105,7 +106,6 @@ export const handleTakeItem = (item, book, gameState) => {
         }
         return false;
       });
-    }
   }
 
   const newGameState = {
@@ -131,7 +131,7 @@ export const handleTakePath = (path, book, gameState) => {
 
   // Handle the events that happen on the path.
   eventResponse = doEvents(path.events, book, gameState);
-  gameState = eventResponse.gameState
+  gameState = eventResponse.gameState;
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
   // https://stackoverflow.com/questions/1187518
@@ -151,7 +151,7 @@ export const handleTakePath = (path, book, gameState) => {
 
   // Handle the events that happen at the new location.
   eventResponse = doEvents(location.events, book, gameState);
-  gameState = eventResponse.gameState
+  gameState = eventResponse.gameState;
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
   // https://stackoverflow.com/questions/1187518
@@ -222,7 +222,7 @@ export const handleTalkNpc = (option, book, gameState) => {
 
   // Handle the events.
   eventResponse = doEvents(option.events, book, gameState);
-  gameState = eventResponse.gameState
+  gameState = eventResponse.gameState;
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
   // https://stackoverflow.com/questions/1187518
@@ -258,8 +258,8 @@ export const handleTalkNpc = (option, book, gameState) => {
     });
 
     // Handle the events that happen at the new location.
-    eventResponse = doEvents(location.events, book, gameState);  
-    gameState = eventResponse.gameState
+    eventResponse = doEvents(location.events, book, gameState);
+    gameState = eventResponse.gameState;
     reactions.push(...eventResponse.reactions);
     pastEvents.push(...eventResponse.newEventIds);
     // https://stackoverflow.com/questions/1187518
@@ -268,8 +268,6 @@ export const handleTalkNpc = (option, book, gameState) => {
     );
 
     // Check if combat arises at new location.
-    let combat = null;
-
     location.combat &&
       location.combat.find((locationCombat) => {
         if (
@@ -287,7 +285,6 @@ export const handleTalkNpc = (option, book, gameState) => {
         }
         return false;
       });
-    }
   }
 
   const newGameState = {
@@ -330,7 +327,7 @@ export const handleMoveCombat = (option, book, gameState) => {
 
   // Handle the events.
   eventResponse = doEvents(option.events, book, gameState);
-  gameState = eventResponse.gameState
+  gameState = eventResponse.gameState;
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
   // https://stackoverflow.com/questions/1187518
@@ -405,7 +402,7 @@ export const handleInteractThing = (option, book, gameState) => {
 
   // Handle the events.
   eventResponse = doEvents(option.events, book, gameState);
-  gameState = eventResponse.gameState
+  gameState = eventResponse.gameState;
   reactions.push(...eventResponse.reactions);
   pastEvents.push(...eventResponse.newEventIds);
   // https://stackoverflow.com/questions/1187518
