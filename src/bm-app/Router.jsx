@@ -3,6 +3,7 @@ import { OverviewTab } from "./OverviewTab";
 import { GameTab } from "./GameTab";
 import { InventoryTab } from "./InventoryTab";
 import { HistoryTab } from "./HistoryTab";
+import { FinishTab } from "./FinishTab";
 import { makeInventoryItemList } from "../modules/listFunctions";
 
 export const Router = ({
@@ -112,6 +113,8 @@ export const Router = ({
           path="/history"
           element={<HistoryTab history={history} handleAction={handleAction} />}
         />
+
+        <Route path="/finish" element={<FinishTab gameState={gameState} />} />
       </Routes>
     </BrowserRouter>
   </div>

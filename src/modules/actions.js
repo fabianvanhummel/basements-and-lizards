@@ -1,6 +1,5 @@
 import { checkRequirements } from "./requirements";
 import { checkOverride } from "./listFunctions";
-import { goToVictoryWindow } from "./gameEndingFunctions"
 
 const doEvents = (eventIds, book, gameState) => {
   const reactions = [];
@@ -29,7 +28,7 @@ const doEvents = (eventIds, book, gameState) => {
       // Add a bit more here later
       if(eventId === book.finalEvent) {
         gameState.gameFinished = true
-        goToVictoryWindow()
+        reactions.push({ type: "GAME_FINISHED", message: 'You finished the game!' });
       }
 
       event.message &&

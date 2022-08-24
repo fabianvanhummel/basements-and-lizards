@@ -1,7 +1,6 @@
-import { useNavigate } from "react-router-dom";
 
-export function goToVictoryWindow() {
-  const navigate = useNavigate();
+
+export function goToVictoryWindow(navigate) {
 
   navigate('/finish');
 }
