@@ -29,7 +29,7 @@ export const Router = ({
               <div>
                 <h1
                   className="text-2xl font-bold text-gray-800 dark:text-white lg:text-3xl"
-                  to="/"
+                  to=""
                 >
                   Basements & Lizards
                 </h1>
@@ -55,32 +55,32 @@ export const Router = ({
               <div className="flex flex-col md:flex-row md:mx-6">
                 <Link
                   className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
-                  to="/"
+                  to="/basements-and-lizards"
                 >
                   Home
                 </Link>
                 <Link
                   className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
-                  to="/game"
+                  to="/basements-and-lizards/game"
                 >
                   Game
                 </Link>
                 <Link
                   className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
-                  to="/inventory"
+                  to="/basements-and-lizards/inventory"
                 >
                   Inventory
                 </Link>
                 <Link
                   className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
-                  to="/history"
+                  to="/basements-and-lizards/history"
                 >
                   History
                 </Link>
                 {gameState.gameFinished && (
                   <Link
                     className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
-                    to="/finish"
+                    to="/basements-and-lizards/finis/"
                   >
                     Finish
                   </Link>
