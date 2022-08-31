@@ -29,7 +29,7 @@ export const Router = ({
               <div>
                 <h1
                   className="text-2xl font-bold text-gray-800 dark:text-white lg:text-3xl"
-                  to=""
+                  to="/"
                 >
                   Basements & Lizards
                 </h1>
@@ -55,32 +55,32 @@ export const Router = ({
               <div className="flex flex-col md:flex-row md:mx-6">
                 <Link
                   className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
-                  to="/basements-and-lizards"
+                  to="/"
                 >
                   Home
                 </Link>
                 <Link
                   className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
-                  to="/basements-and-lizards/game"
+                  to="/game"
                 >
                   Game
                 </Link>
                 <Link
                   className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
-                  to="/basements-and-lizards/inventory"
+                  to="/inventory"
                 >
                   Inventory
                 </Link>
                 <Link
                   className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
-                  to="/basements-and-lizards/history"
+                  to="/history"
                 >
                   History
                 </Link>
                 {gameState.gameFinished && (
                   <Link
                     className="my-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
-                    to="/basements-and-lizards/finish/"
+                    to="/finish"
                   >
                     Finish
                   </Link>
@@ -92,12 +92,12 @@ export const Router = ({
 
         <Routes>
           <Route
-            path="/basements-and-lizards/"
+            path="/"
             element={<OverviewTab book={book} gameState={gameState} />}
           />
 
           <Route
-            path="/basements-and-lizards/game"
+            path="/game"
             element={
               <GameTab
                 book={book}
@@ -109,7 +109,7 @@ export const Router = ({
           />
 
           <Route
-            path="/basements-and-lizards/inventory"
+            path="/inventory"
             element={
               <InventoryTab
                 inventoryItems={makeInventoryItemList(book, gameState)}
@@ -117,16 +117,13 @@ export const Router = ({
             }
           />
           <Route
-            path="/basements-and-lizards/history"
+            path="/history"
             element={
               <HistoryTab history={history} handleAction={handleAction} />
             }
           />
 
-          <Route
-            path="/basements-and-lizards/finish"
-            element={<FinishTab gameState={gameState} />}
-          />
+          <Route path="/finish" element={<FinishTab gameState={gameState} />} />
         </Routes>
       </BrowserRouter>
     </div>
