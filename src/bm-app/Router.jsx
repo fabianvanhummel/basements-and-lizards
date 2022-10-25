@@ -97,6 +97,11 @@ export const Router = ({
           />
 
           <Route
+            path="/basements-and-lizards"
+            element={<OverviewTab book={book} gameState={gameState} />}
+          />
+
+          <Route
             path="/basements-and-lizards/game"
             element={
               <GameTab
