@@ -12,7 +12,7 @@ import fabby from "./books/lizardBasement.json";
 import pim from "./books/bl_pim.json"; // Koekje
 
 // Disable this boolean if you dont want the startup screen (please do this when testing)
-const doStartScreen = false;
+const doStartScreen = true;
 
 // Set app background for this session
 const backgroundImageUrl =
