@@ -24,7 +24,7 @@ function LoadingMessage() {
     <div className="fade-in-out-5s background-gradient h-screen w-screen">
       <div className="h-screen flex bg-no-repeat bg-contain bg-center fade-in-out-5s dlimage">
         <div className="text-6xl font-serif italic text-green-200 w-screen text-center mt-32">
-          Welcome to Dungeons and Lizards
+          Welcome to Basements & Lizards
         </div>
       </div>
     </div>
