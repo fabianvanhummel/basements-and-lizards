@@ -93,7 +93,7 @@ export const Router = ({
                 <Link
                   onClick={() => setMenuOpen(false)}
                   className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
-                  to="/basements-and-lizards"
+                  to="/basements-and-lizards/"
                 >
                   Home
                 </Link>
@@ -139,7 +139,7 @@ export const Router = ({
           />
 
           <Route
-            path="/basements-and-lizards"
+            path="/basements-and-lizards/"
             element={<OverviewTab book={book} gameState={gameState} />}
           />
 
