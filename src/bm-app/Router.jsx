@@ -36,7 +36,7 @@ export const Router = ({
                 </h1>
               </div>
 
-              <div className="flex lg:hidden">
+              <div className="flex md:hidden">
                 <button
                   onClick={() => setMenuOpen(!isMenuOpen)}
                   type="button"
@@ -85,30 +85,34 @@ export const Router = ({
                 "absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center",
                 {
                   "translate-x-0 opacity-100": isMenuOpen,
-                  "opacity-0 -translate-x-full": !isMenuOpen,
+                  "hidden -translate-x-full": !isMenuOpen,
                 },
               )}
             >
               <div className="flex flex-col md:flex-row md:mx-6">
                 <Link
+                  onClick={() => setMenuOpen(false)}
                   className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
                   to="/basements-and-lizards"
                 >
                   Home
                 </Link>
                 <Link
+                  onClick={() => setMenuOpen(false)}
                   className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
                   to="/basements-and-lizards/game"
                 >
                   Game
                 </Link>
                 <Link
+                  onClick={() => setMenuOpen(false)}
                   className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
                   to="/basements-and-lizards/inventory"
                 >
                   Inventory
                 </Link>
                 <Link
+                  onClick={() => setMenuOpen(false)}
                   className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
                   to="/basements-and-lizards/history"
                 >
@@ -116,6 +120,7 @@ export const Router = ({
                 </Link>
                 {gameState.gameFinished && (
                   <Link
+                    onClick={() => setMenuOpen(false)}
                     className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
                     to="/basements-and-lizards/finish"
                   >
