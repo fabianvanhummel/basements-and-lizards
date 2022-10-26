@@ -1,0 +1,25 @@
+name: Auto Assign Project(s) and Assignees
+
+on:
+  issues:
+    types: opened
+  pull_request:
+    types: opened
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  assign_one_project:
+    runs-on: ubuntu-latest
+    name: Assign to Project and PR Assignee
+    steps:
+      - name: Assign NEW issues to project 1
+        uses: srggrs/assign-one-project-github-action@1.2.1
+        if: github.event_name == 'issues' && github.event.action == 'opened'
+        with:
+          project: "https://github.com/fabianvanhummel/basements-and-lizards/projects/1"
+      - name: Assign creator as Assignee to NEW pull requests
+        uses: kentaro-m/auto-assign-action@v1.2.0
+        if: github.event_name == 'pull_request' && github.event.action == 'opened'
+        with:
+          configuration-path: ".github/autoAssignmentConfig.yml" # Only needed if you use something other than .github/auto_assign.yml

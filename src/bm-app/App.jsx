@@ -1,0 +1,103 @@
+import { useState } from "react";
+import { Router } from "./Router";
+import {
+  handleTakeItem,
+  handleTakePath,
+  handleStartNpc,
+  handleEndNpc,
+  handleTalkNpc,
+  handleStartThing,
+  handleEndThing,
+  handleInteractThing,
+  handleMoveCombat,
+  handleEndCombat,
+} from "../modules/actions";
+
+export const App = ({ book, backgroundImageUrl }) => {
+  // gameState holds all information as a result of all previous actions
+  const [gameState, setGameState] = useState({
+    location: book["initialLocation"],
+    npc: null,
+    combat: null,
+    thing: null,
+    pastEvents: [],
+    inventoryItems: [],
+    gameFinished: false,
+  });
+
+  // changeLog tracks the changes that are made as a result of the last action
+  const [changeLog, setChangeLog] = useState({
+    action: { type: "START_STORY" },
+    reactions: [],
+  });
+
+  // history stores the gameState and changeLog after each action
+  // this can be used to go back in time or help with showing what happened
+  const [history, setHistory] = useState([{ gameState, changeLog }]);
+
+  const handleAction = (action) => {
+    // Maps the action to the right function.
+    // This way, we only have to pass one prop to handle all changes.
+
+    const applyAction = (response) => {
+      const reactions = response.reactions;
+      setGameState(response.newGameState);
+      setChangeLog({ action, reactions });
+      setHistory([
+        ...history,
+        { gameState: response.newGameState, changeLog: { action, reactions } },
+      ]);
+    };
+
+    switch (action.type) {
+      case "TAKE_ITEM":
+        applyAction(handleTakeItem(action.item, book, gameState));
+        break;
+      case "TAKE_PATH":
+        applyAction(handleTakePath(action.path, book, gameState));
+        break;
+      case "START_NPC":
+        applyAction(handleStartNpc(action.npcId, book, gameState));
+        break;
+      case "TALK_NPC":
+        applyAction(handleTalkNpc(action.option, book, gameState));
+        break;
+      case "END_NPC":
+        applyAction(handleEndNpc(action.npc, gameState));
+        break;
+      case "START_THING":
+        applyAction(handleStartThing(action.thingId, book, gameState));
+        break;
+      case "INTERACT_THING":
+        applyAction(handleInteractThing(action.option, book, gameState));
+        break;
+      case "END_THING":
+        applyAction(handleEndThing(action.thing, gameState));
+        break;
+      case "MOVE_COMBAT":
+        applyAction(handleMoveCombat(action.option, book, gameState));
+        break;
+      case "END_COMBAT":
+        applyAction(handleEndCombat(action.combatTitle, gameState));
+        break;
+      case "BACK_IN_TIME":
+        setHistory(history.slice(0, history.length - action.steps));
+        setGameState(history[history.length - (action.steps + 1)].gameState);
+        setChangeLog(history[history.length - (action.steps + 1)].changeLog);
+        break;
+      default:
+        break;
+    }
+  };
+
+  return (
+    <Router
+      book={book}
+      gameState={gameState}
+      changeLog={changeLog}
+      history={history}
+      handleAction={handleAction}
+      backgroundImageUrl={backgroundImageUrl}
+    />
+  );
+};

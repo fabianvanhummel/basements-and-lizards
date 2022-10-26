@@ -1,0 +1,52 @@
+import { ElementList, ElementHeader } from "../components/Elements";
+
+export const Location = ({
+  name,
+  description,
+  items,
+  npcs,
+  things,
+  paths,
+  handleAction,
+}) => {
+  return (
+    <div className="max-w-2xl px-8 py-4 mx-auto bg-green-50 rounded-lg shadow-md dark:bg-gray-800">
+      <ElementHeader title={name} tag="Location" color="green" />
+
+      <p className="mt-2 text-gray-600 dark:text-gray-300 whitespace-pre-wrap">
+        {description}
+      </p>
+
+      {items &&
+        items.length > 0 && ( // This is needed to not render items when they are all picked up
+          <ElementList
+            type="Items"
+            elements={items}
+            handleAction={handleAction}
+          />
+        )}
+
+      {npcs && (
+        <ElementList type="Npcs" elements={npcs} handleAction={handleAction} />
+      )}
+
+      {things && (
+        <ElementList
+          type="Things"
+          elements={things}
+          handleAction={handleAction}
+        />
+      )}
+
+      {paths && (
+        <ElementList
+          type="Paths"
+          elements={paths}
+          handleAction={handleAction}
+        />
+      )}
+    </div>
+  );
+};
+
+export default Location;

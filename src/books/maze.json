@@ -1,0 +1,708 @@
+{
+  "name": "Maze",
+  "description": "A simple maze generator from https://donjon.bin.sh/. The goal is to get from room number 1 to 7.",
+  "initialLocation": "1",
+  "finalEvent": "game-end",
+  "locations": {
+    "1": {
+      "name": "Room number 1",
+      "description": "This is a default description of room number 1",
+      "paths": [
+        {
+          "toLocationId": "2",
+          "name": "Big door",
+          "description": "Very BIG door",
+          "requirements": [],
+          "events": ["dummy-path-event"]
+        },
+        {
+          "toLocationId": "2",
+          "name": "Test silent Event",
+          "description": "This path triggers an event that shouldn't show itself",
+          "events": ["test-silent-event"]
+        },
+        {
+          "toLocationId": "test-thing-room",
+          "name": "Door to thing",
+          "description": "Follow this path to test the thing"
+        },
+        {
+          "toLocationId": "portal-chamber",
+          "name": "Blue portal",
+          "description": "A large blue portal"
+        },
+        {
+          "toLocationId": "test-override-room",
+          "name": "Door to override",
+          "description": "Follow this path to test the override"
+        },
+        {
+          "toLocationId": "test-combat-room",
+          "name": "Door to combat",
+          "description": "Follow this path to test combat"
+        }
+      ],
+      "items": [
+        {
+          "id": "teleport-test-item",
+          "toLocationId": "7"
+        }
+      ],
+      "hint": "This is the start of the maze. If you end up here, you are probably not doing the right thing. Try going to location 2 first.",
+      "npcs": [{ "id": "test-teleport-npc" }],
+      "override": [
+        {
+          "byLocationId": "1-override",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "test-override-event" }
+          ]
+        }
+      ]
+    },
+    "test-thing-room": {
+      "name": "Thing Room",
+      "description": "There's a thing is this room",
+      "paths": [
+        {
+          "toLocationId": "1",
+          "name": "Passage",
+          "description": "To room 1!",
+          "requirements": []
+        }
+      ],
+      "items": [
+        {
+          "id": "thing-activate-item",
+          "events": ["thing-activate-event"]
+        }
+      ],
+      "things": [
+        {
+          "id": "test-thing",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "thing-activate-event" }
+          ]
+        }
+      ]
+    },
+    "test-combat-room": {
+      "name": "Combat Room",
+      "description": "There's a combat is this room, so you'll only see this room after you resolved the combat",
+      "combat": [
+        {
+          "id": "1",
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved-combat-1" }
+          ]
+        }
+      ],
+      "paths": [
+        {
+          "toLocationId": "1",
+          "name": "Hallway",
+          "description": "To room 1!",
+          "requirements": []
+        }
+      ]
+    },
+    "1-override": {
+      "name": "Room number 1 (override)",
+      "description": "This is a overridden description of room number 1",
+      "paths": [
+        {
+          "toLocationId": "2",
+          "name": "Big door",
+          "description": "Very BIG door",
+          "requirements": []
+        },
+        {
+          "toLocationId": "portal-chamber",
+          "name": "Blue portal",
+          "description": "A large blue portal"
+        }
+      ]
+    },
+    "test-override-room": {
+      "name": "Test override room",
+      "description": "The event on this room should trigger a change in description in room 1.",
+      "events": ["test-override-event"],
+      "paths": [
+        {
+          "toLocationId": "1",
+          "name": "Back",
+          "description": "Go back to room 1"
+        }
+      ]
+    },
+    "2": {
+      "name": "Room number 2",
+      "description": "This is a description of room number 2",
+      "paths": [
+        {
+          "toLocationId": "1",
+          "name": "Big door",
+          "description": "Very BIG door"
+        },
+        {
+          "toLocationId": "4",
+          "name": "Old wooden door",
+          "description": "This door seems like it has seen better days",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "open-old-wooden-door-4" }
+          ]
+        },
+        {
+          "toLocationId": "4",
+          "name": "New wooden door",
+          "description": "This door seems newer than it's neighbour",
+          "requirements": [
+            { "type": "ITEM_IN_INVENTORY", "id": "new-metal-key" }
+          ]
+        },
+        {
+          "toLocationId": "4",
+          "name": "Hallway",
+          "description": "A narrow hallway, infested with snake eating spiders"
+        },
+        {
+          "toLocationId": "4",
+          "name": "Ventilation shaft",
+          "description": "It looks very dusty",
+          "requirements": [
+            { "type": "ITEM_IN_INVENTORY", "id": "black-mouth-mask" }
+          ]
+        }
+      ],
+      "items": [
+        {
+          "id": "old-metal-key",
+          "events": ["open-old-wooden-door-4", "block-npc-test"]
+        },
+        {
+          "id": "new-metal-key"
+        },
+        {
+          "id": "random-shiny-coin",
+          "requirements": [
+            { "type": "ITEM_IN_INVENTORY", "id": "new-metal-key" }
+          ]
+        }
+      ],
+      "npcs": [
+        {
+          "id": "tour-guide",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "block-npc-test" }
+          ]
+        }
+      ],
+      "hint": "There is an NPC in this room, but he won't show up without the proper preparations."
+    },
+    "3": {
+      "name": "Room number 3",
+      "description": "This is a description of room number 3",
+      "paths": [
+        {
+          "toLocationId": "4",
+          "name": "Passage",
+          "description": "Hard to go through for crabbies"
+        },
+        {
+          "toLocationId": "5",
+          "name": "Door",
+          "description": "Shiny metal doorway"
+        },
+        {
+          "toLocationId": "portal-chamber",
+          "name": "Blue Portal",
+          "description": "A sizeable portal, with a whirling blue color"
+        }
+      ],
+      "events": ["open-location-7"],
+      "items": [
+        {
+          "id": "black-mouth-mask"
+        }
+      ]
+    },
+    "4": {
+      "name": "Room number 4",
+      "description": "This is a description of room number 4",
+      "paths": [
+        {
+          "toLocationId": "2",
+          "name": "Hallway",
+          "description": "A narrow hallway, infested with snake eating spiders"
+        },
+        {
+          "toLocationId": "2",
+          "name": "Old wooden door",
+          "description": "This door seems like it has seen better days",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "open-old-wooden-door-4" }
+          ]
+        },
+        {
+          "toLocationId": "3",
+          "name": "Passage",
+          "description": "Hard to go through for crabbies"
+        },
+        {
+          "toLocationId": "7",
+          "name": "THE door",
+          "description": "A very pretty door with glass and gold, you really want to go through!",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "open-location-7" },
+            { "type": "EVENT_DID_HAPPEN", "id": "open-location-7-2" }
+          ]
+        }
+      ]
+    },
+    "5": {
+      "name": "Room number 5",
+      "description": "This is a description of room number 5",
+      "paths": [
+        {
+          "toLocationId": "3",
+          "name": "Door",
+          "description": "Shiny metal doorway"
+        },
+        {
+          "toLocationId": "6",
+          "name": "Stacked stones",
+          "description": "There is a stack of stones, when peering through you see another room",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "open-location-6" }
+          ]
+        }
+      ],
+      "events": ["open-location-7-2"]
+    },
+    "6": {
+      "name": "Room number 6",
+      "description": "This is a description of room number 6",
+      "paths": [
+        {
+          "toLocationId": "5",
+          "name": "Stacked stones",
+          "description": "It looks like you could relatively easily move some stones to enter another room"
+        },
+        {
+          "toLocationId": "7",
+          "name": "Window",
+          "description": "A medium-sized open window",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "open-location-7" },
+            { "type": "EVENT_DID_HAPPEN", "id": "open-location-7-2" }
+          ]
+        }
+      ],
+      "combat": [
+        {
+          "id": "1",
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved-combat-1" }
+          ]
+        }
+      ]
+    },
+    "7": {
+      "name": "Room number 7",
+      "description": "This is a description of room number 7, you win!",
+      "paths": [
+        {
+          "toLocationId": "4",
+          "name": "THE door",
+          "description": "Why leave, you just got here!?"
+        },
+        {
+          "toLocationId": "6",
+          "name": "Window",
+          "description": "A medium-sized open window",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "open-location-6" }
+          ]
+        }
+      ],
+      "events": ["open-location-6", "game-end"]
+    },
+    "portal-chamber": {
+      "name": "Portal chamber",
+      "description": "You see four portal stations, blue, green, red, and yellow. The yellow one isn't working, but the other three are. You also notice a writing on the wall: 'Follow the Ridiculously Gorgeous and Greatly Rusty Radish.'",
+      "paths": [
+        {
+          "toLocationId": "3",
+          "name": "Blue Portal"
+        },
+        {
+          "toLocationId": "portal-chamber",
+          "name": "Red Portal",
+          "events": [
+            "portal-puzzel-step-1",
+            "portal-puzzel-step-2-fail",
+            "portal-puzzel-step-3-fail",
+            "portal-puzzel-step-4",
+            "portal-puzzel-step-5"
+          ]
+        },
+        {
+          "toLocationId": "portal-chamber",
+          "name": "Green Portal",
+          "events": [
+            "portal-puzzel-step-1-fail",
+            "portal-puzzel-step-2",
+            "portal-puzzel-step-3",
+            "portal-puzzel-step-4-fail",
+            "portal-puzzel-step-5-fail"
+          ]
+        },
+        {
+          "toLocationId": "3",
+          "name": "Yellow Portal",
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-5" }
+          ]
+        }
+      ]
+    }
+  },
+  "items": {
+    "old-metal-key": {
+      "name": "Old Metal Key",
+      "description": "This key can be used to open the old wooden door"
+    },
+    "thing-activate-item": {
+      "name": "Thing activate item",
+      "description": "Picking this item up activated thing"
+    },
+    "thing-rock": {
+      "name": "Thing rock",
+      "description": "A rock that was formed from a thing"
+    },
+    "new-metal-key": {
+      "name": "New Metal Key",
+      "description": "Having this key opens the new wooden door"
+    },
+    "black-mouth-mask": {
+      "name": "Black Mouth Mask",
+      "description": "A black mouth mask that can be worn on your face"
+    },
+    "random-shiny-coin": {
+      "name": "Shiny Coin",
+      "description": "It does nothing, but you are still happy you found it."
+    },
+    "random-cool-necklace": {
+      "name": "Cool Necklace",
+      "description": "A cool goblin smelling necklace, nice!"
+    },
+    "random-crappy-ring": {
+      "name": "Crappy ring",
+      "description": "After inspecting this ring, you notice it is completely worthless, you are slightly dissapointed"
+    },
+    "teleport-test-item": {
+      "name": "Teleport test item",
+      "description": "If you pick-up this item, you'll be teleported"
+    }
+  },
+  "npcs": {
+    "tour-guide": {
+      "name": "Tour Guide",
+      "description": "This guy seems he might know the way around town, and the maze",
+      "options": [
+        {
+          "text": "Where do I go?",
+          "response": "You are in a maze. I know that this maze has at least 7 rooms. Some pathways are easily accesable, other are more difficult to enter. If you manage to reach room 7 you might find an exit."
+        },
+        {
+          "text": "Is this ring useful?",
+          "response": "No.",
+          "requirements": [
+            { "type": "ITEM_IN_INVENTORY", "id": "random-crappy-ring" }
+          ]
+        },
+        {
+          "text": "Do something cool!",
+          "response": "Okay.",
+          "events": ["make-it-rain"],
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "make-it-rain" }
+          ]
+        },
+        {
+          "text": "Give me something plz",
+          "response": "Mkay.",
+          "items": ["random-crappy-ring"]
+        }
+      ],
+      "hint": "This NPC can give the party an item or make it rain in the maze. This is required for something I don't really know this story very well."
+    },
+    "test-teleport-npc": {
+      "name": "Test Teleport NPC",
+      "description": "This sorceress seems capable of some interesting magic.",
+      "options": [
+        {
+          "text": "Can you teleport me to 5?",
+          "response": "Of course.",
+          "toLocationId": "5"
+        }
+      ]
+    }
+  },
+  "things": {
+    "test-thing": {
+      "name": "Test Thing",
+      "description": "This thing does things",
+      "options": [
+        {
+          "text": "Smell it",
+          "response": "It doesn't smell like anything"
+        },
+        {
+          "text": "Poke it",
+          "response": "It feels very cold",
+          "events": ["poke-1"],
+          "requirements": [{ "type": "EVENT_NOT_HAPPENED", "id": "poke-1" }]
+        },
+        {
+          "text": "Poke it again",
+          "response": "The thing starts to glow and turns into a rock",
+          "events": ["poke-2"],
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "poke-1" },
+            { "type": "EVENT_NOT_HAPPENED", "id": "poke-2" }
+          ]
+        },
+        {
+          "text": "Pick up rock",
+          "response": "You pick up the rock.",
+          "items": ["thing-rock"],
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "poke-2" },
+            { "type": "ITEM_NOT_IN_INVENTORY", "id": "thing-rock" }
+          ]
+        }
+      ],
+      "hint": "This Thing can be touched, it doesn't really like it though."
+    }
+  },
+  "events": {
+    "block-npc-test": {
+      "name": "NPC unblock",
+      "message": "NPC is nu zichtbaar"
+    },
+    "test-silent-event": {
+      "name": "Silent event test!"
+    },
+    "poke-1": {
+      "name": "Poke1",
+      "message": "Something feels off"
+    },
+    "poke-2": {
+      "name": "Poke2",
+      "message": "A rock was formed!"
+    },
+    "thing-activate-event": {
+      "name": "Thing unblock",
+      "message": "Thing is nu zichtbaar"
+    },
+    "resolved-combat-1": {
+      "name": "Resolved Combat 1",
+      "message": "Combat 1 was resolved"
+    },
+    "dummy-path-event": {
+      "name": "Dummy Path Event",
+      "message": "Ik doe niks!"
+    },
+    "test-override-event": {
+      "name": "Room 1 changed",
+      "message": "Because you entered this room, the description of room 1 changed."
+    },
+    "portal-puzzel-step-1": {
+      "name": "Step 1",
+      "message": "You are send back to the middle of the room, but the yellow portal station, something starts to glow."
+    },
+    "portal-puzzel-step-1-fail": {
+      "name": "Step 1",
+      "requirements": [
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-1" }
+      ],
+      "revertEvents": ["portal-puzzel-step-1-fail"],
+      "message": "Nothing interesting happened."
+    },
+    "portal-puzzel-step-2": {
+      "name": "Step 2",
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-1" }
+      ],
+      "message": "Send back again, but the glow starts to increase in size and brightness."
+    },
+    "portal-puzzel-step-2-fail": {
+      "name": "Step 2",
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-1" },
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-2" }
+      ],
+      "revertEvents": ["portal-puzzel-step-1", "portal-puzzel-step-2-fail"],
+      "message": "The glow that was there a second ago disappeared again."
+    },
+    "portal-puzzel-step-3": {
+      "name": "Step 3",
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-2" }
+      ],
+      "message": "The glow grows again, it starts to look like a portal, but too small."
+    },
+    "portal-puzzel-step-3-fail": {
+      "name": "Step 3",
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-2" },
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-3" }
+      ],
+      "revertEvents": [
+        "portal-puzzel-step-1",
+        "portal-puzzel-step-2",
+        "portal-puzzel-step-3-fail"
+      ],
+      "message": "The glow that was growing has now disappeared."
+    },
+    "portal-puzzel-step-4": {
+      "name": "Step 4",
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-3" }
+      ],
+      "message": "The portal size increases again, but isn't as large as the other portals yet."
+    },
+    "portal-puzzel-step-4-fail": {
+      "name": "Step 4",
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-3" },
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-4" }
+      ],
+      "revertEvents": [
+        "portal-puzzel-step-1",
+        "portal-puzzel-step-2",
+        "portal-puzzel-step-3",
+        "portal-puzzel-step-4-fail"
+      ],
+      "message": "The small portal grows smaller and then disappears leaving some shiny particles that dim slowly until they're gone."
+    },
+    "portal-puzzel-step-5": {
+      "name": "Step 5",
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-4" }
+      ],
+      "message": "The yellow portal now has a normal size, you can probably use it now."
+    },
+    "portal-puzzel-step-5-fail": {
+      "name": "Step 5",
+      "requirements": [
+        { "type": "EVENT_DID_HAPPEN", "id": "portal-puzzel-step-4" },
+        { "type": "EVENT_NOT_HAPPENED", "id": "portal-puzzel-step-5" }
+      ],
+      "revertEvents": [
+        "portal-puzzel-step-1",
+        "portal-puzzel-step-2",
+        "portal-puzzel-step-3",
+        "portal-puzzel-step-4",
+        "portal-puzzel-step-5-fail"
+      ],
+      "message": "The portal starts to pulsate faster and faster until it explodes leaving an empty portal station once again."
+    },
+    "open-location-6": {
+      "name": "Unlock room 6",
+      "description": "Clears the way to room 6",
+      "message": "Room 6 has opened!"
+    },
+    "open-location-7": {
+      "name": "Open Location 7 Lock",
+      "description": "This opens a locking mechanism of THE door",
+      "message": "You hear a loud BANG!"
+    },
+    "open-location-7-2": {
+      "name": "Open Location 7 Lock",
+      "description": "This opens a lock on THE door",
+      "message": "Room 7 has opened!"
+    },
+    "open-old-wooden-door-4": {
+      "name": "Open old wooden door",
+      "description": "Use the key to open the old wooden door",
+      "message": "Old wooden door has opened!"
+    },
+    "make-it-rain": {
+      "name": "Make it rain",
+      "description": "This will make it rain!",
+      "message": "It is now raining"
+    },
+    "game-end": {
+      "name": "You won!",
+      "description": "You have reached the ending, congrats!",
+      "message": "The game is now over, you can reload the page.",
+      "requirements": [
+        { "type": "ITEM_IN_INVENTORY", "id": "random-shiny-coin" }
+      ]
+    }
+  },
+  "combats": {
+    "1": {
+      "title": "Goblin ambush",
+      "description": "A party of goblins ambushes you from the dark corners of the room. There are two goblin assassins and one goblin chief who charge at you while the chief yells 'gib me all da treasure!!'.",
+      "hint": "Goblins are fast, nimble but also quite fragile and scare easily.",
+      "options": [
+        {
+          "text": "Attack!",
+          "response": "You go guns blazing and defeat those noobs.",
+          "events": ["resolved-combat-1"],
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved-combat-1" }
+          ]
+        },
+        {
+          "text": "Defend",
+          "response": "The goblins come charging in, you stand your ground and defeat them.",
+          "events": ["resolved-combat-1"],
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved-combat-1" }
+          ]
+        },
+        {
+          "text": "Loot",
+          "response": "You loot the corpses, finding a cool necklace",
+          "items": ["random-cool-necklace"],
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "resolved-combat-1" },
+            { "type": "ITEM_NOT_IN_INVENTORY", "id": "random-cool-necklace" }
+          ]
+        }
+      ]
+    }
+  },
+  "characters": [
+    {
+      "id": 1,
+      "image": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Mr._Krabs.svg/1200px-Mr._Krabs.svg.png",
+      "name": "Arnoud Krabbius",
+      "race": "Half-Orc",
+      "title": "The Barbarian",
+      "description": "Arnoud is a big, muscular half-orc. He loves fighting, using his gigantic two handed broad axe. Although he is an impressive combatant, he is easily tricked when facing witty enemies.",
+      "backstory": "Arnoud grew up in Arnhem, where 'Messentrekken' was a common move on the streets. This way he learned to always be ready for a fight."
+    },
+    {
+      "id": 2,
+      "image": "http://pngimg.com/uploads/donut/donut_PNG93.png",
+      "name": "Joey Feed'r",
+      "race": "Human",
+      "title": "Longshot Lackey",
+      "description": "He can throw a frikadel like no other.",
+      "backstory": "Joey has always enjoyed food, and prefers to have breakfast that isn't particulary healthy. This passion for food gave him exceptional abilities when preparing future meals. He can throw any fast food with great power and accuracy."
+    },
+    {
+      "id": 3,
+      "image": "http://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/75f250c2c5c4c55.png",
+      "name": "Spincent",
+      "race": "Arachnid",
+      "title": "The Scary Spider",
+      "description": "Big, Hairy, nasty.",
+      "backstory": "After an unfortunate event Spincent grew extra legs, at first this seemed like a disadvantage, but soon he evolved. This turned him into a spider who has the size and strength of a human."
+    }
+  ]
+}

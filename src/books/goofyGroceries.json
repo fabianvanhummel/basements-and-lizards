@@ -1,0 +1,4391 @@
+{
+  "name": "Goofy Groceries",
+  "description": "A group of friends has been travelling through Ireland for several days now. They've had a blast so far. Days were spent sightseeing or enjoying nature. Nights were filled with drinking, games and bars. No one has seen actual vegetables in a while, because dinner has consisted of burgers, fries and pizza. Tonight the group has decided to eat healthy for a change, part of the group is sent to the supermarket to do groceries. You are burdened with this great responsibility, good luck!",
+  "initialLocation": "parking-lot-init",
+  "finalEvent": "game-end",
+  "locations": {
+    "parking-lot-init": {
+      "name": "Parking Lot",
+      "description": "You arrived at the parking lot of the Goofy Groceries market, time to get food!",
+      "paths": [
+        {
+          "toLocationId": "entrance",
+          "name": "Entrance",
+          "description": "Enter Goofy Groceries",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "had-start-phonecall"
+            }
+          ],
+          "events": ["go-to-entrance-init", "mobile-phone-battery-dies"]
+        }
+      ],
+      "npcs": [
+        {
+          "id": "friend-start-phonecall",
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "had-start-phonecall"
+            }
+          ]
+        }
+      ],
+      "override": [
+        {
+          "byLocationId": "parking-lot",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "go-to-entrance-init"
+            }
+          ]
+        }
+      ],
+      "hint": "This is the starting point of this story. Check the home tab for more information and background. Have fun!"
+    },
+    "parking-lot": {
+      "name": "Parking Lot",
+      "description": "This is the parking lot of Goofy Groceries, a great supermarket!",
+      "paths": [
+        {
+          "toLocationId": "entrance",
+          "name": "Entrance",
+          "description": "Enter Goofy Groceries"
+        },
+        {
+          "toLocationId": "home",
+          "name": "Home",
+          "description": "Use the car to drive home"
+        }
+      ],
+      "things": [
+        {
+          "id": "parking-lot-coin",
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "parking-lot-coin-grabbed"
+            }
+          ]
+        }
+      ],
+      "hint": "This is the starting area of this story. Check the home tab for more information and background. Have fun!"
+    },
+    "entrance": {
+      "name": "Entrance",
+      "description": "You are at the entrance of goofy groceries",
+      "paths": [
+        {
+          "toLocationId": "main-aisle-1",
+          "name": "Main Aisle 1",
+          "description": "This leads to one of the main store aisles"
+        },
+        {
+          "toLocationId": "fruits",
+          "name": "Fruits",
+          "description": "A narrow path which leads to the fruit department"
+        }
+      ],
+      "things": [
+        {
+          "id": "entrance-recipe-stand"
+        },
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
+      ],
+      "items": [
+        {
+          "id": "shopping-basket",
+          "events": [
+            "shopping-cart-coin-pickup",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
+          ]
+        }
+      ]
+    },
+    "fruits": {
+      "name": "Fruits",
+      "description": "Fruits department",
+      "paths": [
+        {
+          "toLocationId": "entrance",
+          "name": "Entrance",
+          "description": "Narrow path leading to the store entrance"
+        },
+        {
+          "toLocationId": "main-aisle-1",
+          "name": "Main Aisle 1",
+          "description": "This leads to one of the main store aisles"
+        },
+        {
+          "toLocationId": "vegetables",
+          "name": "Vegetables",
+          "description": "This is the way to tasty vegetables"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        },
+        {
+          "id": "fruit-shelve1"
+        }
+      ]
+    },
+    "vegetables": {
+      "name": "Vegetables",
+      "description": "Nice healthy vegetables can be found here!",
+      "paths": [
+        {
+          "toLocationId": "fruits",
+          "name": "Fruits",
+          "description": "Wow, fruits over there!"
+        },
+        {
+          "toLocationId": "main-aisle-1",
+          "name": "Main Aisle 1",
+          "description": "One of the main aisles"
+        },
+        {
+          "toLocationId": "bakery",
+          "name": "Bakery",
+          "description": "You smell bread, follow the trail"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        },
+        {
+          "id": "vegetable-shelve1"
+        },
+        {
+          "id": "vegetable-shelve2"
+        }
+      ]
+    },
+    "bakery": {
+      "name": "Bakery",
+      "description": "Fresh bread is what you smell here",
+      "paths": [
+        {
+          "toLocationId": "vegetables",
+          "name": "Vegetables",
+          "description": "Healthy vegetables in sight, go there"
+        },
+        {
+          "toLocationId": "main-aisle-1",
+          "name": "Main Aisle 1",
+          "description": "Big aisle, wow"
+        },
+        {
+          "toLocationId": "stockroom-entrance",
+          "name": "Stockroom Entrance",
+          "description": "You see a big shutter that probably leads to the stockroom, you can walk over to the shutter"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        },
+        {
+          "id": "bakery-shelve1"
+        }
+      ]
+    },
+    "main-aisle-1": {
+      "name": "Main Aisle 1",
+      "description": "A big aisle connecting to a lot of different aisles. A sign hanging from the ceiling reads: 'Now: All products, 1 coin'",
+      "paths": [
+        {
+          "toLocationId": "entrance",
+          "name": "Entrance",
+          "description": "The store entrance is over here"
+        },
+        {
+          "toLocationId": "main-aisle-4",
+          "name": "Main Aisle 4",
+          "description": "A connection to another main aisle"
+        },
+        {
+          "toLocationId": "fruits",
+          "name": "Fruits",
+          "description": "This leads to the fruits department"
+        },
+        {
+          "toLocationId": "vegetables",
+          "name": "Vegetables",
+          "description": "This leads to healthy vegetables"
+        },
+        {
+          "toLocationId": "bakery",
+          "name": "Bakery",
+          "description": "This leads to freshly baked bread"
+        },
+        {
+          "toLocationId": "stockroom-entrance",
+          "name": "Stockroom Entrance",
+          "description": "You see a big shutter that probably leads to the stockroom, you can walk over to the shutter"
+        },
+        {
+          "toLocationId": "meats",
+          "name": "Meats",
+          "description": "Meat can be found over here"
+        },
+        {
+          "toLocationId": "main-aisle-2",
+          "name": "Main Aisle 2",
+          "description": "A connection to another main aisle"
+        },
+        {
+          "toLocationId": "dry-goods-condiments",
+          "name": "Dry Goods & Condiments",
+          "description": "In this area dry goods and condiments are sold"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
+      ],
+      "npcs": [{ "id": "store-clerk1" }]
+    },
+    "meats": {
+      "name": "Meats",
+      "description": "Meat department",
+      "paths": [
+        {
+          "toLocationId": "main-aisle-1",
+          "name": "Main Aisle 1",
+          "description": "Main aisle of the store"
+        },
+        {
+          "toLocationId": "main-aisle-2",
+          "name": "Main Aisle 2",
+          "description": "Main aisle of the store"
+        },
+        {
+          "toLocationId": "main-aisle-3",
+          "name": "Main Aisle 3",
+          "description": "Main aisle of the store"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        },
+        {
+          "id": "meat-shelve1"
+        },
+        {
+          "id": "meat-shelve2"
+        },
+        {
+          "id": "meat-recipe-stand"
+        }
+      ],
+      "events": ["resolved-angry-meat-lover"],
+      "combat": [
+        {
+          "id": "angry-meat-lover",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "started-angry-meat-lover"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "resolved-angry-meat-lover"
+            }
+          ]
+        }
+      ]
+    },
+    "main-aisle-2": {
+      "name": "Main Aisle 2",
+      "description": "A big aisle connecting to a lot of different aisles. A sign hanging from the ceiling reads: 'Now: All products, 1 coin'",
+      "paths": [
+        {
+          "toLocationId": "main-aisle-1",
+          "name": "Main Aisle 1",
+          "description": "Main aisle of the store"
+        },
+        {
+          "toLocationId": "meats",
+          "name": "Meats",
+          "description": "Meat department, this way!"
+        },
+        {
+          "toLocationId": "dry-goods-condiments",
+          "name": "Dry Goods & Condiments",
+          "description": "Dry goods and condiments can be found over here"
+        },
+        {
+          "toLocationId": "bakery-spices",
+          "name": "Bakery & Spices",
+          "description": "Baking products and spices are sold in they aisle"
+        },
+        {
+          "toLocationId": "canned-packaged-foods",
+          "name": "Canned & Packaged Foods",
+          "description": "Canned and packaged foods are in this aisle"
+        },
+        {
+          "toLocationId": "chips-snacks",
+          "name": "Chips & Snacks",
+          "description": "Nice, chips and snacks are this way!"
+        },
+        {
+          "toLocationId": "coffee-cereal-breakfast",
+          "name": "Coffee & Cereal & Breakfast",
+          "description": "Coffee! And some other stuff"
+        },
+        {
+          "toLocationId": "main-aisle-3",
+          "name": "Main Aisle 3",
+          "description": "One of those main aisles"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
+      ],
+      "npcs": [{ "id": "store-clerk1" }]
+    },
+    "dairy-eggs": {
+      "name": "Dairy & Eggs",
+      "description": "Cow & Chicken: The aftermath",
+      "paths": [
+        {
+          "toLocationId": "main-aisle-3",
+          "name": "Main Aisle 3",
+          "description": "Main aisle"
+        },
+        {
+          "toLocationId": "wine-beer",
+          "name": "Wine & Beer",
+          "description": "*Hic*, yep this way!"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        },
+        {
+          "id": "dairy-shelve1"
+        }
+      ]
+    },
+    "wine-beer": {
+      "name": "Wine & Beer",
+      "description": "Good stuff",
+      "paths": [
+        {
+          "toLocationId": "dairy-eggs",
+          "name": "Dairy & Eggs",
+          "description": "Go here for dairy and eggs"
+        },
+        {
+          "toLocationId": "main-aisle-3",
+          "name": "Main Aisle 3",
+          "description": "Main Aisle"
+        },
+        {
+          "toLocationId": "soda-juices",
+          "name": "Soda & Juices",
+          "description": "Pop them bottles over here"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
+      ],
+      "npcs": [
+        {
+          "id": "old-lady-1"
+        }
+      ]
+    },
+    "soda-juices": {
+      "name": "Soda & Juices",
+      "description": "Non-alcoholic beverages!",
+      "paths": [
+        {
+          "toLocationId": "wine-beer",
+          "name": "Wine & Beer",
+          "description": "This is probably the right way to go from here"
+        },
+        {
+          "toLocationId": "main-aisle-3",
+          "name": "Main Aisle 3",
+          "description": "One of the main store aisles"
+        },
+        {
+          "toLocationId": "frozen-foods",
+          "name": "Frozen Foods",
+          "description": "Brrr"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        },
+        { "id": "soda-shelve1" }
+      ]
+    },
+    "frozen-foods": {
+      "name": "Frozen Foods",
+      "description": "Cold aisle, with cold goodies.",
+      "paths": [
+        {
+          "toLocationId": "soda-juices",
+          "name": "Soda & Juices",
+          "description": "Drinks, non alcoholic, right this way!"
+        },
+        {
+          "toLocationId": "main-aisle-3",
+          "name": "Main Aisle 3",
+          "description": "Main aisle connecting to a lot of aisles"
+        },
+        {
+          "toLocationId": "register",
+          "name": "Cash register",
+          "description": "If you want to pay, this is the way"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
+      ]
+    },
+    "main-aisle-3": {
+      "name": "Main Aisle 3",
+      "description": "A big aisle connecting to a lot of different aisles. A sign hanging from the ceiling reads: 'Now: All products, 1 coin'",
+      "paths": [
+        {
+          "toLocationId": "meats",
+          "name": "Meats",
+          "description": "Proteins and stuff"
+        },
+        {
+          "toLocationId": "main-aisle-2",
+          "name": "Main Aisle 2",
+          "description": "Another main aisle"
+        },
+        {
+          "toLocationId": "coffee-cereal-breakfast",
+          "name": "Coffee & Cereal & Breakfast",
+          "description": "This aisle helps when waking up"
+        },
+        {
+          "toLocationId": "dairy-eggs",
+          "name": "Dairy & Eggs",
+          "description": "Cow & Chicken story over here"
+        },
+        {
+          "toLocationId": "wine-beer",
+          "name": "Wine & Beer",
+          "description": "Drunks, this is the path to follow"
+        },
+        {
+          "toLocationId": "soda-juices",
+          "name": "Soda & Juices",
+          "description": "Drinks, this is the path to follow"
+        },
+        {
+          "toLocationId": "frozen-foods",
+          "name": "Frozen Foods",
+          "description": "Cool!"
+        },
+        {
+          "toLocationId": "main-aisle-4",
+          "name": "Main Aisle 4",
+          "description": "Main aisle leading to a lot of different aisles"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
+      ],
+      "npcs": [{ "id": "store-clerk1" }]
+    },
+    "coffee-cereal-breakfast": {
+      "name": "Coffee & Cereal & Breakfast",
+      "description": "Yay, stuff that you want when you wake up",
+      "paths": [
+        {
+          "toLocationId": "main-aisle-2",
+          "name": "Main Aisle 2",
+          "description": "Main aisle"
+        },
+        {
+          "toLocationId": "main-aisle-3",
+          "name": "Main Aisle 3",
+          "description": "Main aisle"
+        },
+        {
+          "toLocationId": "chips-snacks",
+          "name": "Chips & Snacks",
+          "description": "Nom nom nom"
+        },
+        {
+          "toLocationId": "main-aisle-4",
+          "name": "Main Aisle 4",
+          "description": "Main aisle"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        },
+        {
+          "id": "coffee-aisle-coin",
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "coffee-aisle-coin-grabbed"
+            }
+          ]
+        }
+      ]
+    },
+    "chips-snacks": {
+      "name": "Chips & Snacks",
+      "description": "Arguably the best aisle in the store, better don't come here when you're hungry",
+      "paths": [
+        {
+          "toLocationId": "main-aisle-2",
+          "name": "Main Aisle 2",
+          "description": "One of the main aisles"
+        },
+        {
+          "toLocationId": "coffee-cereal-breakfast",
+          "name": "Coffee & Cereal & Breakfast",
+          "description": "Coffee, cereal and breakfast can be found here"
+        },
+        {
+          "toLocationId": "canned-packaged-foods",
+          "name": "Canned & Packaged Foods",
+          "description": "Canned and packaged foods are here"
+        },
+        {
+          "toLocationId": "main-aisle-4",
+          "name": "Main Aisle 4",
+          "description": "Big aisle"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        },
+        {
+          "id": "chips-shelve1"
+        }
+      ]
+    },
+    "canned-packaged-foods": {
+      "name": "Canned & Packaged Foods",
+      "description": "All kinds of foods can be found here, as long as they're canned or packaged",
+      "paths": [
+        {
+          "toLocationId": "main-aisle-2",
+          "name": "Main Aisle 2",
+          "description": "Leads to a main aisle"
+        },
+        {
+          "toLocationId": "chips-snacks",
+          "name": "Chips & Snacks",
+          "description": "Crunch or sweet, this is what you need"
+        },
+        {
+          "toLocationId": "bakery-spices",
+          "name": "Bakery & Spices",
+          "description": "Baking goods and spicy moods"
+        },
+        {
+          "toLocationId": "main-aisle-4",
+          "name": "Main Aisle 4",
+          "description": "Main aisle"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        },
+        {
+          "id": "canned-shelve1"
+        },
+        {
+          "id": "packaged-shelve1"
+        }
+      ]
+    },
+    "bakery-spices": {
+      "name": "Bakery & Spices",
+      "description": "Spices and baking goods!",
+      "paths": [
+        {
+          "toLocationId": "main-aisle-2",
+          "name": "Main Aisle 2",
+          "description": "A big aisle connecting to several aisles"
+        },
+        {
+          "toLocationId": "canned-packaged-foods",
+          "name": "Canned & Packaged Foods",
+          "description": "All kinds of cans and packages"
+        },
+        {
+          "toLocationId": "dry-goods-condiments",
+          "name": "Dry Goods & Condiments",
+          "description": "Toilet paper in sight!"
+        },
+        {
+          "toLocationId": "main-aisle-4",
+          "name": "Main Aisle 4",
+          "description": "Main aisle"
+        }
+      ],
+      "items": [
+        {
+          "id": "purse-1",
+          "events": [
+            "purse-coin-pickup",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
+          ]
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
+      ]
+    },
+    "dry-goods-condiments": {
+      "name": "Dry Goods & Condiments",
+      "description": "Toilet paper and other stuff",
+      "paths": [
+        {
+          "toLocationId": "main-aisle-1",
+          "name": "Main Aisle 1",
+          "description": "One of the main store aisles"
+        },
+        {
+          "toLocationId": "main-aisle-2",
+          "name": "Main Aisle 2",
+          "description": "Big aisles connecting to a lot of aisles"
+        },
+        {
+          "toLocationId": "bakery-spices",
+          "name": "Bakery & Spices",
+          "description": "If you want to bake, this is the path to take!"
+        },
+        {
+          "toLocationId": "main-aisle-4",
+          "name": "Main Aisle 4",
+          "description": "Main aisle"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        },
+        {
+          "id": "dry-goods-shelve1"
+        },
+        {
+          "id": "condiments-shelve1"
+        }
+      ]
+    },
+    "main-aisle-4": {
+      "name": "name",
+      "description": "A big aisle connecting to a lot of different aisles. A sign hanging from the ceiling reads: 'Now: All products, 1 coin'",
+      "paths": [
+        {
+          "toLocationId": "main-aisle-1",
+          "name": "Main Aisle 1",
+          "description": "Another connecting main aisle"
+        },
+        {
+          "toLocationId": "dry-goods-condiments",
+          "name": "Dry Goods & Condiments",
+          "description": "Flavour station in sight"
+        },
+        {
+          "toLocationId": "bakery-spices",
+          "name": "Bakery & Spices",
+          "description": "Baking goods and spices"
+        },
+        {
+          "toLocationId": "canned-packaged-foods",
+          "name": "Canned & Packaged Foods",
+          "description": "Wow, many cans"
+        },
+        {
+          "toLocationId": "chips-snacks",
+          "name": "Chips & Snacks",
+          "description": "Yumm"
+        },
+        {
+          "toLocationId": "coffee-cereal-breakfast",
+          "name": "Coffee & Cereal & Breakfast",
+          "description": "Morning!"
+        },
+        {
+          "toLocationId": "main-aisle-3",
+          "name": "Main Aisle 3",
+          "description": "Main aisle"
+        },
+        {
+          "toLocationId": "register",
+          "name": "Register",
+          "description": "If you want to pay, this is the way"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
+      ],
+      "npcs": [{ "id": "store-clerk1" }]
+    },
+    "register": {
+      "name": "Cash register queue",
+      "description": "A sign at the cash register reads: 'Now: All products, 1 coin'",
+      "paths": [
+        {
+          "toLocationId": "frozen-foods",
+          "name": "Frozen Foods",
+          "description": "Ice cream"
+        },
+        {
+          "toLocationId": "main-aisle-4",
+          "name": "Main Aisle 4",
+          "description": "Main aisle"
+        },
+        {
+          "toLocationId": "register-final",
+          "name": "Cash register",
+          "description": "Want to part with your money, right this way, honey!"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
+      ]
+    },
+    "register-final": {
+      "name": "Cash register",
+      "description": "A sign at the register reads: 'Now: All products, 1 coin'",
+      "paths": [
+        {
+          "toLocationId": "exit",
+          "name": "Exit",
+          "description": "This path leads to the store exit"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        },
+        { "id": "register-1" }
+      ]
+    },
+    "exit": {
+      "name": "Exit",
+      "description": "Goofy Groceries store exit. A big sign reads: 'have a goofy day!'",
+      "paths": [
+        {
+          "toLocationId": "register-final",
+          "name": "Cash register",
+          "description": "Back to the register, why not?"
+        },
+        {
+          "toLocationId": "parking-lot",
+          "name": "Parking Lot",
+          "description": "Exit the store to the parking lot",
+          "events": ["exit-store"]
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        }
+      ]
+    },
+    "stockroom-entrance": {
+      "name": "Stockroom Entrance",
+      "description": "You are in front of a big open shutter, behind it is the stockroom",
+      "paths": [
+        {
+          "toLocationId": "bakery",
+          "name": "Bakery",
+          "description": "Back to bread"
+        },
+        {
+          "toLocationId": "main-aisle-1",
+          "name": "Main Aisle 1",
+          "description": "Main store aisle"
+        },
+        {
+          "toLocationId": "stockroom",
+          "name": "Stockroom",
+          "description": "Enter the stockroom"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        },
+        {
+          "id": "bottle-machine"
+        }
+      ]
+    },
+    "stockroom": {
+      "name": "Stockroom",
+      "description": "You are in the stockroom, carts with products are everywhere",
+      "paths": [
+        {
+          "toLocationId": "stockroom-entrance",
+          "name": "Stockroom Entrance",
+          "description": "Leave the stockroom"
+        }
+      ],
+      "things": [
+        {
+          "id": "inspect-products-on-hand",
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "shopping-basket"
+            }
+          ]
+        },
+        { "id": "stockroom-sink" }
+      ]
+    },
+    "home": {
+      "name": "Home",
+      "description": "This is the vacation home you booked for tonight.",
+      "paths": [
+        {
+          "toLocationId": "parking-lot",
+          "name": "Goofy Groceries",
+          "description": "Use the car to drive to the Goofy Groceries market, again.."
+        }
+      ],
+      "things": [{ "id": "kitchen" }]
+    }
+  },
+  "items": {
+    "shopping-basket": {
+      "name": "Shopping Cart",
+      "description": "This fancy shopping cart is pink with pretty ribbons. It contains the products you are currently holding. When bringing it along you can inspect it's contents throughout the store, neat!"
+    },
+    "purse-1": {
+      "name": "Purse",
+      "description": "You found this purse on the ground, it has always been empty. At least, that's what you'll say when anyone asks!"
+    },
+    "RECIPE-skip-entrance-recipe-stand": {
+      "name": "Made-up recipe",
+      "description": "You came up with this recipe, to avoid having to look at the recipe stand. The ingredients are: Cheese, Spinach, Pasta, Bacon and Herb cheese"
+    },
+    "RECIPE-entrance-recipe-stand-nachos": {
+      "name": "Nacho recipe",
+      "description": "You took this recipe from the recipe stand. The ingredients are: Nachos, Cheese, Crème fraîche, Guacamole, Bell pepper, Tomatoes and Minced meat"
+    },
+    "RECIPE-entrance-recipe-stand-wraps": {
+      "name": "Wraps recipe",
+      "description": "You took this recipe from the recipe stand. The ingredients are: Wraps, Chicken, Cheese, Bell pepper, Lettuce, Crème fraîche and Corn"
+    },
+    "RECIPE-skip-meat-recipe-stand": {
+      "name": "Improvised BBQ recipe",
+      "description": "You made up this BBQ recipe. The ingredients are: Spareribs, Cheese, Bell pepper, Lettuce, Onions, Hamburgers and Buns"
+    },
+    "RECIPE-meat-recipe-stand-BBQ": {
+      "name": "BBQ Deluxe recipe",
+      "description": "You took this recipe from the meat recipe stand. The ingredients are: Chicken, Spareribs, Sausages, Hamburgers, Bell pepper, Lettuce, Tomatoes and Onions"
+    },
+    "BOUGHT-bell-pepper": {
+      "name": "Bell pepper"
+    },
+    "BOUGHT-spinach": { "name": "Spinach" },
+    "BOUGHT-lettuce": { "name": "Lettuce" },
+    "BOUGHT-tomato": { "name": "Tomato" },
+    "BOUGHT-cheese": { "name": "Cheese" },
+    "BOUGHT-pasta": { "name": "Pasta" },
+    "BOUGHT-bacon": { "name": "Bacon" },
+    "BOUGHT-herb-cheese": { "name": "Herb cheese" },
+    "BOUGHT-nachos": { "name": "Nachos" },
+    "BOUGHT-creme-fraiche": { "name": "Crème fraîche" },
+    "BOUGHT-guacamole": { "name": "Guacamole" },
+    "BOUGHT-minced-meat": { "name": "Minced meat" },
+    "BOUGHT-wraps": { "name": "Wraps" },
+    "BOUGHT-chicken": { "name": "Chicken" },
+    "BOUGHT-hamburgers": { "name": "Hamburgers" },
+    "BOUGHT-onion": { "name": "Onion" },
+    "BOUGHT-buns": { "name": "Buns" },
+    "BOUGHT-spareribs": { "name": "Spareribs" },
+    "BOUGHT-bbq": { "name": "Throwaway BBQ kit" },
+    "BOUGHT-corn": { "name": "Corn" }
+  },
+  "npcs": {
+    "old-lady-1": {
+      "name": "Old Lady",
+      "description": "This old lady looks like she really likes her wine",
+      "options": [
+        {
+          "text": "Hello ma'am",
+          "response": "Well hello dear",
+          "events": ["start-talk-old-lady-1"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "start-talk-old-lady-1"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "threaten-old-lady-coin"
+            }
+          ]
+        },
+        {
+          "text": "Can I have some coins please?",
+          "response": "alright, since you asked so nicely.",
+          "events": [
+            "asked-old-lady-coin",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "start-talk-old-lady-1"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "threaten-old-lady-coin"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "asked-old-lady-coin"
+            }
+          ]
+        },
+        {
+          "text": "Can I have more coins please?",
+          "response": "Pff, well alright, but this is your final coin!",
+          "events": [
+            "asked-old-lady-coin-2",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "start-talk-old-lady-1"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "asked-old-lady-coin"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "threaten-old-lady-coin"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "asked-old-lady-coin-2"
+            }
+          ]
+        },
+        {
+          "text": "Hand over your coins!",
+          "response": "Okay okay, but please don't hurt me!",
+          "events": [
+            "threaten-old-lady-coin",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "threaten-old-lady-coin"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "asked-old-lady-coin-2"
+            }
+          ]
+        },
+        {
+          "text": "Hand over your coins!",
+          "response": "I just gave you everything I have, please, don't hurt me! :(",
+          "events": ["threaten-old-lady-coin"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "threaten-old-lady-coin"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "asked-old-lady-coin-2"
+            }
+          ]
+        },
+        {
+          "text": "Hand over more coins!",
+          "response": "Okay okay, this is all I have, just, please don't hurt me..",
+          "events": [
+            "threaten-old-lady-coin-2",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "threaten-old-lady-coin"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "asked-old-lady-coin"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "threaten-old-lady-coin-2"
+            }
+          ]
+        },
+        {
+          "text": "Hand over more coins!",
+          "response": "I already gave you everything I have. Just, please don't hurt me..",
+          "events": ["threaten-old-lady-coin-2"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "threaten-old-lady-coin"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "asked-old-lady-coin"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "threaten-old-lady-coin-2"
+            }
+          ]
+        },
+        {
+          "text": "Say sorry",
+          "response": ":'(",
+          "events": ["said-sorry-old-lady1"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "threaten-old-lady-coin"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "said-sorry-old-lady1"
+            }
+          ]
+        }
+      ]
+    },
+    "store-clerk1": {
+      "name": "Store Clerk",
+      "description": "A store clerk, if you have any questions, this could be the right place to ask them.",
+      "options": [
+        {
+          "text": "The cheese shelve was empty, do you still have any?",
+          "response": "Piss off you old lady hater.",
+          "events": [],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "found-no-cheese"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "threaten-old-lady-coin"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "said-sorry-old-lady1"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "store-clerk-cheese-filled"
+            }
+          ]
+        },
+        {
+          "text": "The cheese shelve was empty, do you still have any?",
+          "response": "I will take a quick look in the stockroom, but only because you said sorry to that poor old lady.. If I find any I'll refill the shelve.",
+          "events": ["store-clerk-cheese-filled"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "found-no-cheese"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "threaten-old-lady-coin"
+            },
+            {
+              "type": "EVENT_DID_HAPPEND",
+              "id": "said-sorry-old-lady1"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "store-clerk-cheese-filled"
+            }
+          ]
+        },
+        {
+          "text": "The cheese shelve was empty, do you still have any?",
+          "response": "I'll take a look in the stockroom, if we have any I'll make sure to fill the shelve. Make sure to take a look there in a bit!",
+          "events": ["store-clerk-cheese-filled"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "found-no-cheese"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "store-clerk-cheese-filled"
+            }
+          ]
+        },
+        {
+          "text": "I Found this purse..",
+          "response": "Wow, how nice of you to show me, here is a coin!",
+          "events": [
+            "store-clerk-purse-coin",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
+          ],
+          "requirements": [
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "purse-1"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "store-clerk-purse-coin"
+            }
+          ]
+        },
+        {
+          "text": "Hello",
+          "response": "Hello, welcome to Goofy Groceries!"
+        }
+      ]
+    },
+    "friend-start-phonecall": {
+      "name": "Patrick",
+      "description": "You are being called by your friend, Patrick",
+      "options": [
+        {
+          "text": "Hey Patrick, what's up?",
+          "response": "Hey, nice to see you have your phone on for a change! We just realized that we have no clue how to make anything. Make sure to pick up some recipes at Goofy's!",
+          "events": ["had-start-phonecall"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "had-start-phonecall"
+            }
+          ]
+        },
+        {
+          "text": "Anything else?",
+          "response": "No, just hurry, we're getting hungry!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "had-start-phonecall"
+            }
+          ]
+        },
+        {
+          "text": "Is this the crusty crab?",
+          "response": "NO, THIS IS PATRICK!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "had-start-phonecall"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "things": {
+    "parking-lot-coin": {
+      "name": "A coin",
+      "description": "There is a coin lying on the ground in the parking lot.",
+      "options": [
+        {
+          "text": "Take coin",
+          "response": "You picked up the coin.",
+          "events": [
+            "parking-lot-coin-grabbed",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "parking-lot-coin-grabbed"
+            }
+          ]
+        }
+      ]
+    },
+    "coffee-aisle-coin": {
+      "name": "A coin",
+      "description": "There is a coin lying on the ground.",
+      "options": [
+        {
+          "text": "Take coin",
+          "response": "You picked up the coin.",
+          "events": [
+            "coffee-aisle-coin-grabbed",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "coffee-aisle-coin-grabbed"
+            }
+          ]
+        }
+      ]
+    },
+    "kitchen": {
+      "name": "Kitchen",
+      "description": "Time to put your groceries to the test! Decide what you will make tonight. Well, if you have a recipe with the required products ofcourse!",
+      "options": [
+        {
+          "text": "Nachos",
+          "response": "You made delicious nachos, everyone is very happy!",
+          "events": ["end-nachos", "game-end"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "end-nachos"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "RECIPE-entrance-recipe-stand-nachos"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-nachos"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-cheese"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-creme-fraiche"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-guacamole"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-bell-pepper"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-tomato"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-minced-meat"
+            }
+          ]
+        },
+        {
+          "text": "Wraps",
+          "response": "You made wraps, everyone is quite happy!",
+          "events": ["end-wraps", "game-end"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "end-wraps"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "RECIPE-entrance-recipe-stand-wraps"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-wraps"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-chicken"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-cheese"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-bell-pepper"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-lettuce"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-creme-fraiche"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-corn"
+            }
+          ]
+        },
+        {
+          "text": "BBQ Deluxe",
+          "response": "That was a great BBQ. Amazing!",
+          "events": ["end-bbq-deluxe", "game-end"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "end-bbq-deluxe"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "RECIPE-meat-recipe-stand-BBQ"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-spareribs"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-chicken"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-sausages"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-hamburgers"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-lettuce"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-bell-pepper"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-onion"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-tomato"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-bbq"
+            }
+          ]
+        },
+        {
+          "text": "BBQ Deluxe",
+          "response": "You gather all the ingredients outside, only to find you don't have a BBQ here. Dumbass. Everyone laughs at you.",
+          "events": ["bbq-failure1"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "bbq-failure1"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "RECIPE-meat-recipe-stand-BBQ"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-spareribs"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-chicken"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-sausages"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-hamburgers"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-lettuce"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-bell-pepper"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-onion"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-tomato"
+            },
+            {
+              "type": "ITEM_NOT_IN_INVENTORY",
+              "id": "BOUGHT-bbq"
+            }
+          ]
+        },
+        {
+          "text": "Improvised BBQ",
+          "response": "You all ate some fine burgers and ribs, nice!",
+          "events": ["end-bbq-simple", "game-end"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "end-bbq-simple"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "RECIPE-skip-meat-recipe-stand"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-spareribs"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-hamburgers"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-cheese"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-bell-pepper"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-lettuce"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-buns"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-onion"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-bbq"
+            }
+          ]
+        },
+        {
+          "text": "Improvised BBQ",
+          "response": "You gather all the ingredients outside, only to find you don't have a BBQ here. Dumbass. Everyone laughs at you.",
+          "events": ["bbq-failure1"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "bbq-failure1"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "RECIPE-skip-meat-recipe-stand"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-spareribs"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-hamburgers"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-cheese"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-bell-pepper"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-lettuce"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-buns"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-onion"
+            },
+            {
+              "type": "ITEM_NOT_IN_INVENTORY",
+              "id": "BOUGHT-bbq"
+            }
+          ]
+        },
+        {
+          "text": "Pasta Spinach",
+          "response": "You made pasta with spinach, some people are surprisingly happy, some aren't...",
+          "events": ["end-pasta-spinach", "game-end"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "end-pasta-spinach"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "RECIPE-skip-entrance-recipe-stand"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-cheese"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-spinach"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-pasta"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-bacon"
+            },
+            {
+              "type": "ITEM_IN_INVENTORY",
+              "id": "BOUGHT-herb-cheese"
+            }
+          ]
+        }
+      ]
+    },
+    "meat-recipe-stand": {
+      "name": "Recipe Stand",
+      "description": "This is a small stand with BBQ ideas.",
+      "options": [
+        {
+          "text": "Browse for recipes",
+          "response": "You inspect the recipes in the stand, a nice BBQ meal catches your eye!",
+          "events": ["browse-meat-recipe-stand"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "browse-meat-recipe-stand"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "skip-meat-recipe-stand"
+            }
+          ]
+        },
+        {
+          "text": "Sniff at the stand, you can come up with BBQ ingredients yourself.",
+          "response": "The stand is a bit insulted",
+          "events": ["skip-meat-recipe-stand"],
+          "items": ["RECIPE-skip-meat-recipe-stand"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "browse-meat-recipe-stand"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "skip-meat-recipe-stand"
+            }
+          ]
+        },
+        {
+          "text": "Recipe for BBQ meal",
+          "response": "You take the BBQ recipe from the stand.",
+          "items": ["RECIPE-meat-recipe-stand-BBQ"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "browse-meat-recipe-stand"
+            },
+            {
+              "type": "ITEM_NOT_IN_INVENTORY",
+              "id": "RECIPE-meat-recipe-stand-BBQ"
+            }
+          ]
+        }
+      ]
+    },
+    "entrance-recipe-stand": {
+      "name": "Recipe Stand",
+      "description": "This is a small stand with some recipes of the week.",
+      "options": [
+        {
+          "text": "Browse for recipes",
+          "response": "You inspect the recipes in the stand, a few interesting recipes catch your eye",
+          "events": ["browse-entrance-recipe-stand"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "browse-entrance-recipe-stand"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "skip-entrance-recipe-stand"
+            }
+          ]
+        },
+        {
+          "text": "You hate stands, to avoid having to look at it, you quickly think of a recipe yourself",
+          "response": "The stand is a bit insulted",
+          "events": ["skip-entrance-recipe-stand"],
+          "items": ["RECIPE-skip-entrance-recipe-stand"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "browse-entrance-recipe-stand"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "skip-entrance-recipe-stand"
+            }
+          ]
+        },
+        {
+          "text": "Recipe for Nachos",
+          "response": "You take the recipe for nachos from the stand.",
+          "items": ["RECIPE-entrance-recipe-stand-nachos"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "browse-entrance-recipe-stand"
+            },
+            {
+              "type": "ITEM_NOT_IN_INVENTORY",
+              "id": "RECIPE-entrance-recipe-stand-nachos"
+            }
+          ]
+        },
+        {
+          "text": "Recipe for Wraps",
+          "response": "You take the recipe for wraps from the stand.",
+          "items": ["RECIPE-entrance-recipe-stand-wraps"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "browse-entrance-recipe-stand"
+            },
+            {
+              "type": "ITEM_NOT_IN_INVENTORY",
+              "id": "RECIPE-entrance-recipe-stand-wraps"
+            }
+          ]
+        }
+      ]
+    },
+    "register-1": {
+      "name": "Register",
+      "description": "Here you can pay for your products, with coins. After an item is bought, it is added to your inventory.",
+      "options": [
+        {
+          "text": "Buy bell pepper",
+          "response": "You bought the bell pepper",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-bell-pepper"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-bell-pepper"],
+          "events": [
+            "return-bell-pepper",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy spinach",
+          "response": "You bought the spinach",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-spinach"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-spinach"],
+          "events": [
+            "return-spinach",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy lettuce",
+          "response": "You bought the lettuce",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-lettuce"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-lettuce"],
+          "events": [
+            "return-lettuce",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy tomato",
+          "response": "You bought the tomato",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-tomato"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-tomato"],
+          "events": [
+            "return-tomato",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy cheese",
+          "response": "You bought the cheese",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-cheese"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-cheese"],
+          "events": [
+            "return-cheese",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy pasta",
+          "response": "You bought the pasta",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-pasta"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-pasta"],
+          "events": [
+            "return-pasta",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy bacon",
+          "response": "You bought the bacon",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-bacon"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-bacon"],
+          "events": [
+            "return-bacon",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy herb cheese",
+          "response": "You bought the herb cheese",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-herb-cheese"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-herb-cheese"],
+          "events": [
+            "return-herb-cheese",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy nachos",
+          "response": "You bought the nachos",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-nachos"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-nachos"],
+          "events": [
+            "return-nachos",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy crème fraîche",
+          "response": "You bought the crème fraîche",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-creme-fraiche"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-creme-fraiche"],
+          "events": [
+            "return-creme-fraiche",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy guacamole",
+          "response": "You bought the guacamole",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-guacamole"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-guacamole"],
+          "events": [
+            "return-guacamole",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy minced meat",
+          "response": "You bought the minced meat",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-minced-meat"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-minced-meat"],
+          "events": [
+            "return-minced-meat",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy wraps",
+          "response": "You bought the wraps",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-wraps"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-wraps"],
+          "events": [
+            "return-wraps",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy chicken",
+          "response": "You bought the chicken",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-chicken"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-chicken"],
+          "events": [
+            "return-chicken",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy hamburgers",
+          "response": "You bought the hamburgers",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-hamburgers"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-hamburgers"],
+          "events": [
+            "return-hamburgers",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy onion",
+          "response": "You bought the onion",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-onion"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-onion"],
+          "events": [
+            "return-onion",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy buns",
+          "response": "You bought the buns",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-buns"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-buns"],
+          "events": [
+            "return-buns",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy spareribs",
+          "response": "You bought the spareribs",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-spareribs"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-spareribs"],
+          "events": [
+            "return-spareribs",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy BBQ",
+          "response": "You bought the throwaway BBQ kit",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-bbq"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-bbq"],
+          "events": [
+            "return-bbq",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        },
+        {
+          "text": "Buy corn",
+          "response": "You bought the corn",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-corn"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "coin-1"
+            }
+          ],
+          "items": ["BOUGHT-corn"],
+          "events": [
+            "return-corn",
+            "pay-1",
+            "pay-2",
+            "pay-3",
+            "pay-4",
+            "pay-5",
+            "pay-6",
+            "pay-7",
+            "pay-8",
+            "pay-9",
+            "pay-10",
+            "pay-11",
+            "pay-12",
+            "pay-13",
+            "pay-14",
+            "pay-15"
+          ]
+        }
+      ]
+    },
+    "inspect-products-on-hand": {
+      "name": "Shopping Cart",
+      "description": "These are the products you are currently carrying along.",
+      "options": [
+        {
+          "text": "Coke bottle",
+          "response": "A bottle, filled with coke!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-coke-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Fanta bottle",
+          "response": "A bottle, filled with fanta!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-fanta-bottle"
+            }
+          ]
+        },
+        {
+          "text": "7up bottle",
+          "response": "A bottle, filled with 7up!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-7up-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Bell pepper",
+          "response": "Wow, what a pretty bell pepper!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-bell-pepper"
+            }
+          ]
+        },
+        {
+          "text": "Spinach",
+          "response": "Wow, nice spinach!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-spinach"
+            }
+          ]
+        },
+        {
+          "text": "Lettuce",
+          "response": "Hmm, lettuce!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-lettuce"
+            }
+          ]
+        },
+        {
+          "text": "Tomato",
+          "response": "It's red, it's a tomato!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-tomato"
+            }
+          ]
+        },
+        {
+          "text": "Cheese",
+          "response": "Cheesy.",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-cheese"
+            }
+          ]
+        },
+        {
+          "text": "Pasta",
+          "response": "Pasta.",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-pasta"
+            }
+          ]
+        },
+        {
+          "text": "Bacon",
+          "response": "Yummy, bacon!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-bacon"
+            }
+          ]
+        },
+        {
+          "text": "Herb cheese",
+          "response": "Herb cheese.",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-herb-cheese"
+            }
+          ]
+        },
+        {
+          "text": "Nachos",
+          "response": "A bag filled with nachos.",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-nachos"
+            }
+          ]
+        },
+        {
+          "text": "Crème fraîche",
+          "response": "Best ingredient ever!",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-creme-fraiche"
+            }
+          ]
+        },
+        {
+          "text": "Guacamole",
+          "response": "Guacamole, not self-made",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-guacamole"
+            }
+          ]
+        },
+        {
+          "text": "Minced meat",
+          "response": "Meat, which is minced",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-minced-meat"
+            }
+          ]
+        },
+        {
+          "text": "Wraps",
+          "response": "A package with wraps",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-wraps"
+            }
+          ]
+        },
+        {
+          "text": "Chicken",
+          "response": "Puk puk pukaaak",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-chicken"
+            }
+          ]
+        },
+        {
+          "text": "Hamburgers",
+          "response": "Hamburgers",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-hamburgers"
+            }
+          ]
+        },
+        {
+          "text": "Onions",
+          "response": "Careful, ninja's might try to steal these.",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-onion"
+            }
+          ]
+        },
+        {
+          "text": "Buns",
+          "response": "I like big Buns",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-buns"
+            }
+          ]
+        },
+        {
+          "text": "Spareribs",
+          "response": "Spareribs",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-spareribs"
+            }
+          ]
+        },
+        {
+          "text": "throwaway BBQ kit",
+          "response": "throwaway BBQ kit",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-bbq"
+            }
+          ]
+        },
+        {
+          "text": "Corn",
+          "response": "A can with corn",
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-corn"
+            }
+          ]
+        }
+      ]
+    },
+    "bottle-machine": {
+      "name": "Empty bottle machine",
+      "description": "Empty bottles can be handed in here for coins. Hmmm...",
+      "options": [
+        {
+          "text": "Hand in empty coke bottle",
+          "response": "You hand in the empty coke bottle and gain a coin!",
+          "events": [
+            "handed-in-coke-bottle",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "handed-in-coke-bottle"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "empty-coke-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Hand in empty fanta bottle",
+          "response": "You hand in the empty fanta bottle and gain a coin!",
+          "events": [
+            "handed-in-fanta-bottle",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "handed-in-fanta-bottle"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "empty-fanta-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Hand in empty 7up bottle",
+          "response": "You hand in the empty 7up bottle and gain a coin!",
+          "events": [
+            "handed-in-7up-bottle",
+            "coin-1",
+            "coin-2",
+            "coin-3",
+            "coin-4",
+            "coin-5",
+            "coin-6",
+            "coin-7",
+            "coin-8",
+            "coin-9",
+            "coin-10",
+            "coin-11",
+            "coin-12",
+            "coin-13",
+            "coin-14",
+            "coin-15"
+          ],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "handed-in-7up-bottle"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "empty-7up-bottle"
+            }
+          ]
+        }
+      ]
+    },
+    "vegetable-shelve1": {
+      "name": "Vegetable Shelve",
+      "description": "A shelve filled with vegetables",
+      "options": [
+        {
+          "text": "Take bell pepper",
+          "response": "You took a bell pepper from the shelve.",
+          "events": ["PRODUCT-bell-pepper"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-bell-pepper"
+            }
+          ]
+        },
+        {
+          "text": "Return bell pepper",
+          "response": "You put the bell pepper back in the shelve.",
+          "events": ["return-bell-pepper"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-bell-pepper"
+            }
+          ]
+        },
+        {
+          "text": "Take onion",
+          "response": "You took some onion from the shelve.",
+          "events": ["PRODUCT-onion"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-onion"
+            }
+          ]
+        },
+        {
+          "text": "Return onion",
+          "response": "You put the onion back in the shelve.",
+          "events": ["return-onion"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-onion"
+            }
+          ]
+        }
+      ]
+    },
+    "vegetable-shelve2": {
+      "name": "Vegetable Shelve",
+      "description": "A cooled shelve filled with vegetables",
+      "options": [
+        {
+          "text": "Take spinach",
+          "response": "You took some spinach from the shelve.",
+          "events": ["PRODUCT-spinach"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-spinach"
+            }
+          ]
+        },
+        {
+          "text": "Return spinach",
+          "response": "You put the spinach back in the shelve.",
+          "events": ["return-spinach"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-spinach"
+            }
+          ]
+        },
+        {
+          "text": "Take lettuce",
+          "response": "You took some lettuce from the shelve.",
+          "events": ["PRODUCT-lettuce"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-lettuce"
+            }
+          ]
+        },
+        {
+          "text": "Return lettuce",
+          "response": "You put the lettuce back in the shelve.",
+          "events": ["return-lettuce"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-lettuce"
+            }
+          ]
+        }
+      ]
+    },
+    "bakery-shelve1": {
+      "name": "Bakery Shelve",
+      "description": "Bread everywhere",
+      "options": [
+        {
+          "text": "Take buns",
+          "response": "You took some buns.",
+          "events": ["PRODUCT-buns"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-buns"
+            }
+          ]
+        },
+        {
+          "text": "Return buns",
+          "response": "You put the buns back.",
+          "events": ["return-buns"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-buns"
+            }
+          ]
+        }
+      ]
+    },
+    "fruit-shelve1": {
+      "name": "Fruit Shelve",
+      "description": "A shelve filled with fruits",
+      "options": [
+        {
+          "text": "Take tomato",
+          "response": "Is this really a fruit? You took it anyway.",
+          "events": ["PRODUCT-tomato"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-tomato"
+            }
+          ]
+        },
+        {
+          "text": "Return tomato",
+          "response": "You put the tomato back in the shelve.",
+          "events": ["return-tomato"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-tomato"
+            }
+          ]
+        }
+      ]
+    },
+    "meat-shelve1": {
+      "name": "Meat Shelve",
+      "description": "A shelve filled with meats",
+      "options": [
+        {
+          "text": "Take chicken",
+          "response": "This definitely came before the egg.",
+          "events": ["PRODUCT-chicken"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-chicken"
+            }
+          ]
+        },
+        {
+          "text": "Return chicken",
+          "response": "You put the chicken back in the shelve.",
+          "events": ["return-chicken"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-chicken"
+            }
+          ]
+        },
+        {
+          "text": "Take bacon",
+          "response": "Yumm, bacon.",
+          "events": ["PRODUCT-bacon"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-bacon"
+            }
+          ]
+        },
+        {
+          "text": "Return bacon",
+          "response": "You put the bacon back in the shelve.",
+          "events": ["return-bacon"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-bacon"
+            }
+          ]
+        },
+        {
+          "text": "Take minced meat",
+          "response": "You grab the minced meat, but..",
+          "events": ["started-angry-meat-lover"],
+          "toLocationId": "meats",
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-minced-meat"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "started-angry-meat-lover"
+            }
+          ]
+        },
+        {
+          "text": "Take minced meat",
+          "response": "You took the minced-meat.",
+          "events": ["PRODUCT-minced-meat"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-minced-meat"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "angry-meat-lover-win"
+            }
+          ]
+        },
+        {
+          "text": "Return minced meat",
+          "response": "You put the minced meat back in the shelve.",
+          "events": ["return-minced-meat"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-minced-meat"
+            }
+          ]
+        }
+      ]
+    },
+    "meat-shelve2": {
+      "name": "BBQ Meat Shelve",
+      "description": "A shelve filled with BBQ meats",
+      "options": [
+        {
+          "text": "Take hamburgers",
+          "response": "Tasty.",
+          "events": ["PRODUCT-hamburgers"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-hamburgers"
+            }
+          ]
+        },
+        {
+          "text": "Return hamburgers",
+          "response": "You put the hamburgers back in the shelve.",
+          "events": ["return-hamburgers"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-hamburgers"
+            }
+          ]
+        },
+        {
+          "text": "Take spareribs",
+          "response": "Yumm, spareribs.",
+          "events": ["PRODUCT-spareribs"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-spareribs"
+            }
+          ]
+        },
+        {
+          "text": "Return spareribs",
+          "response": "You put the spareribs back in the shelve.",
+          "events": ["return-spareribs"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-spareribs"
+            }
+          ]
+        }
+      ]
+    },
+    "dairy-shelve1": {
+      "name": "Dairy Shelve",
+      "description": "A shelve filled with dairy",
+      "options": [
+        {
+          "text": "Take cheese",
+          "response": "The shelve is empty, there is no cheese.. :(",
+          "events": ["found-no-cheese"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-cheese"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "store-clerk-cheese-filled"
+            }
+          ]
+        },
+        {
+          "text": "Take cheese",
+          "response": "Very cheesy.",
+          "events": ["PRODUCT-cheese"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-cheese"
+            },
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "store-clerk-cheese-filled"
+            }
+          ]
+        },
+        {
+          "text": "Return cheese",
+          "response": "You put the cheese back in the shelve.",
+          "events": ["return-cheese"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-cheese"
+            }
+          ]
+        },
+        {
+          "text": "Take herb cheese",
+          "response": "You took the herb cheese",
+          "events": ["PRODUCT-herb-cheese"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-herb-cheese"
+            }
+          ]
+        },
+        {
+          "text": "Return herb cheese",
+          "response": "You put the herb cheese back in the shelve.",
+          "events": ["return-herb-cheese"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-herb-cheese"
+            }
+          ]
+        },
+        {
+          "text": "Take crème fraîche",
+          "response": "Can't go wrong with this",
+          "events": ["PRODUCT-creme-fraiche"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-creme-fraiche"
+            }
+          ]
+        },
+        {
+          "text": "Return crème fraîche",
+          "response": "You put the crème fraîche back in the shelve, sounds like a mistake to be honest.",
+          "events": ["return-creme-fraiche"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-creme-fraiche"
+            }
+          ]
+        }
+      ]
+    },
+    "chips-shelve1": {
+      "name": "Chips Shelve",
+      "description": "A shelve filled with chips, nice.",
+      "options": [
+        {
+          "text": "Take nachos",
+          "response": "You carefully take the nachos, don't wanna break these.",
+          "events": ["PRODUCT-nachos"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-nachos"
+            }
+          ]
+        },
+        {
+          "text": "Return nachos",
+          "response": "You put the nachos back in the shelve.",
+          "events": ["return-nachos"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-nachos"
+            }
+          ]
+        }
+      ]
+    },
+    "canned-shelve1": {
+      "name": "Canned foods Shelve",
+      "description": "A shelve filled with canned foods.",
+      "options": [
+        {
+          "text": "Take corn",
+          "response": "You take a can of corn.",
+          "events": ["PRODUCT-corn"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-corn"
+            }
+          ]
+        },
+        {
+          "text": "Return corn",
+          "response": "You put the corn back in the shelve.",
+          "events": ["return-corn"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-corn"
+            }
+          ]
+        }
+      ]
+    },
+    "soda-shelve1": {
+      "name": "Soda Shelve",
+      "description": "A shelve filled with sodas.",
+      "options": [
+        {
+          "text": "Take coke bottle",
+          "response": "You take a coke bottle.",
+          "events": ["PRODUCT-coke-bottle"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-coke-bottle"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "empty-coke-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Return coke bottle",
+          "response": "You put the coke bottle back in the shelve.",
+          "events": ["return-coke-bottle"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-coke-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Take fanta bottle",
+          "response": "You take a fanta bottle.",
+          "events": ["PRODUCT-fanta-bottle"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-fanta-bottle"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "empty-fanta-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Return fanta bottle",
+          "response": "You put the fanta bottle back in the shelve.",
+          "events": ["return-fanta-bottle"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-fanta-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Take 7up bottle",
+          "response": "You take a 7up bottle.",
+          "events": ["PRODUCT-7up-bottle"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-7up-bottle"
+            },
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "empty-7up-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Return 7up bottle",
+          "response": "You put the 7up bottle back in the shelve.",
+          "events": ["return-7up-bottle"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-7up-bottle"
+            }
+          ]
+        }
+      ]
+    },
+    "packaged-shelve1": {
+      "name": "Packaged foods Shelve",
+      "description": "A shelve filled with packaged foods.",
+      "options": [
+        {
+          "text": "Take wraps",
+          "response": "You take some wraps",
+          "events": ["PRODUCT-wraps"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-wraps"
+            }
+          ]
+        },
+        {
+          "text": "Return wraps",
+          "response": "You put the wraps back in the shelve.",
+          "events": ["return-wraps"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-wraps"
+            }
+          ]
+        },
+        {
+          "text": "Take pasta",
+          "response": "You take some pasta",
+          "events": ["PRODUCT-pasta"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-pasta"
+            }
+          ]
+        },
+        {
+          "text": "Return pasta",
+          "response": "You put the pasta back in the shelve.",
+          "events": ["return-pasta"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-pasta"
+            }
+          ]
+        }
+      ]
+    },
+    "stockroom-sink": {
+      "name": "Stockroom sink",
+      "description": "A sink, where no one can see you...",
+      "options": [
+        {
+          "text": "Empty coke bottle",
+          "response": "You sneakily empty the coke bottle.",
+          "events": ["empty-coke-bottle"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-coke-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Empty fanta bottle",
+          "response": "You sneakily empty the fanta bottle.",
+          "events": ["empty-fanta-bottle"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-fanta-bottle"
+            }
+          ]
+        },
+        {
+          "text": "Empty 7up bottle",
+          "response": "You sneakily empty the 7up bottle.",
+          "events": ["empty-7up-bottle"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-7up-bottle"
+            }
+          ]
+        }
+      ]
+    },
+    "dry-goods-shelve1": {
+      "name": "Dry goods shelve",
+      "description": "A shelve filled with dry goods.",
+      "options": [
+        {
+          "text": "Take BBQ",
+          "response": "You take a throwaway BBQ kit.",
+          "events": ["PRODUCT-bbq"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-bbq"
+            }
+          ]
+        },
+        {
+          "text": "Return bbq",
+          "response": "You put the throwaway BBQ kit back in the shelve.",
+          "events": ["return-bbq"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-bbq"
+            }
+          ]
+        }
+      ]
+    },
+    "condiments-shelve1": {
+      "name": "Condiments Shelve",
+      "description": "A shelve filled with condiments.",
+      "options": [
+        {
+          "text": "Take guacamole",
+          "response": "You take guacamole.",
+          "events": ["PRODUCT-guacamole"],
+          "requirements": [
+            {
+              "type": "EVENT_NOT_HAPPENED",
+              "id": "PRODUCT-guacamole"
+            }
+          ]
+        },
+        {
+          "text": "Return guacamole",
+          "response": "You put the guacamole back in the shelve.",
+          "events": ["return-guacamole"],
+          "requirements": [
+            {
+              "type": "EVENT_DID_HAPPEN",
+              "id": "PRODUCT-guacamole"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "events": {
+    "game-end": { "message": "Gratz, you finished the game!" },
+    "end-nachos": {},
+    "end-wraps": {},
+    "end-pasta-spinach": {},
+    "end-bbq-deluxe": {},
+    "end-bbq-simple": {},
+    "bbq-failure1": {},
+    "exit-store": {
+      "message": "You exited the store, emptying your shopping cart.",
+      "revertEvents": [
+        "exit-store",
+        "PRODUCT-coke-bottle",
+        "PRODUCT-fanta-bottle",
+        "PRODUCT-7up-bottle",
+        "PRODUCT-bell-pepper",
+        "PRODUCT-spinach",
+        "PRODUCT-lettuce",
+        "PRODUCT-tomato",
+        "PRODUCT-cheese",
+        "PRODUCT-pasta",
+        "PRODUCT-bacon",
+        "PRODUCT-herb-cheese",
+        "PRODUCT-nachos",
+        "PRODUCT-creme-fraiche",
+        "PRODUCT-guacamole",
+        "PRODUCT-minced-meat",
+        "PRODUCT-wraps",
+        "PRODUCT-chicken",
+        "PRODUCT-corn",
+        "PRODUCT-hamburgers",
+        "PRODUCT-buns",
+        "PRODUCT-spareribs",
+        "PRODUCT-onion",
+        "PRODUCT-bbq"
+      ]
+    },
+    "found-no-cheese": {},
+    "store-clerk-cheese-filled": {},
+    "shopping-cart-coin-pickup": {
+      "message": "You check your pockets for coins. Your backpocket contains one! When trying to insert it into the cart you notice it already has a coin in it. Lucky! You decide to put the coin you found in your wallet"
+    },
+    "purse-coin-pickup": {
+      "message": "You check the contents of the purse, it contained a coin! You put the coin in your wallet."
+    },
+    "store-clerk-purse-coin": {},
+    "parking-lot-coin-grabbed": {
+      "message": "You put the coin in your wallet."
+    },
+    "coffee-aisle-coin-grabbed": {
+      "message": "You put the coin in your wallet."
+    },
+    "had-start-phonecall": {},
+    "start-talk-old-lady-1": {},
+    "asked-old-lady-coin": {},
+    "asked-old-lady-coin-2": {},
+    "threaten-old-lady-coin": {},
+    "threaten-old-lady-coin-2": {
+      "revertEvents": ["said-sorry-old-lady1"]
+    },
+    "said-sorry-old-lady1": {},
+    "started-angry-meat-lover": {},
+    "ask-angry-meat-lover-1": {},
+    "resolved-angry-meat-lover": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "started-angry-meat-lover"
+        }
+      ]
+    },
+    "angry-meat-lover-win": {
+      "message": "You safely add the minced meat to your products"
+    },
+    "go-to-entrance-init": {},
+    "mobile-phone-battery-dies": {
+      "name": "Mobile Phone Battery Died",
+      "message": "The battery of your mobile phone just ran out, guess that means no more calls from Patrick"
+    },
+    "browse-meat-recipe-stand": {},
+    "skip-meat-recipe-stand": {},
+    "browse-entrance-recipe-stand": {},
+    "skip-entrance-recipe-stand": {},
+    "coin-1": { "message": "You now have 1 coin" },
+    "coin-2": {
+      "message": "You now have 2 coins",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-1"
+        }
+      ]
+    },
+    "coin-3": {
+      "message": "You now have 3 coins, what a charm",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-2"
+        }
+      ]
+    },
+    "coin-4": {
+      "message": "You now have 4 coins",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-3"
+        }
+      ]
+    },
+    "coin-5": {
+      "message": "You now have 5 coins",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-4"
+        }
+      ]
+    },
+    "coin-6": {
+      "message": "You now have 6 coins, your purse is getting heavy!",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-5"
+        }
+      ]
+    },
+    "coin-7": {
+      "message": "You now have 7 coins",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-6"
+        }
+      ]
+    },
+    "coin-8": {
+      "message": "You now have 8 coins",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-7"
+        }
+      ]
+    },
+    "coin-9": {
+      "message": "You now have 9 coins, hype!",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-8"
+        }
+      ]
+    },
+    "coin-10": {
+      "message": "You now have 10 coins, wow!",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-9"
+        }
+      ]
+    },
+    "coin-11": {
+      "message": "You now have 11 coins, damn!",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-10"
+        }
+      ]
+    },
+    "coin-12": {
+      "message": "You now have 12 coins, jeez!",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-11"
+        }
+      ]
+    },
+    "coin-13": {
+      "message": "You now have 13 coins, hopefully this won't bring bad luck!",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-12"
+        }
+      ]
+    },
+    "coin-14": {
+      "message": "You now have 14 coins.",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-13"
+        }
+      ]
+    },
+    "coin-15": {
+      "message": "You now have 15 coins, epic!",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-14"
+        }
+      ]
+    },
+    "pay-1": {
+      "message": "You are now out of coins!",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-1"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-2"
+        }
+      ],
+      "revertEvents": ["coin-1", "pay-1"]
+    },
+    "pay-2": {
+      "message": "You have 1 coin left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-2"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-3"
+        }
+      ],
+      "revertEvents": ["coin-2", "pay-2"]
+    },
+    "pay-3": {
+      "message": "You have 2 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-3"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-4"
+        }
+      ],
+      "revertEvents": ["coin-3", "pay-3"]
+    },
+    "pay-4": {
+      "message": "You have 3 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-4"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-5"
+        }
+      ],
+      "revertEvents": ["coin-4", "pay-4"]
+    },
+    "pay-5": {
+      "message": "You have 4 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-5"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-6"
+        }
+      ],
+      "revertEvents": ["coin-5", "pay-5"]
+    },
+    "pay-6": {
+      "message": "You have 5 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-6"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-7"
+        }
+      ],
+      "revertEvents": ["coin-6", "pay-6"]
+    },
+    "pay-7": {
+      "message": "You have 6 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-7"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-8"
+        }
+      ],
+      "revertEvents": ["coin-7", "pay-7"]
+    },
+    "pay-8": {
+      "message": "You have 7 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-8"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-9"
+        }
+      ],
+      "revertEvents": ["coin-8", "pay-8"]
+    },
+    "pay-9": {
+      "message": "You have 8 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-9"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-10"
+        }
+      ],
+      "revertEvents": ["coin-9", "pay-9"]
+    },
+    "pay-10": {
+      "message": "You have 9 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-10"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-11"
+        }
+      ],
+      "revertEvents": ["coin-10", "pay-10"]
+    },
+    "pay-11": {
+      "message": "You have 10 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-11"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-12"
+        }
+      ],
+      "revertEvents": ["coin-11", "pay-11"]
+    },
+    "pay-12": {
+      "message": "You have 11 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-12"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-13"
+        }
+      ],
+      "revertEvents": ["coin-12", "pay-12"]
+    },
+    "pay-13": {
+      "message": "You have 12 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-13"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-14"
+        }
+      ],
+      "revertEvents": ["coin-13", "pay-13"]
+    },
+    "pay-14": {
+      "message": "You have 13 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-14"
+        },
+        {
+          "type": "EVENT_NOT_HAPPENED",
+          "id": "coin-15"
+        }
+      ],
+      "revertEvents": ["coin-14", "pay-14"]
+    },
+    "pay-15": {
+      "message": "You have 14 coins left",
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "coin-15"
+        }
+      ],
+      "revertEvents": ["coin-15", "pay-15"]
+    },
+    "empty-coke-bottle": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-coke-bottle"
+        }
+      ],
+      "revertEvents": ["PRODUCT-coke-bottle"]
+    },
+    "handed-in-coke-bottle": {},
+    "empty-fanta-bottle": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-fanta-bottle"
+        }
+      ],
+      "revertEvents": ["PRODUCT-fanta-bottle"]
+    },
+    "handed-in-fanta-bottle": {},
+    "empty-7up-bottle": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-7up-bottle"
+        }
+      ],
+      "revertEvents": ["PRODUCT-7up-bottle"]
+    },
+    "handed-in-7up-bottle": {},
+    "PRODUCT-coke-bottle": {},
+    "return-coke-bottle": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-coke-bottle"
+        }
+      ],
+      "revertEvents": ["PRODUCT-coke-bottle", "return-coke-bottle"]
+    },
+    "PRODUCT-fanta-bottle": {},
+    "return-fanta-bottle": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-fanta-bottle"
+        }
+      ],
+      "revertEvents": ["PRODUCT-fanta-bottle", "return-fanta-bottle"]
+    },
+    "PRODUCT-7up-bottle": {},
+    "return-7up-bottle": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-7up-bottle"
+        }
+      ],
+      "revertEvents": ["PRODUCT-7up-bottle", "return-7up-bottle"]
+    },
+    "PRODUCT-bell-pepper": {},
+    "return-bell-pepper": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-bell-pepper"
+        }
+      ],
+      "revertEvents": ["PRODUCT-bell-pepper", "return-bell-pepper"]
+    },
+    "PRODUCT-spinach": {},
+    "return-spinach": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-spinach"
+        }
+      ],
+      "revertEvents": ["PRODUCT-spinach", "return-spinach"]
+    },
+    "PRODUCT-lettuce": {},
+    "return-lettuce": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-lettuce"
+        }
+      ],
+      "revertEvents": ["PRODUCT-lettuce", "return-lettuce"]
+    },
+    "PRODUCT-tomato": {},
+    "return-tomato": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-tomato"
+        }
+      ],
+      "revertEvents": ["PRODUCT-tomato", "return-tomato"]
+    },
+    "PRODUCT-cheese": {},
+    "return-cheese": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-cheese"
+        }
+      ],
+      "revertEvents": ["PRODUCT-cheese", "return-cheese"]
+    },
+    "PRODUCT-pasta": {},
+    "return-pasta": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-pasta"
+        }
+      ],
+      "revertEvents": ["PRODUCT-pasta", "return-pasta"]
+    },
+    "PRODUCT-bacon": {},
+    "return-bacon": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-bacon"
+        }
+      ],
+      "revertEvents": ["PRODUCT-bacon", "return-bacon"]
+    },
+    "PRODUCT-herb-cheese": {},
+    "return-herb-cheese": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-herb-cheese"
+        }
+      ],
+      "revertEvents": ["PRODUCT-herb-cheese", "return-herb-cheese"]
+    },
+    "PRODUCT-nachos": {},
+    "return-nachos": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-nachos"
+        }
+      ],
+      "revertEvents": ["PRODUCT-nachos", "return-nachos"]
+    },
+    "PRODUCT-creme-fraiche": {},
+    "return-creme-fraiche": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-creme-fraiche"
+        }
+      ],
+      "revertEvents": ["PRODUCT-creme-fraiche", "return-creme-fraiche"]
+    },
+    "PRODUCT-guacamole": {},
+    "return-guacamole": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-guacamole"
+        }
+      ],
+      "revertEvents": ["PRODUCT-guacamole", "return-guacamole"]
+    },
+    "PRODUCT-minced-meat": {},
+    "return-minced-meat": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-minced-meat"
+        }
+      ],
+      "revertEvents": ["PRODUCT-minced-meat", "return-minced-meat"]
+    },
+    "PRODUCT-wraps": {},
+    "return-wraps": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-wraps"
+        }
+      ],
+      "revertEvents": ["PRODUCT-wraps", "return-wraps"]
+    },
+    "PRODUCT-chicken": {},
+    "return-chicken": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-chicken"
+        }
+      ],
+      "revertEvents": ["PRODUCT-chicken", "return-chicken"]
+    },
+    "PRODUCT-corn": {},
+    "return-corn": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-corn"
+        }
+      ],
+      "revertEvents": ["PRODUCT-corn", "return-corn"]
+    },
+    "PRODUCT-hamburgers": {},
+    "return-hamburgers": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-hamburgers"
+        }
+      ],
+      "revertEvents": ["PRODUCT-hamburgers", "return-hamburgers"]
+    },
+    "PRODUCT-buns": {},
+    "return-buns": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-buns"
+        }
+      ],
+      "revertEvents": ["PRODUCT-buns", "return-buns"]
+    },
+    "PRODUCT-spareribs": {},
+    "return-spareribs": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-spareribs"
+        }
+      ],
+      "revertEvents": ["PRODUCT-spareribs", "return-spareribs"]
+    },
+    "PRODUCT-onion": {},
+    "return-onion": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-onion"
+        }
+      ],
+      "revertEvents": ["PRODUCT-onion", "return-onion"]
+    },
+    "PRODUCT-bbq": {},
+    "return-bbq": {
+      "requirements": [
+        {
+          "type": "EVENT_DID_HAPPEN",
+          "id": "PRODUCT-bbq"
+        }
+      ],
+      "revertEvents": ["PRODUCT-bbq", "return-bbq"]
+    }
+  },
+  "combats": {
+    "angry-meat-lover": {
+      "title": "Minced meat maniac",
+      "description": "A big angry-looking man grabs at the same piece of minced meat as you do, which is in fact the last package.",
+      "options": [
+        {
+          "text": "Ask politely if you can have the meat.",
+          "response": "The man screams no, grabs a little bit stronger and seems very agitated",
+          "events": ["ask-angry-meat-lover-1"],
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved-angry-meat-lover" },
+            { "type": "EVENT_NOT_HAPPENED", "id": "ask-angry-meat-lover-1" }
+          ]
+        },
+        {
+          "text": "Ask again, you really want this meat",
+          "response": "The angry man grabs the meat from your hands, shoves you away, and quicky walks away.",
+          "events": ["resolved-angry-meat-lover"],
+          "requirements": [
+            { "type": "EVENT_DID_HAPPEN", "id": "ask-angry-meat-lover-1" },
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved-angry-meat-lover" }
+          ]
+        },
+        {
+          "text": "Quickly slam the man down, the meat is yours!",
+          "response": "The man falls over from your punch, the meat is yours!",
+          "events": [
+            "resolved-angry-meat-lover",
+            "PRODUCT-minced-meat",
+            "angry-meat-lover-win"
+          ],
+          "requirements": [
+            { "type": "EVENT_NOT_HAPPENED", "id": "resolved-angry-meat-lover" }
+          ]
+        }
+      ]
+    }
+  },
+  "characters": [
+    {
+      "id": 1,
+      "image": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Mr._Krabs.svg/1200px-Mr._Krabs.svg.png",
+      "name": "Arnoud Krabbius",
+      "race": "Half-Orc",
+      "title": "The Barbarian",
+      "description": "Arnoud is a big, muscular half-orc. He loves fighting, using his gigantic two handed broad axe. Although he is an impressive combatant, he is easily tricked when facing witty enemies.",
+      "backstory": "Arnoud grew up in Arnhem, where 'Messentrekken' was a common move on the streets. This way he learned to always be ready for a fight."
+    },
+    {
+      "id": 2,
+      "image": "http://pngimg.com/uploads/donut/donut_PNG93.png",
+      "name": "Joey Feed'r",
+      "race": "Human",
+      "title": "Longshot Lackey",
+      "description": "He can throw a frikadel like no other.",
+      "backstory": "Joey has always enjoyed food, and prefers to have breakfast that isn't particulary healthy. This passion for food gave him exceptional abilities when preparing future meals. He can throw any fast food with great power and accuracy."
+    },
+    {
+      "id": 3,
+      "image": "http://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/75f250c2c5c4c55.png",
+      "name": "Spincent",
+      "race": "Arachnid",
+      "title": "The Scary Spider",
+      "description": "Big, Hairy, nasty.",
+      "backstory": "After an unfortunate event Spincent grew extra legs, at first this seemed like a disadvantage, but soon he evolved. This turned him into a spider who has the size and strength of a human."
+    }
+  ]
+}
