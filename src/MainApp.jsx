@@ -9,7 +9,7 @@ import { HintButton } from "./components/HintButton";
 
 import jasper from "./books/goofyGroceries.json";
 import fabby from "./books/lizardBasement.json";
-//import pim from "./books/bl_pim.json"; // Koekje
+import pim from "./books/bl_pim.json"; // Koekje
 
 // Disable this boolean if you dont want the startup screen (please do this when testing)
 const doStartScreen = false;
@@ -34,7 +34,7 @@ function LoadingMessage() {
 const hint =
   "Welcome to Basements & Lizards! This is a game casually developed by a few friends. The goal of the game is to provide players an accessible roleplay experience. A Basement Master (BM) can guide a number of players through an adventure using this app. For now a few custom stories can be selected in this menu to start your adventure. The app will display any options or information that is needed by the BM to guide the players. The BM can use his/her imagination and creativity around these options to make the world really livelike and interactive for the participants. Whenever you encounter the lizard button it can be clicked to get some extra information about the screen that is currently displayed, this can help the BM to guide his/her players. This is still an early version of Basements & Lizards, meant to show the concept. Expect many improvements and updates in the future. Thanks for playing and have fun!";
 
-const bookList = [jasper, fabby];
+const bookList = [jasper, fabby, pim];
 
 const ChooseBook = ({ setBook }) => (
   <div

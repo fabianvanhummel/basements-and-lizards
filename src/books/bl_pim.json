@@ -9,6 +9,7 @@
       "description": "Start of the game.",
       "paths": [
         {
+          "name": "Forest entrance",
           "toLocationId": "forest-entrance",
           "description": "Start the game."
         }
@@ -20,11 +21,13 @@
       "events": ["initial-event"],
       "paths": [
         {
+          "name": "Town",
           "toLocationId": "town",
           "description": "The road that goes into town that'll bring al of you to your houses.",
           "direction": "West"
         },
         {
+          "name": "Crossroads 1",
           "toLocationId": "crossroads-1",
           "description": "The tackmacked road becomes a gravel road after 10 meters, right where the forest starts and relatively young trees are growing. Further into the distance, you see the gravel road becoming a dirt road and much narrower. Definitely not suitable for cars. Trees are becoming larger and the forest denser.",
           "direction": "East"
@@ -41,15 +44,18 @@
       "things": [{ "id": "bin" }],
       "paths": [
         {
+          "name": "Forest entrance",
           "toLocationId": "forest-entrance",
           "description": "Back to town."
         },
         {
+          "name": "Crossroads 2",
           "toLocationId": "crossroads-2",
           "description": "This path is clearly the main one that everybody uses to go to the beach.",
           "direction": "East"
         },
         {
+          "name": "Hill",
           "toLocationId": "hill",
           "description": "There's a smaller path to the north that makes a slight turn to the left and since there's loads of trees it's impossible to see where it leads.",
           "direction": "North",
@@ -66,6 +72,7 @@
       "items": [{ "id": "wounded-friend" }],
       "paths": [
         {
+          "name": "Crossroads 1",
           "toLocationId": "crossroads-1",
           "description": "Back to the first crossroads."
         }
@@ -74,15 +81,18 @@
     "crossroads-2": {
       "paths": [
         {
+          "name": "Crossroads 1",
           "toLocationId": "crossroads-1",
           "description": "Back to the first crossroads"
         },
         {
+          "name": "Beach",
           "toLocationId": "beach",
           "description": "In the distance, you can see the lake between the trees.",
           "direction": "North-east"
         },
         {
+          "name": "Ruins front",
           "toLocationId": "ruins-front",
           "description": "To the south, there's a path that seems to disappear after about 50 meters. It looks like it had been in use in the past but has been abadoned after a tree fell on the path. Noone seemed to be bothered by the blockage as there's no effort made to get past.",
           "direction": "South"
@@ -94,6 +104,7 @@
       "things": [{ "id": "fire-pit" }],
       "paths": [
         {
+          "name": "Crossroads 2",
           "toLocationId": "crossroads-2",
           "description": "Back to the second crossroads"
         }
@@ -111,15 +122,18 @@
       "things": [{ "id": "attached-torch" }],
       "paths": [
         {
+          "name": "Crossroads 2",
           "toLocationId": "crossroads-2",
           "description": "Back to the second crossroads"
         },
         {
+          "name": "Ruins inside",
           "requirements": [{ "type": "ITEM_IN_INVENTORY", "id": "lit-torch" }],
           "toLocationId": "ruins-inside",
           "description": "The tower in the ruins has an opening at the bottom. It's impossible to see what's inside as it's pitch-black."
         },
         {
+          "name": "Ruins inside",
           "requirements": [
             { "type": "ITEM_NOT_IN_INVENTORY", "id": "lit-torch" }
           ],
@@ -133,6 +147,7 @@
       "description": "It's pitch black inside here, nothing to see except the way out.",
       "paths": [
         {
+          "name": "Ruins front",
           "toLocationId": "ruins-front",
           "description": "Back out of the ruins."
         }
@@ -143,10 +158,12 @@
       "description": "There's not much inside the ruins, except a staircase.",
       "paths": [
         {
+          "name": "Ruins front",
           "toLocationId": "ruins-front",
           "description": "Back out of the ruins."
         },
         {
+          "name": "Tower",
           "toLocationId": "tower",
           "description": "The staircase on the far side of the room will probably bring you up the tower. There's not much left of it though."
         }
@@ -158,6 +175,7 @@
       "events": ["to-top-of-tower"],
       "paths": [
         {
+          "name": "Ruins inside",
           "toLocationId": "ruins-inside",
           "description": "Back down the stairs."
         }
