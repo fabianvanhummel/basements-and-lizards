@@ -23,8 +23,6 @@ export const GameTab = ({ book, gameState, changeLog, handleAction }) => {
 
   return (
     <div>
-      {hint && <HintButton hintText={hint} />}
-
       {reactions && (
         <ul className="mb-5">
           {reactions.map((reaction, i) => (
@@ -40,6 +38,8 @@ export const GameTab = ({ book, gameState, changeLog, handleAction }) => {
           ))}
         </ul>
       )}
+
+      {hint && <HintButton hintText={hint} />}
 
       {gameState.combat ? (
         <Combat {...getCombat(book, gameState)} handleAction={handleAction} />
