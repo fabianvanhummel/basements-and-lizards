@@ -8,7 +8,7 @@ import { backgroundImages } from "./images/backgrounds.js";
 
 import jasper from "./books/goofyGroceries.json";
 import fabby from "./books/lizardBasement.json";
-//import pim from "./books/bl_pim.json"; // Koekje
+import pim from "./books/bl_pim.json"; // Koekje
 
 // Disable this boolean if you dont want the startup screen (please do this when testing)
 const doStartScreen = false;
@@ -30,7 +30,7 @@ function LoadingMessage() {
   );
 }
 
-const bookList = [jasper, fabby];
+const bookList = [jasper, fabby, pim];
 
 const ChooseBook = ({ setBook }) => (
   <div
